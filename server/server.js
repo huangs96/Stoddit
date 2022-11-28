@@ -11,7 +11,8 @@ app.get('/', (req, res) =>
   res.send('working')
 );
 
-app.use('/home/user', userRoutes);
+app.use('/register', userRoutes);
+app.use('/login');
 
 
 const port = process.env.PORT || 5000;
