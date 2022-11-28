@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const cookieSession = require('cookie-session');
 const userRoutes = require('./routes/user.routes');
+const authRoutes = require('./routes/auth.routes');
 
 
 const app = express();
@@ -27,8 +28,12 @@ app.get('/', (req, res) =>
   res.send('working')
 );
 
+// app.use('/register');
+
+//Login Page Route
+app.use('/login', authRoutes);
+
 app.use('/users', userRoutes);
-// app.use('/login');
 
 
 const port = process.env.PORT || 5000;

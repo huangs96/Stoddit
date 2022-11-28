@@ -19,17 +19,18 @@ const getUsersById = (req, res) => {
 
 const registerUser = (req, res) => {
   const {username, password, bio, phone} = req.body;
+  
   //check if username exists
   client.query(queries.userExists, [phone], (err, results) => {
     if (results.rows.length) {
       res.send('Phone number has already been registered.');
     }
+  });
 
-    //register user
-    client.query(queries.addUser, [username, password, bio,phone], (err, results) => {
-      if (err) throw err;
-      res.status(201).send('Your account has been created!');
-    })
+  //register user
+  client.query(queries.addUser, [username, password, bio,phone], (err, results) => {
+    if (err) throw err;
+    res.status(201).send('Your account has been created!');
   });
 };
 
@@ -66,9 +67,7 @@ const updateUser = (req, res) => {
     if (err) throw err;
     res.status(200).send('Account has been updated')
   })
-
-  
-}
+};
 
 module.exports = {
   getUsers,
