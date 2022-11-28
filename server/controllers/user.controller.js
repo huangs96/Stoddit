@@ -1,5 +1,5 @@
-const client = require('../db');
-const queries = require('./queries')
+const client = require('../config/db.config');
+const queries = require('../queries/user.queries')
 
 const getUsers = ((req, res) => {
   client.query(queries.getUsers, (err, results) => {
