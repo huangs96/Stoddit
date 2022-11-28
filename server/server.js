@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const cookieSession = require('cookie-session');
+const registerRoutes = require('./routes/register.routes');
 const userRoutes = require('./routes/user.routes');
 const authRoutes = require('./routes/auth.routes');
 
@@ -28,11 +29,13 @@ app.get('/', (req, res) =>
   res.send('working')
 );
 
-// app.use('/register');
+//Register Page Route
+app.use('/register', registerRoutes);
 
 //Login Page Route
 app.use('/login', authRoutes);
 
+//User Page Details
 app.use('/users', userRoutes);
 
 

@@ -14,9 +14,11 @@ const loginPage = (req, res) => {
 
 const authUser = (req, res) => {
   const {username, password} = req.body;
+  console.log('req===,', username, password);
 
   if (username && password) {
     client.query(queries.getUsernameAndPassword, [username, password], (err, results) => {
+      console.log(results);
       if (err) throw err;
       if (results.length > 0) {
         req.session.loggedin = true;
@@ -33,7 +35,16 @@ const authUser = (req, res) => {
   }
 };
 
+const userAuthed = (req, res) => {
+  if (req.session.loggedin) {
+    res.send('Hello, ' + req.session.username + '!');
+  } else {
+    res.send('Please login!');
+  }
+};
+
 module.exports = {
   authUser,
-  loginPage
+  loginPage,
+  userAuthed
 }
