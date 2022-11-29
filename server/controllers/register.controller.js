@@ -1,47 +1,40 @@
 const client = require('../config/db.config');
 const queries = require('../queries/register.queries');
+const bcrypt = require('bcryptjs');
 
 const registerPage = (req, res) => {
   res.send('register page working');
 }
 
-const getUsers = ((req, res) => {
-  client.query(queries.getUsers, (err, results) => {
-    if (err) throw err;
-    console.log(results);
-    res.status(200).json(results.rows);
-  })
-});
-
-const getUsersById = (req, res) => {
-  const id = parseInt(req.params.id);
-  client.query(queries.getUsersById, [id], (err, results) => {
-    if (err) throw err;
-    res.status(200).json(results.rows);
-  });
-};
-
-//user still gets added, fix tomorrow***
-const registerUser = (req, res) => {
+const registerUser = async (req, res) => {
   const {username, password, bio, phone} = req.body;
-  
-  //check if username exists
-  client.query(queries.userExists, [phone], (err, results) => {
-    if (results.rows.length) {
-      return res.send('Phone number has already been registered.');
-    }
-  });
+  const encryptedPassword = await bcrypt.hash(password, 10);
 
-  //register user
-  client.query(queries.addUser, [username, password, bio,phone], (err, results) => {
-    if (err) throw err;
-    res.status(201).send('Your account has been created!');
-  });
+  try {
+    //check if phone exists
+    const userPhoneExists = await client.query(queries.userPhoneExists, [phone]);
+    if (userPhoneExists.rows.length) {
+      return res.send('Phone number is in use.');
+    };
+
+    //check if username exists
+    const usernameExists = await client.query(queries.usernameExists, [username]);
+    console.log(usernameExists);
+    if (usernameExists.rows.length) {
+      return res.send('Username has already been taken.')
+    };
+
+    //register user if phone & username are not taken
+    const registerUser = await client.query(queries.addUser, [username, encryptedPassword, bio, phone]);
+    if (registerUser) {
+      res.status(201).send('Your account has been created!');
+    };
+  } catch (err) {
+    return res.status(400).send(err)
+  }
 };
 
 module.exports = {
   registerPage,
-  getUsers,
-  getUsersById,
   registerUser,
 } 
