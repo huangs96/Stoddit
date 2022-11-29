@@ -5,7 +5,6 @@ const registerRoutes = require('./routes/register.routes');
 const userRoutes = require('./routes/user.routes');
 const authRoutes = require('./routes/auth.routes');
 
-
 const app = express();
 
 app.use(cors());

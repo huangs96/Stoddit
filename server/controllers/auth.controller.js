@@ -1,7 +1,9 @@
+require('dotenv').config();
 const client = require('../config/db.config');
 const queries = require('../queries/auth.queries')
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+
 
 
 const loginPage = (req, res) => {
@@ -15,36 +17,23 @@ const authUser = async (req, res) => {
   try {
     const results = await client.query(queries.getUsernameAndPassword, [username]);
     for (let i of results.rows) {
+      id = i.id;
       encryptedPassword = i.password;
     }
     const passwordMatch = await bcrypt.compare(password, encryptedPassword);
+
     if (passwordMatch) {
-      res.send('Login Successful');
-      // response.redirect('/user/:id');
+      const token = jwt.sign({
+        id: id,
+        username: username
+      }, process.env.ACCESS_TOKEN_SECRET);
+      res.header('auth-token', token).send(token);
+    } else {
+      res.send('Incorreect Username or Password');
     }
   } catch (err) {
-    return res.json({status: 'error', error:'Incorrect Username or Password'})
+    return res.status(400).send(err);
   }
-
-  // if (username && password) {
-  //   client.query(queries.getUsernameAndPassword, [username, password], (err, results) => {
-  //     console.log('results----', results);
-  //     if (err) throw err;
-  //     if (results.rows.length) {
-  //       const cryptedPassword = results.rows.password;
-  //       const comparePasswords = await bcrypt.compare(password, cryptedPassword)
-  //       if (comparePasswords) {
-  //         res.send('Login Successful');
-  //         // response.redirect('/user/:id');
-  //       } 
-  //     } else {
-  //       res.send('Incorrect Username and/or Password, please try again.')
-  //     }
-  //   });
-  // } else {
-  //   res.send('Please enter Username and Password');
-  //   res.end();
-  // }
 };
 
 const userAuthed = (req, res) => {

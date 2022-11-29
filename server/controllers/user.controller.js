@@ -2,6 +2,7 @@ const e = require('express');
 const client = require('../config/db.config');
 const queries = require('../queries/user.queries');
 const existQueries = require('../queries/register.queries');
+const auth = require('../middleware/verifyToken');
 
 const getUsers = (async (req, res) => {
   try {
@@ -10,7 +11,7 @@ const getUsers = (async (req, res) => {
       res.status(200).json(allUsers.rows);
     }
   } catch (err) {
-    return res.json({status:'error', error:'No users'});
+    return res.status(400).send(err);
   };
 });
 
@@ -22,12 +23,16 @@ const getUsersById = async (req, res) => {
     if (userWithId.rows.length) {
       return res.status(200).json(userWithId.rows);
     } else {
-      return res.send('Unable to find user with given ID.')
+      return res.send('Unable to find user with given ID.');
     }
   } catch (err) {
-    return res.json({status:'error', error:'Unable to find user with given ID'});
+    return res.status(400).send(err);
   };
 };
+
+const getUserHomePage = async (req, res) => {
+  res.json({homepage: 'hi'});
+}
 
 const deleteUser = async (req, res) => {
   const id = parseInt(req.params.id);
@@ -36,12 +41,12 @@ const deleteUser = async (req, res) => {
     const userWithId = await client.query(queries.getUsersById, [id]);
     if (userWithId.rows.length) {
       await client.query(queries.deleteUser, [id]);
-      res.status(200).send('Account has been deleted.')
+      res.status(200).send('Account has been deleted.');
     } else {
       return res.send('Unable to delete user with given ID.')
     };
   } catch (err) {
-    return res.json({status:'error', error:'Unable to delete user with given ID'});
+    return res.status(400).send(err);
   };
 };
 
@@ -65,13 +70,14 @@ const updateUser = async (req, res) => {
       };
     };
   } catch (err) {
-    return res.json({status:'error', error:'Unable to update user with given ID'});
+    return res.status(400).send(err);
   };
 };
 
 module.exports = {
   getUsers,
   getUsersById,
+  getUserHomePage,
   deleteUser,
   updateUser
 } 
