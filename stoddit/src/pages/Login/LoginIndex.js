@@ -1,7 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LoginForm from './LoginForm';
+import axios from 'axios';
 
 function LoginPage() {
+
+  const fetchApi = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/login');
+      console.log(res);
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+
+  useEffect(() => {
+    fetchApi()
+  }, [])
 
   const adminUser = {
     username: "steve@email.com",
