@@ -12,11 +12,19 @@ function LoginPage() {
   const [error, setError] = useState("");
 
   const Login = details => {
-    console.log(details);
+    if (details.username === adminUser.username && details.password === adminUser.password) {
+      setUser({
+        username: details.username,
+        password: details.password
+      })
+    } else {
+      console.log('Username or password is incorrect.')
+    }
   };
 
   const Logout = details => {
-    console.log(details);
+    console.log('loggedout');
+    setUser({username: "", password:""});
   }
   
   return (
@@ -24,7 +32,7 @@ function LoginPage() {
       {(user.username != "") ? (
         <div className="welcomeMessage">
           <h2>Welcome, <span>{user.name}</span></h2>
-          <button>Logout</button>
+          <button onClick={Logout}>Logout</button>
         </div>
       ) : (
         <LoginForm Login={Login} error={error}/>

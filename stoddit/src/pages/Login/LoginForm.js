@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 function LoginForm({Login, error}) {
   const [details, setDetails] = useState({username:"", password:""});
+  
   const submitHandler = e => {
     e.preventDefault();
 
@@ -16,11 +17,11 @@ function LoginForm({Login, error}) {
         {/* ERROR */}
         <div className="form-group">
           <label htmlFor='username'>Username:</label>
-          <input type="text" name="name" id="username"/>
+          <input type="text" name="username" id="username" onChange={e => setDetails({...details, username: e.target.value})} value={details.username}/>
         </div>
         <div className="form-group">
           <label htmlFor='password'>Password:</label>
-          <input type="password" name="password" id="password"/>
+          <input type="password" name="password" id="password" onChange={e => setDetails({...details, password: e.target.value})} value={details.password}/>
         </div>
         <input type="submit" value="Login" />
         <a href="" className="forgotPassword">Forgot Password?</a>
