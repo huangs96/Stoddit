@@ -29,7 +29,7 @@ const authUser = async (req, res) => {
       }, process.env.ACCESS_TOKEN_SECRET);
       res.header('auth-token', token).send(token);
     } else {
-      res.send('Incorreect Username or Password');
+      res.send('Incorrect Username or Password');
     }
   } catch (err) {
     return res.status(400).send(err);
