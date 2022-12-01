@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 //authorize JWT token for user
 const authToken = (req, res, next) => {
   //taking token from req.header called auth-token, which we sent when login is sucessful
-  const token = req.header('auth-token');
+  const token = req.headers.cookie;
 
   if(!token) {
     return res.status(401).send('Access Denied');
@@ -16,7 +16,8 @@ const authToken = (req, res, next) => {
     next();
     console.log(req.user);
   } catch (err) {
-    res.status(400).send('Invalid Token');
+    res.clearCookie('token');
+    return res.redirect('/login');
   }
 }
 

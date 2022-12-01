@@ -26,10 +26,12 @@ const authUser = async (req, res) => {
       const token = jwt.sign({
         id: id,
         username: username
-      }, process.env.ACCESS_TOKEN_SECRET);
-      res.header('auth-token', token).send(token);
-    } else {
-      res.send('Incorrect Username or Password');
+      }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "15mins"});
+        console.log('cookieworks');
+        res.cookie('token', token, {
+        httpOnly: true,
+      })
+      return res.redirect('/users/home');
     }
   } catch (err) {
     return res.status(400).send(err);
