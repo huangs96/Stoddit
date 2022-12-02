@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; 
 
-function RegisterPage(props) {
+function RegisterPage() {
 
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -21,7 +21,7 @@ function RegisterPage(props) {
           <label htmlFor='password'>Password:</label>
           <input type="password" name="password" id="password" value={password}/>
         </div>
-        <input type="submit" value="Register" onClick={() => props.switchForm}/>
+        <input type="submit" value="Register" onClick={setUserName}/>
         <a href="/home" className="accountExists">Already have an account? Sign in!</a>
       </div>
     </form>

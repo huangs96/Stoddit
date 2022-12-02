@@ -56,18 +56,21 @@ function LoginPage(props) {
     });
 
     
-    const loggedIn = JSON.parse(localStorage.getItem('loggedin'))
+    const loggedIn = await JSON.parse(localStorage.getItem('loggedin'))
 
-    if (loggedIn) {
-      navigate('/user');
-      console.log('worked');
-      // window.location.reload();
-    } else {
-      setLoading(false);
-      setMessage('Cannot Log In');
+    const login = async () => {
+        if (loggedIn) {
+        navigate('/home');
+        console.log('worked');
+        window.location.reload();
+      } else {
+        setLoading(false);
+        setMessage('Cannot Log In');
+      }
     }
 
-    console.log(await getUser());
+    await login();
+
   }
 
   return (
@@ -113,7 +116,7 @@ function LoginPage(props) {
             </div>
           )}
         <a href="/home" className="forgotPassword" >Forgot Password?</a>
-        <button onClick={() => props.switchForm('register')}> No account? Register now!</button>
+        <button onClick={setUserName}> No account? Register now!</button>
       </div>
     </form>
     

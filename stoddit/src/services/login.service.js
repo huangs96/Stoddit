@@ -9,11 +9,11 @@ const authUser = async (credentials)=>  {
     body: JSON.stringify(credentials)
   })
   .then(data => {
-    console.log(data.url);
+    console.log(data);
     data.json()
     if (data.url === 'http://localhost:5000/users/home') {
       localStorage.setItem('loggedin', JSON.stringify('true'));
-      return true;
+      return 'authorized';
     }
   })
   .catch(err => {

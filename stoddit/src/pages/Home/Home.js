@@ -1,28 +1,41 @@
-import React from 'react'
-import { useParams } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { useParams, redirect, useNavigate } from 'react-router-dom';
 import { getUser } from '../../services/home.service';
+import { getHome } from '../../services/login.service';
 // import { getUserHomePage } from ''
 
 
 function HomePage() {
-  const [user, setUser] = React.useState(null);
-  const { handle } = useParams()
+  let [user, setUser] = React.useState('');
+  const { handle } = useParams();
 
-  React.useEffect(() => {
-    let mounted = true;
-    getUser(handle)
-    .then(user => {
-      if (mounted) {
-        setUser(user)
-      }
-    })
-    return () => mounted = false;
-  })
+  let navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.clear();
+    return navigate('/login')
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem('loggedin')) {
+      user = true;
+    };
+  
+    if (!user) {
+      localStorage.clear();
+      return navigate('/login');
+    };
+
+    getHome();
+  }, [])
 
 
   return (
-    <div>Home</div>
-  )
+    <div>
+      <h1>Home</h1>
+      <button onClick={logout}>logout</button>
+    </div>
+    )
 }
 
 export default HomePage
