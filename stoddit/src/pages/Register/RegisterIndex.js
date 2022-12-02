@@ -1,11 +1,30 @@
-import RegisterForm from "./RegisterForm"
+import React, { useState } from 'react'; 
 
-function RegisterPage() {
+function RegisterPage(props) {
+
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+ 
+  const handleSubmit = async e => {
+    e.preventDefault();
+  }
   
   return (
-    <div className="loginPage">
-      <RegisterForm />
-    </div>
+    <form onSubmit={handleSubmit}>
+      <div className="form-inner">
+        <h2>Registration</h2>
+        <div className="form-group">
+          <label htmlFor='username'>Username:</label>
+          <input type="text" name="username" id="username" value={username}/>
+        </div>
+        <div className="form-group">
+          <label htmlFor='password'>Password:</label>
+          <input type="password" name="password" id="password" value={password}/>
+        </div>
+        <input type="submit" value="Register" onClick={() => props.switchForm}/>
+        <a href="/home" className="accountExists">Already have an account? Sign in!</a>
+      </div>
+    </form>
   )
 }
 

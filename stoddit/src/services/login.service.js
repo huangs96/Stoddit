@@ -9,11 +9,15 @@ const authUser = async (credentials)=>  {
     body: JSON.stringify(credentials)
   })
   .then(data => {
-    console.log(data);
+    console.log(data.url);
     data.json()
+    if (data.url === 'http://localhost:5000/users/home') {
+      localStorage.setItem('loggedin', JSON.stringify('true'));
+      return true;
+    }
   })
-  .catch(e => {
-    console.log('e', e);
+  .catch(err => {
+    console.log('err', err);
   });
 }
 
