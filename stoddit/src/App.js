@@ -1,8 +1,7 @@
 // import logo from './logo.svg';
-import react, { useState } from 'react';
 import './App.css';
 import LoginPage from './pages/Login/LoginIndex';
-// import LoginForm from './pages/Login/LoginForm'
+import RegisterPage from './pages/Register/RegisterIndex';
 
 
 function App() {
@@ -10,6 +9,7 @@ function App() {
   return (
     <div className="App">
       <LoginPage />
+      <RegisterPage />
     </div>
   );
 }

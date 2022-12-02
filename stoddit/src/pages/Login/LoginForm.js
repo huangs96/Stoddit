@@ -1,30 +1,20 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { authUser } from '../../services/login.service';
 
-async function loginUser(credentials) {
-  return fetch('http://localhost:5000/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credentials)
-  })
-    .then(data => data.json())
- }
-
-function LoginForm({Login, setToken, error}) {
-  const [username, setUserName] = useState();
-  const [password, setPassword] = useState();
+function LoginForm({setToken, error}) {
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const token = await loginUser({
+    const token = await authUser({
       username,
       password
     });
-    setToken(token);
+    console.log('token', token);
+    setToken(true);
   }
-
 
   return (
     
@@ -41,7 +31,7 @@ function LoginForm({Login, setToken, error}) {
           <input type="password" name="password" id="password" onChange={e => setPassword(e.target.value)} value={password}/>
         </div>
         <input type="submit" value="Login" />
-        <a href="" className="forgotPassword">Forgot Password?</a>
+        <a href="/home" className="forgotPassword">Forgot Password?</a>
       </div>
     </form>
     
