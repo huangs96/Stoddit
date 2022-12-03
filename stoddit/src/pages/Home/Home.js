@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams, redirect, useNavigate } from 'react-router-dom';
 import { getUser } from '../../services/home.service';
-import { getHome } from '../../services/login.service';
+import { logoutUser } from '../../services/login.service';
 // import { getUserHomePage } from ''
 
 
@@ -11,8 +11,14 @@ function HomePage() {
 
   let navigate = useNavigate();
 
-  const logout = () => {
-    localStorage.clear();
+  const logout = async () => {
+    const deleteDetails = await logoutUser();
+    if (deleteDetails.error) {
+      console.log(deleteDetails.error);
+      return;
+    }
+    accessToken = "";
+    console.log(deleteDetails.message);
     return navigate('/login')
   };
 
@@ -26,7 +32,7 @@ function HomePage() {
       return navigate('/login');
     };
 
-    getHome();
+    getUser();
   }, [])
 
 

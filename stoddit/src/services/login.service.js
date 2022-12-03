@@ -1,6 +1,6 @@
 const authUser = async (credentials)=>  {
   // console.log(credentials);
-  fetch('http://localhost:5000/login', {
+  const res = fetch('http://localhost:5000/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -9,26 +9,26 @@ const authUser = async (credentials)=>  {
     body: JSON.stringify(credentials)
   })
   .then(data => {
-    console.log(data);
-    data.json()
-    if (data.url === 'http://localhost:5000/users/home') {
-      localStorage.setItem('loggedin', JSON.stringify('true'));
-      return 'authorized';
-    }
+    data.json();
   })
   .catch(err => {
     console.log('err', err);
   });
 }
 
-const getHome = async () => {
-  return fetch('http://localhost:5000/users/home')
-  .then(data => {
-    console.log(data);
-  })
+const logoutUser = async () => {
+  const res = await fetch('http://localhost:5000/login/delete', {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    mode: 'cors',
+    credentials: 'include'
+  });
+  return await res.json();
 }
 
 module.exports = {
   authUser,
-  getHome
+  logoutUser
 }

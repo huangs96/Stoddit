@@ -41,8 +41,6 @@ function LoginPage(props) {
     setPassword(password);
   };
 
-
-
   const handleSubmit = async e => {
     e.preventDefault();
     setMessage("");
@@ -50,26 +48,24 @@ function LoginPage(props) {
     
     // form.current.validateAll();
 
-    await authUser({
+    let user = await authUser({
       username,
       password
     });
 
-    
-    const loggedIn = await JSON.parse(localStorage.getItem('loggedin'))
+    console.log(user)
+    // const login = async () => {
+    //     if (loggedIn) {
+    //     navigate('/home');
+    //     console.log('worked');
+    //     window.location.reload();
+    //   } else {
+    //     setLoading(false);
+    //     setMessage('Cannot Log In');
+    //   }
+    // }
 
-    const login = async () => {
-        if (loggedIn) {
-        navigate('/home');
-        console.log('worked');
-        window.location.reload();
-      } else {
-        setLoading(false);
-        setMessage('Cannot Log In');
-      }
-    }
-
-    await login();
+    // await login();
 
   }
 
