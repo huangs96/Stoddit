@@ -48,24 +48,14 @@ function LoginPage(props) {
     
     // form.current.validateAll();
 
-    let user = await authUser({
+    let token = await authUser({
       username,
       password
     });
 
-    console.log(user)
-    // const login = async () => {
-    //     if (loggedIn) {
-    //     navigate('/home');
-    //     console.log('worked');
-    //     window.location.reload();
-    //   } else {
-    //     setLoading(false);
-    //     setMessage('Cannot Log In');
-    //   }
-    // }
-
-    // await login();
+    if (token) {
+      navigate('/home');
+    }
 
   }
 
