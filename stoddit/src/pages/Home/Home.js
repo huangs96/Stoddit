@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams, redirect, useNavigate } from 'react-router-dom';
 import { getUser, fetchRefreshToken } from '../../services/home.service';
 import { logoutUser } from '../../services/login.service';
@@ -6,7 +6,7 @@ import { logoutUser } from '../../services/login.service';
 
 
 function HomePage() {
-  let [user, setUser] = React.useState('');
+  let [user, setUser] = useState('');
   const { handle } = useParams();
 
   let navigate = useNavigate();
@@ -29,14 +29,21 @@ function HomePage() {
     return navigate('/login')
   };
 
+
   useEffect(() => {
-    getUser();
+    const fetchData = async () => {
+      const data = await getUser();
+      setUser(data);
+    }
+    fetchData()
+    .catch(console.error);
+    console.log(user);
   }, [])
 
 
   return (
     <div>
-      <h1>Home</h1>
+      {user && <h1>Welcome {user.user.username}</h1>}
       <button onClick={logout}>logout</button>
     </div>
     )
