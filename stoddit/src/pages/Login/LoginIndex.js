@@ -19,10 +19,9 @@ const required = (value) => {
   }
 };
 
-function LoginPage(props) {
+function LoginPage() {
 
   const form = useRef();
-  const checkBtn = useRef();
 
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -45,8 +44,6 @@ function LoginPage(props) {
     e.preventDefault();
     setMessage("");
     setLoading(true);
-    
-    // form.current.validateAll();
 
     let token = await authUser({
       username,
@@ -57,6 +54,11 @@ function LoginPage(props) {
       navigate('/home');
     }
 
+  }
+
+  //go to register if no account
+  const navToRegister = () => {
+    navigate('/register');
   }
 
   return (
@@ -101,8 +103,8 @@ function LoginPage(props) {
               </div>
             </div>
           )}
-        <a href="/home" className="forgotPassword" >Forgot Password?</a>
-        <button onClick={setUserName}> No account? Register now!</button>
+        <button onClick={navToRegister} className="forgotPassword" >Forgot Password?</button>
+        <button onClick={navToRegister}> No account? Register now!</button>
       </div>
     </form>
     
