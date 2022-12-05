@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, redirect, useNavigate } from 'react-router-dom';
 import { getUser, fetchRefreshToken } from '../../services/home.service';
 import { logoutUser } from '../../services/auth.service';
-import Header from '../../components/Header';
+// import Header from '../../components/Header';
 
 
 function HomePage() {
@@ -43,7 +43,7 @@ function HomePage() {
 
   return (
     <>
-    <Header />
+    {/* <Header /> */}
     <div>
       {user && <h1>Welcome {user.user.username}</h1>}
       <button onClick={logout}>logout</button>

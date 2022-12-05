@@ -1,13 +1,16 @@
 import React from 'react';
-import { AppBar, Typography} from '@mui/material';
+import { AppBar, Typography, Toolbar} from '@mui/material';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
 
 function Header() {
   return (
     <React.Fragment>
       <AppBar>
-        <Typography>
-          Stoddit
-        </Typography>
+        <Toolbar>
+          <Typography>
+            <ShowChartIcon />
+          </Typography>
+        </Toolbar>
       </AppBar>
     </React.Fragment>
   )
