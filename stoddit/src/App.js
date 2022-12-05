@@ -11,6 +11,9 @@ import LoginPage from './pages/Login/LoginIndex';
 import RegisterPage from './pages/Register/RegisterIndex';
 import Header from './components/Header';
 import ChatIndex from './pages/Chat/ChatIndex';
+import TradeIndex from './pages/Trade/TradeIndex';
+import ProfileIndex from './pages/Profile/ProfileIndex';
+import PortfolioIndex from './pages/Portfolio/PortfolioIndex';
 
 
 function App() {
@@ -34,6 +37,18 @@ function App() {
       <Route
         path="chat"
         element={<ChatIndex />}
+      />
+      <Route
+        path="portfolio"
+        element={<PortfolioIndex />}
+      />
+      <Route
+        path="trade"
+        element={<TradeIndex />}
+      />
+      <Route
+        path="profile"
+        element={<ProfileIndex />}
       />
     </Routes>
     </>

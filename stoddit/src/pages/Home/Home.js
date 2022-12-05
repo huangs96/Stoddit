@@ -10,13 +10,6 @@ function HomePage() {
   const { handle } = useParams();
 
   let navigate = useNavigate();
-
-  // const getRefreshToken = async () => {
-  //   let x = await fetchRefreshToken();
-  //   console.log('x---', x);
-  // };
-
-  // getRefreshToken();
   
   const logout = async () => {
     const deleteDetails = await logoutUser();
@@ -24,9 +17,8 @@ function HomePage() {
       console.log(deleteDetails.error);
       return;
     }
-    // accessToken = "";
     console.log(deleteDetails.message);
-    return navigate('/login')
+    return navigate('/login');
   };
 
 
@@ -50,6 +42,6 @@ function HomePage() {
     </div>
     </>
     )
-}
+};
 
 export default HomePage

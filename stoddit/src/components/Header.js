@@ -1,11 +1,27 @@
-import React, {useState} from 'react';
-import { BrowserRouter, Route, Routes, Link} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { AppBar, Typography, Toolbar, Tabs, Tab, Button} from '@mui/material';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
+import PersonPinIcon from '@mui/icons-material/PersonPin';
+import { logoutUser } from '../services/auth.service';
 
 function Header() {
+
   const [value, setValue] = useState();
-  const routes = ['/chat', '/portfolio', '/login']
+  const routes = ['/chat', '/portfolio', '/trade', '/profile'];
+
+  let navigate = useNavigate();
+
+  const logout = async () => {
+    const deleteDetails = await logoutUser();
+    if (deleteDetails.error) {
+      console.log(deleteDetails.error);
+      return;
+    }
+    console.log(deleteDetails.message);
+    return navigate('/login');
+  };
+
   return (
     <React.Fragment>
       <AppBar>
@@ -30,9 +46,15 @@ function Header() {
               component={Link}
               to={routes[2]} 
             />
-            <Tab label="Settings" />
+            <Tab 
+              icon={<PersonPinIcon />} 
+              aria-label="person"
+              value={routes[3]}
+              component={Link}
+              to={routes[3]}
+            />
           </Tabs>
-          <Button sx={{marginLeft: "auto"}} variant="contained">Logout</Button>
+          <Button onClick={logout} sx={{marginLeft: "auto"}} variant="contained">Logout</Button>
         </Toolbar>
       </AppBar>
     </React.Fragment>
