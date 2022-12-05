@@ -10,6 +10,7 @@ import HomePage from './pages/Home/Home';
 import LoginPage from './pages/Login/LoginIndex';
 import RegisterPage from './pages/Register/RegisterIndex';
 import Header from './components/Header';
+import ChatIndex from './pages/Chat/ChatIndex';
 
 
 function App() {
@@ -29,6 +30,10 @@ function App() {
       <Route
         path="home"
         element={<HomePage />}
+      />
+      <Route
+        path="chat"
+        element={<ChatIndex />}
       />
     </Routes>
     </>
