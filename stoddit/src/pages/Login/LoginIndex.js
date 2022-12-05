@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { authUser } from '../../services/login.service';
+import { authUser } from '../../services/auth.service';
 import { useNavigate } from "react-router-dom";
 import CheckButton from 'react-validation/build/button';
 import Form from "react-validation/build/form";
@@ -8,16 +8,6 @@ import { useParams } from 'react-router-dom';
 import HomePage from '../Home/Home';
 import { getUser } from '../../services/home.service';
 // import axios from 'axios';
-
-const required = (value) => {
-  if (!value) {
-    return (
-      <div>
-        This field is required!
-      </div>
-    );
-  }
-};
 
 function LoginPage() {
 
@@ -29,6 +19,16 @@ function LoginPage() {
   const [message, setMessage] = useState("");
 
   const navigate = useNavigate();
+
+  const required = (value) => {
+    if (!value) {
+      return (
+        <div>
+          This field is required!
+        </div>
+      );
+    }
+  };
 
   const onChangeUsername = (e) => {
     const userName = e.target.value;

@@ -7,10 +7,25 @@ const authUser = async (credentials)=>  {
     },
     credentials: 'include',
     body: JSON.stringify(credentials)
-  }).then(res => res.json())
+  })
+  .then(res => res.json());
   return res;
+};
 
-}
+const registerUser = async (credentials) => {
+  const res = await fetch('http://localhost:5000/register', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    mode: 'cors',
+    credentials: 'include',
+    body: JSON.stringify(credentials)
+  })
+  .then(res => res.json());
+  return res;
+};
 
 const logoutUser = async () => {
   const res = await fetch('http://localhost:5000/login/delete_token', {
@@ -22,9 +37,11 @@ const logoutUser = async () => {
     credentials: 'include'
   });
   return await res.json();
-}
+};
+
 
 module.exports = {
   authUser,
-  logoutUser
+  logoutUser,
+  registerUser
 }
