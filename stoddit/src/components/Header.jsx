@@ -8,7 +8,6 @@ import { logoutUser } from '../services/auth.service';
 function Header() {
 
   const [value, setValue] = useState();
-  const routes = ['/chat', '/portfolio', '/trade', '/profile'];
 
   let navigate = useNavigate();
 
@@ -30,28 +29,28 @@ function Header() {
           <Tabs textColor="inherit" value={value} onChange={(e, value)=> setValue(value)} indicatorColor="secondary">
             <Tab 
               label="Chat"
-              value={routes[0]}
+              value={'/chat'}
               component={Link}
-              to={routes[0]}
+              to={'/chat'}
             />
             <Tab 
               label="Portfolio" 
-              value={routes[1]}
+              value={'/portfolio'}
               component={Link}
-              to={routes[1]}
+              to={'/portfolio'}
             />
             <Tab 
               label="Trade"
-              value={routes[2]}
+              value={'/trade'}
               component={Link}
-              to={routes[2]} 
+              to={'/trade'} 
             />
             <Tab 
               icon={<PersonPinIcon />} 
               aria-label="person"
-              value={routes[3]}
+              value={'/profile'}
               component={Link}
-              to={routes[3]}
+              to={'/profile'}
             />
           </Tabs>
           <Button onClick={logout} sx={{marginLeft: "auto"}} variant="contained">Logout</Button>
