@@ -14,7 +14,7 @@
 
 .chatMenuInput {
   width: 90%;
-  padding: 10px;
+  padding: 10px 0;
 }
 
 .chatBox {
@@ -58,6 +58,7 @@
 
 .chatMenuWrapper, .chatBoxWrapper, .chatOnlineWrapper {
   padding: 10px;
+  height: 100%;
 }
 
 .chatOnlineImg {

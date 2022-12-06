@@ -28,9 +28,6 @@ function ChatIndex() {
             <Message />
             <Message />
             <Message own={true}/>
-            <Message />
-            <Message own={true}/>
-            <Message />
           </div>
           <div className="chatBoxBottom">
             <TextField className="chatMessageInput" size="large" placeholder="write something.."></TextField>
