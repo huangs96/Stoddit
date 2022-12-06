@@ -8,7 +8,7 @@ import FriendsOnline from './chatOnline/FriendsOnline';
 
 function ChatIndex() {
   return (
-    <div style={{ marginTop:'8vh'}} className="chat">
+    <div style={{ marginTop:'2vh'}} className="chat">
       <div className="chatMenu">
         <div className="chatMenuWrapper">
           <TextField className="chatMenuInput" label="Search Chat">
