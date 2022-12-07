@@ -26,6 +26,10 @@ const getFriendsList = () => {
   return friendsList;
 };
 
+const getConversations = () => {
+  
+}
+
 module.exports = {
   getFriendsList
 }
