@@ -16,7 +16,7 @@ function Conversation(username) {
         {friendsList.map(function(item, i) {
           return <div className="conversation">
           <img className="conversationImg" src="https://i.ibb.co/yNbJ9N4/IMG-9300.jpg" alt=""/>
-          <span className="conversationName" key={i}>{item}</span>
+          <span className="conversationName" key={i}>{item.username}</span>
           </div>
         }
         )}

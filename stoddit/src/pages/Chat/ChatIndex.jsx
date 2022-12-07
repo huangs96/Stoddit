@@ -12,8 +12,8 @@ function ChatIndex() {
   const [user, setUser] = useState('');
   const [userID, setUserID] = useState('');
   const waitForData = (user !== '');
-  console.log('user1-----', user);
-  console.log('waitfordata---', waitForData);
+  // console.log('user1-----', user);
+  // console.log('waitfordata---', waitForData);
 
   let navigate = useNavigate();
   
