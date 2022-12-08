@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -14,9 +14,22 @@ import ChatIndex from './pages/Chat/ChatIndex';
 import TradeIndex from './pages/Trade/TradeIndex';
 import ProfileIndex from './pages/Profile/ProfileIndex';
 import PortfolioIndex from './pages/Portfolio/PortfolioIndex';
+import { getUser } from './services/home.service';
+
 
 
 function App() {
+  const [user, setUser] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getUser();
+      setUser(data);
+    };
+    fetchData()
+    .catch(console.error);
+    console.log('appppp----', user);
+  }, []);
 
   return (
     <>

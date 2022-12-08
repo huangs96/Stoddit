@@ -35,7 +35,7 @@ function ChatIndex() {
   return (
     <>
     {waitForData &&
-      <div style={{ marginTop:'5vh'}} className="chat">
+      <div style={{ marginTop:'10vh'}} className="chat">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
             <TextField className="chatMenuInput" label="Search Chat">

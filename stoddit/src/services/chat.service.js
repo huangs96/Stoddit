@@ -26,6 +26,8 @@ const getFriendsList = () => {
   return friendsList;
 };
 
+//Get Conversations
+
 const getConversations = () => {
   
 }
