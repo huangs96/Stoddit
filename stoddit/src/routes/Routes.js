@@ -2,10 +2,43 @@ import { Route, Routes } from 'react-router-dom';
 import HomePage from '../pages/Home/Home';
 import LoginPage from '../pages/Login/LoginIndex';
 import RegisterPage from '../pages/Register/RegisterIndex';
+import ChatIndex from '../pages/Chat/ChatIndex';
+import PortfolioIndex from '../pages/Portfolio/PortfolioIndex';
+import TradeIndex from '../pages/Trade/TradeIndex';
+import ProfileIndex from '../pages/Profile/ProfileIndex';
 
 function AppRoutes() {
   return (
-    <h2>wokring</h2>
+    <Routes>
+        <Route
+          path="login"
+          element={<LoginPage />}
+        />
+        <Route
+          path="register"
+          element={<RegisterPage />}
+        />
+          <Route
+          path="home"
+          element={<HomePage />}
+        />
+        <Route
+          path="chat"
+          element={<ChatIndex />}
+        />
+        <Route
+          path="portfolio"
+          element={<PortfolioIndex />}
+        />
+        <Route
+          path="trade"
+          element={<TradeIndex />}
+        />
+        <Route
+          path="profile"
+          element={<ProfileIndex />}
+        />
+      </Routes>
   );
 }
 

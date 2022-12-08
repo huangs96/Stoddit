@@ -1,3 +1,4 @@
+//get friends list from database
 const getFriendsList = () => {
   const friendsList = [ 
     { 
@@ -26,12 +27,29 @@ const getFriendsList = () => {
   return friendsList;
 };
 
-//Get Conversations
-
+//get conversations(chatrooms) from database
 const getConversations = () => {
   
+};
+
+//get participants from database
+const getParticipants = () => {
+
+};
+
+//get messages from database
+const getMessages = () => {
+  const messages = [
+    {
+      id: 48,
+      text: 'hey baby',
+      sent_datetime: 2023-12-08,
+    }
+  ]
+
 }
 
 module.exports = {
-  getFriendsList
+  getFriendsList,
+  getMessages
 }

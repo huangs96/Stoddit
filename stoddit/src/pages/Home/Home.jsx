@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useParams, redirect, useNavigate } from 'react-router-dom';
 import { getUser, fetchRefreshToken } from '../../services/home.service';
 import { logoutUser } from '../../services/auth.service';
+import App from '../../App';
 // import Header from '../../components/Header';
 
 
 function HomePage() {
-  let [user, setUser] = useState('');
-  const { handle } = useParams();
+  const [user, setUser] = useState('');
+  const navigate = useNavigate();
 
-  let navigate = useNavigate();
   
   const logout = async () => {
     const deleteDetails = await logoutUser();
@@ -29,14 +29,13 @@ function HomePage() {
     }
     fetchData()
     .catch(console.error);
-    console.log(user);
+    console.log('userhome----', user);
   }, [])
 
 
   return (
     <>
-    {/* <Header /> */}
-    <div>
+    <div style={{marginTop: '10vh'}}>
       {user && <h1>Welcome {user.user.username}</h1>}
       <button onClick={logout}>logout</button>
     </div>

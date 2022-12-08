@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useHistory } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { AppBar, Typography, Toolbar, Tabs, Tab, Button} from '@mui/material';
+import { AppBar, Typography, Toolbar, Tabs, Tab, Button } from '@mui/material';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import { logoutUser } from '../services/auth.service';
 
 function Header() {
-
   const [value, setValue] = useState();
-
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const logout = async () => {
     const deleteDetails = await logoutUser();
@@ -25,8 +23,15 @@ function Header() {
     <React.Fragment>
       <AppBar>
         <Toolbar>
-          <ShowChartIcon />
-          <Tabs textColor="inherit" value={value} onChange={(e, value)=> setValue(value)} indicatorColor="secondary">
+          <iconButton aria-label="home" component={Link} to="/home">
+            <ShowChartIcon />
+          </iconButton>
+          <Tabs 
+            textColor="inherit" 
+            value={value} 
+            onChange={(e, value)=> setValue(value)} indicatorColor="secondary"
+            orientation="horizontal"
+          >
             <Tab 
               label="Chat"
               value={'/chat'}
