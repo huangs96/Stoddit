@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -20,6 +20,7 @@ import { getUser } from './services/home.service';
 
 function App() {
   const [user, setUser] = useState('');
+  const loginContext = createContext(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,37 +34,39 @@ function App() {
 
   return (
     <>
-    <Header />
-    <Routes>
-      <Route
-        path="login"
-        element={<LoginPage />}
-      />
-      <Route
-        path="register"
-        element={<RegisterPage />}
-      />
-      <Route
-        path="home"
-        element={<HomePage />}
-      />
-      <Route
-        path="chat"
-        element={<ChatIndex />}
-      />
-      <Route
-        path="portfolio"
-        element={<PortfolioIndex />}
-      />
-      <Route
-        path="trade"
-        element={<TradeIndex />}
-      />
-      <Route
-        path="profile"
-        element={<ProfileIndex />}
-      />
-    </Routes>
+    <loginContext.Provider value={user}>
+      <Header />
+      <Routes>
+        <Route
+          path="login"
+          element={<LoginPage />}
+        />
+        <Route
+          path="register"
+          element={<RegisterPage />}
+        />
+          <Route
+          path="home"
+          element={<HomePage />}
+        />
+        <Route
+          path="chat"
+          element={<ChatIndex />}
+        />
+        <Route
+          path="portfolio"
+          element={<PortfolioIndex />}
+        />
+        <Route
+          path="trade"
+          element={<TradeIndex />}
+        />
+        <Route
+          path="profile"
+          element={<ProfileIndex />}
+        />
+      </Routes>
+    </loginContext.Provider>
     </>
   );
 }
