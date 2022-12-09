@@ -11,13 +11,7 @@ import { getUser } from '../../services/home.service';
 function ChatIndex() {
   const [user, setUser] = useState('');
   const [userID, setUserID] = useState('');
-  const [own, setOwn] = useState(false);
   const waitForData = (user !== '');
-  const setOwnMessage = (own) => {
-    setOwn(own);
-  }
-  // console.log('user1-----', user);
-  // console.log('waitfordata---', waitForData);
 
   let navigate = useNavigate();
   
@@ -31,8 +25,6 @@ function ChatIndex() {
     .catch(console.error)
     console.log('user----', user);
     console.log('userID', userID);
-    
-
   }, []);
 
   return (
@@ -41,9 +33,9 @@ function ChatIndex() {
       <div style={{ marginTop:'10vh'}} className="chat">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            <TextField className="chatMenuInput" label="Search Chat">
+            <TextField className="chatMenuInput" label="Search Chats, Friends, or Users">
             </TextField>
-            <Conversation username={user}/>
+            <Conversation username={user} userID={userID}/>
           </div>
         </div>
         <div className="chatBox">

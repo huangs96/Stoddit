@@ -6,15 +6,15 @@ const getFriendsList = () => {
       img: 'https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584__340.png'
     }, 
     {
-      username: 'Delicia Li',
+      username: 'test1',
       img: 'https://i.pinimg.com/originals/df/5f/5b/df5f5b1b174a2b4b6026cc6c8f9395c1.jpg'
     }, 
     { 
-      username: 'Richard Zhen',
+      username: 'test2',
       img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScuQGyYbgV9HFyiunO9mF6_lnB6MYwcx6t3w&usqp=CAU'
     },
     {
-      username: 'test1',
+      username: 'test3',
       img: ''
     }
   ];
@@ -27,9 +27,26 @@ const getFriendsList = () => {
   return friendsList;
 };
 
-//get conversations(chatrooms) from database
-const getConversations = () => {
-  
+//get cchatrooms from database
+const getChatrooms = () => {
+  const chatrooms = [
+    {
+      name: 'Stephen Huang',
+      title: 'Stephen Huang',
+      description: 'n/a'
+    },
+    {
+      name: 'test1',
+      title: 'test1',
+      description: 'test2'
+    },
+    {
+      name: 'test2',
+      title: 'test2',
+      description: 'test2'
+    },
+  ];
+  return chatrooms;
 };
 
 //get participants from database
@@ -61,11 +78,26 @@ const getMessages = () => {
       chatroom_id: 3,
       img: 'https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584__340.png'
     },
+    {
+      id: 49,
+      text: 'hi',
+      sent_datetime: new Date(2022, 0, 12, 6, 8, 4),
+      chatroom_id: 4,
+      img: 'https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584__340.png'
+    },
+    {
+      id: 50,
+      text: 'wasup brotha',
+      sent_datetime: new Date(2022, 0, 12, 6, 8, 4),
+      chatroom_id: 4,
+      img: 'https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584__340.png'
+    },
   ];
   return messages;
 }
 
 module.exports = {
   getFriendsList,
+  getChatrooms,
   getMessages
 }

@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { getMessages } from '../../../services/chat.service';
 
 function Message({userID}) {
-  const [id, setID] = useState('');
-  const [message, setMessage] = useState('');
+  // const [id, setID] = useState('');
+  // const [message, setMessage] = useState('');
 
   const getMessageData = getMessages();
-  console.log('messagedata----', getMessageData);
-  console.log('messageuserID---', userID);
+  // console.log('messagedata----', getMessageData);
+  // console.log('messageuserID---', userID);
 
   const displayMessage = getMessageData.map((data, i) => {
     console.log('data1---', data);
