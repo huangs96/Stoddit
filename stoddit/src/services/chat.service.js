@@ -42,11 +42,27 @@ const getMessages = () => {
   const messages = [
     {
       id: 48,
-      text: 'hey baby',
-      sent_datetime: 2023-12-08,
-    }
-  ]
-
+      text: 'hey',
+      sent_datetime: new Date(2022, 0, 12, 2, 3, 4),
+      chatroom_id: 3,
+      img: 'https://i.ibb.co/yNbJ9N4/IMG-9300.jpg'
+    },
+    {
+      id: 48,
+      text: 'wassuh',
+      sent_datetime: new Date(2022, 0, 12, 3, 1, 4),
+      chatroom_id: 3,
+      img: 'https://i.ibb.co/yNbJ9N4/IMG-9300.jpg'
+    },
+    {
+      id: 49,
+      text: 'hows it goin',
+      sent_datetime: new Date(2022, 0, 12, 6, 8, 4),
+      chatroom_id: 3,
+      img: 'https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584__340.png'
+    },
+  ];
+  return messages;
 }
 
 module.exports = {

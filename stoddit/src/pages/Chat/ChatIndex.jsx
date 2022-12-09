@@ -11,7 +11,11 @@ import { getUser } from '../../services/home.service';
 function ChatIndex() {
   const [user, setUser] = useState('');
   const [userID, setUserID] = useState('');
+  const [own, setOwn] = useState(false);
   const waitForData = (user !== '');
+  const setOwnMessage = (own) => {
+    setOwn(own);
+  }
   // console.log('user1-----', user);
   // console.log('waitfordata---', waitForData);
 
@@ -23,11 +27,10 @@ function ChatIndex() {
       setUser(data.user.username);
       setUserID(data.user.id)
     }
-
     fetchData()
     .catch(console.error)
     console.log('user----', user);
-    console.log(userID);
+    console.log('userID', userID);
     
 
   }, []);
@@ -46,12 +49,7 @@ function ChatIndex() {
         <div className="chatBox">
           <div className="chatBoxWrapper">
             <div className="chatBoxTop">
-              <Message />
-              <Message own={true}/>
-              <Message />
-              <Message />
-              <Message />
-              <Message own={true}/>
+              <Message userID={userID} />
             </div>
             <div className="chatBoxBottom">
               <TextField className="chatMessageInput" size="large" placeholder="write something.."></TextField>
