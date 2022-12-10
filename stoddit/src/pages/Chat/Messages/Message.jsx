@@ -2,42 +2,44 @@ import './Message.css';
 import React, { useState, useEffect } from 'react';
 import { getMessages } from '../../../services/chat.service';
 
-function Message({messages, userID}) {
-  let mappedGetMessages = [];
-
+function Message({chatroomKey, userID}) {
+  //change chatroom id into integer
+  let stringedChatroomKey = parseInt(chatroomKey);
+  //get message details
   const getMessageData = getMessages();
-  const displayMessage = getMessageData.map((data, i) => {
-    if(messages.length < 0) {
-      console.log('no messages');
+  const displayMessage = getMessageData.map(data => {
+    if(stringedChatroomKey === data.chatroom_id) {
+      return data;
     }
-    for (let i=0; i<messages.length; i++) {
-      let value = messages[i];
-    }
-    // console.log(value);
+  });
+  let filteredData = displayMessage.filter(n => n);
+  console.log(filteredData)
+  let finalData = filteredData.map((data, i) => {
     if(userID === data.id) {
       data.ownMessage = true;
     } else {
       data.ownMessage = false;
     };
-  });
-
-  
-  useEffect(() => {
-  },[])
-
-  return (
-    // <div className={data.ownMessage ? "message own" : "message"}>
-    <div>
-      <div className="messageTop">
+    return (
+      <div className={data.ownMessage ? "message own" : "message"}> 
+        <div className="messageTop">
         <img 
           className="messageImg" 
-          src="" 
+          src={data.img}
           alt=""
         />
-        <p className="messageText" key={messages.length}>{messages}</p>
+        <p className="messageText" key={i}>{data.text}</p>
       </div>
-      <div className="messageBottom"key={messages.length}>{'data.date'}</div>
+      <div className="messageBottom"key={i}>{data.date}</div>
+      </div>
+    )
+  });
+  return (
+    <>
+    <div>
+      {finalData}
     </div>
+    </>
   )
 }
 

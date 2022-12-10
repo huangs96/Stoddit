@@ -4,7 +4,7 @@ import { getChatrooms, getMessages } from '../../../services/chat.service';
 import { Button, Modal, Typography, Box } from '@mui/material';
 import NewConversation from './newConversation';
 
-function Conversation({getMessageData}) {
+function Conversation({getChatroomKey}) {
   const [chatroomID, setChatroomID] = useState('');
   //set state for modal
   const [open, setOpen] = useState(false);
@@ -37,30 +37,18 @@ function Conversation({getMessageData}) {
   });
   //get chatroom data
   const chatrooms = getChatrooms();
-  // const handleConversation = () => {
-  //   let conversationIDKeys = Object.keys(sortConversations);
-  //   chatrooms.map(chatroomData => {
-  //     conversationIDKeys.map(chatroomIDFromHashmap => {
-  //       let stringedIDfromChatrooms = chatroomData.chatroom_id.toString();
-  //       if (chatroomIDFromHashmap === stringedIDfromChatrooms) {
-  //         console.log('if----', chatroomData.chatroom_id);
-  //       }
-  //     })
-  //   })
-  // };
   const displayChatrooms = chatrooms.map(function(item, i) {
-    const handleConversation = (getMessages) => {
+    const handleConversation = () => {
       let conversationIDKeys = Object.keys(sortConversations);
       conversationIDKeys.map(keys => {
         let chatroomItems = item.chatroom_id.toString();
         if (chatroomItems === keys) {
-          let chatroomMessages = Object.values(sortConversations[item.chatroom_id])
-          getMessageData(chatroomMessages); 
+          getChatroomKey(keys); 
         }
       })
     }
     return <div className="conversation" onClick={handleConversation}>
-    <img className="conversationImg" src="https://i.ibb.co/yNbJ9N4/IMG-9300.jpg" alt=""/>
+    <img className="conversationImg" src={item.img} alt=""/>
     <span className="conversationName" key={i}>{item.name}</span>
     </div>
   });

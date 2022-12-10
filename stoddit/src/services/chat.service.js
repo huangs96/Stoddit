@@ -34,19 +34,22 @@ const getChatrooms = () => {
       name: 'Stephen Huang',
       title: 'Stephen Huang',
       description: 'n/a',
-      chatroom_id: 3
+      chatroom_id: 3,
+      img: 'https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584__340.png'
     },
     {
       name: 'test1',
       title: 'test1',
       description: 'test2',
-      chatroom_id: 4
+      chatroom_id: 4,
+      img: 'https://i.pinimg.com/originals/df/5f/5b/df5f5b1b174a2b4b6026cc6c8f9395c1.jpg'
     },
     {
       name: 'test2',
       title: 'test2',
       description: 'test2',
-      chatroom_id: 4
+      chatroom_id: 4,
+      img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScuQGyYbgV9HFyiunO9mF6_lnB6MYwcx6t3w&usqp=CAU'
     },
   ];
   return chatrooms;
@@ -89,7 +92,7 @@ const getMessages = () => {
       img: 'https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584__340.png'
     },
     {
-      id: 50,
+      id: 48,
       text: 'wasup brotha',
       sent_datetime: new Date(2022, 0, 12, 6, 8, 4),
       chatroom_id: 4,
