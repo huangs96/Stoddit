@@ -12,8 +12,16 @@ function ChatIndex() {
   const [user, setUser] = useState('');
   const [userID, setUserID] = useState('');
   const waitForData = (user !== '');
+  const [conversationMessages, setConversationMessages] = useState('');
 
   let navigate = useNavigate();
+
+  //get corresponding messages from conversations file
+  const getMessages = (messages) => {
+    setConversationMessages(messages);
+  };
+  console.log('conversationmsgs---'
+  , conversationMessages);
   
   useEffect(() => {
     const fetchData = async () => {
@@ -35,13 +43,13 @@ function ChatIndex() {
           <div className="chatMenuWrapper">
             <TextField className="chatMenuInput" label="Search Chats, Friends, or Users">
             </TextField>
-            <Conversation username={user} userID={userID}/>
+            <Conversation getMessageData={getMessages}/>
           </div>
         </div>
         <div className="chatBox">
           <div className="chatBoxWrapper">
             <div className="chatBoxTop">
-              <Message userID={userID} />
+              <Message userID={userID} messages={conversationMessages} />
             </div>
             <div className="chatBoxBottom">
               <TextField className="chatMessageInput" size="large" placeholder="write something.."></TextField>

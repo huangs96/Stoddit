@@ -33,17 +33,20 @@ const getChatrooms = () => {
     {
       name: 'Stephen Huang',
       title: 'Stephen Huang',
-      description: 'n/a'
+      description: 'n/a',
+      chatroom_id: 3
     },
     {
       name: 'test1',
       title: 'test1',
-      description: 'test2'
+      description: 'test2',
+      chatroom_id: 4
     },
     {
       name: 'test2',
       title: 'test2',
-      description: 'test2'
+      description: 'test2',
+      chatroom_id: 4
     },
   ];
   return chatrooms;

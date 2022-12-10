@@ -4,7 +4,7 @@ import { getChatrooms, getMessages } from '../../../services/chat.service';
 import { Button, Modal, Typography, Box } from '@mui/material';
 import NewConversation from './newConversation';
 
-function Conversation(username, userID) {
+function Conversation({getMessageData}) {
   const [chatroomID, setChatroomID] = useState('');
   //set state for modal
   const [open, setOpen] = useState(false);
@@ -14,12 +14,13 @@ function Conversation(username, userID) {
   const handleClose = () => {
     setOpen(false);
   }
-
-  let sortConversations = {};
-
-  const messageData = getMessages();
   
-  const sortMessageData = messageData.map(data => {
+  //create hashmap for conversations
+  let sortConversations = {};
+  //get messages from database
+  const messageData = getMessages();
+  //sort messages into chatroom_id and messages
+  messageData.map(data => {
     let textMessages = data.text;
     let chatroomID = data.chatroom_id;
     //if conversation id has not been added to sortConversations object, create chatroomID:[] pair
@@ -33,14 +34,32 @@ function Conversation(username, userID) {
     if (x[x.length-1] === y) {
       sortConversations[chatroomID].push(textMessages);
     }
-  })
-
-
-  console.log(sortConversations);
-
+  });
+  //get chatroom data
   const chatrooms = getChatrooms();
+  // const handleConversation = () => {
+  //   let conversationIDKeys = Object.keys(sortConversations);
+  //   chatrooms.map(chatroomData => {
+  //     conversationIDKeys.map(chatroomIDFromHashmap => {
+  //       let stringedIDfromChatrooms = chatroomData.chatroom_id.toString();
+  //       if (chatroomIDFromHashmap === stringedIDfromChatrooms) {
+  //         console.log('if----', chatroomData.chatroom_id);
+  //       }
+  //     })
+  //   })
+  // };
   const displayChatrooms = chatrooms.map(function(item, i) {
-    return <div className="conversation" onClick={handleClose}>
+    const handleConversation = (getMessages) => {
+      let conversationIDKeys = Object.keys(sortConversations);
+      conversationIDKeys.map(keys => {
+        let chatroomItems = item.chatroom_id.toString();
+        if (chatroomItems === keys) {
+          let chatroomMessages = Object.values(sortConversations[item.chatroom_id])
+          getMessageData(chatroomMessages); 
+        }
+      })
+    }
+    return <div className="conversation" onClick={handleConversation}>
     <img className="conversationImg" src="https://i.ibb.co/yNbJ9N4/IMG-9300.jpg" alt=""/>
     <span className="conversationName" key={i}>{item.name}</span>
     </div>
@@ -49,7 +68,7 @@ function Conversation(username, userID) {
     <>
       <div>
         <h3>
-          {username.username}'s Conversations
+          Conversations
         </h3>
         {displayChatrooms}
       </div>
