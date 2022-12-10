@@ -1,28 +1,27 @@
 const express = require('express');
 const cors = require('cors');
-const cookieSession = require('cookie-session');
+const cookieParser = require('cookie-parser');
 const registerRoutes = require('./routes/register.routes');
 const userRoutes = require('./routes/user.routes');
 const authRoutes = require('./routes/auth.routes');
+const socket = require('socket-io')
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cookieParser()
+);
+
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true,
+}));
 
 //parse requests of content-type - application/json
 app.use(express.json());
 
 //parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
-
-app.use(
-  cookieSession({
-    name: "stoddit-test session",
-    secret: "COOKIE_SECRET",
-    //keys: ['key1', 'key2'],
-    httpOnly: true
-  })
-);
 
 app.get('/', (req, res) => 
   res.send('working')

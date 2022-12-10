@@ -31,7 +31,7 @@ const getUsersById = async (req, res) => {
 };
 
 const getUserHomePage = async (req, res) => {
-  res.json({homepage: 'hi'});
+  return res.json({'user': req.user});
 }
 
 const deleteUser = async (req, res) => {

@@ -19,7 +19,6 @@ const registerUser = async (req, res) => {
 
     //check if username exists
     const usernameExists = await client.query(queries.usernameExists, [username]);
-    console.log(usernameExists);
     if (usernameExists.rows.length) {
       return res.send('Username has already been taken.')
     };
@@ -27,7 +26,7 @@ const registerUser = async (req, res) => {
     //register user if phone & username are not taken
     const registerUser = await client.query(queries.addUser, [username, encryptedPassword, bio, phone]);
     if (registerUser) {
-      res.status(201).send('Your account has been created!');
+      res.status(201).json('Your Account has been Created!');
     };
   } catch (err) {
     return res.status(400).send(err)
