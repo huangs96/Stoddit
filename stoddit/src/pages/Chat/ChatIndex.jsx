@@ -3,18 +3,24 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
 import Conversation from './Conversations/Conversation';
 import Message from './Messages/Message';
-import FriendsOnline from './chatOnline/FriendsOnline';
+import FriendsOnline from './ChatOnline/FriendsOnline';
 import { getUser } from '../../services/home.service';
+import addMessageToConversation from '../../contexts/chatContext';
 
 function ChatIndex() {
+  //variables for user
   const [user, setUser] = useState('');
+  //variables for messages
+  const [participant, setParticipant] = useState('');
+  const [message, setMessage] = useState('');
+  let timestamp = new Date();
+  //variables for chatrooms
   const [userID, setUserID] = useState('');
   const waitForData = (user !== '');
   const [chatroomKey, setChatroomKey] = useState('');
-
-  let navigate = useNavigate();
 
   //get corresponding messages from conversations file
   const getChatroomKey = (key) => {
@@ -29,9 +35,20 @@ function ChatIndex() {
     }
     fetchData()
     .catch(console.error)
-    console.log('user----', user);
-    console.log('userID', userID);
   }, []);
+
+  const onChangeMessage = (e) => {
+    const message = e.target.value;
+    setMessage(message);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('message', message);
+    addMessageToConversation(user, message, timestamp);
+  }
+
+
   return (
     <>
     {waitForData &&
@@ -48,10 +65,19 @@ function ChatIndex() {
             <div className="chatBoxTop">
               <Message userID={userID} chatroomKey={chatroomKey} />
             </div>
-            <div className="chatBoxBottom">
-              <TextField className="chatMessageInput" size="large" placeholder="write something.."></TextField>
-              <Button variant="contained" className="chatSubmitButton">Send</Button>
-            </div>
+              <div className="chatBoxBottom">
+                <form onSubmit={handleSubmit}>
+                  <TextField 
+                    name="message"
+                    className="chatMessageInput" 
+                    size="large" 
+                    placeholder="Send a message.."
+                    onChange={onChangeMessage}
+                    value={message}
+                  />
+                <Button type="submit" variant="contained" className="chatSubmitButton" endIcon={<SendIcon />}>Send</Button>
+                </form>
+              </div>
           </div>
         </div>
           <div className="chatOnline">
