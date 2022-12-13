@@ -19,6 +19,13 @@ export const SocketProvider = ({id, children}) => {
     return () => newSocket.close();
   }, [id]);
 
+  socket.on('connection', () => {
+    console.log('working');
+  });
+  socket.on('message', message => {
+    console.log(message);
+  })
+
   return (
     <socketContext.Provider value={socket}>
       {children}

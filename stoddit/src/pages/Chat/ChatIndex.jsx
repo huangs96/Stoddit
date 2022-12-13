@@ -12,16 +12,21 @@ import addMessageToConversation from '../../contexts/chatContext';
 import { SocketProvider } from '../../contexts/socketProvider';
 import { io } from 'socket.io-client';
 
+/* ------ Socket Connection ------ */
+
 const socket = io('http://localhost:5000', {
   withCredentials: true,
 });
-
+//on socket connection
 socket.on('connection', () => {
   console.log('working');
 });
+//console message from socket
 socket.on('message', message => {
-  console.log(message);
+  console.log("ChatIndex: socket", message);
 })
+
+/* ------ Socket End ------ */
 
 function ChatIndex() {
   //variables for user
@@ -58,7 +63,7 @@ function ChatIndex() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('message', message);
-    addMessageToConversation(user, message, timestamp);
+    addMessageToConversation(userID, message, timestamp);
 
     //emit message to server
     socket.emit('chatMessage', message);

@@ -43,6 +43,7 @@ function Conversation({getChatroomKey}) {
       conversationIDKeys.map(keys => {
         let chatroomItems = item.chatroom_id.toString();
         if (chatroomItems === keys) {
+          console.log('conversations: chatroom key', keys);
           getChatroomKey(keys); 
         }
       })

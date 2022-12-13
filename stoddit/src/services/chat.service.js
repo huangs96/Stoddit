@@ -2,18 +2,22 @@
 const getFriendsList = () => {
   const friendsList = [ 
     { 
+      id: 49,
       username: 'Stephen Huang',
       img: 'https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584__340.png'
     }, 
     {
+      id: 50,
       username: 'test1',
       img: 'https://i.pinimg.com/originals/df/5f/5b/df5f5b1b174a2b4b6026cc6c8f9395c1.jpg'
     }, 
     { 
+      id: 51,
       username: 'test2',
       img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScuQGyYbgV9HFyiunO9mF6_lnB6MYwcx6t3w&usqp=CAU'
     },
-    {
+    { 
+      id: 52,
       username: 'test3',
       img: ''
     }
@@ -43,13 +47,6 @@ const getChatrooms = () => {
       description: 'test2',
       chatroom_id: 4,
       img: 'https://i.pinimg.com/originals/df/5f/5b/df5f5b1b174a2b4b6026cc6c8f9395c1.jpg'
-    },
-    {
-      name: 'test2',
-      title: 'test2',
-      description: 'test2',
-      chatroom_id: 4,
-      img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScuQGyYbgV9HFyiunO9mF6_lnB6MYwcx6t3w&usqp=CAU'
     },
   ];
   return chatrooms;

@@ -2,18 +2,19 @@ import './Message.css';
 import React, { useState, useEffect } from 'react';
 import { getMessages } from '../../../services/chat.service';
 
-function Message({chatroomKey, userID}) {
+function Message({chatroomKey, userID, userIMG}) {
   //change chatroom id into integer
   let stringedChatroomKey = parseInt(chatroomKey);
   //get message details
   const getMessageData = getMessages();
+  console.log("message: getmessageData===", getMessageData);
   const displayMessage = getMessageData.map(data => {
     if(stringedChatroomKey === data.chatroom_id) {
       return data;
     }
   });
   let filteredData = displayMessage.filter(n => n);
-  console.log(filteredData)
+  console.log('messages: filtered data---', filteredData);
   let finalData = filteredData.map((data, i) => {
     if(userID === data.id) {
       data.ownMessage = true;
