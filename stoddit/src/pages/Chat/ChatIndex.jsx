@@ -9,6 +9,10 @@ import Message from './Messages/Message';
 import FriendsOnline from './ChatOnline/FriendsOnline';
 import { getUser } from '../../services/home.service';
 import addMessageToConversation from '../../contexts/chatContext';
+import { SocketProvider } from '../../contexts/socketProvider';
+import io from 'socket.io-client';
+
+const socket = io.connect('http://localhost:5000');
 
 function ChatIndex() {
   //variables for user
@@ -21,6 +25,10 @@ function ChatIndex() {
   const [userID, setUserID] = useState('');
   const waitForData = (user !== '');
   const [chatroomKey, setChatroomKey] = useState('');
+
+  const sendMessage = () => {
+    socket.emit("send_message")
+  };
 
   //get corresponding messages from conversations file
   const getChatroomKey = (key) => {
@@ -75,7 +83,7 @@ function ChatIndex() {
                     onChange={onChangeMessage}
                     value={message}
                   />
-                <Button type="submit" variant="contained" className="chatSubmitButton" endIcon={<SendIcon />}>Send</Button>
+                <Button onClick={sendMessage} type="submit" variant="contained" className="chatSubmitButton" endIcon={<SendIcon />}>Send</Button>
               </div>
             </form>
           </div>
