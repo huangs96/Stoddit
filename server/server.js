@@ -5,7 +5,7 @@ const registerRoutes = require('./routes/register.routes');
 const userRoutes = require('./routes/user.routes');
 const authRoutes = require('./routes/auth.routes');
 const chatRoutes = require('./routes/chat.routes');
-const socket = require('socket-io')
+// const socket = require('socket-io');
 
 const app = express();
 
@@ -37,7 +37,7 @@ app.use('/register', registerRoutes);
 app.use('/login', authRoutes);
 
 /* ------ Chat Routes ------ */
-app.use('/chat', chatRoutes);
+// app.use('/chat', chatRoutes);
 
 /* ------ Setting Routes ------ */
 //User
