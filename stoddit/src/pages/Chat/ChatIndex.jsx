@@ -65,8 +65,8 @@ function ChatIndex() {
             <div className="chatBoxTop">
               <Message userID={userID} chatroomKey={chatroomKey} />
             </div>
+            <form onSubmit={handleSubmit}>
               <div className="chatBoxBottom">
-                <form onSubmit={handleSubmit}>
                   <TextField 
                     name="message"
                     className="chatMessageInput" 
@@ -76,8 +76,8 @@ function ChatIndex() {
                     value={message}
                   />
                 <Button type="submit" variant="contained" className="chatSubmitButton" endIcon={<SendIcon />}>Send</Button>
-                </form>
               </div>
+            </form>
           </div>
         </div>
           <div className="chatOnline">
