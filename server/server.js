@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const registerRoutes = require('./routes/register.routes');
 const userRoutes = require('./routes/user.routes');
 const authRoutes = require('./routes/auth.routes');
+const chatRoutes = require('./routes/chat.routes');
 const socket = require('socket-io')
 
 const app = express();
@@ -27,13 +28,19 @@ app.get('/', (req, res) =>
   res.send('working')
 );
 
-//Register Page Route
+
+/* ------ Auth Routes ------ */
+//register
 app.use('/register', registerRoutes);
 
-//Login Page Route
+//login
 app.use('/login', authRoutes);
 
-//User Page Details
+/* ------ Chat Routes ------ */
+app.use('/chat', chatRoutes);
+
+/* ------ Setting Routes ------ */
+//User
 app.use('/users', userRoutes);
 
 
