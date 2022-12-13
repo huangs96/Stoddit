@@ -35,10 +35,6 @@ function ChatIndex() {
   const waitForData = (user !== '');
   const [chatroomKey, setChatroomKey] = useState('');
 
-  const sendMessage = () => {
-    socket.emit("send_message")
-  };
-
   //get corresponding messages from conversations file
   const getChatroomKey = (key) => {
     setChatroomKey(key);
@@ -63,6 +59,12 @@ function ChatIndex() {
     e.preventDefault();
     console.log('message', message);
     addMessageToConversation(user, message, timestamp);
+
+    //emit message to server
+    socket.emit('chatMessage', message);
+
+    //empty textbox
+    setMessage('');
   }
 
 
@@ -92,7 +94,7 @@ function ChatIndex() {
                     onChange={onChangeMessage}
                     value={message}
                   />
-                <Button onClick={sendMessage} type="submit" variant="contained" className="chatSubmitButton" endIcon={<SendIcon />}>Send</Button>
+                <Button type="submit" variant="contained" className="chatSubmitButton" endIcon={<SendIcon />}>Send</Button>
               </div>
             </form>
           </div>
