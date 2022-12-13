@@ -10,9 +10,18 @@ import FriendsOnline from './ChatOnline/FriendsOnline';
 import { getUser } from '../../services/home.service';
 import addMessageToConversation from '../../contexts/chatContext';
 import { SocketProvider } from '../../contexts/socketProvider';
-import io from 'socket.io-client';
+import { io } from 'socket.io-client';
 
-const socket = io.connect('http://localhost:5000');
+const socket = io('http://localhost:5000', {
+  withCredentials: true,
+});
+
+socket.on('connection', () => {
+  console.log('working');
+});
+socket.on('message', message => {
+  console.log(message);
+})
 
 function ChatIndex() {
   //variables for user
