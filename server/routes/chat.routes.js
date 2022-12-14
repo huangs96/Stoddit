@@ -3,7 +3,13 @@ const controller = require('../controllers/chat.controller');
 const router = Router();
 
 
-//Conversation routes
-router.get('/', controller.getChatroom);
+//Chatroom Routes
+router.get('/chatroom', controller.getChatroom);
+
+//Participant Routes
+router.get('/participant', controller.getParticipant)
+
+//Message Routes
+router.get('/message', controller.getMessage)
 
 module.exports = router;

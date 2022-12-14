@@ -14,6 +14,32 @@ const getChatroom = (async (req, res) => {
   };
 });
 
+/* ------ Participants ------ */
+const getParticipant = (async (req, res) => {
+  try {
+    const allParticipants = await client.query(queries.getParticipant);
+    if (allParticipants.rows.length) {
+      res.status(200).json(allParticipants.rows);
+    };
+  } catch (err) {
+    return res.status(400).send(err);
+  };
+});
+
+/* ------ Messages ------ */
+const getMessage = (async (req, res) => {
+  try {
+    const allMessages = await client.query(queries.getMessage);
+    if (allMessages.rows.length) {
+      res.status(200).json(allMessages.rows);
+    };
+  } catch (err) {
+    return res.status(400).send(err);
+  };
+});
+
 module.exports = {
-  getChatroom
+  getChatroom,
+  getParticipant,
+  getMessage
 }
