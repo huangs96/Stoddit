@@ -15,12 +15,19 @@ const getChatroom = (async (req, res) => {
 });
 
 const createChatroom = (async (req, res) => {
-  const {name, title, description, userIDs} = req.body;
+  const {name, title, description, id} = req.body;
 
   try {
-    
+    //create chatroom
+    const newChatroom = await client.query(queries.createChatroom, [name, title, description]);
+    console.log('newchatroom', newChatroom.rows[0].id);
+    let chatroom_id = newChatroom.rows[0].id;
+    const newParticipantFromChatroom = await client.query(queries.createParticipantFromChatroom, [chatroom_id, id])
+    if (newChatroom) {
+      res.status(201).json('New Chatroom Created');
+    }
   } catch (err) {
-
+    return res.status(400).send(err);
   };
 });
 
@@ -49,7 +56,11 @@ const getMessage = (async (req, res) => {
 });
 
 module.exports = {
+  //chatroom
   getChatroom,
+  createChatroom,
+  //participant
   getParticipant,
+  //message
   getMessage
 }
