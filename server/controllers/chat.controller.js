@@ -15,16 +15,17 @@ const getChatroom = (async (req, res) => {
 });
 
 const createChatroom = (async (req, res) => {
-  const {name, title, description, id} = req.body;
+  const {name, title, description, id, sDate, lDate} = req.body;
 
   try {
     //create chatroom
     const newChatroom = await client.query(queries.createChatroom, [name, title, description]);
-    console.log('newchatroom', newChatroom.rows[0].id);
+    //chatroom query returns id of chatroom
     let chatroom_id = newChatroom.rows[0].id;
-    const newParticipantFromChatroom = await client.query(queries.createParticipantFromChatroom, [chatroom_id, id])
-    if (newChatroom) {
-      res.status(201).json('New Chatroom Created');
+    //create participants of chatroom
+    const newParticipantFromChatroom = await client.query(queries.createParticipantFromChatroom, [chatroom_id, id, sDate, lDate]);
+    if (newChatroom && newParticipantFromChatroom) {
+      res.status(201).json('New Chatroom Created with Participants');
     }
   } catch (err) {
     return res.status(400).send(err);
