@@ -14,6 +14,16 @@ const getChatroom = (async (req, res) => {
   };
 });
 
+const createChatroom = (async (req, res) => {
+  const {name, title, description, userIDs} = req.body;
+
+  try {
+    
+  } catch (err) {
+
+  };
+});
+
 /* ------ Participants ------ */
 const getParticipant = (async (req, res) => {
   try {

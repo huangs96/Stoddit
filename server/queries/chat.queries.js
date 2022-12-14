@@ -1,11 +1,12 @@
 //chatroom queries
 const getChatroom = "SELECT * FROM chatroom";
 const getChatroomById = "SELECT * FROM chatroom WHERE id = $1";
-const addChatroom = "INSERT INTO chatroom (name, title, description) VALUES ($1, $2, $3)";
+const createChatroom = "INSERT INTO (SELECT * FROM participant WHERE participant_id) chatroom (name, title, description) VALUES ($1, $2, $3)";
 const deleteChatroom = "DELETE FROM chatroom WHERE "
 
 //participant queries
 const getParticipant = "SELECT * FROM participant";
+const getParticipantFromChatroomID = "SELECT * FROM (SELECT * FROM participant WHERE chatroom_id = $1) chatroom";
 
 
 //message queries
