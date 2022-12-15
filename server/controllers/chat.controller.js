@@ -2,7 +2,7 @@ require('dotenv').config();
 const client = require('../config/db.config');
 const queries = require('../queries/chat.queries');
 
-/* ------ Chatrooms ------ */
+/* ------ Chatroom ------ */
 const getChatroom = (async (req, res) => {
   try {
     const allChatrooms = await client.query(queries.getChatroom);
@@ -44,8 +44,9 @@ const createChatroom = (async (req, res) => {
     return res.status(400).send(err);
   };
 });
+/* -------------------------------- */
 
-/* ------ Participants ------ */
+/* ------ Participant ------ */
 const getParticipant = (async (req, res) => {
   try {
     const allParticipants = await client.query(queries.getParticipant);
@@ -56,8 +57,9 @@ const getParticipant = (async (req, res) => {
     return res.status(400).send(err);
   };
 });
+/* -------------------------------- */
 
-/* ------ Messages ------ */
+/* ------ Message ------ */
 const getMessage = (async (req, res) => {
   try {
     const allMessages = await client.query(queries.getMessage);
@@ -92,7 +94,8 @@ const createMessage = (async (req,res) => {
   } catch (err) {
     return res.status(400).json(err);
   }
-})
+});
+/* -------------------------------- */
 
 module.exports = {
   //chatroom
