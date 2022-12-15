@@ -20,6 +20,7 @@ const createMessage = "INSERT INTO message (participant_id, message_text, sent_d
 
 /* ------ Friend_list ------ */
 const getFriendsList = "SELECT * FROM friend_list";
+const getFriendsListByUser = "SELECT * FROM friend_list WHERE account_id = $1"
 /* -------------------------------- */
 
 module.exports = {
@@ -35,6 +36,7 @@ module.exports = {
   getMessagesByChatroom,
   createMessage,
   //friend_list
-  getFriendsList
+  getFriendsList,
+  getFriendsListByUser
 
 }

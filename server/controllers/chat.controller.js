@@ -109,6 +109,19 @@ const getFriendsList = (async (req, res) => {
   };
 });
 
+const getFriendsListById = (async (req, res) => {
+  const account_id = parseInt(req.params.id);
+  try {
+    const allFriendsById = await client.query(queries.getFriendsListByUser, [account_id]);
+    if (allFriendsById.rows.length) {
+      res.status(200).json(allFriendsById.rows);
+    };
+  } catch (err) {
+    return res.status(400).send(err);
+  };
+});
+/* -------------------------------- */
+
 module.exports = {
   //chatroom
   getChatroom,
@@ -121,5 +134,6 @@ module.exports = {
   getMessageByChatroom,
   createMessage,
   //friends_list
-  getFriendsList
+  getFriendsList,
+  getFriendsListById
 }
