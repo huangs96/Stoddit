@@ -20,7 +20,9 @@ const createMessage = "INSERT INTO message (participant_id, message_text, sent_d
 
 /* ------ Friend_list ------ */
 const getFriendsList = "SELECT * FROM friend_list";
-const getFriendsListByUser = "SELECT * FROM friend_list WHERE account_id = $1"
+const getFriendsListByUser = "SELECT * FROM friend_list WHERE account_id = $1";
+const addFriend = "";
+const deleteFriend = "";
 /* -------------------------------- */
 
 module.exports = {
