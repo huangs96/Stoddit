@@ -20,4 +20,7 @@ router.get('/message', controller.getMessage);
 router.get('/message/chatroomid=:id', controller.getMessageByChatroom);
 router.post('/message/new', controller.createMessage);
 /* -------------------------------- */
+
+/* ------ Friend_list Routes ------ */
+router.get('/friends', controller.getFriendsList);
 module.exports = router;

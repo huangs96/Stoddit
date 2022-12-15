@@ -2,7 +2,6 @@ const e = require('express');
 const client = require('../config/db.config');
 const queries = require('../queries/user.queries');
 const existQueries = require('../queries/register.queries');
-const auth = require('../middleware/verifyToken');
 
 const getUsers = (async (req, res) => {
   try {

@@ -65,7 +65,6 @@ io.on("connection", (socket) => {
 /* ------ Auth Routes ------ */
 //register
 app.use("/register", registerRoutes);
-
 //login
 app.use("/login", authRoutes);
 

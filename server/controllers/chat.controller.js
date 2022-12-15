@@ -97,6 +97,18 @@ const createMessage = (async (req,res) => {
 });
 /* -------------------------------- */
 
+/* ------ Friend_list ------ */
+const getFriendsList = (async (req, res) => {
+  try {
+    const allFriends = await client.query(queries.getFriendsList);
+    if (allFriends.rows.length) {
+      res.status(200).json(allFriends.rows);
+    };
+  } catch (err) {
+    return res.status(400).send(err);
+  };
+});
+
 module.exports = {
   //chatroom
   getChatroom,
@@ -107,5 +119,7 @@ module.exports = {
   //message
   getMessage,
   getMessageByChatroom,
-  createMessage
+  createMessage,
+  //friends_list
+  getFriendsList
 }
