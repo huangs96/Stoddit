@@ -12,16 +12,18 @@ const getParticipantFromChatroomID = "SELECT * FROM (SELECT * FROM participant W
 
 //message queries
 const getMessage = "SELECT * FROM message";
-const getMessagesByChatroom = "SELECT * FROM messages (subquery) chatroom_id = $1";
+const getMessagesByChatroom = "SELECT message.message_text, participant.chatroom_id, message.participant_id, message.sent_datetime FROM message INNER JOIN participant ON message.participant_id=participant.id WHERE chatroom_id = $1";
 const insertMessage = "INSERT INTO message (participant_id, message_text, sent_datetime) VALUES ($1, $2, $3)";
 
 module.exports = {
   //chatroom
   getChatroom,
+  getChatroomById,
   createChatroom,
   //participant
   getParticipant,
   createParticipantFromChatroom,
   //message
-  getMessage
+  getMessage,
+  getMessagesByChatroom
 }

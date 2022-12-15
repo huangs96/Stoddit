@@ -14,6 +14,18 @@ const getChatroom = (async (req, res) => {
   };
 });
 
+const getChatroomById = (async (req, res) => {
+  const chatroom_id = parseInt(req.params.id);
+  try {
+    const chatroomById = await client.query(queries.getChatroomById, [chatroom_id]);
+    if (chatroomById) {
+      res.status(200).json(chatroomById.rows);
+    }
+  } catch (err) {
+    return res.status(400).send(err);
+  }
+})
+
 const createChatroom = (async (req, res) => {
   const {name, title, description, id, sDate, lDate} = req.body;
 
@@ -24,6 +36,7 @@ const createChatroom = (async (req, res) => {
     let chatroom_id = newChatroom.rows[0].id;
     //create participants of chatroom
     const newParticipantFromChatroom = await client.query(queries.createParticipantFromChatroom, [chatroom_id, id, sDate, lDate]);
+    //if both are working, confirm creation
     if (newChatroom && newParticipantFromChatroom) {
       res.status(201).json('New Chatroom Created with Participants');
     }
@@ -56,12 +69,26 @@ const getMessage = (async (req, res) => {
   };
 });
 
+const getMessageByChatroom = (async (req, res) => {
+  const chatroom_id = parseInt(req.params.id);
+  try {
+    const messagesByChatroom = await client.query(queries.getMessagesByChatroom, [chatroom_id]);
+    if(messagesByChatroom) {
+      return res.status(200).json(messagesByChatroom.rows);
+    }
+  } catch (err) {
+    return res.status(400).json(err);
+  }
+})
+
 module.exports = {
   //chatroom
   getChatroom,
+  getChatroomById,
   createChatroom,
   //participant
   getParticipant,
   //message
-  getMessage
+  getMessage,
+  getMessageByChatroom
 }
