@@ -2,7 +2,7 @@
 const getChatroom = "SELECT * FROM chatroom";
 const getChatroomById = "SELECT * FROM chatroom WHERE id = $1";
 const createChatroom = "INSERT INTO chatroom (name, title, description) VALUES ($1, $2, $3) returning id";
-const deleteChatroom = "DELETE FROM chatroom WHERE "
+const deleteChatroom = "DELETE FROM chatroom WHERE chatroom_id = $1 returning id";
 
 //participant queries
 const getParticipant = "SELECT * FROM participant";
@@ -13,7 +13,7 @@ const getParticipantFromChatroomID = "SELECT * FROM (SELECT * FROM participant W
 //message queries
 const getMessage = "SELECT * FROM message";
 const getMessagesByChatroom = "SELECT message.message_text, participant.chatroom_id, message.participant_id, message.sent_datetime FROM message INNER JOIN participant ON message.participant_id=participant.id WHERE chatroom_id = $1";
-const insertMessage = "INSERT INTO message (participant_id, message_text, sent_datetime) VALUES ($1, $2, $3)";
+const createMessage = "INSERT INTO message (participant_id, message_text, sent_datetime) VALUES ($1, $2, $3)";
 
 module.exports = {
   //chatroom
@@ -25,5 +25,6 @@ module.exports = {
   createParticipantFromChatroom,
   //message
   getMessage,
-  getMessagesByChatroom
+  getMessagesByChatroom,
+  createMessage
 }

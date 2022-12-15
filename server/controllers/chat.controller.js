@@ -79,6 +79,19 @@ const getMessageByChatroom = (async (req, res) => {
   } catch (err) {
     return res.status(400).json(err);
   }
+});
+
+const createMessage = (async (req,res) => {
+  const {participant_id, message_text, sent_datetime} = req.body;
+
+  try {
+    const newMessage = await client.query(queries.createMessage, [participant_id, message_text, sent_datetime]);
+    if (newMessage) {
+      return res.status(200).json('Message successfully sent');
+    }
+  } catch (err) {
+    return res.status(400).json(err);
+  }
 })
 
 module.exports = {
@@ -90,5 +103,6 @@ module.exports = {
   getParticipant,
   //message
   getMessage,
-  getMessageByChatroom
+  getMessageByChatroom,
+  createMessage
 }
