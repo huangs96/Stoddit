@@ -1,27 +1,38 @@
 import './FriendsOnline.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { getFriendsList } from '../../../services/chat.service';
-
-const friendsList = getFriendsList();
-const displayFriendsList = friendsList.map((friends, i) => {
-  return <div className="friendsOnline">
-    <div className="chatOnlineFriend">
-      <div className="friendOnlineImgContainer">
-        <img
-        className="friendsOnlineImg"
-        src={friends.img}
-        alt=""
-        />
-        <div className="chatOnlineBadge"></div>
-      </div>
-      <span className="onlineFriendName" key={i}>{friends.username}</span>
-    </div>
-  </div>
-});
-
 
 
 function FriendsOnline() {
+  const [friendsList, setFriendsList] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getFriendsList();
+      setFriendsList(data);
+    }
+    fetchData()
+    .catch(console.error)
+  }, []);
+
+  const displayFriendsList = friendsList.map((friends, i) => {
+    if (friends.contact_img === null) {
+    friends.contact_img = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
+    };
+    return <div className="friendsOnline">
+      <div className="chatOnlineFriend">
+        <div className="friendOnlineImgContainer">
+          <img
+          className="friendsOnlineImg"
+          src={friends.contact_img}
+          alt=""
+          />
+          <div className="chatOnlineBadge"></div>
+        </div>
+        <span className="onlineFriendName" key={i}>{friends.contact_name}</span>
+      </div>
+    </div>
+  });
   return (
     <>
       <div>

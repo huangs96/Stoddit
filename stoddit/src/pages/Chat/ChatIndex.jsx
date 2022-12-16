@@ -81,7 +81,7 @@ function ChatIndex() {
           <div className="chatMenuWrapper">
             <TextField className="chatMenuInput" label="Search Chats, Friends, or Users">
             </TextField>
-            <Conversation getChatroomKey={getChatroomKey}/>
+            <Conversation getChatroomKey={getChatroomKey} userID={userID}/>
           </div>
         </div>
         <div className="chatBox">

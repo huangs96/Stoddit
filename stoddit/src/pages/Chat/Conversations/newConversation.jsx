@@ -15,10 +15,10 @@ import { getFriendsList } from '../../../services/chat.service';
 const friendsList = [];
 const friendsImg = [];
 const friends = getFriendsList();
-friends.map(friend => {
-  friendsList.push(friend.username);
-  friendsImg.push(friend.img);
-});
+// friends.map(friend => {
+//   friendsList.push(friend.username);
+//   friendsImg.push(friend.img);
+// });
 
 function NewConversation(props) {
   const { onClose, selectedValue, open } = props;

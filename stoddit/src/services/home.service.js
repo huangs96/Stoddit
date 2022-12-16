@@ -7,7 +7,7 @@ const getUser = () => {
     },
     mode: 'cors',
     credentials: 'include'
-})
+  })
   .then(response => {
     if (response.ok) {
       return response.json();
