@@ -13,6 +13,7 @@ router.post('/createChatroom', controller.createChatroom);
 
 /* ------ Participant Routes ------ */
 router.get('/participant', controller.getParticipant);
+router.get('/participant/chatroom/:id', controller.getParticipantFromChatroomID);
 router.get('/participant/user/:id', controller.getParticipantFromAccountID);
 /* -------------------------------- */
 
