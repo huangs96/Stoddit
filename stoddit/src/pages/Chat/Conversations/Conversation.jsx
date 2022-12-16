@@ -40,7 +40,7 @@ function Conversation({getChatroomKey, userID}) {
         {!waitData && 
           conversationData.map(function (item, i) {     
             const handleConversation = () => {
-              console.log(item.chatroom_id);
+              // console.log(item.chatroom_id);
               getChatroomKey(item.chatroom_id);
             };
             return <div className="conversation" onClick={handleConversation}>

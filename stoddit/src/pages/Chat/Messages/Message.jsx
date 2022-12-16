@@ -5,19 +5,19 @@ import { getMessages } from '../../../services/chat.service';
 function Message({chatroomKey, userID, userIMG}) {
   const [messages, setMessages] = useState('');
   const [waitData, setWaitData] = useState(true);
-  console.log('ck', chatroomKey)
+  // console.log('ck', chatroomKey)
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getMessages(chatroomKey);
-      console.log('data---', data);
+      // console.log('data---', data);
       setMessages(data);
       setWaitData(false);
     }
     fetchData()
     .catch(console.error)
   }, [chatroomKey])
-  console.log('messages', messages);
+  // console.log('messages', messages);
 
   return (
     <>

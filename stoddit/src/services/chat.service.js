@@ -21,7 +21,7 @@ const getChatroomByUserID = async (userID) => {
 /* ------ Participant ------ */
 //get participants from database
 const getParticipantIDFromChatroomID = async(chatroomID) => {
-  return fetch(`http://localhost:5000/chat/participant/user/${chatroomID}`, {
+  return fetch(`http://localhost:5000/chat/participant/chatroom/${chatroomID}`, {
     headers: {
       'Content-Type': 'application/json',
     },

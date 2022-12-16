@@ -1,6 +1,5 @@
 import './ChatIndex.css';
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
@@ -9,9 +8,13 @@ import Message from './Messages/Message';
 import FriendsOnline from './ChatOnline/FriendsOnline';
 import { getUser } from '../../services/home.service';
 import addMessageToConversation from '../../contexts/chatContext';
+import { 
+  getParticipantIDFromChatroomID,
+  getParticipantIDFromAccountID 
+} from '../../services/chat.service';
 import { SocketProvider } from '../../contexts/socketProvider';
 import { io } from 'socket.io-client';
-import { getParticipantIDFromAccountID } from '../../services/chat.service';
+
 
 /* ------ Socket Connection ------ */
 
@@ -33,18 +36,13 @@ function ChatIndex() {
   //variables for user
   const [user, setUser] = useState('');
   //variables for messages
-  const [participant, setParticipant] = useState('');
+  const [participantID, setParticipantID] = useState('');
   const [message, setMessage] = useState('');
-  let timestamp = new Date();
+  const timestamp = new Date();
   //variables for chatrooms
   const [userID, setUserID] = useState('');
   const waitForData = (user !== '');
   const [chatroomKey, setChatroomKey] = useState('');
-
-  //get corresponding messages from conversations file
-  const getChatroomKey = (key) => {
-    setChatroomKey(key);
-  };
   
   useEffect(() => {
     const fetchData = async () => {
@@ -56,13 +54,30 @@ function ChatIndex() {
     .catch(console.error)
   }, []);
 
-  if(userID) {
-    const fetchParticipantData = async () => {
-      const data = await getParticipantIDFromAccountID(userID);
-      console.log(data);
-      console.log('c1', chatroomKey);
+  //get corresponding messages from conversations file
+  const getChatroomKey = (key) => {
+    setChatroomKey(key);
+  };
+
+  // if(userID) {
+  //   const fetchParticipantDataFromAccountID = async () => {
+  //     const data = await getParticipantIDFromAccountID(userID);
+  //     console.log('userData---', data);
+  //   };
+  //   fetchParticipantDataFromAccountID();
+  // };
+
+  if(chatroomKey) {
+    const fetchParticipantDataFromChatroomID = async () => {
+      const data = await getParticipantIDFromChatroomID(chatroomKey);
+      data.map(values => {
+        if(userID === values.account_id) {
+          setParticipantID(values.id);
+          console.log('pID---', participantID);
+        };
+      });
     };
-    fetchParticipantData();
+    fetchParticipantDataFromChatroomID();
   };
 
 
@@ -73,8 +88,7 @@ function ChatIndex() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('message', message);
-    addMessageToConversation(userID, message, timestamp);
+    addMessageToConversation(participantID, message, timestamp);
 
     //emit message to server
     // socket.emit('chatMessage', message);
