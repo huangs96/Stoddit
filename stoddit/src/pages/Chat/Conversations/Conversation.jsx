@@ -38,7 +38,8 @@ function Conversation({getChatroomKey, userID}) {
           Conversations
         </h3>
         {!waitData && 
-          conversationData.map(function (item, i) {     
+          conversationData.map(function (item, i) { 
+            console.log('item---', item);    
             const handleConversation = () => {
               // console.log(item.chatroom_id);
               getChatroomKey(item.chatroom_id);
