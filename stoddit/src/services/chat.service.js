@@ -16,8 +16,8 @@ const getFriendsList = async () => {
 };
 
 //get cchatrooms from database
-const getChatroomById = async (userId) => {
-  return fetch(`http://localhost:5000/chat/chatroom/${userId}`, {
+const getChatroomByUserID = async (userID) => {
+  return fetch(`http://localhost:5000/chat/chatroom/user/${userID}`, {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -98,6 +98,6 @@ const getMessages = () => {
 
 module.exports = {
   getFriendsList,
-  getChatroomById,
+  getChatroomByUserID,
   getMessages
 }

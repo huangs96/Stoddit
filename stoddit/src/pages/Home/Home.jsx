@@ -29,7 +29,6 @@ function HomePage() {
     }
     fetchData()
     .catch(console.error);
-    console.log('userhome----', user);
   }, [])
 
 
