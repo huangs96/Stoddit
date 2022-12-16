@@ -30,24 +30,6 @@ function Conversation({getChatroomKey, userID}) {
 
 
   }, [])
-  
-  //get chatroom data
-  // const displayChatrooms = chatrooms.map(function(item, i) {
-  //   const handleConversation = () => {
-  //     let conversationIDKeys = Object.keys(sortConversations);
-  //     conversationIDKeys.map(keys => {
-  //       let chatroomItems = item.chatroom_ID.toString();
-  //       if (chatroomItems === keys) {
-  //         console.log('conversations: chatroom key', keys);
-  //         getChatroomKey(keys); 
-  //       }
-  //     })
-  //   }
-  //   return <div className="conversation" onClick={handleConversation}>
-  //   <img className="conversationImg" src={item.img} alt=""/>
-  //   <span className="conversationName" key={i}>{item.name}</span>
-  //   </div>
-  // });
 
   return (
     <>
@@ -56,13 +38,13 @@ function Conversation({getChatroomKey, userID}) {
           Conversations
         </h3>
         {!waitData && 
-          conversationData.map(function (item, i) {
+          conversationData.map(function (item, i) {     
             const handleConversation = () => {
               console.log(item.chatroom_id);
               getChatroomKey(item.chatroom_id);
             };
             return <div className="conversation" onClick={handleConversation}>
-              <img className="conversationImg" src={''} alt=""/>
+              <img className="conversationImg" src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg' alt=""/>
               <span className="conversationName" key={i}>{item.name}</span>
             </div>
           })

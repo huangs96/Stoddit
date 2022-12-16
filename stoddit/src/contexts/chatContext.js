@@ -2,6 +2,7 @@ import { getMessages } from '../services/chat.service';
 
 const addMessageToConversation = (participantID, text, time) => {
   console.log(participantID, text, time);
+  //insert message into database to refresh and get new message
   let payload = {
     id: participantID,
     text: text,
