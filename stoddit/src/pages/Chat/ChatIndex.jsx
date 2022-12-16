@@ -43,6 +43,8 @@ function ChatIndex() {
   const [userID, setUserID] = useState('');
   const waitForData = (user !== '');
   const [chatroomKey, setChatroomKey] = useState('');
+
+  console.log(timestamp);
   
   useEffect(() => {
     const fetchData = async () => {
@@ -88,7 +90,10 @@ function ChatIndex() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addMessageToConversation(participantID, message, timestamp);
+    console.log(timestamp);
+    if (message) {
+      addMessageToConversation(participantID, message, timestamp);
+    };
 
     //emit message to server
     // socket.emit('chatMessage', message);

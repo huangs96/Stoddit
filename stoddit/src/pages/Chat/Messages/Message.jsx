@@ -17,7 +17,7 @@ function Message({chatroomKey, userID, userIMG}) {
     fetchData()
     .catch(console.error)
   }, [chatroomKey])
-  // console.log('messages', messages);
+  console.log('messages', messages);
 
   return (
     <>
