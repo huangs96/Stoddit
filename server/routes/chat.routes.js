@@ -5,13 +5,15 @@ const router = Router();
 
 /* ------ Chatroom Routes ------ */
 router.get('/chatroom', controller.getChatroom);
-router.get('/chatroom/:id', controller.getChatroomById);
+router.get('/chatroom/:id', controller.getChatroomByChatroomID);
+router.get('/chatroom/user/:id', controller.getChatroomByUserID);
 router.post('/createChatroom', controller.createChatroom);
 /* -------------------------------- */
 
 
 /* ------ Participant Routes ------ */
 router.get('/participant', controller.getParticipant);
+router.get('/participant/user/:id', controller.getParticipantFromAccountID);
 /* -------------------------------- */
 
 

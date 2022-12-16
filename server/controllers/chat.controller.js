@@ -14,17 +14,29 @@ const getChatroom = (async (req, res) => {
   };
 });
 
-const getChatroomById = (async (req, res) => {
+const getChatroomByChatroomID = (async (req, res) => {
   const chatroom_id = parseInt(req.params.id);
   try {
-    const chatroomById = await client.query(queries.getChatroomById, [chatroom_id]);
+    const chatroomById = await client.query(queries.getChatroomByChatroomID, [chatroom_id]);
     if (chatroomById) {
       res.status(200).json(chatroomById.rows);
     }
   } catch (err) {
     return res.status(400).send(err);
   }
-})
+});
+
+const getChatroomByUserID = (async (req, res) => {
+  const userID = parseInt(req.params.id);
+  try {
+    const chatroomByUserID = await client.query(queries.getChatroomByUserID, [userID]);
+    if (chatroomByUserID) {
+      res.status(200).json(chatroomByUserID.rows);
+    }
+  } catch (err) {
+    return res.status(400).send(err);
+  }
+});
 
 const createChatroom = (async (req, res) => {
   const {name, title, description, id, sDate, lDate} = req.body;
@@ -46,6 +58,7 @@ const createChatroom = (async (req, res) => {
 });
 /* -------------------------------- */
 
+
 /* ------ Participant ------ */
 const getParticipant = (async (req, res) => {
   try {
@@ -57,7 +70,34 @@ const getParticipant = (async (req, res) => {
     return res.status(400).send(err);
   };
 });
+
+const getParticipantFromChatroomID = (async (req, res) => {
+  const chatroom_id = parseInt(req.params.id);
+
+  try {
+    const participantFromID = await client.query(queries.getParticipantFromChatroomID, [chatroom_id]);
+    if (participantFromID.rows.length) {
+      res.status(200).json(participantFromID.rows);
+    };
+  } catch (err) {
+    return res.status(400).send(err);
+  };
+});
+
+const getParticipantFromAccountID = (async (req, res) => {
+  const userID = parseInt(req.params.id);
+
+  try {
+    const participantFromID = await client.query(queries.getParticipantFromAccountID, [userID]);
+    if (participantFromID.rows.length) {
+      res.status(200).json(participantFromID.rows);
+    };
+  } catch (err) {
+    return res.status(400).send(err);
+  };
+});
 /* -------------------------------- */
+
 
 /* ------ Message ------ */
 const getMessage = (async (req, res) => {
@@ -97,6 +137,7 @@ const createMessage = (async (req,res) => {
 });
 /* -------------------------------- */
 
+
 /* ------ Friend_list ------ */
 const getFriendsList = (async (req, res) => {
   try {
@@ -125,10 +166,13 @@ const getFriendsListById = (async (req, res) => {
 module.exports = {
   //chatroom
   getChatroom,
-  getChatroomById,
+  getChatroomByChatroomID,
+  getChatroomByUserID,
   createChatroom,
   //participant
   getParticipant,
+  getParticipantFromChatroomID,
+  getParticipantFromAccountID,
   //message
   getMessage,
   getMessageByChatroom,
