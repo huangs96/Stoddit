@@ -11,6 +11,7 @@ import { getUser } from '../../services/home.service';
 import addMessageToConversation from '../../contexts/chatContext';
 import { SocketProvider } from '../../contexts/socketProvider';
 import { io } from 'socket.io-client';
+import { getParticipantIDFromAccountID } from '../../services/chat.service';
 
 /* ------ Socket Connection ------ */
 
@@ -50,10 +51,20 @@ function ChatIndex() {
       const data = await getUser();
       setUser(data.user.username);
       setUserID(data.user.id)
-    }
+    };
     fetchData()
     .catch(console.error)
   }, []);
+
+  if(userID) {
+    const fetchParticipantData = async () => {
+      const data = await getParticipantIDFromAccountID(userID);
+      console.log(data);
+      console.log('c1', chatroomKey);
+    };
+    fetchParticipantData();
+  };
+
 
   const onChangeMessage = (e) => {
     const message = e.target.value;
@@ -66,7 +77,7 @@ function ChatIndex() {
     addMessageToConversation(userID, message, timestamp);
 
     //emit message to server
-    socket.emit('chatMessage', message);
+    // socket.emit('chatMessage', message);
 
     //empty textbox
     setMessage('');

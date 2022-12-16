@@ -1,24 +1,16 @@
 import {sendMessage} from '../services/chat.service';
 
 const addMessageToConversation = async (participantID, text, time) => {
-  console.log(participantID, text, time);
-  //insert message into database to refresh and get new message
-  let messageData = {
-    id: participantID,
-    text: text,
-    sent_datetime: time,
-    img: ''
+  console.log('message', participantID, text, time);
+  let body = {
+    participant_id: participantID,
+    message_text: text,
+    sent_datetime: time
   };
-
-  console.log((messageData));
-  // await sendMessage(messageData);
-  
-  
-  
+  console.log('body---', body);
+  //insert message into database to refresh and get new message
+  await sendMessage(body);
 }
 
-// const sendMessage = (participant, text, time) => {
-
-// }
 
 export default addMessageToConversation;

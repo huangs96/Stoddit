@@ -20,8 +20,20 @@ const getChatroomByUserID = async (userID) => {
 
 /* ------ Participant ------ */
 //get participants from database
-const getParticipants = () => {
-  
+const getParticipantIDFromAccountID = (userID) => {
+  return fetch(`http://localhost:5000/chat/participant/user/${userID}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    mode: 'cors',
+    credentials: 'include'
+  })
+  .then(response => {
+    if(response.ok) {
+      return response.json();
+    }
+    throw response;
+  });
 };
 /* -------------------------------- */
 
@@ -55,7 +67,7 @@ const sendMessage = async (messageData) => {
     },
     mode: 'cors',
     credentials: 'include',
-    body: JSON.stringify()
+    body: JSON.stringify(messageData)
   })
   .then(res => res.json());
   return res;
@@ -87,6 +99,7 @@ module.exports = {
   //chatroom
   getChatroomByUserID,
   //participant
+  getParticipantIDFromAccountID,
   //message
   getMessages,
   sendMessage,
