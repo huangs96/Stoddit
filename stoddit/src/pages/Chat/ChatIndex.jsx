@@ -26,9 +26,14 @@ socket.on('connection', () => {
   console.log('working');
 });
 //console message from socket
+let newMessage = '';
 socket.on('message', message => {
   console.log("ChatIndex: socket", message);
-})
+});
+socket.on('chatMessage', chatMessage => {
+  console.log('chatMessage', chatMessage);
+  newMessage = chatMessage;
+});
 
 /* ------ Socket End ------ */
 
@@ -38,13 +43,18 @@ function ChatIndex() {
   //variables for messages
   const [participantID, setParticipantID] = useState('');
   const [message, setMessage] = useState('');
+  const [addNewMessage, setAddNewMessage] = useState('');
   const timestamp = new Date();
   //variables for chatrooms
   const [userID, setUserID] = useState('');
   const waitForData = (user !== '');
   const [chatroomKey, setChatroomKey] = useState('');
+  
+  // if (newMessage !== '') {
+  //   setAddNewMessage(newMessage);
+  // };
 
-  console.log(timestamp);
+  // console.log('addnewmsg', addNewMessage);
   
   useEffect(() => {
     const fetchData = async () => {
@@ -75,7 +85,7 @@ function ChatIndex() {
       data.map(values => {
         if(userID === values.account_id) {
           setParticipantID(values.id);
-          console.log('pID---', participantID);
+          // console.log('pID---', participantID);
         };
       });
     };
@@ -90,18 +100,17 @@ function ChatIndex() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(timestamp);
+    // console.log(timestamp);
     if (message) {
       addMessageToConversation(participantID, message, timestamp);
     };
 
     //emit message to server
-    // socket.emit('chatMessage', message);
+    socket.emit('chatMessage', message);
 
     //empty textbox
     setMessage('');
-  }
-
+  };
 
   return (
     <>

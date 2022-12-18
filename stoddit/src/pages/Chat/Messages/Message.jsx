@@ -1,23 +1,29 @@
 import './Message.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { getMessages } from '../../../services/chat.service';
 
 function Message({chatroomKey, userID, userIMG}) {
   const [messages, setMessages] = useState('');
   const [waitData, setWaitData] = useState(true);
+  const [countMessages, setCountMessages] = useState(0);
   // console.log('ck', chatroomKey)
+  let prevMessageCount = useRef();
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getMessages(chatroomKey);
       // console.log('data---', data);
       setMessages(data);
+      setCountMessages(data.length);
       setWaitData(false);
     }
     fetchData()
     .catch(console.error)
-  }, [chatroomKey])
-  console.log('messages', messages);
+
+    prevMessageCount.current = countMessages;
+  }, [chatroomKey, countMessages])
+  // console.log('messages1111', prevMessageCount);
+  // console.log('messages2222', messages);
 
   return (
     <>
