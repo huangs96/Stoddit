@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {useState, useEffect} from 'react';
 import Avatar from '@mui/material/Avatar';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -12,22 +12,30 @@ import { blue } from '@mui/material/colors';
 import PropTypes from 'prop-types';
 import { getFriendsList } from '../../../services/chat.service';
 
-const friendsList = [];
-const friendsImg = [];
-const friends = getFriendsList();
-// friends.map(friend => {
-//   friendsList.push(friend.username);
-//   friendsImg.push(friend.img);
-// });
-
 function NewConversation(props) {
+  const [friendsList, setFriendsList] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getFriendsList();
+      setFriendsList(data);
+    }
+    fetchData()
+    .catch(console.error)
+  }, [])
+  // console.log(friendsList)
+
   const { onClose, selectedValue, open } = props;
   const handleClose = () => {
     onClose(selectedValue);
   };
   const handleListItemClick = (value) => {
     console.log(value);
-    onClose(value);
+    //create new chatroom, need to write API endpoint for creating new chatroom and participants
+
+
+
+    // onClose(value);
   };
 
   return (
@@ -35,13 +43,13 @@ function NewConversation(props) {
       <DialogTitle>Start a Conversation</DialogTitle>
       <List sx={{ pt: 0 }}>
         {friendsList.map((friend, i) => (
-          <ListItem button onClick={() => handleListItemClick(friend)} key={i}>
+          <ListItem button onClick={() => handleListItemClick(friend.contact_name)} key={i}>
             <ListItemAvatar>
               <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
                 <PersonIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={friend} />
+            <ListItemText primary={friend.contact_name} />
           </ListItem>
         ))}
 

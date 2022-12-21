@@ -3,12 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { getChatroomByUserID} from '../../../services/chat.service';
 import { Button, Modal, Typography, Box } from '@mui/material';
 import NewConversation from './newConversation';
-import { display } from '@mui/system';
 
 function Conversation({getChatroomKey, userID}) {
-  const [chatroomID, setChatroomID] = useState('');
   const [conversationData, setConversationData] = useState('');
-  const [displayData, setDisplayData] = useState('');
   const [waitData, setWaitData] = useState(true);
   //set state for modal
   const [open, setOpen] = useState(false);
@@ -41,7 +38,6 @@ function Conversation({getChatroomKey, userID}) {
           conversationData.map(function (item, i) { 
             console.log('item---', item);    
             const handleConversation = () => {
-              // console.log(item.chatroom_id);
               getChatroomKey(item.chatroom_id);
             };
             return <div className="conversation" onClick={handleConversation}>

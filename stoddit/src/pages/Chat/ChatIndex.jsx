@@ -1,5 +1,5 @@
 import './ChatIndex.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
@@ -26,13 +26,11 @@ socket.on('connection', () => {
   console.log('working');
 });
 //console message from socket
-let newMessage = '';
 socket.on('message', message => {
   console.log("ChatIndex: socket", message);
 });
 socket.on('chatMessage', chatMessage => {
   console.log('chatMessage', chatMessage);
-  newMessage = chatMessage;
 });
 
 /* ------ Socket End ------ */
@@ -45,6 +43,7 @@ function ChatIndex() {
   const [message, setMessage] = useState('');
   const [addNewMessage, setAddNewMessage] = useState('');
   const timestamp = new Date();
+  const bottomRef = useRef(null);
   //variables for chatrooms
   const [userID, setUserID] = useState('');
   const waitForData = (user !== '');
@@ -64,26 +63,15 @@ function ChatIndex() {
     .catch(console.error);
 
     socket.on('chatMessage', chatMessage => {
-      console.log('chatMessage', chatMessage);
       setAddNewMessage(chatMessage);
     });
 
   }, [addNewMessage]);
 
-  console.log('newMessage', addNewMessage);
-
   //get corresponding messages from conversations file
   const getChatroomKey = (key) => {
     setChatroomKey(key);
   };
-
-  // if(userID) {
-  //   const fetchParticipantDataFromAccountID = async () => {
-  //     const data = await getParticipantIDFromAccountID(userID);
-  //     console.log('userData---', data);
-  //   };
-  //   fetchParticipantDataFromAccountID();
-  // };
 
   if(chatroomKey) {
     const fetchParticipantDataFromChatroomID = async () => {
@@ -106,13 +94,12 @@ function ChatIndex() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(timestamp);
     if (message) {
       addMessageToConversation(participantID, message, timestamp);
     };
 
     //emit message to server
-    // socket.emit('chatMessage', message);
+    socket.emit('chatMessage', message);
 
     //empty textbox
     setMessage('');

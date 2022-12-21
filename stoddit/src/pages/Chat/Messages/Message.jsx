@@ -5,6 +5,7 @@ import { getMessages } from '../../../services/chat.service';
 function Message({chatroomKey, userID, addNewMessage, userIMG}) {
   const [messages, setMessages] = useState('');
   const [waitData, setWaitData] = useState(true);
+  const bottomRef = useRef(null);
   // console.log('messageFile', addNewMessage);
   // console.log(messages);
 
@@ -17,6 +18,9 @@ function Message({chatroomKey, userID, addNewMessage, userIMG}) {
     }
     fetchData()
     .catch(console.error)
+
+    bottomRef.current?.scrollIntoView({behaviour: 'smooth'});
+
   }, [chatroomKey, addNewMessage]);
 
   return (
@@ -29,6 +33,7 @@ function Message({chatroomKey, userID, addNewMessage, userIMG}) {
           } else {
             data.ownMessage = false;
           };
+          console.log(new Date() - data.sent_datetime);
           return (
             <div className={data.ownMessage ? "message own" : "message"}> 
               <div className="messageTop">
@@ -44,6 +49,7 @@ function Message({chatroomKey, userID, addNewMessage, userIMG}) {
           )
         })
       }
+      <div ref={bottomRef} />
     </div>
     </>
   )
