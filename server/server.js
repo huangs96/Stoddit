@@ -44,6 +44,9 @@ app.get("/", (req, res) =>
 /* ------ Socket Server ------ */
 //Run when connected
 io.on("connection", (socket) => {
+  const id = socket.handshake.query.id;
+  socket.join(id);
+  console.log('id----', id);
   console.log(`newsocketconnection: ${socket.id}`);
 
   socket.emit("message", "welcome to Stoddit");

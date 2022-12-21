@@ -27,6 +27,11 @@
   justify-content: space-between;
 }
 
+.chatMenuWrapper, .chatBoxWrapper, .chatOnlineWrapper {
+  padding: 10px;
+  height: 60%;
+}
+
 .chatBoxTop {
   height: 100%;
   overflow-y: scroll;
@@ -56,10 +61,6 @@
   flex: 3;
 }
 
-.chatMenuWrapper, .chatBoxWrapper, .chatOnlineWrapper {
-  padding: 10px;
-  height: 100%;
-}
 
 .chatOnlineImg {
   width: 40px;

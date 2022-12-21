@@ -18,22 +18,22 @@ import { io } from 'socket.io-client';
 
 /* ------ Socket Connection ------ */
 
-const socket = io('http://localhost:5000', {
-  withCredentials: true,
-});
-//on socket connection
-socket.on('connection', () => {
-  console.log('working');
-});
-//console message from socket
-let newMessage = '';
-socket.on('message', message => {
-  console.log("ChatIndex: socket", message);
-});
-socket.on('chatMessage', chatMessage => {
-  console.log('chatMessage', chatMessage);
-  newMessage = chatMessage;
-});
+// const socket = io('http://localhost:5000', {
+//   withCredentials: true,
+// });
+// //on socket connection
+// socket.on('connection', () => {
+//   console.log('working');
+// });
+// //console message from socket
+// let newMessage = '';
+// socket.on('message', message => {
+//   console.log("ChatIndex: socket", message);
+// });
+// socket.on('chatMessage', chatMessage => {
+//   console.log('chatMessage', chatMessage);
+//   newMessage = chatMessage;
+// });
 
 /* ------ Socket End ------ */
 
@@ -63,12 +63,12 @@ function ChatIndex() {
     fetchData()
     .catch(console.error);
 
-    socket.on('chatMessage', chatMessage => {
-      console.log('chatMessage', chatMessage);
-      setAddNewMessage(chatMessage);
-    });
+    // socket.on('chatMessage', chatMessage => {
+    //   console.log('chatMessage', chatMessage);
+    //   setAddNewMessage(chatMessage);
+    // });
 
-  }, [socket]);
+  }, []);
 
   console.log('newMessage', addNewMessage);
 
@@ -112,7 +112,7 @@ function ChatIndex() {
     };
 
     //emit message to server
-    socket.emit('chatMessage', message);
+    // socket.emit('chatMessage', message);
 
     //empty textbox
     setMessage('');
@@ -120,6 +120,7 @@ function ChatIndex() {
 
   return (
     <>
+    <SocketProvider chatroom_id={chatroomKey}>
     {waitForData &&
       <div style={{ marginTop:'10vh'}} className="chat">
         <div className="chatMenu">
@@ -156,6 +157,7 @@ function ChatIndex() {
           </div>
       </div>
     }
+    </SocketProvider>
     </>
   )
 }

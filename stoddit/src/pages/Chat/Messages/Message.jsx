@@ -6,7 +6,7 @@ function Message({chatroomKey, userID, addNewMessage, userIMG}) {
   const [messages, setMessages] = useState('');
   const [waitData, setWaitData] = useState(true);
   // console.log('messageFile', addNewMessage);
-  console.log(messages);
+  // console.log(messages);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,8 +17,7 @@ function Message({chatroomKey, userID, addNewMessage, userIMG}) {
     }
     fetchData()
     .catch(console.error)
-
-  }, [chatroomKey])
+  }, [chatroomKey, addNewMessage]);
 
   return (
     <>
