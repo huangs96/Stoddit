@@ -12,21 +12,23 @@ export const SocketProvider = ({chatroom_id, children}) => {
 
   useEffect(() => {
     const newSocket = io('http://localhost:5000', {
-      query: { chatroom_id }
+      withCredentials: true,
     });
     console.log('socketProvider--', chatroom_id);
     setSocket(newSocket);
     //close socket everytime session closes
     return () => newSocket.close();
-  }, [chatroom_id]);
+  }, []);
 
+  //on socket connection
   // socket.on('connection', () => {
   //   console.log('working');
   // });
+  //console message from socket
   // socket.on('message', message => {
   //   console.log("ChatIndex: socket", message);
   // });
-  // socket.emit('chatMessage', message);
+
   // socket.on('chatMessage', chatMessage => {
   //   console.log('chatMessage', chatMessage);
   // });

@@ -118,6 +118,8 @@ function ChatIndex() {
     setMessage('');
   };
 
+  console.log('socketproviderkey=', <SocketProvider chatroom_id={chatroomKey}></SocketProvider>);
+
   return (
     <>
     <SocketProvider chatroom_id={chatroomKey}>
