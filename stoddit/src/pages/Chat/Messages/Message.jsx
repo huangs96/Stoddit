@@ -2,28 +2,23 @@ import './Message.css';
 import React, { useState, useEffect, useRef } from 'react';
 import { getMessages } from '../../../services/chat.service';
 
-function Message({chatroomKey, userID, userIMG}) {
+function Message({chatroomKey, userID, addNewMessage, userIMG}) {
   const [messages, setMessages] = useState('');
   const [waitData, setWaitData] = useState(true);
-  const [countMessages, setCountMessages] = useState(0);
-  // console.log('ck', chatroomKey)
-  let prevMessageCount = useRef();
+  // console.log('messageFile', addNewMessage);
+  console.log(messages);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getMessages(chatroomKey);
       // console.log('data---', data);
       setMessages(data);
-      setCountMessages(data.length);
       setWaitData(false);
     }
     fetchData()
     .catch(console.error)
 
-    prevMessageCount.current = countMessages;
-  }, [chatroomKey, countMessages])
-  // console.log('messages1111', prevMessageCount);
-  // console.log('messages2222', messages);
+  }, [chatroomKey])
 
   return (
     <>

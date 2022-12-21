@@ -53,8 +53,6 @@ function ChatIndex() {
   // if (newMessage !== '') {
   //   setAddNewMessage(newMessage);
   // };
-
-  // console.log('addnewmsg', addNewMessage);
   
   useEffect(() => {
     const fetchData = async () => {
@@ -63,8 +61,16 @@ function ChatIndex() {
       setUserID(data.user.id)
     };
     fetchData()
-    .catch(console.error)
-  }, []);
+    .catch(console.error);
+
+    socket.on('chatMessage', chatMessage => {
+      console.log('chatMessage', chatMessage);
+      setAddNewMessage(chatMessage);
+    });
+
+  }, [socket]);
+
+  console.log('newMessage', addNewMessage);
 
   //get corresponding messages from conversations file
   const getChatroomKey = (key) => {
@@ -126,7 +132,7 @@ function ChatIndex() {
         <div className="chatBox">
           <div className="chatBoxWrapper">
             <div className="chatBoxTop">
-              <Message userID={userID} chatroomKey={chatroomKey} />
+              <Message userID={userID} chatroomKey={chatroomKey} addNewMessage={addNewMessage}/>
             </div>
             <form onSubmit={handleSubmit}>
               <div className="chatBoxBottom">
