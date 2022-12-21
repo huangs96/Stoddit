@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import io from 'socket.io-client';
+import { io } from 'socket.io-client';
 
 const socketContext = React.createContext();
 
@@ -14,17 +14,19 @@ export const SocketProvider = ({chatroom_id, children}) => {
     const newSocket = io('http://localhost:5000', {
       withCredentials: true,
     });
-    console.log('socketProvider--', chatroom_id);
+    console.log('socketID', chatroom_id);
+    console.log('newSocket', newSocket.connected);
     setSocket(newSocket);
     //close socket everytime session closes
-    return () => newSocket.close();
-  }, []);
+    // return () => newSocket.close();
+  }, [chatroom_id]);
 
-  //on socket connection
+  console.log('socketProvider', socket);
+  // on socket connection
   // socket.on('connection', () => {
   //   console.log('working');
   // });
-  //console message from socket
+  // console message from socket
   // socket.on('message', message => {
   //   console.log("ChatIndex: socket", message);
   // });
