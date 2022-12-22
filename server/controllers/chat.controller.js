@@ -47,17 +47,18 @@ const createChatroom = (async (req, res) => {
     const newChatroom = await client.query(queries.createChatroom, [name, title, description]);
     //chatroom query returns id of chatroom
     let chatroom_id = newChatroom.rows[0].id;
-    //create participants of chatroom
+    //create participants of chatroom, if more than one id, loop through array of ids
     if (id.length > 1) {
       for (let user = 0; user < id.length; user++) {
         console.log('user---', id[user]);
         console.log('chatroomID', chatroom_id);
         await client.query(queries.createParticipantFromChatroom, [chatroom_id, id[user], sDate, lDate]);
-        
+        //change dataSubmit to true to indicate successful query
         dataSubmit = true;
       };
     } else {
       await client.query(queries.createParticipantFromChatroom, [chatroom_id, id, sDate, lDate]);
+      //change dataSubmit to true to indicate successful query
       dataSubmit = true;
     }
     //if both are working, confirm creation

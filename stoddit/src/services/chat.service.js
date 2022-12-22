@@ -15,6 +15,24 @@ const getChatroomByUserID = async (userID) => {
     throw response;
   });
 };
+
+const createNewChatroom = async (name, title, description, userIDs, sDate, lDate) => {
+  return fetch('http://localhost:5000/chat/createchatroom', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    mode: 'cors',
+    credentials: 'include'
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw response;
+  });
+}
 /* -------------------------------- */
 
 
@@ -115,6 +133,7 @@ const getFriendsList = async () => {
 module.exports = {
   //chatroom
   getChatroomByUserID,
+  createNewChatroom,
   //participant
   getParticipantIDFromChatroomID,
   getParticipantIDFromAccountID,

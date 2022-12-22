@@ -79,7 +79,6 @@ function ChatIndex() {
       data.map(values => {
         if(userID === values.account_id) {
           setParticipantID(values.id);
-          // console.log('pID---', participantID);
         };
       });
     };

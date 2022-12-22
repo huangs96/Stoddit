@@ -10,7 +10,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import AddIcon from '@mui/icons-material/Add';
 import { blue } from '@mui/material/colors';
 import PropTypes from 'prop-types';
-import { getFriendsList } from '../../../services/chat.service';
+import { getFriendsList, createNewChatroom } from '../../../services/chat.service';
 
 function NewConversation(props) {
   const [friendsList, setFriendsList] = useState([]);
@@ -37,6 +37,9 @@ function NewConversation(props) {
 
     // onClose(value);
   };
+  const createConversation = (e) => {
+    console.log('clicked');
+  }
 
   return (
     <Dialog onClose={handleClose} open={open}>
@@ -53,7 +56,7 @@ function NewConversation(props) {
           </ListItem>
         ))}
 
-        <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
+        <ListItem autoFocus button onClick={createConversation}>
           <ListItemAvatar>
             <Avatar>
               <AddIcon />
