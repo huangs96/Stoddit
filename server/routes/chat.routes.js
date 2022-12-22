@@ -7,7 +7,7 @@ const router = Router();
 router.get('/chatroom', controller.getChatroom);
 router.get('/chatroom/:id', controller.getChatroomByChatroomID);
 router.get('/chatroom/user/:id', controller.getChatroomByUserID);
-router.post('/createChatroom', controller.createChatroom);
+router.post('/createchatroom', controller.createChatroom);
 /* -------------------------------- */
 
 

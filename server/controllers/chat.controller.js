@@ -40,6 +40,7 @@ const getChatroomByUserID = (async (req, res) => {
 
 const createChatroom = (async (req, res) => {
   const {name, title, description, id, sDate, lDate} = req.body;
+  let dataSubmit = false;
 
   try {
     //create chatroom
@@ -47,11 +48,22 @@ const createChatroom = (async (req, res) => {
     //chatroom query returns id of chatroom
     let chatroom_id = newChatroom.rows[0].id;
     //create participants of chatroom
-    const newParticipantFromChatroom = await client.query(queries.createParticipantFromChatroom, [chatroom_id, id, sDate, lDate]);
-    //if both are working, confirm creation
-    if (newChatroom && newParticipantFromChatroom) {
-      res.status(201).json('New Chatroom Created with Participants');
+    if (id.length > 1) {
+      for (let user = 0; user < id.length; user++) {
+        console.log('user---', id[user]);
+        console.log('chatroomID', chatroom_id);
+        await client.query(queries.createParticipantFromChatroom, [chatroom_id, id[user], sDate, lDate]);
+        
+        dataSubmit = true;
+      };
+    } else {
+      await client.query(queries.createParticipantFromChatroom, [chatroom_id, id, sDate, lDate]);
+      dataSubmit = true;
     }
+    //if both are working, confirm creation
+    if (dataSubmit) {
+      res.status(201).json('New Chatroom Created with Participants');
+    };
   } catch (err) {
     return res.status(400).send(err);
   };

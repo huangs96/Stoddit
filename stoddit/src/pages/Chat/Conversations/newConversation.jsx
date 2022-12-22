@@ -23,7 +23,7 @@ function NewConversation(props) {
     fetchData()
     .catch(console.error)
   }, [])
-  // console.log(friendsList)
+  console.log(friendsList)
 
   const { onClose, selectedValue, open } = props;
   const handleClose = () => {

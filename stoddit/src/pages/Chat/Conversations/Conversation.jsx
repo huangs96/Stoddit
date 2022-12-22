@@ -24,8 +24,6 @@ function Conversation({getChatroomKey, userID}) {
     }
     fetchData()
     .catch(console.error)
-
-
   }, [])
 
   return (
