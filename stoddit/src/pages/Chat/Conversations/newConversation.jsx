@@ -11,7 +11,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import AddIcon from '@mui/icons-material/Add';
 import { blue } from '@mui/material/colors';
 import PropTypes from 'prop-types';
-import { getFriendsList, createNewChatroom } from '../../../services/chat.service';
+import { getFriendsListById, createNewChatroom } from '../../../services/chat.service';
 import createNewChatroomWithParticipants from '../../../contexts/chatContext';
 import { getUser } from '../../../services/home.service';
 
@@ -23,7 +23,7 @@ function NewConversation(props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getFriendsList();
+      const data = await getFriendsListById(props.userID);
       setFriendsList(data);
     }
     fetchData()

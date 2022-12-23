@@ -35,7 +35,7 @@ function Conversation({getChatroomKey, userID}) {
         </h3>
         {!waitData && 
           conversationData.map(function (item, i) { 
-            console.log('item---', item);    
+            // console.log('item---', item);    
             const handleConversation = () => {
               getChatroomKey(item.chatroom_id);
             };
@@ -49,6 +49,7 @@ function Conversation({getChatroomKey, userID}) {
       <div>
       <Button onClick={handleOpen} variant="contained">New Conversation</Button>
       <NewConversation
+        userID={userID}
         open={open}
         onClose={handleClose}
       />
