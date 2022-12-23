@@ -1,12 +1,12 @@
 import {sendMessage, createNewChatroom} from '../services/chat.service';
 
 /* ------ Chatroom ------ */
-const createNewChatroomWithParticipants = async (chatroomName, chatroomTitle, chatroomDescription, participantIDs, startDate, leaveDate) => {
+const createNewChatroomWithParticipants = async (chatroomName, chatroomTitle, chatroomDescription, selectedUserIDs, startDate, leaveDate) => {
   let chatroomBody = {
     name: chatroomName,
     title: chatroomTitle,
     description: chatroomDescription,
-    userIDs: participantIDs,
+    userIDs: selectedUserIDs,
     sDate: startDate,
     lDate: leaveDate
   }

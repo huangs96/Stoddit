@@ -27,6 +27,7 @@ router.post('/message/new', controller.createMessage);
 /* ------ Friend_list Routes ------ */
 router.get('/friends', controller.getFriendsList);
 router.get('/friends/:id', controller.getFriendsListById);
+router.get('/friends/user/:id', controller.getUserIDfromName);
 /* -------------------------------- */
 
 module.exports = router;

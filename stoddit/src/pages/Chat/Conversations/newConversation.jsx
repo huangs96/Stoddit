@@ -31,15 +31,9 @@ function NewConversation(props) {
     
     //get user data function
 
-    // const fetchUserData = async () => {
-    //   const data = await getUser();
-    //   setUserData(data);
-    // };
-    // fetchUserData()
-    // .catch(console.error);
   }, [])
 
-  console.log('userdata----', userData)
+  console.log(startConversationData);
 
   const { onClose, selectedValue, open } = props;
   const handleClose = () => {
@@ -59,7 +53,7 @@ function NewConversation(props) {
   const createConversation = (e) => {
     console.log('clicked');
     console.log('startConversationData', startConversationData);
-    createNewChatroomWithParticipants();
+    // createNewChatroomWithParticipants();
   }
 
   return (

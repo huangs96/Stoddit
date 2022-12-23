@@ -74,7 +74,6 @@ const getParticipantIDFromAccountID = async (userID) => {
 
 
 /* ------ Message ------ */
-
 //get messages from database
 const getMessages = async (chatroomID) => {
   return fetch(`http://localhost:5000/chat/message/chatroomid=${chatroomID}`, {
