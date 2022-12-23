@@ -13,10 +13,12 @@ import { blue } from '@mui/material/colors';
 import PropTypes from 'prop-types';
 import { getFriendsList, createNewChatroom } from '../../../services/chat.service';
 import createNewChatroomWithParticipants from '../../../contexts/chatContext';
+import { getUser } from '../../../services/home.service';
 
 function NewConversation(props) {
   const startConversationData = [];
   const [friendsList, setFriendsList] = useState([]);
+  const [userData, setUserData] = useState('');
   let selectedFriend = false;
 
   useEffect(() => {
@@ -25,9 +27,19 @@ function NewConversation(props) {
       setFriendsList(data);
     }
     fetchData()
-    .catch(console.error)
+    .catch(console.error);
+    
+    //get user data function
+
+    // const fetchUserData = async () => {
+    //   const data = await getUser();
+    //   setUserData(data);
+    // };
+    // fetchUserData()
+    // .catch(console.error);
   }, [])
-  console.log(friendsList)
+
+  console.log('userdata----', userData)
 
   const { onClose, selectedValue, open } = props;
   const handleClose = () => {
@@ -43,6 +55,7 @@ function NewConversation(props) {
 
     // onClose(value);
   };
+
   const createConversation = (e) => {
     console.log('clicked');
     console.log('startConversationData', startConversationData);

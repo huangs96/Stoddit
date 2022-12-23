@@ -128,6 +128,22 @@ const getFriendsList = async () => {
     throw response;
   });
 };
+
+const getFriendsListById = async (id) => {
+  return fetch(`http://localhost:5000/chat/friends/${id}`, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    mode: 'cors',
+    credentials: 'include'
+  })
+  .then(response => {
+    if (response.ok) { 
+      return response.json();
+    }
+    throw response;
+  })
+}
 /* -------------------------------- */
 
 module.exports = {
@@ -142,4 +158,5 @@ module.exports = {
   sendMessage,
   //friend_list
   getFriendsList,
+  getFriendsListById
 }

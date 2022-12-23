@@ -138,7 +138,7 @@ function ChatIndex() {
         </div>
           <div className="chatOnline">
             <div className="chatOnlineWrapper">
-              <FriendsOnline />
+              <FriendsOnline userID={userID}/>
             </div>
           </div>
       </div>

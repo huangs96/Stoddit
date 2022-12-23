@@ -1,20 +1,22 @@
 import './FriendsOnline.css';
 import React, { useEffect, useState } from 'react';
-import { getFriendsList } from '../../../services/chat.service';
+import { getFriendsList, getFriendsListById } from '../../../services/chat.service';
 
 
-function FriendsOnline() {
+function FriendsOnline({userID}) {
   const [friendsList, setFriendsList] = useState([]);
+  console.log('friendsOnline', userID);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getFriendsList();
+      const data = await getFriendsListById(userID);
       setFriendsList(data);
-    }
+    };
     fetchData()
     .catch(console.error)
   }, []);
 
+  console.log(friendsList);
   const displayFriendsList = friendsList.map((friends, i) => {
     if (friends.contact_img === null) {
     friends.contact_img = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
