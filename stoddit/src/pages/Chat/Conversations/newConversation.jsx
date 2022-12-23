@@ -17,12 +17,22 @@ import createNewChatroomWithParticipants from '../../../contexts/chatContext';
 import { getUser } from '../../../services/home.service';
 
 function NewConversation(props) {
-  const startConversationData = {
-    userIDs: []
-  };
   const [friendsList, setFriendsList] = useState([]);
   const [userData, setUserData] = useState('');
+  const [conversationName, setConversationName] = useState('');
+  const [conversationTitle, setConversationTitle] = useState('');
+  const [conversationDescription, setConversationDescription] = useState('');
+  const todaysDate = new Date();
   let selectedFriend = false;
+  
+  const startConversationData = {
+    chatroomName: '',
+    chatroomTitle: '',
+    chatroomDescription: '',
+    userIDs: [],
+    sDate: todaysDate,
+    lDate: null
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,6 +50,7 @@ function NewConversation(props) {
   const handleClose = () => {
     onClose(selectedValue);
   };
+
   const handleListItemClick = async (value) => {
     selectedFriend = true;
     const idFromUsername = await getUserIDByUsername(value);
@@ -52,32 +63,65 @@ function NewConversation(props) {
     // onClose(value);
   };
 
+  const onChangeConversationName = (e) => {
+    const conversationName = e.target.value;
+    setConversationName(conversationName);
+  };
+  // console.log(conversationName);
+
+  const onChangeConversationTitle = (e) => {
+    const conversationTitle = e.target.value;
+    setConversationTitle(conversationTitle);
+  };
+  // console.log(conversationTitle);
+
+  const onChangeConversationDescription = (e) => {
+    const conversationDescription = e.target.value;
+    setConversationDescription(conversationDescription);
+  };
+  // console.log(conversationDescription);
+
+
   const createConversation = (e) => {
+
     console.log('clicked');
+    startConversationData.chatroomName = conversationName;
+    startConversationData.chatroomTitle = conversationTitle;
+    startConversationData.chatroomDescription = conversationDescription;
     console.log('startConversationData', startConversationData);
-    // createNewChatroomWithParticipants();
+
+    createNewChatroomWithParticipants(startConversationData);
   }
 
   return (
     <Dialog onClose={handleClose} open={open}>
       <DialogTitle>Start a Conversation</DialogTitle>
-      <TextField 
-        id="filled-basic" 
+      <TextField
+        name="conversationName"
+        className="conversationName"
         label="Conversation Name" 
         variant="filled" 
-        size="small" 
+        size="small"
+        onChange={onChangeConversationName}
+        value={conversationName}
       />
       <TextField 
-        id="filled-basic" 
+        name="conversationTitle"
+        className="conversationTitle"
         label="Conversation Title" 
         variant="filled" 
         size="small" 
+        onChange={onChangeConversationTitle}
+        // value={}
       />
       <TextField 
-        id="filled-basic" 
+        name="conversationDescription"
+        className="conversationDescription"
         label="Conversation Description" 
         variant="filled" 
-        size="small" 
+        size="small"
+        onChange={onChangeConversationDescription}
+        // value={}
       />
       <Typography>
         Select Friends to Join Conversation
