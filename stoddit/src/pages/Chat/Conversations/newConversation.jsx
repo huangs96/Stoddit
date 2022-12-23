@@ -12,6 +12,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { blue } from '@mui/material/colors';
 import PropTypes from 'prop-types';
 import { getFriendsList, createNewChatroom } from '../../../services/chat.service';
+import createNewChatroomWithParticipants from '../../../contexts/chatContext';
 
 function NewConversation(props) {
   const startConversationData = [];
@@ -36,7 +37,7 @@ function NewConversation(props) {
     selectedFriend = true;
     console.log(selectedFriend);
     console.log(value);
-    //create new chatroom, need to write API endpoint for creating new chatroom and participants
+    startConversationData.push(value);
 
 
 
@@ -44,6 +45,8 @@ function NewConversation(props) {
   };
   const createConversation = (e) => {
     console.log('clicked');
+    console.log('startConversationData', startConversationData);
+    createNewChatroomWithParticipants();
   }
 
   return (

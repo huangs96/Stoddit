@@ -33,7 +33,6 @@ function Message({chatroomKey, userID, addNewMessage, userIMG}) {
           } else {
             data.ownMessage = false;
           };
-          console.log(new Date() - data.sent_datetime);
           return (
             <div className={data.ownMessage ? "message own" : "message"}> 
               <div className="messageTop">

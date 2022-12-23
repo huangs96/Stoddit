@@ -34,4 +34,7 @@ const addMessageToConversation = async (participantID, text, time) => {
 
 
 
-export default addMessageToConversation;
+export default {
+  addMessageToConversation,
+  createNewChatroomWithParticipants
+}

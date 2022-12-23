@@ -1,6 +1,6 @@
 import './Conversation.css';
 import React, { useEffect, useState } from 'react';
-import { getChatroomByUserID} from '../../../services/chat.service';
+import { getChatroomByUserID } from '../../../services/chat.service';
 import { Button, Modal, Typography, Box } from '@mui/material';
 import NewConversation from './newConversation';
 
@@ -26,6 +26,7 @@ function Conversation({getChatroomKey, userID}) {
     .catch(console.error)
   }, [])
 
+  console.log('conversationData', conversationData);
   return (
     <>
       <div>
