@@ -1,5 +1,6 @@
 import './newConversation.css';
 import {useState, useEffect} from 'react';
+import { TextField, Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -60,12 +61,34 @@ function NewConversation(props) {
   return (
     <Dialog onClose={handleClose} open={open}>
       <DialogTitle>Start a Conversation</DialogTitle>
+      <TextField 
+        id="filled-basic" 
+        label="Conversation Name" 
+        variant="filled" 
+        size="small" 
+      />
+      <TextField 
+        id="filled-basic" 
+        label="Conversation Title" 
+        variant="filled" 
+        size="small" 
+      />
+      <TextField 
+        id="filled-basic" 
+        label="Conversation Description" 
+        variant="filled" 
+        size="small" 
+      />
+      <Typography>
+        Select Friends to Join Conversation
+      </Typography>
       <List sx={{ pt: 0 }}>
         {friendsList.map((friend, i) => (
           <ListItem 
             selected={selectedFriend ? true : false}
             button onClick={() => handleListItemClick(friend.contact_name)} 
-            key={i}>
+            key={i}
+          >
             <ListItemAvatar>
               <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
                 <PersonIcon />
