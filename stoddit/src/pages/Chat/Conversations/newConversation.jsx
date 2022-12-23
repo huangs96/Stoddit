@@ -11,12 +11,14 @@ import PersonIcon from '@mui/icons-material/Person';
 import AddIcon from '@mui/icons-material/Add';
 import { blue } from '@mui/material/colors';
 import PropTypes from 'prop-types';
-import { getFriendsListById, createNewChatroom } from '../../../services/chat.service';
+import { getFriendsListById, createNewChatroom, getUserIDByUsername } from '../../../services/chat.service';
 import createNewChatroomWithParticipants from '../../../contexts/chatContext';
 import { getUser } from '../../../services/home.service';
 
 function NewConversation(props) {
-  const startConversationData = [];
+  const startConversationData = {
+    userIDs: []
+  };
   const [friendsList, setFriendsList] = useState([]);
   const [userData, setUserData] = useState('');
   let selectedFriend = false;
@@ -33,19 +35,18 @@ function NewConversation(props) {
 
   }, [])
 
-  console.log(startConversationData);
-
   const { onClose, selectedValue, open } = props;
   const handleClose = () => {
     onClose(selectedValue);
   };
-  const handleListItemClick = (value) => {
+  const handleListItemClick = async (value) => {
     selectedFriend = true;
-    console.log(selectedFriend);
-    console.log(value);
-    startConversationData.push(value);
+    const idFromUsername = await getUserIDByUsername(value);
+    console.log(idFromUsername[0].id);
 
+    startConversationData.userIDs.push(idFromUsername[0].id);
 
+    console.log('startConversationData', startConversationData);
 
     // onClose(value);
   };
