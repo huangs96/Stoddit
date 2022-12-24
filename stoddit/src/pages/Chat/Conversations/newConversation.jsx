@@ -51,6 +51,25 @@ function NewConversation(props) {
     onClose(selectedValue);
   };
 
+  
+  const onChangeConversationName = (e) => {
+    const conversationName = e.target.value;
+    setConversationName(conversationName);
+  };
+  // console.log(conversationName);
+  
+  const onChangeConversationTitle = (e) => {
+    const conversationTitle = e.target.value;
+    setConversationTitle(conversationTitle);
+  };
+  // console.log(conversationTitle);
+
+  const onChangeConversationDescription = (e) => {
+    const conversationDescription = e.target.value;
+    setConversationDescription(conversationDescription);
+  };
+  // console.log(conversationDescription);
+  
   const handleListItemClick = async (value) => {
     selectedFriend = true;
     const idFromUsername = await getUserIDByUsername(value);
@@ -69,32 +88,13 @@ function NewConversation(props) {
     // onClose(value);
   };
 
-  const onChangeConversationName = (e) => {
-    const conversationName = e.target.value;
-    setConversationName(conversationName);
-  };
-  // console.log(conversationName);
-
-  const onChangeConversationTitle = (e) => {
-    const conversationTitle = e.target.value;
-    setConversationTitle(conversationTitle);
-  };
-  // console.log(conversationTitle);
-
-  const onChangeConversationDescription = (e) => {
-    const conversationDescription = e.target.value;
-    setConversationDescription(conversationDescription);
-  };
-  // console.log(conversationDescription);
-
-
   const createConversation = (e) => {
 
     console.log('clicked');
     startConversationData.chatroomName = conversationName;
     startConversationData.chatroomTitle = conversationTitle;
     startConversationData.chatroomDescription = conversationDescription;
-    console.log('startConversationData', startConversationData);
+    startConversationData.userIDs.push(props.userID);
 
     createNewChatroomWithParticipants(startConversationData);
   }

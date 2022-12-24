@@ -2,7 +2,7 @@ import {sendMessage, createNewChatroom} from '../services/chat.service';
 
 /* ------ Chatroom ------ */
 const createNewChatroomWithParticipants = async (data) => {
-  console.log(data.userIDS);
+  console.log(data.userIDs);
   let chatroomBody = {
     name: data.chatroomName,
     title: data.chatroomTitle,

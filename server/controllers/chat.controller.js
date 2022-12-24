@@ -43,7 +43,7 @@ const createChatroom = (async (req, res) => {
   const name = req.body.name;
   const title = req.body.title;
   const description = req.body.description;
-  // const id = req.body.userID;
+  const id = req.body.userIDs;
   const sDate = req.body.sDate;
   const lDate = req.body.lDate;
   console.log('reqbody', req.body);
