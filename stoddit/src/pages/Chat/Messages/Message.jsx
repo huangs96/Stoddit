@@ -5,6 +5,7 @@ import { getMessages } from '../../../services/chat.service';
 function Message({chatroomKey, userID, addNewMessage, userIMG}) {
   const [messages, setMessages] = useState('');
   const [waitData, setWaitData] = useState(true);
+  const [newMessage, setNewMessage] = useState('');
   const bottomRef = useRef(null);
 
   useEffect(() => {
@@ -16,8 +17,9 @@ function Message({chatroomKey, userID, addNewMessage, userIMG}) {
     fetchData()
     .catch(console.error)
 
-    bottomRef.current?.scrollIntoView({behaviour: 'smooth'});
-    console.log('newnew msg', addNewMessage);
+    // bottomRef.current?.scrollIntoView({behaviour: 'smooth'});
+    setNewMessage(addNewMessage);
+    console.log(newMessage);
 
   }, [chatroomKey, addNewMessage]);
 
@@ -46,7 +48,7 @@ function Message({chatroomKey, userID, addNewMessage, userIMG}) {
           )
         })
       }
-      <div ref={bottomRef} />
+      {/* <div ref={bottomRef} /> */}
     </div>
     </>
   )

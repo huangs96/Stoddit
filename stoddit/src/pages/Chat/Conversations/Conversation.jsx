@@ -25,8 +25,7 @@ function Conversation({getChatroomKey, userID}) {
     fetchData()
     .catch(console.error)
   }, [])
-
-  console.log('conversationData', conversationData);
+  
   return (
     <>
       <div>

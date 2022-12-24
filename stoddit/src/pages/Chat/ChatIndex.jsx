@@ -17,19 +17,9 @@ import { io } from 'socket.io-client';
 
 
 /* ------ Socket Connection ------ */
-
 const socket = io('http://localhost:5000', {
   withCredentials: true,
 });
-//on socket connection
-socket.on('connection', () => {
-  console.log('working');
-});
-//console message from socket
-socket.on('message', message => {
-  console.log("ChatIndex: socket", message);
-});
-
 /* ------ Socket End ------ */
 
 function ChatIndex() {
@@ -56,8 +46,13 @@ function ChatIndex() {
     fetchData()
     .catch(console.error);
 
-    socket.on('chatMessage', chatMessage => {
-      setAddNewMessage(chatMessage);
+    //on socket connection
+    socket.on('connection', () => {
+      console.log('working');
+    });
+    //console message from socket
+    socket.on('message', message => {
+      console.log("ChatIndex: socket", message);
     });
 
     return () => {
@@ -87,7 +82,7 @@ function ChatIndex() {
   const onChangeMessage = (e) => {
     const message = e.target.value;
     setMessage(message);
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -97,6 +92,13 @@ function ChatIndex() {
 
     //emit message to server
     socket.emit('chatMessage', message);
+
+    //emit message back to frontend
+    socket.on('chatMessage', chatMessage => {
+      setAddNewMessage(chatMessage);
+    });
+
+    console.log('chatmsg', addNewMessage);
 
     //empty textbox
     setMessage('');
@@ -136,7 +138,7 @@ function ChatIndex() {
         </div>
           <div className="chatOnline">
             <div className="chatOnlineWrapper">
-              <FriendsOnline userID={userID}/>
+              <FriendsOnline userID={48}/>
             </div>
           </div>
       </div>
