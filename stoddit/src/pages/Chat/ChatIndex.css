@@ -29,7 +29,7 @@
 
 .chatMenuWrapper, .chatBoxWrapper, .chatOnlineWrapper {
   padding: 10px;
-  height: 20%;
+  height: 100%;
 }
 
 .chatBoxTop {

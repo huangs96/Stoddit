@@ -6,13 +6,10 @@ function Message({chatroomKey, userID, addNewMessage, userIMG}) {
   const [messages, setMessages] = useState('');
   const [waitData, setWaitData] = useState(true);
   const bottomRef = useRef(null);
-  // console.log('messageFile', addNewMessage);
-  // console.log(messages);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getMessages(chatroomKey);
-      // console.log('data---', data);
       setMessages(data);
       setWaitData(false);
     }
@@ -20,6 +17,7 @@ function Message({chatroomKey, userID, addNewMessage, userIMG}) {
     .catch(console.error)
 
     bottomRef.current?.scrollIntoView({behaviour: 'smooth'});
+    console.log('newnew msg', addNewMessage);
 
   }, [chatroomKey, addNewMessage]);
 

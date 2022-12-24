@@ -66,7 +66,7 @@ function ChatIndex() {
       setAddNewMessage(chatMessage);
     });
 
-  }, [addNewMessage]);
+  }, []);
 
   //get corresponding messages from conversations file
   const getChatroomKey = (key) => {

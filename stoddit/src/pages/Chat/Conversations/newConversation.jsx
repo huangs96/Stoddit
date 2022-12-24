@@ -89,8 +89,7 @@ function NewConversation(props) {
   };
 
   const createConversation = (e) => {
-
-    console.log('clicked');
+    //populating conversation data object
     startConversationData.chatroomName = conversationName;
     startConversationData.chatroomTitle = conversationTitle;
     startConversationData.chatroomDescription = conversationDescription;
