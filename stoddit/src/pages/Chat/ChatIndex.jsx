@@ -29,9 +29,6 @@ socket.on('connection', () => {
 socket.on('message', message => {
   console.log("ChatIndex: socket", message);
 });
-socket.on('chatMessage', chatMessage => {
-  console.log('chatMessage', chatMessage);
-});
 
 /* ------ Socket End ------ */
 
@@ -48,10 +45,7 @@ function ChatIndex() {
   const [userID, setUserID] = useState('');
   const waitForData = (user !== '');
   const [chatroomKey, setChatroomKey] = useState('');
-  
-  // if (newMessage !== '') {
-  //   setAddNewMessage(newMessage);
-  // };
+
   
   useEffect(() => {
     const fetchData = async () => {
@@ -65,6 +59,10 @@ function ChatIndex() {
     socket.on('chatMessage', chatMessage => {
       setAddNewMessage(chatMessage);
     });
+
+    return () => {
+      socket.off('chatMessage');
+    };
 
   }, []);
 
