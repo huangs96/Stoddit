@@ -16,7 +16,7 @@ const getChatroomByUserID = async (userID) => {
   });
 };
 
-const createNewChatroom = async (name, title, description, userIDs, sDate, lDate) => {
+const createNewChatroom = async (data) => {
   return fetch('http://localhost:5000/chat/createchatroom', {
     method: 'POST',
     headers: {
@@ -24,7 +24,8 @@ const createNewChatroom = async (name, title, description, userIDs, sDate, lDate
       'Accept': 'application/json'
     },
     mode: 'cors',
-    credentials: 'include'
+    credentials: 'include',
+    body: JSON.stringify(data)
   })
   .then(response => {
     if (response.ok) {

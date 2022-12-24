@@ -39,7 +39,14 @@ const getChatroomByUserID = (async (req, res) => {
 });
 
 const createChatroom = (async (req, res) => {
-  const {name, title, description, id, sDate, lDate} = req.body;
+  const chatroomData = req.body;
+  const name = req.body.name;
+  const title = req.body.title;
+  const description = req.body.description;
+  // const id = req.body.userID;
+  const sDate = req.body.sDate;
+  const lDate = req.body.lDate;
+  console.log('reqbody', req.body);
   let dataSubmit = false;
 
   try {
@@ -60,7 +67,7 @@ const createChatroom = (async (req, res) => {
       await client.query(queries.createParticipantFromChatroom, [chatroom_id, id, sDate, lDate]);
       //change dataSubmit to true to indicate successful query
       dataSubmit = true;
-    }
+    };
     //if both are working, confirm creation
     if (dataSubmit) {
       res.status(201).json('New Chatroom Created with Participants');

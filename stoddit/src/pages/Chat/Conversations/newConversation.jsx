@@ -13,7 +13,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { blue } from '@mui/material/colors';
 import PropTypes from 'prop-types';
 import { getFriendsListById, createNewChatroom, getUserIDByUsername } from '../../../services/chat.service';
-import createNewChatroomWithParticipants from '../../../contexts/chatContext';
+import { createNewChatroomWithParticipants } from '../../../contexts/chatContext';
 import { getUser } from '../../../services/home.service';
 
 function NewConversation(props) {
@@ -54,10 +54,16 @@ function NewConversation(props) {
   const handleListItemClick = async (value) => {
     selectedFriend = true;
     const idFromUsername = await getUserIDByUsername(value);
-    console.log(idFromUsername[0].id);
+    const finalIDFromUsername = idFromUsername[0].id;
 
-    startConversationData.userIDs.push(idFromUsername[0].id);
-
+    if (startConversationData.userIDs.length === 0) {
+      startConversationData.userIDs.push(finalIDFromUsername);
+    } else if (!startConversationData.userIDs.includes(finalIDFromUsername)) {
+      startConversationData.userIDs.push(finalIDFromUsername);
+    } else {
+      return;
+    }
+    
     console.log('startConversationData', startConversationData);
 
     // onClose(value);
@@ -112,7 +118,7 @@ function NewConversation(props) {
         variant="filled" 
         size="small" 
         onChange={onChangeConversationTitle}
-        // value={}
+        value={conversationTitle}
       />
       <TextField 
         name="conversationDescription"
@@ -121,7 +127,7 @@ function NewConversation(props) {
         variant="filled" 
         size="small"
         onChange={onChangeConversationDescription}
-        // value={}
+        value={conversationDescription}
       />
       <Typography>
         Select Friends to Join Conversation

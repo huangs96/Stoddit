@@ -1,14 +1,15 @@
 import {sendMessage, createNewChatroom} from '../services/chat.service';
 
 /* ------ Chatroom ------ */
-const createNewChatroomWithParticipants = async (chatroomName, chatroomTitle, chatroomDescription, selectedUserIDs, startDate, leaveDate) => {
+const createNewChatroomWithParticipants = async (data) => {
+  console.log(data.userIDS);
   let chatroomBody = {
-    name: chatroomName,
-    title: chatroomTitle,
-    description: chatroomDescription,
-    userIDs: selectedUserIDs,
-    sDate: startDate,
-    lDate: leaveDate
+    name: data.chatroomName,
+    title: data.chatroomTitle,
+    description: data.chatroomDescription,
+    userIDs: data.userIDs,
+    sDate: data.sDate,
+    lDate: data.lDate
   }
   console.log('data', chatroomBody);
   await createNewChatroom(chatroomBody);
@@ -34,7 +35,7 @@ const addMessageToConversation = async (participantID, text, time) => {
 
 
 
-export default {
+export {
   addMessageToConversation,
   createNewChatroomWithParticipants
 }
