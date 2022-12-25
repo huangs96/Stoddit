@@ -15,14 +15,20 @@ function Message({chatroomKey, userID, addNewMessage, userIMG}) {
       setWaitData(false);
     }
     fetchData()
-    .catch(console.error)
+    .catch(console.error);
 
     // bottomRef.current?.scrollIntoView({behaviour: 'smooth'});
-    prevMessage.current = messages;
-    console.log(prevMessage.current);
+    // prevMessage.current = messages;
+    // console.log(prevMessage.current);
+    // console.log('addnewmsg', addNewMessage);
+    // let lastMessage = prevMessage.current[prevMessage.current.length-1];
+    // console.log('lastmsg---', lastMessage);
 
 
   }, [chatroomKey, addNewMessage]);
+
+  console.log('messages', messages);
+  console.log('addnewmsg', addNewMessage);
 
   return (
     <>

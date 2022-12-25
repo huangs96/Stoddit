@@ -61,8 +61,6 @@ function ChatIndex() {
 
   }, []);
 
-  console.log('user---', user);
-
   //get corresponding messages from conversations file
   const getChatroomKey = (key) => {
     setChatroomKey(key);
@@ -85,6 +83,7 @@ function ChatIndex() {
     const message = e.target.value;
     setMessage(message);
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
