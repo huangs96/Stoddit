@@ -27,35 +27,35 @@ const socket = io('http://localhost:5000', {
 function ChatIndex() {
   //variables for user
   const [username, setUsername] = useState('');
+  const waitForData = (username !== '');
   const [userID, setUserID] = useState('');
   //variables for messages
   const [participantID, setParticipantID] = useState('');
-  const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState('');
   const [messageText, setMessageText] = useState('');
   const [addNewMessage, setAddNewMessage] = useState('');
   const timestamp = new Date();
   const bottomRef = useRef(null);
   //variables for chatrooms
-  const [userID, setUserID] = useState('');
-  const waitForData = (user !== '');
   const [chatroomKey, setChatroomKey] = useState('');
-  const [conversationData, setConversationData] = useState('');
+  const [conversations, setConversations] = useState('');
 
   
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchUserData = async () => {
       const data = await getUser();
       setUsername(data.user.username);
-      setUserID(data.user.id)
+      setUserID(data.user.id);
+      const chatroomData = await getChatroomByUserID(data.user.id);
+      setConversations(chatroomData);
     };
 
-    const fetchChatroomData = async (userID) => {
-      const chatroomData = await getChatroomByUserID(userID);
-      setConversationData(chatroomData);
-    };
+    // const fetchChatroomData = async (userID) => {
+    //   const chatroomData = await getChatroomByUserID(userID);
+    //   setConversationData(chatroomData);
+    // };
 
-    fetchData()
-    .then(fetchChatroomData(userID))
+    fetchUserData()
     .catch(console.error);
 
     // //on socket connection
@@ -72,11 +72,13 @@ function ChatIndex() {
     // };
 
   }, []);
+  console.log('user chatIndex', userID);
+  console.log('chatroomData chatindex', conversations);
 
   useEffect(() => {
     const fetchMessageData = async () => {
       const messageData = await getMessagesByChatroomID(chatroomKey);
-      setMessage(messageData);
+      setMessages(messageData);
     };
   }, []);
 
@@ -84,6 +86,7 @@ function ChatIndex() {
   const getChatroomKey = (key) => {
     setChatroomKey(key);
   };
+  console.log('key chatIndex', chatroomKey);
 
 
   //get participant id of user from chatroom
@@ -134,7 +137,7 @@ function ChatIndex() {
           <div className="chatMenuWrapper">
             <TextField className="chatMenuInput" label="Search Chats, Friends, or Users">
             </TextField>
-            <Conversation getChatroomKey={getChatroomKey} userID={userID}/>
+            <Conversation getChatroomKey={getChatroomKey} conversations={conversations}/>
           </div>
         </div>
         <div className="chatBox">

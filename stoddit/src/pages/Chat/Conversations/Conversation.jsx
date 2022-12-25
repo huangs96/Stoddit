@@ -4,12 +4,11 @@ import { getChatroomByUserID } from '../../../services/chat.service';
 import { Button, Modal, Typography, Box } from '@mui/material';
 import NewConversation from './newConversation';
 
-function Conversation({getChatroomKey, userID}) {
-  const [conversationData, setConversationData] = useState('');
-  const [waitData, setWaitData] = useState(true);
+function Conversation({getChatroomKey, conversations}) {
+  const [waitData, setWaitData] = useState(false);
   //set state for modal
   const [open, setOpen] = useState(false);
-  
+
   const handleOpen = () => {
     setOpen(true);
   }
@@ -18,14 +17,47 @@ function Conversation({getChatroomKey, userID}) {
   }
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getChatroomByUserID(userID);
-      setConversationData(data);
-      setWaitData(false);
+    // const fetchData = async () => {
+    //   const data = await getChatroomByUserID(userID);
+    //   setConversationData(data);
+    //   setWaitData(false);
+    // }
+    // fetchData()
+    // .catch(console.error)
+  }, []);
+  
+
+  const displayConversationData = () => {
+    const jsxData1 = [];
+    for (let data of conversations) {
+      const handleConversation = () => {
+        getChatroomKey(data.chatroom_id);
+      };
+
+      let jsxData2 = (
+        <div 
+          className="conversation" 
+          onClick={handleConversation}
+        >
+          <img 
+            className="conversationImg" 
+            src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg' 
+            alt="" 
+          />
+          <span 
+            className="conversationName" 
+            key={conversations.length}
+          >
+            {data.name}
+          </span>
+        </div>
+      );
+      jsxData1.push(jsxData2);
     }
-    fetchData()
-    .catch(console.error)
-  }, [])
+    return jsxData1;
+  };
+
+  
 
   return (
     <>
@@ -33,23 +65,12 @@ function Conversation({getChatroomKey, userID}) {
         <h3>
           Conversations
         </h3>
-        {!waitData && 
-          conversationData.map(function (item, i) { 
-            // console.log('item---', item);
-            const handleConversation = () => {
-              getChatroomKey(item.chatroom_id);
-            };
-            return <div className="conversation" onClick={handleConversation}>
-              <img className="conversationImg" src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg' alt=""/>
-              <span className="conversationName" key={i}>{item.name}</span>
-            </div>
-          })
-        }
+        {displayConversationData()}
       </div>
       <div>
       <Button onClick={handleOpen} variant="contained">New Conversation</Button>
       <NewConversation
-        userID={userID}
+        userID={conversations.account_id}
         open={open}
         onClose={handleClose}
       />
