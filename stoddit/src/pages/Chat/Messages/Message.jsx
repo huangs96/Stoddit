@@ -5,7 +5,7 @@ import { getMessages } from '../../../services/chat.service';
 function Message({chatroomKey, userID, addNewMessage, userIMG}) {
   const [messages, setMessages] = useState('');
   const [waitData, setWaitData] = useState(true);
-  const [newMessage, setNewMessage] = useState('');
+  const prevMessage = useRef('');
   const bottomRef = useRef(null);
 
   useEffect(() => {
@@ -18,8 +18,9 @@ function Message({chatroomKey, userID, addNewMessage, userIMG}) {
     .catch(console.error)
 
     // bottomRef.current?.scrollIntoView({behaviour: 'smooth'});
-    setNewMessage(addNewMessage);
-    console.log(newMessage);
+    prevMessage.current = messages;
+    console.log(prevMessage.current);
+
 
   }, [chatroomKey, addNewMessage]);
 
