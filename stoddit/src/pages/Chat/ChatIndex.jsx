@@ -31,14 +31,14 @@ function ChatIndex() {
   const [userID, setUserID] = useState('');
   //variables for messages
   const [participantID, setParticipantID] = useState('');
-  const [messages, setMessages] = useState('');
+  const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState('');
   const [addNewMessage, setAddNewMessage] = useState('');
   const timestamp = new Date();
   const bottomRef = useRef(null);
   //variables for chatrooms
   const [chatroomKey, setChatroomKey] = useState('');
-  const [conversations, setConversations] = useState('');
+  const [conversations, setConversations] = useState([]);
 
   
   useEffect(() => {
@@ -85,8 +85,6 @@ function ChatIndex() {
     fetchMessageData()
     .catch(console.error);
   }, [chatroomKey]);
-
-  console.log('messages chatIndex', typeof(messages));
 
   //get corresponding messages from conversations file
   const getChatroomKey = (key) => {

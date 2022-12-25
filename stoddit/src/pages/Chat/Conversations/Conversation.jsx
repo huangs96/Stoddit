@@ -24,19 +24,16 @@ function Conversation({getChatroomKey, conversations}) {
     // fetchData()
     // .catch(console.error)
   }, []);
+
+  const handleConversation = () => {
+    getChatroomKey();
+  };
   
-
-  const displayConversationData = () => {
-    const jsxData1 = [];
-
-    for (let data=0; data<conversations.length; data++) {
-      const handleConversation = () => {
-        return getChatroomKey(conversations[data].chatroom_id);
-      };
-      let jsxData2 = (
-        <div 
+  const displayConversationData = conversations.map((data, i) => {
+    return (
+      <div 
           className="conversation" 
-          onClick={handleConversation}
+          onClick={getChatroomKey(data.chatroom_id)}
         >
           <img 
             className="conversationImg" 
@@ -45,18 +42,13 @@ function Conversation({getChatroomKey, conversations}) {
           />
           <span 
             className="conversationName" 
-            key={data}
+            key={i}
           >
-            {conversations[data].name}
+            {data.name}
           </span>
         </div>
-      );
-      jsxData1.push(jsxData2);
-    };
-
-    return jsxData1;
-  };
-  
+    )
+  });
 
   return (
     <>
@@ -64,7 +56,7 @@ function Conversation({getChatroomKey, conversations}) {
         <h3>
           Conversations
         </h3>
-        {displayConversationData()}
+        {displayConversationData}
       </div>
       <div>
       <Button onClick={handleOpen} variant="contained">New Conversation</Button>
