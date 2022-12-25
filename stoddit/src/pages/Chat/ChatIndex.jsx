@@ -61,6 +61,8 @@ function ChatIndex() {
 
   }, []);
 
+  console.log('user---', user);
+
   //get corresponding messages from conversations file
   const getChatroomKey = (key) => {
     setChatroomKey(key);
@@ -138,7 +140,7 @@ function ChatIndex() {
         </div>
           <div className="chatOnline">
             <div className="chatOnlineWrapper">
-              <FriendsOnline userID={48}/>
+              <FriendsOnline userID={userID}/>
             </div>
           </div>
       </div>
