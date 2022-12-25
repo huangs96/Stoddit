@@ -5,7 +5,6 @@ import { Button, Modal, Typography, Box } from '@mui/material';
 import NewConversation from './newConversation';
 
 function Conversation({getChatroomKey, conversations}) {
-  const [waitData, setWaitData] = useState(false);
   //set state for modal
   const [open, setOpen] = useState(false);
 
@@ -29,11 +28,11 @@ function Conversation({getChatroomKey, conversations}) {
 
   const displayConversationData = () => {
     const jsxData1 = [];
-    for (let data of conversations) {
-      const handleConversation = () => {
-        getChatroomKey(data.chatroom_id);
-      };
 
+    for (let data=0; data<conversations.length; data++) {
+      const handleConversation = () => {
+        return getChatroomKey(conversations[data].chatroom_id);
+      };
       let jsxData2 = (
         <div 
           className="conversation" 
@@ -46,17 +45,17 @@ function Conversation({getChatroomKey, conversations}) {
           />
           <span 
             className="conversationName" 
-            key={conversations.length}
+            key={data}
           >
-            {data.name}
+            {conversations[data].name}
           </span>
         </div>
       );
       jsxData1.push(jsxData2);
-    }
+    };
+
     return jsxData1;
   };
-
   
 
   return (

@@ -46,6 +46,7 @@ function ChatIndex() {
       const data = await getUser();
       setUsername(data.user.username);
       setUserID(data.user.id);
+
       const chatroomData = await getChatroomByUserID(data.user.id);
       setConversations(chatroomData);
     };
@@ -72,15 +73,20 @@ function ChatIndex() {
     // };
 
   }, []);
-  console.log('user chatIndex', userID);
-  console.log('chatroomData chatindex', conversations);
+  // console.log('user chatIndex', userID);
+  // console.log('chatroomData chatindex', conversations);
 
+  //second useeffect to get messages based on chatroomkey
   useEffect(() => {
     const fetchMessageData = async () => {
       const messageData = await getMessagesByChatroomID(chatroomKey);
       setMessages(messageData);
     };
-  }, []);
+    fetchMessageData()
+    .catch(console.error);
+  }, [chatroomKey]);
+
+  console.log('messages chatIndex', typeof(messages));
 
   //get corresponding messages from conversations file
   const getChatroomKey = (key) => {
@@ -132,18 +138,31 @@ function ChatIndex() {
     <>
     {/* <SocketProvider chatroom_id={chatroomKey}> */}
     {waitForData &&
-      <div style={{ marginTop:'10vh'}} className="chat">
+      <div 
+        style={{ marginTop:'10vh'}} 
+        className="chat"
+      >
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            <TextField className="chatMenuInput" label="Search Chats, Friends, or Users">
+            <TextField 
+              className="chatMenuInput" 
+              label="Search Chats, Friends, or Users"
+            >
             </TextField>
-            <Conversation getChatroomKey={getChatroomKey} conversations={conversations}/>
+            <Conversation 
+              getChatroomKey={getChatroomKey} 
+              conversations={conversations}
+            />
           </div>
         </div>
         <div className="chatBox">
           <div className="chatBoxWrapper">
             <div className="chatBoxTop">
-              <Message userID={userID} chatroomKey={chatroomKey} addNewMessage={addNewMessage}/>
+              <Message 
+                userID={userID} 
+                messages={messages} 
+                addNewMessage={addNewMessage}
+              />
             </div>
             <form onSubmit={handleSubmit}>
               <div className="chatBoxBottom">
@@ -155,7 +174,14 @@ function ChatIndex() {
                     onChange={onChangeMessage}
                     value={messageText}
                   />
-                <Button type="submit" variant="contained" className="chatSubmitButton" endIcon={<SendIcon />}>Send</Button>
+                <Button 
+                  type="submit" 
+                  variant="contained" 
+                  className="chatSubmitButton" 
+                  endIcon={<SendIcon />}
+                >
+                  Send
+                </Button>
               </div>
             </form>
           </div>
@@ -169,7 +195,7 @@ function ChatIndex() {
     }
     {/* </SocketProvider> */}
     </>
-  )
-}
+  );
+};
 
 export default ChatIndex

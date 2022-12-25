@@ -5,7 +5,7 @@ import { getFriendsListById } from '../../../services/chat.service';
 
 function FriendsOnline({userID}) {
   const [friendsList, setFriendsList] = useState([]);
-  console.log('friendsOnline', userID);
+  // console.log('friendsOnline', userID);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,7 +16,7 @@ function FriendsOnline({userID}) {
     .catch(console.error)
   }, []);
 
-  console.log('friendsList', friendsList);
+  // console.log('friendsList', friendsList);
   const displayFriendsList = friendsList.map((friends, i) => {
     if (friends.contact_img === null) {
     friends.contact_img = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';

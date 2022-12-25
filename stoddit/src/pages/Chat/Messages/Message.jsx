@@ -1,21 +1,14 @@
 import './Message.css';
 import React, { useState, useEffect, useRef } from 'react';
-import { getMessages } from '../../../services/chat.service';
 
-function Message({chatroomKey, userID, addNewMessage, userIMG}) {
-  const [messages, setMessages] = useState('');
-  const [waitData, setWaitData] = useState(true);
+function Message({userID, messages, addNewMessage, userIMG}) {
+  const [waitData, setWaitData] = useState(false);
+  const [displayMessages, setDisplayMessages] = useState([]);
   const prevMessage = useRef('');
   const bottomRef = useRef(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getMessages(chatroomKey);
-      setMessages(data);
-      setWaitData(false);
-    }
-    fetchData()
-    .catch(console.error);
+    setDisplayMessages(messages);
 
     // bottomRef.current?.scrollIntoView({behaviour: 'smooth'});
     // prevMessage.current = messages;
@@ -25,15 +18,16 @@ function Message({chatroomKey, userID, addNewMessage, userIMG}) {
     // console.log('lastmsg---', lastMessage);
 
 
-  }, [chatroomKey, addNewMessage]);
+  }, []);
 
   console.log('messages', messages);
+  console.log('ddddmessages', displayMessages);
   console.log('addnewmsg', addNewMessage);
 
   return (
     <>
     <div>
-      {!waitData &&
+      {/* {!waitData &&
         messages.map((data, i) => {
           if (userID === data.account_id) {
             data.ownMessage = true;
@@ -54,7 +48,7 @@ function Message({chatroomKey, userID, addNewMessage, userIMG}) {
             </div>
           )
         })
-      }
+      } */}
       {/* <div ref={bottomRef} /> */}
     </div>
     </>
