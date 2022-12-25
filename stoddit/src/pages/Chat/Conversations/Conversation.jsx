@@ -9,6 +9,7 @@ function Conversation({getChatroomKey, userID}) {
   const [waitData, setWaitData] = useState(true);
   //set state for modal
   const [open, setOpen] = useState(false);
+  
   const handleOpen = () => {
     setOpen(true);
   }
@@ -25,7 +26,7 @@ function Conversation({getChatroomKey, userID}) {
     fetchData()
     .catch(console.error)
   }, [])
-  
+
   return (
     <>
       <div>

@@ -10,7 +10,9 @@ import { getUser } from '../../services/home.service';
 import { addMessageToConversation } from '../../contexts/chatContext';
 import { 
   getParticipantIDFromChatroomID,
-  getParticipantIDFromAccountID 
+  getParticipantIDFromAccountID, 
+  getMessagesByChatroomID,
+  getChatroomByUserID
 } from '../../services/chat.service';
 import { SocketProvider } from '../../contexts/socketProvider';
 import { io } from 'socket.io-client';
@@ -24,10 +26,12 @@ const socket = io('http://localhost:5000', {
 
 function ChatIndex() {
   //variables for user
-  const [user, setUser] = useState('');
+  const [username, setUsername] = useState('');
+  const [userID, setUserID] = useState('');
   //variables for messages
   const [participantID, setParticipantID] = useState('');
   const [message, setMessage] = useState('');
+  const [messageText, setMessageText] = useState('');
   const [addNewMessage, setAddNewMessage] = useState('');
   const timestamp = new Date();
   const bottomRef = useRef(null);
@@ -35,30 +39,45 @@ function ChatIndex() {
   const [userID, setUserID] = useState('');
   const waitForData = (user !== '');
   const [chatroomKey, setChatroomKey] = useState('');
+  const [conversationData, setConversationData] = useState('');
 
   
   useEffect(() => {
     const fetchData = async () => {
       const data = await getUser();
-      setUser(data.user.username);
+      setUsername(data.user.username);
       setUserID(data.user.id)
     };
-    fetchData()
-    .catch(console.error);
 
-    //on socket connection
-    socket.on('connection', () => {
-      console.log('working');
-    });
-    //console message from socket
-    socket.on('message', message => {
-      console.log("ChatIndex: socket", message);
-    });
-
-    return () => {
-      socket.off('chatMessage');
+    const fetchChatroomData = async (userID) => {
+      const chatroomData = await getChatroomByUserID(userID);
+      setConversationData(chatroomData);
     };
 
+    fetchData()
+    .then(fetchChatroomData(userID))
+    .catch(console.error);
+
+    // //on socket connection
+    // socket.on('connection', () => {
+    //   console.log('working');
+    // });
+    // //console message from socket
+    // socket.on('message', message => {
+    //   console.log("ChatIndex: socket", message);
+    // });
+
+    // return () => {
+    //   socket.off('chatMessage');
+    // };
+
+  }, []);
+
+  useEffect(() => {
+    const fetchMessageData = async () => {
+      const messageData = await getMessagesByChatroomID(chatroomKey);
+      setMessage(messageData);
+    };
   }, []);
 
   //get corresponding messages from conversations file
@@ -66,43 +85,44 @@ function ChatIndex() {
     setChatroomKey(key);
   };
 
+
+  //get participant id of user from chatroom
   if(chatroomKey) {
-    const fetchParticipantDataFromChatroomID = async () => {
+    const fetchParticipantDataFromChatroomID = async (chatroomKey) => {
       const data = await getParticipantIDFromChatroomID(chatroomKey);
       data.map(values => {
+        //if current user id matches account_id in chatroom, set the participant id
         if(userID === values.account_id) {
           setParticipantID(values.id);
         };
       });
     };
-    fetchParticipantDataFromChatroomID();
+    fetchParticipantDataFromChatroomID(chatroomKey);
   };
 
 
   const onChangeMessage = (e) => {
     const message = e.target.value;
-    setMessage(message);
+    setMessageText(message);
   };
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (message) {
-      addMessageToConversation(participantID, message, timestamp);
+    if (messageText) {
+      addMessageToConversation(participantID, messageText, timestamp);
     };
 
-    //emit message to server
-    socket.emit('chatMessage', message);
+    // //emit message to server
+    // socket.emit('chatMessage', message);
 
-    //emit message back to frontend
-    socket.on('chatMessage', chatMessage => {
-      setAddNewMessage(chatMessage);
-    });
-
-    console.log('chatmsg', addNewMessage);
+    // //emit message back to frontend
+    // socket.on('chatMessage', chatMessage => {
+    //   setAddNewMessage(chatMessage);
+    // });
 
     //empty textbox
-    setMessage('');
+    setMessageText('');
   };
 
   return (
@@ -130,7 +150,7 @@ function ChatIndex() {
                     size="large" 
                     placeholder="Send a message.."
                     onChange={onChangeMessage}
-                    value={message}
+                    value={messageText}
                   />
                 <Button type="submit" variant="contained" className="chatSubmitButton" endIcon={<SendIcon />}>Send</Button>
               </div>
