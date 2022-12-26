@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Conversation from './Conversations/Conversation';
+import NewConversation from './Conversations/newConversation'
 import Message from './Messages/Message';
 import FriendsOnline from './ChatOnline/FriendsOnline';
 import { getUser } from '../../services/home.service';
@@ -40,21 +41,23 @@ function ChatIndex() {
   const [chatroomKey, setChatroomKey] = useState('');
   const [conversations, setConversations] = useState([]);
 
-  
+  //opening and closing new conversation modal
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  }
+  const handleClose = () => {
+    setOpen(false);
+  }
+
   useEffect(() => {
     const fetchUserData = async () => {
       const data = await getUser();
       setUsername(data.user.username);
       setUserID(data.user.id);
-
-      const chatroomData = await getChatroomByUserID(data.user.id);
+      const chatroomData = await getChatroomByUserID(userID);
       setConversations(chatroomData);
     };
-
-    // const fetchChatroomData = async (userID) => {
-    //   const chatroomData = await getChatroomByUserID(userID);
-    //   setConversationData(chatroomData);
-    // };
 
     fetchUserData()
     .catch(console.error);
@@ -76,7 +79,8 @@ function ChatIndex() {
   // console.log('user chatIndex', userID);
   // console.log('chatroomData chatindex', conversations);
 
-  //second useeffect to get messages based on chatroomkey
+
+  //second useEffect to get messages based on chatroomkey
   useEffect(() => {
     const fetchMessageData = async () => {
       const messageData = await getMessagesByChatroomID(chatroomKey);
@@ -90,8 +94,6 @@ function ChatIndex() {
   const getChatroomKey = (key) => {
     setChatroomKey(key);
   };
-  console.log('key chatIndex', chatroomKey);
-
 
   //get participant id of user from chatroom
   if(chatroomKey) {
@@ -147,9 +149,24 @@ function ChatIndex() {
               label="Search Chats, Friends, or Users"
             >
             </TextField>
-            <Conversation 
-              getChatroomKey={getChatroomKey} 
-              conversations={conversations}
+            {
+              conversations.map((convo) => (
+                <Conversation 
+                  getChatroomKey={getChatroomKey} 
+                  conversation={convo}
+                />
+              ))
+            }
+            <Button
+              onClick={handleOpen} 
+              variant="contained"
+            >
+              New Conversation
+            </Button>
+            <NewConversation 
+              userID={conversations.account_id}
+              open={open}
+              onClose={handleClose}
             />
           </div>
         </div>
@@ -164,14 +181,14 @@ function ChatIndex() {
             </div>
             <form onSubmit={handleSubmit}>
               <div className="chatBoxBottom">
-                  <TextField 
-                    name="message"
-                    className="chatMessageInput" 
-                    size="large" 
-                    placeholder="Send a message.."
-                    onChange={onChangeMessage}
-                    value={messageText}
-                  />
+                <TextField 
+                  name="message"
+                  className="chatMessageInput" 
+                  size="large" 
+                  placeholder="Send a message.."
+                  onChange={onChangeMessage}
+                  value={messageText}
+                />
                 <Button 
                   type="submit" 
                   variant="contained" 

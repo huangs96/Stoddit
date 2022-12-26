@@ -6,7 +6,7 @@ function Message({userID, messages, addNewMessage, userIMG}) {
   const prevMessage = useRef('');
   const bottomRef = useRef(null);
 
-  useEffect(() => {
+  // useEffect(() => {
 
     // bottomRef.current?.scrollIntoView({behaviour: 'smooth'});
     // prevMessage.current = messages;
@@ -16,7 +16,7 @@ function Message({userID, messages, addNewMessage, userIMG}) {
     // console.log('lastmsg---', lastMessage);
 
 
-  }, []);
+  // }, []);
 
   console.log('messages', messages);
   console.log('addnewmsg', addNewMessage);
