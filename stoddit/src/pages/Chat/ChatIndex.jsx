@@ -1,5 +1,6 @@
 import './ChatIndex.css';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import UserContext from '../../contexts/userContext';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
@@ -26,10 +27,14 @@ const socket = io('http://localhost:5000', {
 /* ------ Socket End ------ */
 
 function ChatIndex() {
-  //user state
-  const [username, setUsername] = useState('');
+  //user data
+  const userData = useContext(UserContext)
+  console.log('userdata', userData);
+  const userID = userData.user.id;
+  const username = userData.user.username;
+
+
   const waitForData = (username !== '');
-  const [userID, setUserID] = useState('');
   //message state
   const [participantID, setParticipantID] = useState('');
   const [messages, setMessages] = useState([]);
@@ -50,16 +55,6 @@ function ChatIndex() {
     setOpen(false);
   }
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      const data = await getUser();
-      setUsername(data.user.username);
-      setUserID(data.user.id);
-    };
-
-    fetchUserData()
-    .catch(console.error);
-
     // //on socket connection
     // socket.on('connection', () => {
     //   console.log('working');
@@ -73,18 +68,19 @@ function ChatIndex() {
     //   socket.off('chatMessage');
     // };
 
-  }, []);
-  console.log('user chatIndex', userID);
-  console.log('chatroomData chatindex', conversations);
-
   useEffect(() => {
     const getChatroomData = async () => {
       const chatroomData = await getChatroomByUserID(userID);
         setConversations(chatroomData);
     };
-    // getChatroomData();
+    getChatroomData();
 
-  }, [])
+  }, []);
+
+  //get corresponding messages from conversations file
+  const getChatroomKey = (key) => {
+    setChatroomKey(key);
+  };
 
 
   //second useEffect to get messages based on chatroomkey
@@ -96,11 +92,6 @@ function ChatIndex() {
     fetchMessageData()
     .catch(console.error);
   }, [chatroomKey]);
-
-  //get corresponding messages from conversations file
-  const getChatroomKey = (key) => {
-    setChatroomKey(key);
-  };
 
   //get participant id of user from chatroom
   if(chatroomKey) {
@@ -116,12 +107,10 @@ function ChatIndex() {
     fetchParticipantDataFromChatroomID(chatroomKey);
   };
 
-
   const onChangeMessage = (e) => {
     const message = e.target.value;
     setMessageText(message);
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault();

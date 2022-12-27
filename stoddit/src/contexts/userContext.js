@@ -1,4 +1,4 @@
-import { createContext, useEffect } from 'react';
+import { createContext } from 'react';
 
 //providing global context for logged in user
 const UserContext = createContext(null);

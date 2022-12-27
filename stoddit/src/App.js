@@ -18,8 +18,6 @@ function App() {
     fetchData()
     .catch(console.error);
   }, []);
-
-  console.log('app user', user);
   
   return (
     <>
