@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react';
+import UserContext from '../../contexts/userContext';
 import { useParams, redirect, useNavigate } from 'react-router-dom';
-import { getUser, fetchRefreshToken } from '../../services/home.service';
+import { getAuthedUser, fetchRefreshToken } from '../../services/user.service';
 import { logoutUser } from '../../services/auth.service';
 import App from '../../App';
 // import Header from '../../components/Header';
 
 
 function HomePage() {
-  const [user, setUser] = useState('');
   const navigate = useNavigate();
+  const user = useContext(UserContext);
+  console.log('home---', user);
 
   
   const logout = async () => {
@@ -20,17 +22,6 @@ function HomePage() {
     console.log(deleteDetails.message);
     return navigate('/login');
   };
-
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getUser();
-      setUser(data);
-    }
-    fetchData()
-    .catch(console.error);
-  }, [])
-
 
   return (
     <>

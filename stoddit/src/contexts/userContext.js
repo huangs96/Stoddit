@@ -1,5 +1,6 @@
-import React, { createContext } from 'react';
+import { createContext, useEffect } from 'react';
 
-const userContext = createContext();
+//providing global context for logged in user
+const UserContext = createContext(null);
 
-export default userContext;
+export default UserContext;

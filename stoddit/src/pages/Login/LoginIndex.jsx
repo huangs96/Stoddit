@@ -6,7 +6,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import { useParams } from 'react-router-dom';
 import HomePage from '../Home/Home';
-import { getUser } from '../../services/home.service';
+import { getUser } from '../../services/user.service';
 // import axios from 'axios';
 
 function LoginPage() {

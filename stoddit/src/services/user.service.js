@@ -1,6 +1,6 @@
 //getting user dashboard/homepage
 
-const getUser = () => {
+const getAuthedUser = () => {
   return fetch (`http://localhost:5000/users/home`, {
     headers: {
       'Content-Type': 'application/json'
@@ -17,6 +17,6 @@ const getUser = () => {
 }
 
 module.exports = {
-  getUser,
+  getAuthedUser,
   // fetchRefreshToken
 }

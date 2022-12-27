@@ -1,10 +1,10 @@
 // import logo from './logo.svg';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import './App.css';
 import Header from './components/Header';
 import AppRoutes from './routes/Routes';
-import { getUser } from './services/home.service';
-import userContext from './contexts/userContext';
+import { getAuthedUser } from './services/user.service';
+import UserContext from './contexts/userContext';
 
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
   
   useEffect(()=> {
     const fetchData = async () => {
-      const data = await getUser();
+      const data = await getAuthedUser();
       setUser(data);
     }
     fetchData()
@@ -23,10 +23,10 @@ function App() {
   
   return (
     <>
-    <userContext.Provider value={user}>
+    <UserContext.Provider value={user}>
       <Header />
       <AppRoutes />
-    </userContext.Provider>
+    </UserContext.Provider>
     </>
   );
 }

@@ -7,7 +7,7 @@ import Conversation from './Conversations/Conversation';
 import NewConversation from './Conversations/newConversation'
 import Message from './Messages/Message';
 import FriendsOnline from './ChatOnline/FriendsOnline';
-import { getUser } from '../../services/home.service';
+import { getUser } from '../../services/user.service';
 import { addMessageToConversation } from '../../contexts/chatContext';
 import { 
   getParticipantIDFromChatroomID,

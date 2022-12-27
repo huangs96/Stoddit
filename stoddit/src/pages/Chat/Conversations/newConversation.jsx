@@ -14,7 +14,7 @@ import { blue } from '@mui/material/colors';
 import PropTypes from 'prop-types';
 import { getFriendsListById, createNewChatroom, getUserIDByUsername } from '../../../services/chat.service';
 import { createNewChatroomWithParticipants } from '../../../contexts/chatContext';
-import { getUser } from '../../../services/home.service';
+import { getUser } from '../../../services/user.service';
 
 function NewConversation(props) {
   const [friendsList, setFriendsList] = useState([]);
