@@ -43,8 +43,6 @@ function NewConversation(props) {
     };
     fetchData()
     .catch(console.error);
-    
-    //get user data function
 
   }, []);
 
@@ -88,6 +86,7 @@ function NewConversation(props) {
     }
     
     console.log('startConversationData', startConversationData);
+    console.log('startConversationData', props.getNewConversation);
 
     // onClose(value);
   };
@@ -98,6 +97,8 @@ function NewConversation(props) {
     startConversationData.chatroomTitle = conversationTitle;
     startConversationData.chatroomDescription = conversationDescription;
     startConversationData.userIDs.push(props.userID);
+
+    props.getNewConversation(startConversationData);
 
     createNewChatroomWithParticipants(startConversationData);
   }

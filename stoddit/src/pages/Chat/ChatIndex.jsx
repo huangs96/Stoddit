@@ -32,8 +32,6 @@ function ChatIndex() {
   console.log('userdata', userData);
   const userID = userData.user.id;
   const username = userData.user.username;
-
-
   const waitForData = (username !== '');
   //message state
   const [participantID, setParticipantID] = useState('');
@@ -45,6 +43,7 @@ function ChatIndex() {
   //chatroom state
   const [chatroomKey, setChatroomKey] = useState('');
   const [conversations, setConversations] = useState([]);
+  const [newConversation, setNewConversation] = useState({});
 
   //opening and closing new conversation modal
   const [open, setOpen] = useState(false);
@@ -74,8 +73,15 @@ function ChatIndex() {
         setConversations(chatroomData);
     };
     getChatroomData();
-    console.log('useeffect conversations chatindex', [...conversations]);
-  }, []);
+    console.log('useeffect conversations chatindex', [...conversations, newConversation]);
+  }, [newConversation]);
+
+  console.log('useeffect newconversations chatindex', newConversation);
+
+  //get new conversation from conversation modal
+  const getNewConversation = (data) => {
+    setNewConversation(data);
+  }
 
   //get corresponding messages from conversations file
   const getChatroomKey = (key) => {
@@ -162,6 +168,7 @@ function ChatIndex() {
               userID={userID}
               open={open}
               onClose={handleClose}
+              getNewConversation={getNewConversation}
             />
           </div>
         </div>
