@@ -26,18 +26,18 @@ const socket = io('http://localhost:5000', {
 /* ------ Socket End ------ */
 
 function ChatIndex() {
-  //variables for user
+  //user state
   const [username, setUsername] = useState('');
   const waitForData = (username !== '');
   const [userID, setUserID] = useState('');
-  //variables for messages
+  //message state
   const [participantID, setParticipantID] = useState('');
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState('');
   const [addNewMessage, setAddNewMessage] = useState('');
   const timestamp = new Date();
   const bottomRef = useRef(null);
-  //variables for chatrooms
+  //chatroom state
   const [chatroomKey, setChatroomKey] = useState('');
   const [conversations, setConversations] = useState([]);
 
@@ -55,8 +55,6 @@ function ChatIndex() {
       const data = await getUser();
       setUsername(data.user.username);
       setUserID(data.user.id);
-      const chatroomData = await getChatroomByUserID(userID);
-      setConversations(chatroomData);
     };
 
     fetchUserData()
@@ -76,8 +74,17 @@ function ChatIndex() {
     // };
 
   }, []);
-  // console.log('user chatIndex', userID);
-  // console.log('chatroomData chatindex', conversations);
+  console.log('user chatIndex', userID);
+  console.log('chatroomData chatindex', conversations);
+
+  useEffect(() => {
+    const getChatroomData = async () => {
+      const chatroomData = await getChatroomByUserID(userID);
+        setConversations(chatroomData);
+    };
+    // getChatroomData();
+
+  }, [])
 
 
   //second useEffect to get messages based on chatroomkey
@@ -132,7 +139,7 @@ function ChatIndex() {
 
     //empty textbox
     setMessageText('');
-  };
+  }
 
   return (
     <>
@@ -164,7 +171,7 @@ function ChatIndex() {
               New Conversation
             </Button>
             <NewConversation 
-              userID={conversations.account_id}
+              userID={userID}
               open={open}
               onClose={handleClose}
             />

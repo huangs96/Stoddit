@@ -34,17 +34,21 @@ function NewConversation(props) {
     lDate: null
   };
 
+  // console.log('newconversation', props.userID);
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await getFriendsListById(props.userID);
       setFriendsList(data);
-    }
+    };
     fetchData()
     .catch(console.error);
     
     //get user data function
 
-  }, [])
+  }, []);
+
+  // console.log('newconversation friendslist', friendsList);
 
   const { onClose, selectedValue, open } = props;
   const handleClose = () => {
