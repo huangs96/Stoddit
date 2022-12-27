@@ -74,14 +74,13 @@ function ChatIndex() {
         setConversations(chatroomData);
     };
     getChatroomData();
-
+    console.log('useeffect conversations chatindex', [...conversations]);
   }, []);
 
   //get corresponding messages from conversations file
   const getChatroomKey = (key) => {
     setChatroomKey(key);
   };
-
 
   //second useEffect to get messages based on chatroomkey
   useEffect(() => {
