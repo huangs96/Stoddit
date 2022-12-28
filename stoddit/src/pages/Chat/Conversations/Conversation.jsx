@@ -2,6 +2,7 @@ import './Conversation.css';
 import React, { useEffect, useState } from 'react';
 import { getChatroomByUserID } from '../../../services/chat.service';
 import { Button, Modal, Typography, Box } from '@mui/material';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import NewConversation from './newConversation';
 
 function Conversation({getChatroomKey, conversation}) {
@@ -9,6 +10,10 @@ function Conversation({getChatroomKey, conversation}) {
   const handleConversation = () => {
     getChatroomKey(conversation.chatroom_id);
   };
+
+  const deleteConversation = () => {
+    console.log('deleted');
+  }
 
   return (
     <>
@@ -27,6 +32,7 @@ function Conversation({getChatroomKey, conversation}) {
           >
             {conversation.name}
           </span>
+          <DeleteOutlinedIcon sx={{ "&:hover": { color: "red" } }} onClick={deleteConversation}/>
       </div>
     </>
   )
