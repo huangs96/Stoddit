@@ -8,6 +8,7 @@ router.get('/chatroom', controller.getChatroom);
 router.get('/chatroom/:id', controller.getChatroomByChatroomID);
 router.get('/chatroom/user/:id', controller.getChatroomByUserID);
 router.post('/createchatroom', controller.createChatroom);
+router.delete('/deletechatroom/:id', controller.deleteChatroom);
 /* -------------------------------- */
 
 
