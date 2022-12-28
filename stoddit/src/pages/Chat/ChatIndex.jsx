@@ -11,10 +11,11 @@ import FriendsOnline from './ChatOnline/FriendsOnline';
 import { getUser } from '../../services/user.service';
 import { addMessageToConversation } from '../../contexts/chatContext';
 import { 
+  getChatroomByUserID,
+  deleteChatroomByID,
   getParticipantIDFromChatroomID,
   getParticipantIDFromAccountID, 
   getMessagesByChatroomID,
-  getChatroomByUserID
 } from '../../services/chat.service';
 import { SocketProvider } from '../../contexts/socketProvider';
 import { io } from 'socket.io-client';
@@ -44,6 +45,8 @@ function ChatIndex() {
   const [chatroomKey, setChatroomKey] = useState('');
   const [conversations, setConversations] = useState([]);
   const [newConversation, setNewConversation] = useState({});
+  //--state for deleting conversation
+  const [deletedConversation, setDeletedConversation] = useState(false);
 
   //opening and closing new conversation modal
   const [open, setOpen] = useState(false);
@@ -71,16 +74,19 @@ function ChatIndex() {
     const getChatroomData = async () => {
       const chatroomData = await getChatroomByUserID(userID);
         setConversations(chatroomData);
-        console.log('newConversation use effect chat index', newConversation);
-        console.log('Conversation use effect chat index', conversations);
     };
     getChatroomData();
-  }, [newConversation]);
+  }, [newConversation, deletedConversation]);
 
   //get new conversation from conversation modal
   const getNewConversation = (data) => {
     setNewConversation(data);
-  }
+  };
+  
+  //delete conversation state
+  const conversationDeleted = (boolean) => {
+    setDeletedConversation(boolean);
+  };
 
   //get corresponding messages from conversations file
   const getChatroomKey = (key) => {
@@ -154,6 +160,7 @@ function ChatIndex() {
                 <Conversation 
                   getChatroomKey={getChatroomKey} 
                   conversation={convo}
+                  conversationDelete={conversationDeleted}
                 />
               ))
             }

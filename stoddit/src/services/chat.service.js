@@ -33,6 +33,24 @@ const createNewChatroom = async (data) => {
     }
     throw response;
   });
+};
+
+const deleteChatroomByID = async (id) => {
+  return fetch(`http://localhost:5000/chat/deletechatroom/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    mode: 'cors',
+    credentials: 'include'
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw response;
+  })
 }
 /* -------------------------------- */
 
@@ -166,6 +184,7 @@ module.exports = {
   //chatroom
   getChatroomByUserID,
   createNewChatroom,
+  deleteChatroomByID,
   //participant
   getParticipantIDFromChatroomID,
   getParticipantIDFromAccountID,

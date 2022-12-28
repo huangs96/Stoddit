@@ -77,15 +77,14 @@ const createChatroom = (async (req, res) => {
 
 const deleteChatroom = (async (req, res) => {
   const newDate = new Date();
-  console.log('req---', req.body.deleteDate);
-  console.log('req---', req.params.id);
-  // const deleteDate = req.body.deleteDate;
   const deleteDate = newDate;
   const id = parseInt(req.params.id);
   
   try {
     const deleteChatroom = await client.query(queries.deleteChatroom, [deleteDate, id]);
-    res.status(200).send('Chatroom has been deleted');
+    if(deleteChatroom) {
+      res.status(200).send('Chatroom has been deleted');
+    };
   } catch (err) {
     return res.status(400).send(err);
   };
