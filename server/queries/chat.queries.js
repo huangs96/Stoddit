@@ -3,7 +3,7 @@ const getChatroom = "SELECT * FROM chatroom";
 const getChatroomByChatroomID = "SELECT * FROM chatroom WHERE id = $1";
 const getChatroomByUserID = "SELECT participant.account_id, chatroom.name, participant.chatroom_id FROM participant INNER JOIN chatroom ON participant.chatroom_id=chatroom.id WHERE account_id = $1"
 const createChatroom = "INSERT INTO chatroom (name, title, description) VALUES ($1, $2, $3) returning id";
-const deleteChatroom = "INSERT INTO chatroom (deleted_at) VALUES ($1)";
+const deleteChatroom = "UPDATE chatroom SET deleted_at = $1 WHERE id = $2;";
 /* -------------------------------- */
 
 /* ------ Participant ------ */
