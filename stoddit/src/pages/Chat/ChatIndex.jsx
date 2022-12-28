@@ -71,12 +71,11 @@ function ChatIndex() {
     const getChatroomData = async () => {
       const chatroomData = await getChatroomByUserID(userID);
         setConversations(chatroomData);
+        console.log('newConversation use effect chat index', newConversation);
+        console.log('Conversation use effect chat index', conversations);
     };
     getChatroomData();
-    console.log('useeffect conversations chatindex', [...conversations, newConversation]);
   }, [newConversation]);
-
-  console.log('useeffect newconversations chatindex', newConversation);
 
   //get new conversation from conversation modal
   const getNewConversation = (data) => {

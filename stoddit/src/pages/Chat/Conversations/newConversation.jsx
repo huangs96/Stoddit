@@ -49,6 +49,7 @@ function NewConversation(props) {
   // console.log('newconversation friendslist', friendsList);
 
   const { onClose, selectedValue, open } = props;
+
   const handleClose = () => {
     onClose(selectedValue);
   };
@@ -86,7 +87,6 @@ function NewConversation(props) {
     }
     
     console.log('startConversationData', startConversationData);
-    console.log('startConversationData', props.getNewConversation);
 
     // onClose(value);
   };
@@ -101,6 +101,7 @@ function NewConversation(props) {
     props.getNewConversation(startConversationData);
 
     createNewChatroomWithParticipants(startConversationData);
+    handleClose();
   }
 
   return (

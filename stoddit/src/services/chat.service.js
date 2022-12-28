@@ -11,7 +11,7 @@ const getChatroomByUserID = async (userID) => {
   .then(response => {
     if (response.ok) {
       return response.json();
-    }
+    };
     throw response;
   });
 };
