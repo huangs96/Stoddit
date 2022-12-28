@@ -87,8 +87,8 @@ function ChatIndex() {
   };
   
   //delete conversation state
-  const conversationDeleted = (boolean) => {
-    setDeletedConversation(boolean);
+  const conversationDeleted = () => {
+    setDeletedConversation(boolean => !boolean);
   };
 
   //get corresponding messages from conversations file

@@ -12,7 +12,7 @@ function Conversation({getChatroomKey, conversation, conversationDeleted}) {
 
   const deleteConversation = async () => {
     await deleteChatroomByID(conversation.chatroom_id);
-    conversationDeleted(true);
+    conversationDeleted();
   };
 
   return (
