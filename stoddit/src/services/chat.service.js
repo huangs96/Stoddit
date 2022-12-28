@@ -43,11 +43,12 @@ const deleteChatroomByID = async (id) => {
       'Accept': 'application/json'
     },
     mode: 'cors',
-    credentials: 'include'
+    credentials: 'include',
+    body: JSON.stringify()
   })
   .then(response => {
     if (response.ok) {
-      return response.json();
+      return response;
     }
     throw response;
   })

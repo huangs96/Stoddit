@@ -3,11 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { getChatroomByUserID, deleteChatroomByID } from '../../../services/chat.service';
 import { Button, Modal, Typography, Box } from '@mui/material';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import NewConversation from './newConversation';
 
 function Conversation({getChatroomKey, conversation, conversationDeleted}) {
-
-
 
   const handleConversation = () => {
     getChatroomKey(conversation.chatroom_id);

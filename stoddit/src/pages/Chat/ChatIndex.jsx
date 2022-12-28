@@ -70,6 +70,9 @@ function ChatIndex() {
     //   socket.off('chatMessage');
     // };
 
+  console.log('deltedconversation', deletedConversation);
+  console.log('newconversation', newConversation);
+
   useEffect(() => {
     const getChatroomData = async () => {
       const chatroomData = await getChatroomByUserID(userID);
@@ -160,7 +163,7 @@ function ChatIndex() {
                 <Conversation 
                   getChatroomKey={getChatroomKey} 
                   conversation={convo}
-                  conversationDelete={conversationDeleted}
+                  conversationDeleted={conversationDeleted}
                 />
               ))
             }
