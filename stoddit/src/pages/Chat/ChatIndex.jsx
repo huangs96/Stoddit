@@ -45,7 +45,7 @@ function ChatIndex() {
   const [chatroomKey, setChatroomKey] = useState('');
   const [conversations, setConversations] = useState([]);
   const [newConversation, setNewConversation] = useState(false);
-  //--state for deleting conversation
+  //deleting conversation
   const [deletedConversation, setDeletedConversation] = useState(false);
 
   //opening and closing new conversation modal
@@ -65,9 +65,6 @@ function ChatIndex() {
   const conversationDeleted = () => {
     setDeletedConversation(boolean => !boolean);
   };
-  // const reRenderMessages = () => {
-    
-  // }
 
   //get corresponding messages from conversations file
   const getChatroomKey = (key) => {
@@ -110,7 +107,7 @@ function ChatIndex() {
     };
     fetchMessageData()
     .catch(console.error);
-  }, [chatroomKey, addNewMessage]);
+  }, [chatroomKey, addNewMessage, deletedConversation]);
 
   //get participant id of user from chatroom
   if(chatroomKey) {
