@@ -44,7 +44,7 @@ function ChatIndex() {
   //chatroom state
   const [chatroomKey, setChatroomKey] = useState('');
   const [conversations, setConversations] = useState([]);
-  const [newConversation, setNewConversation] = useState({});
+  const [newConversation, setNewConversation] = useState(false);
   //--state for deleting conversation
   const [deletedConversation, setDeletedConversation] = useState(false);
   const [renderMessagesAfterDelete, setRenderMessageAfterConvoDelete] = useState(false);
@@ -59,8 +59,8 @@ function ChatIndex() {
   };
 
   //get new conversation from conversation modal
-  const getNewConversation = (data) => {
-    setNewConversation(data);
+  const getNewConversation = () => {
+    setNewConversation(boolean => !boolean);
   };
   //delete conversation state
   const conversationDeleted = () => {
@@ -89,6 +89,7 @@ function ChatIndex() {
     // };
 
   console.log('addnewmsg chatindex', addNewMessage);
+  console.log('newConversation chatindex', newConversation);
 
   //load conversations
   useEffect(() => {
@@ -97,6 +98,7 @@ function ChatIndex() {
       setConversations(chatroomData);
     };
     getChatroomData();
+    setNewConversation(false);
   }, [newConversation, deletedConversation]);
 
   //second useEffect to get messages based on chatroomkey

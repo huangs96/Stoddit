@@ -98,7 +98,7 @@ function NewConversation(props) {
     startConversationData.chatroomDescription = conversationDescription;
     startConversationData.userIDs.push(props.userID);
 
-    props.getNewConversation(startConversationData);
+    props.getNewConversation();
 
     createNewChatroomWithParticipants(startConversationData);
     handleClose();
