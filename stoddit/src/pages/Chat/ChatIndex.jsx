@@ -38,7 +38,7 @@ function ChatIndex() {
   const [participantID, setParticipantID] = useState('');
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState('');
-  const [addNewMessage, setAddNewMessage] = useState('');
+  const [addNewMessage, setAddNewMessage] = useState({});
   const timestamp = new Date();
   const bottomRef = useRef(null);
   //chatroom state
@@ -47,16 +47,34 @@ function ChatIndex() {
   const [newConversation, setNewConversation] = useState({});
   //--state for deleting conversation
   const [deletedConversation, setDeletedConversation] = useState(false);
+  const [renderMessagesAfterDelete, setRenderMessageAfterConvoDelete] = useState(false);
 
   //opening and closing new conversation modal
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
-  }
+  };
   const handleClose = () => {
     setOpen(false);
-  }
+  };
 
+  //get new conversation from conversation modal
+  const getNewConversation = (data) => {
+    setNewConversation(data);
+  };
+  //delete conversation state
+  const conversationDeleted = () => {
+    setDeletedConversation(boolean => !boolean);
+  };
+  // const reRenderMessages = () => {
+    
+  // }
+
+  //get corresponding messages from conversations file
+  const getChatroomKey = (key) => {
+    setChatroomKey(key);
+  };
+  
     // //on socket connection
     // socket.on('connection', () => {
     //   console.log('working');
@@ -70,31 +88,16 @@ function ChatIndex() {
     //   socket.off('chatMessage');
     // };
 
-  console.log('deltedconversation', deletedConversation);
-  console.log('newconversation', newConversation);
+  console.log('addnewmsg chatindex', addNewMessage);
 
+  //load conversations
   useEffect(() => {
     const getChatroomData = async () => {
       const chatroomData = await getChatroomByUserID(userID);
-        setConversations(chatroomData);
+      setConversations(chatroomData);
     };
     getChatroomData();
   }, [newConversation, deletedConversation]);
-
-  //get new conversation from conversation modal
-  const getNewConversation = (data) => {
-    setNewConversation(data);
-  };
-  
-  //delete conversation state
-  const conversationDeleted = () => {
-    setDeletedConversation(boolean => !boolean);
-  };
-
-  //get corresponding messages from conversations file
-  const getChatroomKey = (key) => {
-    setChatroomKey(key);
-  };
 
   //second useEffect to get messages based on chatroomkey
   useEffect(() => {
@@ -104,7 +107,7 @@ function ChatIndex() {
     };
     fetchMessageData()
     .catch(console.error);
-  }, [chatroomKey]);
+  }, [chatroomKey, addNewMessage]);
 
   //get participant id of user from chatroom
   if(chatroomKey) {
@@ -138,6 +141,8 @@ function ChatIndex() {
     // socket.on('chatMessage', chatMessage => {
     //   setAddNewMessage(chatMessage);
     // });
+
+    setAddNewMessage({participantID, messageText, timestamp});
 
     //empty textbox
     setMessageText('');
@@ -186,7 +191,7 @@ function ChatIndex() {
             <div className="chatBoxTop">
               <Message 
                 userID={userID} 
-                messages={messages} 
+                messages={messages}
                 addNewMessage={addNewMessage}
               />
             </div>

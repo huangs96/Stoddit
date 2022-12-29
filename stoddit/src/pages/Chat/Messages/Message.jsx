@@ -19,7 +19,6 @@ function Message({userID, messages, addNewMessage, userIMG}) {
   // }, []);
 
   console.log('messages', messages);
-  console.log('addnewmsg', addNewMessage);
 
   return (
     <>

@@ -16,7 +16,7 @@ const createParticipantFromChatroom = "INSERT INTO participant (chatroom_id, acc
 
 /* ------ Message ------ */
 const getMessage = "SELECT * FROM message";
-const getMessagesByChatroom = "SELECT message.message_text, participant.chatroom_id, message.participant_id, message.sent_datetime, participant.account_id FROM message INNER JOIN participant ON message.participant_id=participant.id WHERE chatroom_id = $1";
+const getMessagesByChatroom = "SELECT message.message_text, participant.chatroom_id, message.participant_id, message.sent_datetime, participant.account_id, chatroom.deleted_at FROM message INNER JOIN participant ON message.participant_id=participant.id INNER JOIN chatroom ON participant.chatroom_id = chatroom.id WHERE chatroom_id = $1 AND deleted_at IS NULL";
 const createMessage = "INSERT INTO message (participant_id, message_text, sent_datetime) VALUES ($1, $2, $3)";
 /* -------------------------------- */
 

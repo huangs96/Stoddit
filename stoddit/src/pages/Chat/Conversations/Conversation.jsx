@@ -8,6 +8,7 @@ function Conversation({getChatroomKey, conversation, conversationDeleted}) {
 
   const handleConversation = () => {
     getChatroomKey(conversation.chatroom_id);
+    console.log(conversation.chatroom_id);
   };
 
   const deleteConversation = async () => {

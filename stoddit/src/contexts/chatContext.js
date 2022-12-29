@@ -2,7 +2,6 @@ import {sendMessage, createNewChatroom} from '../services/chat.service';
 
 /* ------ Chatroom ------ */
 const createNewChatroomWithParticipants = async (data) => {
-  console.log(data.userIDs);
   let chatroomBody = {
     name: data.chatroomName,
     title: data.chatroomTitle,
@@ -28,7 +27,7 @@ const addMessageToConversation = async (participantID, text, time) => {
   };
   //insert message into database to refresh and get new message
   await sendMessage(body);
-}
+};
 /* -------------------------------- */
 
 
