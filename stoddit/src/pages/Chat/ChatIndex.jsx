@@ -47,7 +47,6 @@ function ChatIndex() {
   const [newConversation, setNewConversation] = useState(false);
   //--state for deleting conversation
   const [deletedConversation, setDeletedConversation] = useState(false);
-  const [renderMessagesAfterDelete, setRenderMessageAfterConvoDelete] = useState(false);
 
   //opening and closing new conversation modal
   const [open, setOpen] = useState(false);
@@ -96,9 +95,11 @@ function ChatIndex() {
     const getChatroomData = async () => {
       const chatroomData = await getChatroomByUserID(userID);
       setConversations(chatroomData);
+      setNewConversation(false);
     };
     getChatroomData();
-    setNewConversation(false);
+
+    return () => {}
   }, [newConversation, deletedConversation]);
 
   //second useEffect to get messages based on chatroomkey
