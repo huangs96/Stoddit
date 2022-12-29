@@ -38,7 +38,7 @@ function ChatIndex() {
   const [participantID, setParticipantID] = useState('');
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState('');
-  const [addNewMessage, setAddNewMessage] = useState({});
+  const [addNewMessage, setAddNewMessage] = useState(false);
   const timestamp = new Date();
   const bottomRef = useRef(null);
   //chatroom state
@@ -84,9 +84,6 @@ function ChatIndex() {
     //   socket.off('chatMessage');
     // };
 
-  console.log('addnewmsg chatindex', addNewMessage);
-  console.log('newConversation chatindex', newConversation);
-
   //load conversations
   useEffect(() => {
     const getChatroomData = async () => {
@@ -104,6 +101,7 @@ function ChatIndex() {
     const fetchMessageData = async () => {
       const messageData = await getMessagesByChatroomID(chatroomKey);
       setMessages(messageData);
+      setAddNewMessage(true);
     };
     fetchMessageData()
     .catch(console.error);
