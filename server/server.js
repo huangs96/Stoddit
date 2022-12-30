@@ -29,7 +29,7 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
     credentials: true
   }
-})
+});
 
 //parse requests of content-type - application/json
 app.use(express.json());
@@ -45,6 +45,20 @@ app.get("/", (req, res) =>
 //Run when connected
 io.on("connection", (socket) => {
   console.log(`newsocketconnection: ${socket.id}`);
+
+  
+  let users = [];
+  
+  const addUser = (userID, socketID) => {
+    console.log(userID, socketID);
+    users.push({userID, socketID});
+  };
+  
+  socket.on('liveUsers', (userID) => {
+    addUser(userID, socket.id);
+    io.emit('getUsers', users);
+  })
+
 
   socket.emit("message", "welcome to Stoddit");
   //broadcast when user connects

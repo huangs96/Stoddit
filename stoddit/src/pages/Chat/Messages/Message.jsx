@@ -1,24 +1,10 @@
 import './Message.css';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 
 function Message({userID, messages, addNewMessage, userIMG}) {
   const [waitData, setWaitData] = useState(false);
   const prevMessage = useRef('');
   const bottomRef = useRef(null);
-
-  // useEffect(() => {
-
-    // bottomRef.current?.scrollIntoView({behaviour: 'smooth'});
-    // prevMessage.current = messages;
-    // console.log(prevMessage.current);
-    // console.log('addnewmsg', addNewMessage);
-    // let lastMessage = prevMessage.current[prevMessage.current.length-1];
-    // console.log('lastmsg---', lastMessage);
-
-
-  // }, []);
-
-  console.log('messages', messages);
 
   return (
     <>

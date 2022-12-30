@@ -30,7 +30,6 @@ const socket = io('http://localhost:5000', {
 function ChatIndex() {
   //user data
   const userData = useContext(UserContext)
-  console.log('userdata', userData);
   const userID = userData.user.id;
   const username = userData.user.username;
   const waitForData = (username !== '');
@@ -47,7 +46,13 @@ function ChatIndex() {
   const [newConversation, setNewConversation] = useState(false);
   //deleting conversation
   const [deletedConversation, setDeletedConversation] = useState(false);
+  //socket
+  const socket = useRef(io('ws://localhost:5000', {
+    withCredentials: true,
+  }));
 
+
+  /* ------ Conversation Modal ------ */
   //opening and closing new conversation modal
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -56,20 +61,44 @@ function ChatIndex() {
   const handleClose = () => {
     setOpen(false);
   };
-
-  //get new conversation from conversation modal
   const getNewConversation = () => {
     setNewConversation(boolean => !boolean);
   };
-  //delete conversation state
+  /* --------------------------------- */
+
   const conversationDeleted = () => {
     setDeletedConversation(boolean => !boolean);
   };
 
-  //get corresponding messages from conversations file
   const getChatroomKey = (key) => {
     setChatroomKey(key);
   };
+
+  /* ------ Socket Connection ------ */
+  console.log('socket', socket);
+
+  useEffect(() => {
+    socket.current.emit('liveUsers', userID);
+    socket.current.on('getUsers', users => {
+      console.log(users);
+    })
+  }, [userID]);
+
+  useEffect(() => {
+    socket.on('connection', () => {
+      console.log('working');
+    });
+    //console message from socket
+    socket.on('message', message => {
+      console.log("ChatIndex: socket", message);
+    });
+
+    return () => {
+      socket.off('chatMessage');
+    };
+  }, [socket]);
+  /* ------ Socket End ------ */
+
   
     // //on socket connection
     // socket.on('connection', () => {
@@ -95,6 +124,7 @@ function ChatIndex() {
 
     return () => {}
   }, [newConversation, deletedConversation]);
+
 
   //second useEffect to get messages based on chatroomkey
   useEffect(() => {
