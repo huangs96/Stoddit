@@ -41,23 +41,37 @@ app.get("/", (req, res) =>
   res.send("working")
 );
 
+let users = [];
+
+const addUser = (userID, socketID) => {
+  if (users.length > 0) {
+    for(let user = 0; user<users.length; user++) {
+      let finalUser = users[user];
+      if (finalUser.userID !== userID) {
+        users.push({userID, socketID});
+      } else {
+        console.log('exists');
+        break;
+      };
+    };
+  } else {
+    users.push({userID, socketID});
+  };
+
+  console.log('users', users);
+};
+
 /* ------ Socket Server ------ */
 //Run when connected
 io.on("connection", (socket) => {
   console.log(`newsocketconnection: ${socket.id}`);
-
-  
-  let users = [];
-  
-  const addUser = (userID, socketID) => {
-    console.log(userID, socketID);
-    users.push({userID, socketID});
-  };
   
   socket.on('liveUsers', (userID) => {
+    console.log('userID', userID);
+    console.log('sID', socket.id);
     addUser(userID, socket.id);
     io.emit('getUsers', users);
-  })
+  });
 
 
   socket.emit("message", "welcome to Stoddit");
