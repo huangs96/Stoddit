@@ -1,5 +1,10 @@
 import './ChatIndex.css';
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { 
+  useState, 
+  useEffect, 
+  useRef, 
+  useContext 
+} from 'react';
 import UserContext from '../../contexts/userContext';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -20,18 +25,12 @@ import {
 import { SocketProvider } from '../../contexts/socketProvider';
 import { io } from 'socket.io-client';
 
-
-/* ------ Socket Connection ------ */
-const socket = io('http://localhost:5000', {
-  withCredentials: true,
-});
-/* ------ Socket End ------ */
-
 function ChatIndex() {
   //user data
-  const userData = useContext(UserContext)
+  const userData = useContext(UserContext);
   const userID = userData.user.id;
   const username = userData.user.username;
+  console.log('userid username', userID, username);
   const waitForData = (username !== '');
   //message state
   const [participantID, setParticipantID] = useState('');
@@ -75,7 +74,7 @@ function ChatIndex() {
   };
 
   /* ------ Socket Connection ------ */
-  console.log('socket', socket);
+  console.log('socket', socket.current);
 
   useEffect(() => {
     socket.current.emit('liveUsers', userID);
@@ -85,16 +84,16 @@ function ChatIndex() {
   }, [userID]);
 
   useEffect(() => {
-    socket.on('connection', () => {
+    socket.current.on('connection', () => {
       console.log('working');
     });
     //console message from socket
-    socket.on('message', message => {
+    socket.current.on('message', message => {
       console.log("ChatIndex: socket", message);
     });
 
     return () => {
-      socket.off('chatMessage');
+      socket.current.off('chatMessage');
     };
   }, [socket]);
   /* ------ Socket End ------ */
