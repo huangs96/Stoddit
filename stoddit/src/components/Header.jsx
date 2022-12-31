@@ -17,7 +17,7 @@ function Header() {
     }
     console.log(deleteDetails.message);
     localStorage.clear();
-    console.log(localStorage);
+    console.log('localstorage should be cleared', localStorage);
     return navigate('/login');
   };
 

@@ -9,10 +9,20 @@ import App from '../../App';
 
 function HomePage() {
   const navigate = useNavigate();
-  const user = useContext(UserContext);
-  console.log('home---', user);
+  const [user, setUser] = useState(null);
 
-  
+  //grab user information as soon as authetication has been established
+  useEffect(()=> {
+    const fetchData = async () => {
+      const data = await getAuthedUser();
+      setUser(data);
+      localStorage.setItem('UserID', JSON.stringify(data.user.id));
+      localStorage.setItem('Username', JSON.stringify(data.user.username));
+    }
+    fetchData()
+    .catch(console.error);
+  }, []);
+
   const logout = async () => {
     const deleteDetails = await logoutUser();
     if (deleteDetails.error) {

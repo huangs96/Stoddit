@@ -26,7 +26,7 @@ function AppRoutes() {
   }, []);
 
   return (
-    <UserContext.Provider value={user}>
+    // <UserContext.Provider value={user}>
       <Routes>
           <Route
             path="login"
@@ -57,7 +57,7 @@ function AppRoutes() {
             element={<ProfileIndex />}
           />
         </Routes>
-      </UserContext.Provider>
+      // </UserContext.Provider>
   );
 }
 
