@@ -17,6 +17,9 @@ function AppRoutes() {
     const fetchData = async () => {
       const data = await getAuthedUser();
       setUser(data);
+      console.log(data);
+      localStorage.setItem('UserID', JSON.stringify(data.user.id));
+      localStorage.setItem('Username', JSON.stringify(data.user.username));
     }
     fetchData()
     .catch(console.error);

@@ -27,11 +27,8 @@ import { io } from 'socket.io-client';
 
 function ChatIndex() {
   //user data
-  const userData = useContext(UserContext);
-  const userID = userData.user.id;
-  const username = userData.user.username;
-  console.log('userid username', userID, username);
-  const waitForData = (username !== '');
+  const userID = JSON.parse(localStorage.getItem('UserID'));
+  const username = JSON.parse(localStorage.getItem('Username'));
   //message state
   const [participantID, setParticipantID] = useState('');
   const [messages, setMessages] = useState([]);
@@ -49,6 +46,8 @@ function ChatIndex() {
   const socket = useRef(io('ws://localhost:5000', {
     withCredentials: true,
   }));
+
+  console.log('localstorage---', localStorage);
 
 
   /* ------ Conversation Modal ------ */
@@ -177,81 +176,80 @@ function ChatIndex() {
 
   return (
     <>
-    {/* <SocketProvider chatroom_id={chatroomKey}> */}
-    {waitForData &&
       <div 
-        style={{ marginTop:'10vh'}} 
-        className="chat"
+      style={{ marginTop:'10vh'}} 
+      className="chat"
       >
-        <div className="chatMenu">
-          <div className="chatMenuWrapper">
-            <TextField 
-              className="chatMenuInput" 
-              label="Search Chats, Friends, or Users"
-            >
-            </TextField>
-            {
-              conversations.map((convo) => (
-                <Conversation 
-                  getChatroomKey={getChatroomKey} 
-                  conversation={convo}
-                  conversationDeleted={conversationDeleted}
-                />
-              ))
-            }
-            <Button
-              onClick={handleOpen} 
-              variant="contained"
-            >
-              New Conversation
-            </Button>
-            <NewConversation 
-              userID={userID}
-              open={open}
-              onClose={handleClose}
-              getNewConversation={getNewConversation}
+      <div className="chatMenu">
+        <div className="chatMenuWrapper">
+          <TextField 
+            className="chatMenuInput" 
+            label="Search Chats, Friends, or Users"
+          >
+          </TextField>
+          <div>
+          <h2>{username}'s Conversations</h2>
+          </div>
+          {
+            conversations.map((convo) => (
+              <Conversation 
+                getChatroomKey={getChatroomKey} 
+                conversation={convo}
+                conversationDeleted={conversationDeleted}
+              />
+            ))
+          }
+          <Button
+            onClick={handleOpen} 
+            variant="contained"
+          >
+            New Conversation
+          </Button>
+          <NewConversation 
+            userID={userID}
+            open={open}
+            onClose={handleClose}
+            getNewConversation={getNewConversation}
+          />
+        </div>
+      </div>
+      <div className="chatBox">
+        <div className="chatBoxWrapper">
+          <div className="chatBoxTop">
+            <Message 
+              userID={userID} 
+              messages={messages}
+              addNewMessage={addNewMessage}
             />
           </div>
-        </div>
-        <div className="chatBox">
-          <div className="chatBoxWrapper">
-            <div className="chatBoxTop">
-              <Message 
-                userID={userID} 
-                messages={messages}
-                addNewMessage={addNewMessage}
+          <form onSubmit={handleSubmit}>
+            <div className="chatBoxBottom">
+              <TextField 
+                name="message"
+                className="chatMessageInput" 
+                size="large" 
+                placeholder="Send a message.."
+                onChange={onChangeMessage}
+                value={messageText}
               />
+              <Button 
+                type="submit" 
+                variant="contained" 
+                className="chatSubmitButton" 
+                endIcon={<SendIcon />}
+              >
+                Send
+              </Button>
             </div>
-            <form onSubmit={handleSubmit}>
-              <div className="chatBoxBottom">
-                <TextField 
-                  name="message"
-                  className="chatMessageInput" 
-                  size="large" 
-                  placeholder="Send a message.."
-                  onChange={onChangeMessage}
-                  value={messageText}
-                />
-                <Button 
-                  type="submit" 
-                  variant="contained" 
-                  className="chatSubmitButton" 
-                  endIcon={<SendIcon />}
-                >
-                  Send
-                </Button>
-              </div>
-            </form>
-          </div>
+          </form>
         </div>
-          <div className="chatOnline">
-            <div className="chatOnlineWrapper">
-              <FriendsOnline userID={userID}/>
-            </div>
-          </div>
       </div>
-    }
-    {/* </SocketProvider> */}
+        <div className="chatOnline">
+          <div className="chatOnlineWrapper">
+            <FriendsOnline userID={userID}/>
+          </div>
+        </div>   
+      </div>
     </>
   );
 };

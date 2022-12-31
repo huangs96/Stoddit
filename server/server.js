@@ -67,9 +67,9 @@ io.on("connection", (socket) => {
   console.log(`newsocketconnection: ${socket.id}`);
   
   socket.on('liveUsers', (userID) => {
-    console.log('userID', userID);
-    console.log('sID', socket.id);
-    addUser(userID, socket.id);
+    // console.log('userID', userID);
+    // console.log('sID', socket.id);
+    // addUser(userID, socket.id);
     io.emit('getUsers', users);
   });
 
@@ -88,6 +88,7 @@ io.on("connection", (socket) => {
     io.emit('chatMessage', chatMessage);
   });
 });
+/* --------------------------------- */
 
 
 /* ------ Auth Routes ------ */
@@ -95,15 +96,16 @@ io.on("connection", (socket) => {
 app.use("/register", registerRoutes);
 //login
 app.use("/login", authRoutes);
-
+/* --------------------------------- */
 
 /* ------ Chat Routes ------ */
 app.use("/chat", chatRoutes);
-
+/* --------------------------------- */
 
 /* ------ Setting Routes ------ */
 //User
 app.use("/users", userRoutes);
+/* --------------------------------- */
 
 
 
