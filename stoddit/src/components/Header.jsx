@@ -16,6 +16,8 @@ function Header() {
       return;
     }
     console.log(deleteDetails.message);
+    localStorage.clear();
+    console.log(localStorage);
     return navigate('/login');
   };
 
