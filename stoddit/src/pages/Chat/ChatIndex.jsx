@@ -107,6 +107,10 @@ function ChatIndex() {
       // console.log("ChatIndex: socket", message);
     });
 
+    socket.current.on('chatMessage', messageData => {
+      console.log('messageData', messageData);
+    });
+
     return () => {
       socket.current.off('chatMessage');
     };
@@ -185,7 +189,8 @@ function ChatIndex() {
 
       socket.current.emit('chatMessage', ({
         senderID: userID,
-        receiverID: participantsInChatroom
+        receiverID: receiverID,
+        text: messageText
       }));
     } else {
       console.log('no message');

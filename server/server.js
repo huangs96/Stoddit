@@ -45,7 +45,6 @@ let users = [];
 
 const addUser = (userID, socketID) => {
   if (users.length > 0) {
-    console.log('123', users.some(user => user.userID === userID));
     if (users.some(user => user.userID === userID)) {
       console.log('exists---');
       return;
@@ -55,15 +54,16 @@ const addUser = (userID, socketID) => {
   } else {
     users.push({userID, socketID});
   };
-  console.log('users', users);
 };
 
 const removeUser = (socketID) => {
   users = users.filter((user) => user.socketID !== socketID);
 };
 
-const getUser = (userID) => {
-  return users.find((user) => user.userID === userID);
+const getUser = (participants) => {
+  const userData = users.find(user => participants.some(participant => participant.account_id === user.userID));
+
+  return userData;
 };
 
 /* ------ Socket Server ------ */
@@ -73,7 +73,7 @@ io.on("connection", (socket) => {
   
   socket.on('liveUsers', (userID) => {
     addUser(userID, socket.id);
-    console.log('users----', users);
+    // console.log('users----', users);
     io.emit('getUsers', users);
   });
 
@@ -89,14 +89,14 @@ io.on("connection", (socket) => {
   });
 
   // listen for chatMessage
-  // socket.on('chatMessage', ({senderID, receiverID, text}) => {
-  //   console.log('chatMessage', chatMessage);
-  //   const user = getUser(receiverID);
-  //   io.to(user.socketID).emit('chatMessage', {
-  //     senderID,
-  //     text
-  //   });
-  // });
+  socket.on('chatMessage', ({senderID, receiverID, text}) => {
+    const user = getUser(receiverID);
+    console.log(user);
+    io.to(user.socketID).emit('chatMessage', {
+      senderID,
+      text
+    });
+  });
 });
 /* --------------------------------- */
 
