@@ -45,20 +45,25 @@ let users = [];
 
 const addUser = (userID, socketID) => {
   if (users.length > 0) {
-    for(let user = 0; user<users.length; user++) {
-      let finalUser = users[user];
-      if (finalUser.userID !== userID) {
-        users.push({userID, socketID});
-      } else {
-        console.log('exists');
-        break;
-      };
-    };
+    console.log('123', users.some(user => user.userID === userID));
+    if (users.some(user => user.userID === userID)) {
+      console.log('exists---');
+      return;
+    } else {
+      users.push({userID, socketID});
+    }
   } else {
     users.push({userID, socketID});
   };
-
   console.log('users', users);
+};
+
+const removeUser = (socketID) => {
+  users = users.filter((user) => user.socketID !== socketID);
+};
+
+const getUser = (userID) => {
+  return users.find((user) => user.userID === userID);
 };
 
 /* ------ Socket Server ------ */
@@ -67,9 +72,8 @@ io.on("connection", (socket) => {
   console.log(`newsocketconnection: ${socket.id}`);
   
   socket.on('liveUsers', (userID) => {
-    // console.log('userID', userID);
-    // console.log('sID', socket.id);
-    // addUser(userID, socket.id);
+    addUser(userID, socket.id);
+    console.log('users----', users);
     io.emit('getUsers', users);
   });
 
@@ -79,13 +83,19 @@ io.on("connection", (socket) => {
   socket.broadcast.emit("message", "A user has joined");
   //runs when client disconnects
   socket.on("disconnect", () => {
-    io.emit("message", "A user has left the chat");
+    removeUser(socket.id);
+    io.emit('getUsers', users);
+    io.emit('getUsers', 'User has left the chat.');
   });
 
   // listen for chatMessage
-  socket.on('chatMessage', (chatMessage) => {
+  socket.on('chatMessage', ({senderID, receiverID, text}) => {
     console.log('chatMessage', chatMessage);
-    io.emit('chatMessage', chatMessage);
+    const user = getUser(receiverID);
+    io.to(user.socketID).emit('chatMessage', {
+      senderID,
+      text
+    });
   });
 });
 /* --------------------------------- */

@@ -40,14 +40,16 @@ function ChatIndex() {
   const [chatroomKey, setChatroomKey] = useState('');
   const [conversations, setConversations] = useState([]);
   const [newConversation, setNewConversation] = useState(false);
-  //deleting conversation
+  //deleting chatroom
   const [deletedConversation, setDeletedConversation] = useState(false);
+  //participants
+  const [participantsInChatroom, setParticipantsInChatroom] = useState([]);
+  //friends
+  const [onlineFriends, setOnlineFriends] = useState([]);
   //socket
-  const socket = useRef(io('ws://localhost:5000', {
-    withCredentials: true,
-  }));
+  const socket = useRef();
 
-  console.log('localstorage---', localStorage);
+  // console.log('localstorage---', localStorage);
 
 
   /* ------ Conversation Modal ------ */
@@ -73,14 +75,28 @@ function ChatIndex() {
   };
 
   /* ------ Socket Connection ------ */
-  console.log('socket', socket.current);
+  // console.log('socket', socket.current);
+
+  //run socket connection once only
+  useEffect(() => {
+    socket.current = io('ws://localhost:5000', {
+      withCredentials: true,
+    });
+  }, []);
 
   useEffect(() => {
     socket.current.emit('liveUsers', userID);
     socket.current.on('getUsers', users => {
-      console.log(users);
+      console.log('users chatIndex', users);
+      setOnlineFriends(users);
     })
   }, [userID]);
+
+  // useEffect(() => {
+  //   socket.current.
+  // })
+
+  console.log('onlineFriends----', onlineFriends)
 
   useEffect(() => {
     socket.current.on('connection', () => {
@@ -88,7 +104,7 @@ function ChatIndex() {
     });
     //console message from socket
     socket.current.on('message', message => {
-      console.log("ChatIndex: socket", message);
+      // console.log("ChatIndex: socket", message);
     });
 
     return () => {
@@ -96,20 +112,6 @@ function ChatIndex() {
     };
   }, [socket]);
   /* ------ Socket End ------ */
-
-  
-    // //on socket connection
-    // socket.on('connection', () => {
-    //   console.log('working');
-    // });
-    // //console message from socket
-    // socket.on('message', message => {
-    //   console.log("ChatIndex: socket", message);
-    // });
-
-    // return () => {
-    //   socket.off('chatMessage');
-    // };
 
   //load conversations
   useEffect(() => {
@@ -135,6 +137,17 @@ function ChatIndex() {
     .catch(console.error);
   }, [chatroomKey, addNewMessage, deletedConversation]);
 
+  //set participants based on chatroom clicked
+  useEffect(() => {
+    const fetchParticipantDataFromChatroomID = async (chatroomKey) => {
+      const data = await getParticipantIDFromChatroomID (chatroomKey);
+      console.log('participant data', data);
+      setParticipantsInChatroom(data);
+    };
+
+    fetchParticipantDataFromChatroomID(chatroomKey);
+  }, [chatroomKey]);
+
   //get participant id of user from chatroom
   if(chatroomKey) {
     const fetchParticipantDataFromChatroomID = async (chatroomKey) => {
@@ -154,10 +167,25 @@ function ChatIndex() {
     setMessageText(message);
   };
 
+  // console.log(conversations);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (messageText) {
-      addMessageToConversation(participantID, messageText, timestamp);
+      // addMessageToConversation(participantID, messageText, timestamp);
+      // setAddNewMessage({participantID, messageText, timestamp});
+
+      const receiverID = participantsInChatroom.find(participant => participant !== userID);
+
+      console.log('participants', participantsInChatroom);
+      console.log('receiverID', receiverID);
+
+      // socket.current.emit('chatMessage', ({
+      //   senderID: userID,
+      //   receiverID: participantsInChatroom
+      // }))
+    } else {
+      console.log('no message');
     };
 
     // //emit message to server
@@ -167,8 +195,6 @@ function ChatIndex() {
     // socket.on('chatMessage', chatMessage => {
     //   setAddNewMessage(chatMessage);
     // });
-
-    setAddNewMessage({participantID, messageText, timestamp});
 
     //empty textbox
     setMessageText('');
