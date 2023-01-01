@@ -30,7 +30,7 @@ function ChatIndex() {
   const userID = JSON.parse(localStorage.getItem('UserID'));
   const username = JSON.parse(localStorage.getItem('Username'));
   //message state
-  const [participantID, setParticipantID] = useState('');
+  const [userParticipantID, setUserParticipantID] = useState('');
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState('');
   const [addNewMessage, setAddNewMessage] = useState(false);
@@ -87,7 +87,7 @@ function ChatIndex() {
   useEffect(() => {
     socket.current.emit('liveUsers', userID);
     socket.current.on('getUsers', users => {
-      console.log('users chatIndex', users);
+      // console.log('users chatIndex', users);
       setOnlineFriends(users);
     })
   }, [userID]);
@@ -96,7 +96,7 @@ function ChatIndex() {
   //   socket.current.
   // })
 
-  console.log('onlineFriends----', onlineFriends)
+  console.log('onlineFriends----', onlineFriends);
 
   useEffect(() => {
     socket.current.on('connection', () => {
@@ -141,26 +141,26 @@ function ChatIndex() {
   useEffect(() => {
     const fetchParticipantDataFromChatroomID = async (chatroomKey) => {
       const data = await getParticipantIDFromChatroomID (chatroomKey);
-      console.log('participant data', data);
+      // console.log('participant data', data);
       setParticipantsInChatroom(data);
     };
 
-    fetchParticipantDataFromChatroomID(chatroomKey);
-  }, [chatroomKey]);
-
-  //get participant id of user from chatroom
-  if(chatroomKey) {
-    const fetchParticipantDataFromChatroomID = async (chatroomKey) => {
+    //get participant id of user
+    const fetchUserParticipantIDFromChatroomID = async (chatroomKey) => {
       const data = await getParticipantIDFromChatroomID(chatroomKey);
       data.map(values => {
         //if current user id matches account_id in chatroom, set the participant id
         if(userID === values.account_id) {
-          setParticipantID(values.id);
+          setUserParticipantID(values.id);
         };
       });
     };
+
     fetchParticipantDataFromChatroomID(chatroomKey);
-  };
+    fetchUserParticipantIDFromChatroomID(chatroomKey);
+  }, [chatroomKey]);
+
+  // console.log('user participant id', userParticipantID);
 
   const onChangeMessage = (e) => {
     const message = e.target.value;
@@ -175,15 +175,18 @@ function ChatIndex() {
       // addMessageToConversation(participantID, messageText, timestamp);
       // setAddNewMessage({participantID, messageText, timestamp});
 
-      const receiverID = participantsInChatroom.find(participant => participant !== userID);
+      const receiverID = participantsInChatroom.filter((item) => {
+        return item.id !== userParticipantID;
+      });
 
       console.log('participants', participantsInChatroom);
+      console.log('userParticipants', userParticipantID);
       console.log('receiverID', receiverID);
 
-      // socket.current.emit('chatMessage', ({
-      //   senderID: userID,
-      //   receiverID: participantsInChatroom
-      // }))
+      socket.current.emit('chatMessage', ({
+        senderID: userID,
+        receiverID: participantsInChatroom
+      }));
     } else {
       console.log('no message');
     };

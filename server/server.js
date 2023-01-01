@@ -89,14 +89,14 @@ io.on("connection", (socket) => {
   });
 
   // listen for chatMessage
-  socket.on('chatMessage', ({senderID, receiverID, text}) => {
-    console.log('chatMessage', chatMessage);
-    const user = getUser(receiverID);
-    io.to(user.socketID).emit('chatMessage', {
-      senderID,
-      text
-    });
-  });
+  // socket.on('chatMessage', ({senderID, receiverID, text}) => {
+  //   console.log('chatMessage', chatMessage);
+  //   const user = getUser(receiverID);
+  //   io.to(user.socketID).emit('chatMessage', {
+  //     senderID,
+  //     text
+  //   });
+  // });
 });
 /* --------------------------------- */
 
