@@ -6,6 +6,8 @@ function Message({userID, messages, addNewMessage, userIMG}) {
   const prevMessage = useRef('');
   const bottomRef = useRef(null);
 
+  console.log('messages---messages', messages);
+
   return (
     <>
     <div>

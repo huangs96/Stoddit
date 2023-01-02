@@ -35,7 +35,7 @@ function ChatIndex() {
   const [messageText, setMessageText] = useState('');
   const [addNewMessage, setAddNewMessage] = useState(false);
   const [receivedMessage, setReceivedMessage] = useState(null);
-  const timestamp = Date.now();
+  const timestamp = new Date();
   const bottomRef = useRef(null);
   //chatroom state
   const [chatroomKey, setChatroomKey] = useState('');
@@ -84,7 +84,11 @@ function ChatIndex() {
 
   }, []);
 
-  console.log('receivedmsg', receivedMessage);
+  useEffect(() => {
+    if (receivedMessage) {
+      setMessages([...messages, receivedMessage]);
+    };
+  }, [receivedMessage]);
 
   useEffect(() => {
     socket.current.emit('liveUsers', userID);
@@ -94,34 +98,30 @@ function ChatIndex() {
     })
   }, [userID]);
 
-  console.log('participantsinchatroom', userParticipantID);
-  console.log('onlineFriends----', onlineFriends);
+  // console.log('participantsinchatroom', userParticipantID);
+  // console.log('onlineFriends----', onlineFriends);
 
   useEffect(() => {
     socket.current.on('connection', () => {
       console.log('working');
     });
-    //console message from socket
-    socket.current.on('message', message => {
-      // console.log("ChatIndex: socket", message);
-    });
 
     socket.current.on('chatMessage', messageData => {
       console.log('messageData chatindex', messageData);
       setReceivedMessage({
-        participantID: messageData.senderID,
+        participantID: userParticipantID,
         messageText: messageData.text,
-        timestamp: Date.now()
+        sent_datetime: timestamp.toLocaleDateString()
       });
     });
 
     return () => {
       socket.current.off('chatMessage');
     };
-  }, [socket]);
-  /* ------ Socket End ------ */
+  }, [socket, receivedMessage]);
 
-  // console.log('setRecievedMessage chatindex', receivedMessage);
+  console.log('setUserParticipantID', userParticipantID);
+  /* ------ Socket End ------ */
 
   //load conversations
   useEffect(() => {
@@ -136,7 +136,7 @@ function ChatIndex() {
   }, [newConversation, deletedConversation]);
 
 
-  //second useEffect to get messages based on chatroomkey
+  //second useEffect to get messages 
   useEffect(() => {
     const fetchMessageData = async () => {
       const messageData = await getMessagesByChatroomID(chatroomKey);
@@ -144,13 +144,16 @@ function ChatIndex() {
     };
     fetchMessageData()
     .catch(console.error);
-  }, [chatroomKey, deletedConversation, receivedMessage]);
+  }, [chatroomKey, deletedConversation, addNewMessage]);
+
+
+  console.log('receivedmsg', receivedMessage);
+  console.log('addnewmessage', addNewMessage);
 
   //set participants based on chatroom clicked
   useEffect(() => {
     const fetchParticipantDataFromChatroomID = async (chatroomKey) => {
       const data = await getParticipantIDFromChatroomID (chatroomKey);
-      // console.log('participant data', data);
       setParticipantsInChatroom(data);
     };
 
@@ -181,20 +184,12 @@ function ChatIndex() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (messageText) {
-      console.log('participantID', userParticipantID);      
-      console.log('messageText', messageText);
-      console.log('timestamp', timestamp);
 
       addMessageToConversation(userParticipantID, messageText, timestamp);
-      setAddNewMessage(receivedMessage);
 
       const receiverID = participantsInChatroom.filter((item) => {
         return item.id !== userParticipantID;
       });
-      
-      console.log('participants', participantsInChatroom);
-      console.log('userParticipantsID', userParticipantID);
-      console.log('receiverID', receiverID);
 
       socket.current.emit('chatMessage', ({
         senderID: userID,
@@ -205,17 +200,9 @@ function ChatIndex() {
       console.log('no message');
     };
 
-    // //emit message to server
-    // socket.emit('chatMessage', message);
-
-    // //emit message back to frontend
-    // socket.on('chatMessage', chatMessage => {
-    //   setAddNewMessage(chatMessage);
-    // });
-
     //empty textbox
     setMessageText('');
-  }
+  };
 
   return (
     <>
