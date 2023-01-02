@@ -34,7 +34,8 @@ function ChatIndex() {
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState('');
   const [addNewMessage, setAddNewMessage] = useState(false);
-  const timestamp = new Date();
+  const [receivedMessage, setReceivedMessage] = useState(null);
+  const timestamp = Date.now();
   const bottomRef = useRef(null);
   //chatroom state
   const [chatroomKey, setChatroomKey] = useState('');
@@ -44,13 +45,11 @@ function ChatIndex() {
   const [deletedConversation, setDeletedConversation] = useState(false);
   //participants
   const [participantsInChatroom, setParticipantsInChatroom] = useState([]);
+  const [senderParticipantID, setSenderParticipantID] = useState(null);
   //friends
   const [onlineFriends, setOnlineFriends] = useState([]);
   //socket
   const socket = useRef();
-
-  // console.log('localstorage---', localStorage);
-
 
   /* ------ Conversation Modal ------ */
   //opening and closing new conversation modal
@@ -64,25 +63,28 @@ function ChatIndex() {
   const getNewConversation = () => {
     setNewConversation(boolean => !boolean);
   };
-  /* --------------------------------- */
-
+  
   const conversationDeleted = () => {
     setDeletedConversation(boolean => !boolean);
   };
-
+  
   const getChatroomKey = (key) => {
     setChatroomKey(key);
   };
 
+  /* --------------------------------- */
+
   /* ------ Socket Connection ------ */
-  // console.log('socket', socket.current);
 
   //run socket connection once only
   useEffect(() => {
     socket.current = io('ws://localhost:5000', {
       withCredentials: true,
     });
+
   }, []);
+
+  console.log('receivedmsg', receivedMessage);
 
   useEffect(() => {
     socket.current.emit('liveUsers', userID);
@@ -92,10 +94,7 @@ function ChatIndex() {
     })
   }, [userID]);
 
-  // useEffect(() => {
-  //   socket.current.
-  // })
-
+  console.log('participantsinchatroom', userParticipantID);
   console.log('onlineFriends----', onlineFriends);
 
   useEffect(() => {
@@ -108,7 +107,12 @@ function ChatIndex() {
     });
 
     socket.current.on('chatMessage', messageData => {
-      console.log('messageData', messageData);
+      console.log('messageData chatindex', messageData);
+      setReceivedMessage({
+        participantID: messageData.senderID,
+        messageText: messageData.text,
+        timestamp: Date.now()
+      });
     });
 
     return () => {
@@ -116,6 +120,8 @@ function ChatIndex() {
     };
   }, [socket]);
   /* ------ Socket End ------ */
+
+  // console.log('setRecievedMessage chatindex', receivedMessage);
 
   //load conversations
   useEffect(() => {
@@ -135,11 +141,10 @@ function ChatIndex() {
     const fetchMessageData = async () => {
       const messageData = await getMessagesByChatroomID(chatroomKey);
       setMessages(messageData);
-      setAddNewMessage(true);
     };
     fetchMessageData()
     .catch(console.error);
-  }, [chatroomKey, addNewMessage, deletedConversation]);
+  }, [chatroomKey, deletedConversation, receivedMessage]);
 
   //set participants based on chatroom clicked
   useEffect(() => {
@@ -176,15 +181,19 @@ function ChatIndex() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (messageText) {
-      // addMessageToConversation(participantID, messageText, timestamp);
-      // setAddNewMessage({participantID, messageText, timestamp});
+      console.log('participantID', userParticipantID);      
+      console.log('messageText', messageText);
+      console.log('timestamp', timestamp);
+
+      addMessageToConversation(userParticipantID, messageText, timestamp);
+      setAddNewMessage(receivedMessage);
 
       const receiverID = participantsInChatroom.filter((item) => {
         return item.id !== userParticipantID;
       });
-
+      
       console.log('participants', participantsInChatroom);
-      console.log('userParticipants', userParticipantID);
+      console.log('userParticipantsID', userParticipantID);
       console.log('receiverID', receiverID);
 
       socket.current.emit('chatMessage', ({

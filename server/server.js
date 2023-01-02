@@ -91,7 +91,7 @@ io.on("connection", (socket) => {
   // listen for chatMessage
   socket.on('chatMessage', ({senderID, receiverID, text}) => {
     const user = getUser(receiverID);
-    console.log(user);
+    console.log('user---', user);
     io.to(user.socketID).emit('chatMessage', {
       senderID,
       text
