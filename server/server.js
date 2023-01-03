@@ -61,6 +61,7 @@ const removeUser = (socketID) => {
 };
 
 const getUser = (participants) => {
+  // console.log('participants---', participants);
   const userData = users.find(user => participants.some(participant => participant.account_id === user.userID));
 
   return userData;
@@ -73,7 +74,6 @@ io.on("connection", (socket) => {
   
   socket.on('liveUsers', (userID) => {
     addUser(userID, socket.id);
-    // console.log('users----', users);
     io.emit('getUsers', users);
   });
 
@@ -92,7 +92,15 @@ io.on("connection", (socket) => {
   socket.on('chatMessage', ({senderID, receiverID, text}) => {
     const user = getUser(receiverID);
     console.log('user---', user);
+    console.log('user.socketid', user.socketID);
+    io.emit('chatMessage', {
+      receiverID,
+      senderID,
+      text
+    });
+    
     io.to(user.socketID).emit('chatMessage', {
+      receiverID,
       senderID,
       text
     });

@@ -161,8 +161,6 @@ const getMessageByChatroom = (async (req, res) => {
 const createMessage = (async (req,res) => {
   const {participant_id, message_text, sent_datetime} = req.body;
 
-  console.log(req.body);
-
   try {
     const newMessage = await client.query(queries.createMessage, [participant_id, message_text, sent_datetime]);
     if (newMessage) {

@@ -82,13 +82,16 @@ function ChatIndex() {
       withCredentials: true,
     });
 
-  }, []);
+    socket.current.on('chatMessage', messageData => {
+      setReceivedMessage({
+        message_text: messageData.text,
+        // chatroom_id: chatroomKey,
+        participantID: messageData.receiverID[0].id,
+        sent_datetime: timestamp.toLocaleDateString()
+      });
+    });
 
-  useEffect(() => {
-    if (receivedMessage) {
-      setMessages([...messages, receivedMessage]);
-    };
-  }, [receivedMessage]);
+  }, []);
 
   useEffect(() => {
     socket.current.emit('liveUsers', userID);
@@ -98,29 +101,18 @@ function ChatIndex() {
     })
   }, [userID]);
 
-  // console.log('participantsinchatroom', userParticipantID);
-  // console.log('onlineFriends----', onlineFriends);
-
   useEffect(() => {
     socket.current.on('connection', () => {
       console.log('working');
     });
 
-    socket.current.on('chatMessage', messageData => {
-      console.log('messageData chatindex', messageData);
-      setReceivedMessage({
-        participantID: userParticipantID,
-        messageText: messageData.text,
-        sent_datetime: timestamp.toLocaleDateString()
-      });
-    });
-
     return () => {
       socket.current.off('chatMessage');
     };
-  }, [socket, receivedMessage]);
+  }, [socket]);
 
-  console.log('setUserParticipantID', userParticipantID);
+
+  // console.log('setUserParticipantID', userParticipantID);
   /* ------ Socket End ------ */
 
   //load conversations
@@ -144,11 +136,20 @@ function ChatIndex() {
     };
     fetchMessageData()
     .catch(console.error);
-  }, [chatroomKey, deletedConversation, addNewMessage]);
+
+    return () => {}
+
+  }, [chatroomKey, deletedConversation, addNewMessage, receivedMessage]);
+
+  // useEffect(() => {
+  //   if (receivedMessage) {
+  //     setMessages((prev) => [...prev, receivedMessage]);
+  //     console.log('received');
+  //   };
+  // }, [receivedMessage]);
 
 
   console.log('receivedmsg', receivedMessage);
-  console.log('addnewmessage', addNewMessage);
 
   //set participants based on chatroom clicked
   useEffect(() => {
@@ -170,6 +171,7 @@ function ChatIndex() {
 
     fetchParticipantDataFromChatroomID(chatroomKey);
     fetchUserParticipantIDFromChatroomID(chatroomKey);
+    return () => {};
   }, [chatroomKey]);
 
   // console.log('user participant id', userParticipantID);
@@ -186,6 +188,8 @@ function ChatIndex() {
     if (messageText) {
 
       addMessageToConversation(userParticipantID, messageText, timestamp);
+
+      setAddNewMessage(true);
 
       const receiverID = participantsInChatroom.filter((item) => {
         return item.id !== userParticipantID;
