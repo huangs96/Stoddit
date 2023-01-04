@@ -158,15 +158,33 @@ const getMessageByChatroom = (async (req, res) => {
   };
 });
 
-const createMessage = (async (req,res) => {
-  const {participant_id, message_text, sent_datetime} = req.body;
+//function creating a function
+const createMessage = (io, getUser) => (async (req,res) => {
+  const {participant_id, message_text, sent_datetime, receiverID} = req.body;
+
+  console.log('req--', req.body);
 
   try {
     const newMessage = await client.query(queries.createMessage, [participant_id, message_text, sent_datetime]);
+    
     if (newMessage) {
+
+      const user = getUser(receiverID);
+      // const sender = getUser(senderID);
+      // console.log('sender----', senderID);
+      console.log('user---', user);
+      console.log('user.socketid', user.socketID);
+  
+      io.to(user.socketID).emit('chatMessage', {
+        receiverID,
+        senderID: participant_id,
+        text: message_text
+      });
+
       return res.status(200).json('Message successfully sent');
     }
   } catch (err) {
+    console.log(err);
     return res.status(400).json(err);
   };
 });

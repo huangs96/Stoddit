@@ -82,15 +82,21 @@ function ChatIndex() {
       withCredentials: true,
     });
 
-    socket.current.on('chatMessage', messageData => {
-      setReceivedMessage({
-        message_text: messageData.text,
-        // chatroom_id: chatroomKey,
-        participantID: messageData.receiverID[0].id,
-        sent_datetime: timestamp.toLocaleDateString()
-      });
+    socket.current.on('connection', () => {
+      console.log('working');
     });
 
+    socket.current.on('chatMessage', messageData => {
+      setMessages(msgData => [...msgData, {
+        message_text: messageData.text,
+        participantID: messageData.receiverID[0].id,
+        sent_datetime: timestamp.toLocaleDateString()
+      }]);
+    });
+
+    return () => {
+      socket.current.off('chatMessage');
+    };
   }, []);
 
   useEffect(() => {
@@ -101,17 +107,6 @@ function ChatIndex() {
     })
   }, [userID]);
 
-  useEffect(() => {
-    socket.current.on('connection', () => {
-      console.log('working');
-    });
-
-    return () => {
-      socket.current.off('chatMessage');
-    };
-  }, [socket]);
-
-
   // console.log('setUserParticipantID', userParticipantID);
   /* ------ Socket End ------ */
 
@@ -120,12 +115,10 @@ function ChatIndex() {
     const getChatroomData = async () => {
       const chatroomData = await getChatroomByUserID(userID);
       setConversations(chatroomData);
-      setNewConversation(false);
     };
     getChatroomData();
 
-    return () => {}
-  }, [newConversation, deletedConversation]);
+  }, [conversations.length]);
 
 
   //second useEffect to get messages 
@@ -137,19 +130,7 @@ function ChatIndex() {
     fetchMessageData()
     .catch(console.error);
 
-    return () => {}
-
-  }, [chatroomKey, deletedConversation, addNewMessage, receivedMessage]);
-
-  // useEffect(() => {
-  //   if (receivedMessage) {
-  //     setMessages((prev) => [...prev, receivedMessage]);
-  //     console.log('received');
-  //   };
-  // }, [receivedMessage]);
-
-
-  console.log('receivedmsg', receivedMessage);
+  }, [chatroomKey]);
 
   //set participants based on chatroom clicked
   useEffect(() => {
@@ -185,21 +166,31 @@ function ChatIndex() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('sent');
     if (messageText) {
-
-      addMessageToConversation(userParticipantID, messageText, timestamp);
-
-      setAddNewMessage(true);
 
       const receiverID = participantsInChatroom.filter((item) => {
         return item.id !== userParticipantID;
       });
 
-      socket.current.emit('chatMessage', ({
-        senderID: userID,
-        receiverID: receiverID,
-        text: messageText
-      }));
+      addMessageToConversation(userParticipantID, messageText, timestamp, receiverID);
+
+      setMessages(msgData => [...msgData, {
+        account_id: userID,
+        message_text: messageText,
+        ownMessage: true,
+        participant_id: userParticipantID,
+        sent_datetime: timestamp.toDateString()
+      }]);
+
+      setAddNewMessage(true);
+
+
+      // socket.current.emit('chatMessage', ({
+      //   senderID: userID,
+      //   receiverID: receiverID,
+      //   text: messageText
+      // }));
     } else {
       console.log('no message');
     };
@@ -243,7 +234,6 @@ function ChatIndex() {
             userID={userID}
             open={open}
             onClose={handleClose}
-            getNewConversation={getNewConversation}
           />
         </div>
       </div>

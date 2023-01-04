@@ -90,20 +90,6 @@ io.on("connection", (socket) => {
 
   // listen for chatMessage
   socket.on('chatMessage', ({senderID, receiverID, text}) => {
-    const user = getUser(receiverID);
-    console.log('user---', user);
-    console.log('user.socketid', user.socketID);
-    io.emit('chatMessage', {
-      receiverID,
-      senderID,
-      text
-    });
-    
-    io.to(user.socketID).emit('chatMessage', {
-      receiverID,
-      senderID,
-      text
-    });
   });
 });
 /* --------------------------------- */
@@ -117,7 +103,7 @@ app.use("/login", authRoutes);
 /* --------------------------------- */
 
 /* ------ Chat Routes ------ */
-app.use("/chat", chatRoutes);
+app.use("/chat", chatRoutes(io, getUser));
 /* --------------------------------- */
 
 /* ------ Setting Routes ------ */
