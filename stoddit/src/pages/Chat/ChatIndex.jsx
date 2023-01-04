@@ -34,7 +34,6 @@ function ChatIndex() {
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState('');
   const [addNewMessage, setAddNewMessage] = useState(false);
-  const [receivedMessage, setReceivedMessage] = useState(null);
   const timestamp = new Date();
   const bottomRef = useRef(null);
   //chatroom state
@@ -60,6 +59,7 @@ function ChatIndex() {
   const handleClose = () => {
     setOpen(false);
   };
+
   const getNewConversation = () => {
     setNewConversation(boolean => !boolean);
   };
@@ -87,6 +87,7 @@ function ChatIndex() {
     });
 
     socket.current.on('chatMessage', messageData => {
+      console.log('messagedata', messageData);
       setMessages(msgData => [...msgData, {
         message_text: messageData.text,
         participantID: messageData.receiverID[0].id,
@@ -117,8 +118,9 @@ function ChatIndex() {
       setConversations(chatroomData);
     };
     getChatroomData();
+    console.log('conversations length', conversations.length);
 
-  }, [conversations.length]);
+  }, [conversations.length, deletedConversation, newConversation]);
 
 
   //second useEffect to get messages 
@@ -184,13 +186,6 @@ function ChatIndex() {
       }]);
 
       setAddNewMessage(true);
-
-
-      // socket.current.emit('chatMessage', ({
-      //   senderID: userID,
-      //   receiverID: receiverID,
-      //   text: messageText
-      // }));
     } else {
       console.log('no message');
     };
@@ -234,6 +229,7 @@ function ChatIndex() {
             userID={userID}
             open={open}
             onClose={handleClose}
+            getNewConversation={getNewConversation}
           />
         </div>
       </div>

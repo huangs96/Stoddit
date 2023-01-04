@@ -102,7 +102,7 @@ function NewConversation(props) {
 
     createNewChatroomWithParticipants(startConversationData);
     handleClose();
-  }
+  };
 
   return (
     <Dialog onClose={handleClose} open={open}>
