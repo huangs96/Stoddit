@@ -63,7 +63,6 @@ const removeUser = (socketID) => {
 const getUser = (participants) => {
   // console.log('participants---', participants);
   const userData = users.find(user => participants.some(participant => participant.account_id === user.userID));
-
   return userData;
 };
 
@@ -110,9 +109,6 @@ app.use("/chat", chatRoutes(io, getUser));
 //User
 app.use("/users", userRoutes);
 /* --------------------------------- */
-
-
-
 
 const port = process.env.PORT || 5000;
 

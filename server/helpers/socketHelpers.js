@@ -21,3 +21,9 @@ const getUser = (participants) => {
 
   return userData;
 };
+
+module.exports = {
+  addUser,
+  removeUser,
+  getUser
+}

@@ -1,6 +1,7 @@
 require('dotenv').config();
 const client = require('../config/db.config');
 const queries = require('../queries/chat.queries');
+// const socketHelper = require('../helpers/socketHelpers');
 
 /* ------ Chatroom ------ */
 const getChatroom = (async (req, res) => {
@@ -140,6 +141,7 @@ const deleteParticipantFromChatroom = (async (req, res) => {
   try {
     const leaveChatroom = await client.query(queries.deleteParticipantFromChatroom, [deleteDate, participant_id]);
     if(leaveChatroom) {
+
       res.status(200).send('Chatroom has been deleted');
     };
   } catch (err) {
@@ -183,7 +185,6 @@ const createMessage = (io, getUser) => (async (req,res) => {
     const newMessage = await client.query(queries.createMessage, [participant_id, message_text, sent_datetime]);
     
     if (newMessage) {
-
       const user = getUser(receiverID);
       // const sender = getUser(senderID);
       // console.log('sender----', senderID);
