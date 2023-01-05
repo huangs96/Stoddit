@@ -1,12 +1,11 @@
 import './Message.css';
 import React, { useState, useRef } from 'react';
 
-function Message({userID, messages, addNewMessage, userIMG}) {
-  const [waitData, setWaitData] = useState(false);
+function Message({userID, messages}) {
   const prevMessage = useRef('');
   const bottomRef = useRef(null);
 
-  console.log('messages---messages', messages);
+  // console.log('messages---messages', messages);
 
   return (
     <>
@@ -42,7 +41,12 @@ function Message({userID, messages, addNewMessage, userIMG}) {
             </div>
           )
         })
-      } 
+      }
+      {/* {userHasLeft && */}
+        <div className="leftMessage">
+          <p3>User has left the chat</p3>
+        </div>
+      {/* } */}
       {/* <div ref={bottomRef} /> */}
     </div>
     </>

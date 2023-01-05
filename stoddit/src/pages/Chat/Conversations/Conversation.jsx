@@ -12,6 +12,7 @@ function Conversation({getChatroomKey, conversation, userParticipantID, conversa
 
   const deleteConversation = async () => {
     await deleteParticipantFromChatroom(userParticipantID);
+    console.log('user has left the chat');
     conversationDeleted();
   };
 

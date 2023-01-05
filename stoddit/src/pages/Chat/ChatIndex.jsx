@@ -42,6 +42,7 @@ function ChatIndex() {
   const [newConversation, setNewConversation] = useState(false);
   //deleting chatroom
   const [deletedConversation, setDeletedConversation] = useState(false);
+  const [userHasLeftConversation, setUserHasLeftConversation] = useState(false);
   //participants
   const [participantsInChatroom, setParticipantsInChatroom] = useState([]);
   const [senderParticipantID, setSenderParticipantID] = useState(null);
@@ -66,6 +67,7 @@ function ChatIndex() {
   
   const conversationDeleted = () => {
     setDeletedConversation(boolean => !boolean);
+    setUserHasLeftConversation(boolean => boolean);
   };
   
   const getChatroomKey = (key) => {
@@ -132,7 +134,7 @@ function ChatIndex() {
     fetchMessageData()
     .catch(console.error);
 
-  }, [chatroomKey]);
+  }, [chatroomKey, userHasLeftConversation]);
 
   //set participants based on chatroom clicked
   useEffect(() => {
@@ -241,6 +243,7 @@ function ChatIndex() {
               userID={userID} 
               messages={messages}
               addNewMessage={addNewMessage}
+              userHasLeft={userHasLeftConversation}
             />
           </div>
           <form onSubmit={handleSubmit}>
