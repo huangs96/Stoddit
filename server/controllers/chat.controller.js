@@ -131,6 +131,21 @@ const getParticipantFromAccountID = (async (req, res) => {
     return res.status(400).send(err);
   };
 });
+
+const deleteParticipantFromChatroom = (async (req, res) => {
+  const newDate = new Date();
+  const deleteDate = newDate;
+  const participant_id = parseInt(req.params.id);
+  
+  try {
+    const leaveChatroom = await client.query(queries.deleteParticipantFromChatroom, [deleteDate, participant_id]);
+    if(leaveChatroom) {
+      res.status(200).send('Chatroom has been deleted');
+    };
+  } catch (err) {
+    return res.status(400).send(err);
+  };
+});
 /* -------------------------------- */
 
 
@@ -241,6 +256,7 @@ module.exports = {
   getParticipant,
   getParticipantFromChatroomID,
   getParticipantFromAccountID,
+  deleteParticipantFromChatroom,
   //message
   getMessage,
   getMessageByChatroom,

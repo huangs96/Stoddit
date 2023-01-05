@@ -1,17 +1,17 @@
 import './Conversation.css';
 import React, { useEffect, useState } from 'react';
-import { getChatroomByUserID, deleteChatroomByID } from '../../../services/chat.service';
+import { getChatroomByUserID, deleteParticipantFromChatroom} from '../../../services/chat.service';
 import { Button, Modal, Typography, Box } from '@mui/material';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-function Conversation({getChatroomKey, conversation, conversationDeleted}) {
+function Conversation({getChatroomKey, conversation, userParticipantID, conversationDeleted}) {
 
   const handleConversation = () => {
     getChatroomKey(conversation.chatroom_id);
   };
 
   const deleteConversation = async () => {
-    await deleteChatroomByID(conversation.chatroom_id);
+    await deleteParticipantFromChatroom(userParticipantID);
     conversationDeleted();
   };
 

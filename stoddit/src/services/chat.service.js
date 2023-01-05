@@ -51,8 +51,8 @@ const deleteChatroomByID = async (id) => {
       return response;
     }
     throw response;
-  })
-}
+  });
+};
 /* -------------------------------- */
 
 
@@ -86,6 +86,25 @@ const getParticipantIDFromAccountID = async (userID) => {
   .then(response => {
     if(response.ok) {
       return response.json();
+    }
+    throw response;
+  });
+};
+
+const deleteParticipantFromChatroom = async (participant_id) => {
+  return fetch(`http://localhost:5000/chat/leavechatroom/${participant_id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    mode: 'cors',
+    credentials: 'include',
+    body: JSON.stringify()
+  })
+  .then(response => {
+    if (response.ok) {
+      return response;
     }
     throw response;
   });
@@ -189,6 +208,7 @@ module.exports = {
   //participant
   getParticipantIDFromChatroomID,
   getParticipantIDFromAccountID,
+  deleteParticipantFromChatroom,
   //message
   getMessagesByChatroomID,
   sendMessage,

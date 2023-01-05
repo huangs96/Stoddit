@@ -215,6 +215,7 @@ function ChatIndex() {
               <Conversation 
                 getChatroomKey={getChatroomKey} 
                 conversation={convo}
+                userParticipantID={userParticipantID}
                 conversationDeleted={conversationDeleted}
               />
             ))
