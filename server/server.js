@@ -74,7 +74,7 @@ io.on("connection", (socket) => {
   socket.on('liveUsers', (userID) => {
     addUser(userID, socket.id);
     io.emit('getUsers', users);
-    io.emit('getUserMessage', `${userID} has joined!`)
+    io.emit('getUserMessage', `${userID} has joined!`);
   });
 
   //runs when client disconnects

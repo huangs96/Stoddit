@@ -46,13 +46,11 @@ function ChatIndex() {
 
   /* ------ Socket Connection ------ */
   //run socket connection once only
+
   useEffect(() => {
+
     socket.current = io('ws://localhost:5000', {
       withCredentials: true,
-    });
-
-    socket.current.on('connection', () => {
-      console.log('working');
     });
 
     socket.current.on('getUsers', users => {
@@ -80,7 +78,7 @@ function ChatIndex() {
       socket.current.off('getUsers');
       socket.current.off('getUserMessage');
     };
-  }, [socket]);
+  }, []);
 
   useEffect(() => {
     socket.current.emit('liveUsers', userID);
