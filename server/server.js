@@ -74,21 +74,14 @@ io.on("connection", (socket) => {
   socket.on('liveUsers', (userID) => {
     addUser(userID, socket.id);
     io.emit('getUsers', users);
+    io.emit('getUserMessage', `${userID} has joined!`)
   });
 
-
-  socket.emit("message", "welcome to Stoddit");
-  //broadcast when user connects
-  socket.broadcast.emit("message", "A user has joined");
   //runs when client disconnects
   socket.on("disconnect", () => {
     removeUser(socket.id);
     io.emit('getUsers', users);
     io.emit('getUsers', 'User has left the chat.');
-  });
-
-  // listen for chatMessage
-  socket.on('chatMessage', ({senderID, receiverID, text}) => {
   });
 });
 /* --------------------------------- */

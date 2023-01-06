@@ -1,5 +1,5 @@
 import './Message.css';
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 
 function Message({userID, messages}) {
   const prevMessage = useRef('');

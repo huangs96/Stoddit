@@ -2,10 +2,8 @@ import './ChatIndex.css';
 import React, { 
   useState, 
   useEffect, 
-  useRef, 
-  useContext 
+  useRef
 } from 'react';
-import UserContext from '../../contexts/userContext';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
@@ -13,16 +11,12 @@ import Conversation from './Conversations/Conversation';
 import NewConversation from './Conversations/newConversation'
 import Message from './Messages/Message';
 import FriendsOnline from './ChatOnline/FriendsOnline';
-import { getUser } from '../../services/user.service';
 import { addMessageToConversation } from '../../contexts/chatContext';
 import { 
   getChatroomByUserID,
-  deleteChatroomByID,
   getParticipantIDFromChatroomID,
-  getParticipantIDFromAccountID, 
   getMessagesByChatroomID,
 } from '../../services/chat.service';
-import { SocketProvider } from '../../contexts/socketProvider';
 import { io } from 'socket.io-client';
 
 function ChatIndex() {
@@ -45,13 +39,57 @@ function ChatIndex() {
   const [userHasLeftConversation, setUserHasLeftConversation] = useState(false);
   //participants
   const [participantsInChatroom, setParticipantsInChatroom] = useState([]);
-  const [senderParticipantID, setSenderParticipantID] = useState(null);
   //friends
   const [onlineFriends, setOnlineFriends] = useState([]);
   //socket
   const socket = useRef();
 
-  /* ------ Conversation Modal ------ */
+  /* ------ Socket Connection ------ */
+  //run socket connection once only
+  useEffect(() => {
+    socket.current = io('ws://localhost:5000', {
+      withCredentials: true,
+    });
+
+    socket.current.on('connection', () => {
+      console.log('working');
+    });
+
+    socket.current.on('getUsers', users => {
+      setOnlineFriends(users);
+    });
+
+    // socket.current.on('getUserMessage', message => {
+    //   console.log('messageOnClient', message);
+    // });
+
+    socket.current.on('chatMessage', messageData => {
+      console.log('messagedata', messageData);
+      setMessages(msgData => [...msgData, {
+        message_text: messageData.text,
+        participantID: messageData.receiverID[0].id,
+        sent_datetime: timestamp.toLocaleDateString()
+      }]);
+    });
+
+    console.log('ran');
+    console.log('socket', socket);
+
+    return () => {
+      socket.current.off('chatMessage');
+      socket.current.off('getUsers');
+      socket.current.off('getUserMessage');
+    };
+  }, [socket.current]);
+
+  useEffect(() => {
+    socket.current.emit('liveUsers', userID);
+  }, [userID]);
+
+  console.log('online friends', onlineFriends);
+  /* ------ Socket End ------ */
+
+    /* ------ Conversation Modal ------ */
   //opening and closing new conversation modal
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -73,45 +111,7 @@ function ChatIndex() {
   const getChatroomKey = (key) => {
     setChatroomKey(key);
   };
-
   /* --------------------------------- */
-
-  /* ------ Socket Connection ------ */
-
-  //run socket connection once only
-  useEffect(() => {
-    socket.current = io('ws://localhost:5000', {
-      withCredentials: true,
-    });
-
-    socket.current.on('connection', () => {
-      console.log('working');
-    });
-
-    socket.current.on('chatMessage', messageData => {
-      console.log('messagedata', messageData);
-      setMessages(msgData => [...msgData, {
-        message_text: messageData.text,
-        participantID: messageData.receiverID[0].id,
-        sent_datetime: timestamp.toLocaleDateString()
-      }]);
-    });
-
-    return () => {
-      socket.current.off('chatMessage');
-    };
-  }, []);
-
-  useEffect(() => {
-    socket.current.emit('liveUsers', userID);
-    socket.current.on('getUsers', users => {
-      // console.log('users chatIndex', users);
-      setOnlineFriends(users);
-    })
-  }, [userID]);
-
-  // console.log('setUserParticipantID', userParticipantID);
-  /* ------ Socket End ------ */
 
   //load conversations
   useEffect(() => {
@@ -120,9 +120,10 @@ function ChatIndex() {
       setConversations(chatroomData);
     };
     getChatroomData();
-    console.log('conversations length', conversations.length);
 
-  }, [conversations.length, deletedConversation, newConversation]);
+  }, [deletedConversation, newConversation]);
+
+  console.log(messages);
 
 
   //second useEffect to get messages 
@@ -159,14 +160,10 @@ function ChatIndex() {
     return () => {};
   }, [chatroomKey]);
 
-  // console.log('user participant id', userParticipantID);
-
   const onChangeMessage = (e) => {
     const message = e.target.value;
     setMessageText(message);
   };
-
-  // console.log(conversations);
 
   const handleSubmit = (e) => {
     e.preventDefault();
