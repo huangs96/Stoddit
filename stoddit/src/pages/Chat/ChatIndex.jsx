@@ -59,9 +59,9 @@ function ChatIndex() {
       setOnlineFriends(users);
     });
 
-    // socket.current.on('getUserMessage', message => {
-    //   console.log('messageOnClient', message);
-    // });
+    socket.current.on('getUserMessage', message => {
+      console.log('messageOnClient', message);
+    });
 
     socket.current.on('chatMessage', messageData => {
       console.log('messagedata', messageData);
@@ -80,7 +80,7 @@ function ChatIndex() {
       socket.current.off('getUsers');
       socket.current.off('getUserMessage');
     };
-  }, [socket.current]);
+  }, [socket]);
 
   useEffect(() => {
     socket.current.emit('liveUsers', userID);
