@@ -106,11 +106,15 @@ function ChatIndex() {
   const getNewConversation = () => {
     setNewConversation(boolean => !boolean);
   };
+
+  console.log('newconversastion', newConversation);
   
   const conversationDeleted = () => {
-    setDeletedConversation(boolean => !boolean);
-    setUserHasLeftConversation(boolean => boolean);
+    // setDeletedConversation(boolean => !boolean);
+    setUserHasLeftConversation(boolean => !boolean);
   };
+
+  console.log('userParticipantID', userParticipantID);
   
   const getChatroomKey = (key) => {
     setChatroomKey(key);
@@ -125,15 +129,14 @@ function ChatIndex() {
     };
     getChatroomData();
 
-  }, [deletedConversation, newConversation]);
-
-  console.log(messages);
+  }, [userHasLeftConversation, newConversation]);
 
 
   //second useEffect to get messages 
   useEffect(() => {
     const fetchMessageData = async () => {
       const messageData = await getMessagesByChatroomID(chatroomKey);
+      console.log(messageData);
       setMessages(messageData);
     };
     fetchMessageData()
