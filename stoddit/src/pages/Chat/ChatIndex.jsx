@@ -77,11 +77,17 @@ function ChatIndex() {
       socket.current.off('chatMessage');
       socket.current.off('getUsers');
       socket.current.off('getUserMessage');
+      console.log('sockets returned');
     };
   }, []);
 
   useEffect(() => {
     socket.current.emit('liveUsers', userID);
+
+    return () => {
+      socket.current.off('liveUsers');
+      console.log('liveusers returned');
+    }
   }, [userID]);
 
   console.log('online friends', onlineFriends);
