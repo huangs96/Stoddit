@@ -17,7 +17,7 @@ const deleteParticipantFromChatroom = "UPDATE participant SET deleted_at = $1 WH
 
 /* ------ Message ------ */
 const getMessage = "SELECT * FROM message";
-const getMessagesByChatroom = "SELECT account.username, message.message_text, participant.chatroom_id, message.participant_id, message.sent_datetime, participant.account_id, chatroom.deleted_at FROM message INNER JOIN participant ON message.participant_id=participant.id INNER JOIN chatroom ON participant.chatroom_id = chatroom.id INNER JOIN account ON participant.account_id=account.id WHERE chatroom_id = $1 AND chatroom.deleted_at IS NULL";
+const getMessagesByChatroom = "SELECT message.message_text, participant.chatroom_id, message.participant_id, message.sent_datetime, participant.account_id, chatroom.deleted_at, account.username FROM message INNER JOIN participant ON message.participant_id=participant.id INNER JOIN chatroom ON participant.chatroom_id = chatroom.id INNER JOIN account ON participant.account_id=account.id WHERE chatroom_id = $1 AND chatroom.deleted_at IS NULL ORDER BY message";
 const createMessage = "INSERT INTO message (participant_id, message_text, sent_datetime) VALUES ($1, $2, $3)";
 /* -------------------------------- */
 

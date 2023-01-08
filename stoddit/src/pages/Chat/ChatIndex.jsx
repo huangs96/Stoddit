@@ -35,7 +35,7 @@ function ChatIndex() {
   const [conversations, setConversations] = useState([]);
   const [newConversation, setNewConversation] = useState(false);
   //deleting chatroom
-  const [deletedConversation, setDeletedConversation] = useState(false);
+  // const [deletedConversation, setDeletedConversation] = useState(false);
   const [userHasLeftConversation, setUserHasLeftConversation] = useState(false);
   //participants
   const [participantsInChatroom, setParticipantsInChatroom] = useState([]);
@@ -62,6 +62,7 @@ function ChatIndex() {
     });
 
     socket.current.on('chatMessage', messageData => {
+      console.log(messageData);
       console.log('messagedata', messageData);
       setMessages(msgData => [...msgData, {
         message_text: messageData.text,
@@ -106,8 +107,6 @@ function ChatIndex() {
   const getNewConversation = () => {
     setNewConversation(boolean => !boolean);
   };
-
-  console.log('newconversastion', newConversation);
   
   const conversationDeleted = () => {
     // setDeletedConversation(boolean => !boolean);
@@ -123,32 +122,60 @@ function ChatIndex() {
 
   //load conversations
   useEffect(() => {
+    let isLoaded = true;
     const getChatroomData = async () => {
       const chatroomData = await getChatroomByUserID(userID);
-      setConversations(chatroomData);
+      if (isLoaded) {
+        setConversations(chatroomData);
+      };
     };
-    getChatroomData();
 
-  }, [userHasLeftConversation, newConversation]);
-
-
-  //second useEffect to get messages 
-  useEffect(() => {
     const fetchMessageData = async () => {
       const messageData = await getMessagesByChatroomID(chatroomKey);
-      console.log(messageData);
-      setMessages(messageData);
+      console.log('messages messageData', messageData);
+      if (isLoaded) {
+        setMessages(messageData);
+      };
     };
+
+    getChatroomData()
     fetchMessageData()
     .catch(console.error);
 
-  }, [chatroomKey, userHasLeftConversation]);
+    return () => {
+      isLoaded = false;
+    }
+
+  }, [addNewMessage, messages.length, chatroomKey]);
+
+
+  //second useEffect to get messages 
+  // useEffect(() => {
+  //   let isLoaded = true;
+  //   const fetchMessageData = async () => {
+  //     const messageData = await getMessagesByChatroomID(chatroomKey);
+  //     console.log('messages messageData', messageData);
+  //     if (isLoaded) {
+  //       setMessages(messageData);
+  //     };
+  //   };
+  //   fetchMessageData()
+  //   .catch(console.error);
+
+  //   return () => {
+  //     isLoaded = false;
+  //   };
+
+  // }, []);
 
   //set participants based on chatroom clicked
   useEffect(() => {
+    let dataLoaded = true;
     const fetchParticipantDataFromChatroomID = async (chatroomKey) => {
       const data = await getParticipantIDFromChatroomID (chatroomKey);
-      setParticipantsInChatroom(data);
+      if(dataLoaded) {
+        setParticipantsInChatroom(data);
+      };
     };
 
     //get participant id of user
@@ -156,7 +183,7 @@ function ChatIndex() {
       const data = await getParticipantIDFromChatroomID(chatroomKey);
       data.map(values => {
         //if current user id matches account_id in chatroom, set the participant id
-        if(userID === values.account_id) {
+        if(userID === values.account_id && dataLoaded) {
           setUserParticipantID(values.id);
         };
       });
@@ -164,7 +191,9 @@ function ChatIndex() {
 
     fetchParticipantDataFromChatroomID(chatroomKey);
     fetchUserParticipantIDFromChatroomID(chatroomKey);
-    return () => {};
+    return () => {
+      dataLoaded = false;
+    };
   }, [chatroomKey]);
 
   const onChangeMessage = (e) => {
