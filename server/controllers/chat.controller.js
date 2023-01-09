@@ -136,13 +136,14 @@ const getParticipantFromAccountID = (async (req, res) => {
 const deleteParticipantFromChatroom = (async (req, res) => {
   const newDate = new Date();
   const deleteDate = newDate;
-  const participant_id = parseInt(req.params.id);
+  console.log(req.body);
+  const account_ID = req.body.userID;
+  const chatroom_ID = req.body.chatroomID;
   
   try {
-    const leaveChatroom = await client.query(queries.deleteParticipantFromChatroom, [deleteDate, participant_id]);
+    const leaveChatroom = await client.query(queries.deleteParticipantFromChatroom, [deleteDate, account_ID, chatroom_ID]);
     if(leaveChatroom) {
-
-      res.status(200).send('Chatroom has been deleted');
+      res.status(200).json('Chatroom has been deleted');
     };
   } catch (err) {
     return res.status(400).send(err);
@@ -178,8 +179,6 @@ const getMessageByChatroom = (async (req, res) => {
 //function creating a function
 const createMessage = (io, getUser) => (async (req,res) => {
   const {participant_id, message_text, sent_datetime, receiverID} = req.body;
-
-  console.log('req--', req.body);
 
   try {
     const newMessage = await client.query(queries.createMessage, [participant_id, message_text, sent_datetime]);

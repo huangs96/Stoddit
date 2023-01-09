@@ -91,23 +91,20 @@ const getParticipantIDFromAccountID = async (userID) => {
   });
 };
 
-const deleteParticipantFromChatroom = async (participant_id) => {
-  return fetch(`http://localhost:5000/chat/leavechatroom/${participant_id}`, {
-    method: 'DELETE',
+const deleteParticipantFromChatroom = async (participantData) => {
+  const res = await fetch('http://localhost:5000/chat/leavechatroom', {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     },
     mode: 'cors',
     credentials: 'include',
-    body: JSON.stringify()
+    body: JSON.stringify(participantData)
   })
-  .then(response => {
-    if (response.ok) {
-      return response;
-    }
-    throw response;
-  });
+  .then(res => res.json());
+  console.log('res', res);
+  return res;
 };
 /* -------------------------------- */
 

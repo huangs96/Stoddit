@@ -6,12 +6,13 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 function Conversation({conversation, userParticipantID, conversationDeleted}) {
 
-  // const handleConversation = () => {
-  //   getChatroomKey(conversation.chatroom_id);
-  // };
-
   const deleteConversation = async () => {
-    await deleteParticipantFromChatroom(userParticipantID);
+    const participantData = {
+      'userID': conversation.account_id,
+      'chatroomID': conversation.chatroom_id
+    };
+
+    await deleteParticipantFromChatroom(participantData);
     console.log('user has left the chat');
     conversationDeleted();
   };

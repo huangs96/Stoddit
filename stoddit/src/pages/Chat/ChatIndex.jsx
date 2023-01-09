@@ -70,7 +70,6 @@ function ChatIndex() {
       }]);
     });
 
-    console.log('ran');
     console.log('socket', socket);
 
     return () => {
@@ -134,8 +133,8 @@ function ChatIndex() {
 
     return () => {
       isLoaded = false;
-    }
-
+    };
+    
   }, []);
 
   useEffect(() => {
@@ -171,8 +170,6 @@ function ChatIndex() {
       const data = await getMessagesByChatroomID(key);
       setMessages(data);
     };
-    console.log('selectConversations', messages);
-    console.log('key', key);
   };
 
   const handleSubmit = (e) => {
@@ -219,7 +216,11 @@ function ChatIndex() {
           </div>
           {
             conversations.map((convo) => (
-              <div onClick={()=> selectConversation(convo.chatroom_id)}>
+              <div 
+                onClick={() => {
+                  selectConversation(convo.chatroom_id);                
+                }}
+              >
                 <Conversation 
                   conversation={convo}
                   userParticipantID={userParticipantID}
