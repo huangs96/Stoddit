@@ -13,6 +13,7 @@ const createNewChatroomWithParticipants = async (data) => {
   console.log('data', chatroomBody);
   await createNewChatroom(chatroomBody);
 };
+
 /* -------------------------------- */
 
 /* ------ Participant ------ */

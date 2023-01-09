@@ -4,11 +4,11 @@ import { getChatroomByUserID, deleteParticipantFromChatroom} from '../../../serv
 import { Button, Modal, Typography, Box } from '@mui/material';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-function Conversation({getChatroomKey, conversation, userParticipantID, conversationDeleted}) {
+function Conversation({conversation, userParticipantID, conversationDeleted}) {
 
-  const handleConversation = () => {
-    getChatroomKey(conversation.chatroom_id);
-  };
+  // const handleConversation = () => {
+  //   getChatroomKey(conversation.chatroom_id);
+  // };
 
   const deleteConversation = async () => {
     await deleteParticipantFromChatroom(userParticipantID);
@@ -21,7 +21,7 @@ function Conversation({getChatroomKey, conversation, userParticipantID, conversa
       <div className="conversationContainer">
         <div
           className="conversation"
-          onClick={handleConversation}
+          // onClick={handleConversation}
         >
           <img 
               className="conversationImg" 
@@ -30,7 +30,6 @@ function Conversation({getChatroomKey, conversation, userParticipantID, conversa
             />
             <span 
               className="conversationName" 
-              // key={conversation.length}
             >
               {conversation.name}
             </span>

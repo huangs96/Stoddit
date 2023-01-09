@@ -30,7 +30,7 @@ function ChatIndex() {
   const timestamp = new Date();
   const bottomRef = useRef(null);
   //chatroom state
-  let chatroomKey = 0;
+  const [chatroomKey, setChatroomKey] = useState(null);
   const [conversations, setConversations] = useState([]);
   const [newConversation, setNewConversation] = useState(false);
   //deleting chatroom
@@ -90,7 +90,6 @@ function ChatIndex() {
     }
   }, [userID]);
 
-  console.log('online friends', onlineFriends);
   /* ------ Socket End ------ */
 
     /* ------ Conversation Modal ------ */
@@ -111,32 +110,17 @@ function ChatIndex() {
     // setDeletedConversation(boolean => !boolean);
     setUserHasLeftConversation(boolean => !boolean);
   };
-  
-  const getChatroomKey = (key) => {
-  //   console.log('clicked key', key);
-  //   chatroomKey = key;
-  //   console.log('chatroomKey', chatroomKey);
-    const fetchParticipantDataFromChatroomID = async (chatroomKey) => {
-      console.log('fetchParticipant--------', chatroomKey);
-      const data = await getParticipantIDFromChatroomID(chatroomKey);
-      console.log('data', data);
-        setParticipantsInChatroom(data);
-        participantsInChatroom.map(participants => {
-          if(participants.account_id === userID) {
-            setUserParticipantID(participants.account_id);
-          };
-        });
-      };
 
-    fetchParticipantDataFromChatroomID(key);
-  };
-
+  console.log('userID', userID);
   console.log('userParticipantID', userParticipantID);
   console.log('participantsinChatroom', participantsInChatroom);
   console.log('chatroomKey', chatroomKey);
+  console.log('conversations---', conversations);
+  console.log('messages', messages);
   /* --------------------------------- */
 
   useEffect(() => {
+
     let isLoaded = true;
     const getChatroomData = async () => {
       const chatroomData = await getChatroomByUserID(userID);
@@ -145,7 +129,30 @@ function ChatIndex() {
       };
     };
 
-    const fetchMessageData = async () => {
+    getChatroomData()
+    .catch(console.error);
+
+    return () => {
+      isLoaded = false;
+    }
+
+  }, []);
+
+  useEffect(() => {
+    let isLoaded = true;
+    const fetchParticipantDataFromChatroomID = async (chatroomKey) => {
+      console.log('fetchParticipant--------', chatroomKey);
+      const data = await getParticipantIDFromChatroomID(chatroomKey);
+      console.log('data', data);
+      setParticipantsInChatroom(data);
+      participantsInChatroom.map(participants => {
+        if(participants.account_id === userID) {
+          setUserParticipantID(participants.account_id);
+        };
+      });
+    };
+
+    const fetchMessageData = async (chatroomKey) => {
       const messageData = await getMessagesByChatroomID(chatroomKey);
       console.log('messages messageData', messageData);
       if (isLoaded) {
@@ -153,49 +160,26 @@ function ChatIndex() {
       };
     };
 
-    getChatroomData()
-    fetchMessageData()
-    .catch(console.error);
+    if (chatroomKey) {
+      fetchParticipantDataFromChatroomID(chatroomKey);
+      fetchMessageData(chatroomKey);
+    };
 
     return () => {
       isLoaded = false;
-    }
-
-  }, [messages.length]);
-
-  console.log('messages', messages);
-
-  // //set participants based on chatroom clicked
-  // useEffect(() => {
-  //   let dataLoaded = true;
-  //   const fetchParticipantDataFromChatroomID = async (chatroomKey) => {
-  //     const data = await getParticipantIDFromChatroomID (chatroomKey);
-  //     if(dataLoaded) {
-  //       setParticipantsInChatroom(data);
-  //     };
-  //   };
-
-  //   //get participant id of user
-  //   const fetchUserParticipantIDFromChatroomID = async (chatroomKey) => {
-  //     const data = await getParticipantIDFromChatroomID(chatroomKey);
-  //     data.map(values => {
-  //       //if current user id matches account_id in chatroom, set the participant id
-  //       if(userID === values.account_id && dataLoaded) {
-  //         setUserParticipantID(values.id);
-  //       };
-  //     });
-  //   };
-
-  //   fetchParticipantDataFromChatroomID(chatroomKey);
-  //   fetchUserParticipantIDFromChatroomID(chatroomKey);
-  //   return () => {
-  //     dataLoaded = false;
-  //   };
-  // }, []);
+    };
+  }, [messages.length, chatroomKey]);
 
   const onChangeMessage = (e) => {
     const message = e.target.value;
     setMessageText(message);
+  };
+
+  const conversationUpdater = async (key) => {
+    if (key) {
+      const data = await getMessagesByChatroomID(key);
+      setMessages(data);
+    };
   };
 
   const handleSubmit = (e) => {
@@ -242,12 +226,13 @@ function ChatIndex() {
           </div>
           {
             conversations.map((convo) => (
-              <Conversation 
-                getChatroomKey={getChatroomKey} 
-                conversation={convo}
-                userParticipantID={userParticipantID}
-                conversationDeleted={conversationDeleted}
-              />
+              <div onClick={()=> conversationUpdater(convo.chatroom_id)}>
+                <Conversation 
+                  conversation={convo}
+                  userParticipantID={userParticipantID}
+                  conversationDeleted={conversationDeleted}
+                />
+              </div>
             ))
           }
           <Button
