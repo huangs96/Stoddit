@@ -152,34 +152,27 @@ function ChatIndex() {
       });
     };
 
-    const fetchMessageData = async (chatroomKey) => {
-      const messageData = await getMessagesByChatroomID(chatroomKey);
-      console.log('messages messageData', messageData);
-      if (isLoaded) {
-        setMessages(messageData);
-      };
-    };
-
     if (chatroomKey) {
       fetchParticipantDataFromChatroomID(chatroomKey);
-      fetchMessageData(chatroomKey);
     };
 
     return () => {
       isLoaded = false;
     };
-  }, [messages.length, chatroomKey]);
+  }, [messages.length]);
 
   const onChangeMessage = (e) => {
     const message = e.target.value;
     setMessageText(message);
   };
 
-  const conversationUpdater = async (key) => {
+  const selectConversation = async (key) => {
     if (key) {
       const data = await getMessagesByChatroomID(key);
       setMessages(data);
     };
+    console.log('selectConversations', messages);
+    console.log('key', key);
   };
 
   const handleSubmit = (e) => {
@@ -226,7 +219,7 @@ function ChatIndex() {
           </div>
           {
             conversations.map((convo) => (
-              <div onClick={()=> conversationUpdater(convo.chatroom_id)}>
+              <div onClick={()=> selectConversation(convo.chatroom_id)}>
                 <Conversation 
                   conversation={convo}
                   userParticipantID={userParticipantID}
