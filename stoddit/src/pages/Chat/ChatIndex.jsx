@@ -27,11 +27,10 @@ function ChatIndex() {
   const [userParticipantID, setUserParticipantID] = useState('');
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState('');
-  const [addNewMessage, setAddNewMessage] = useState(false);
   const timestamp = new Date();
   const bottomRef = useRef(null);
   //chatroom state
-  const [chatroomKey, setChatroomKey] = useState('');
+  let chatroomKey = 0;
   const [conversations, setConversations] = useState([]);
   const [newConversation, setNewConversation] = useState(false);
   //deleting chatroom
@@ -112,15 +111,31 @@ function ChatIndex() {
     // setDeletedConversation(boolean => !boolean);
     setUserHasLeftConversation(boolean => !boolean);
   };
-
-  console.log('userParticipantID', userParticipantID);
   
   const getChatroomKey = (key) => {
-    setChatroomKey(key);
+  //   console.log('clicked key', key);
+  //   chatroomKey = key;
+  //   console.log('chatroomKey', chatroomKey);
+    const fetchParticipantDataFromChatroomID = async (chatroomKey) => {
+      console.log('fetchParticipant--------', chatroomKey);
+      const data = await getParticipantIDFromChatroomID(chatroomKey);
+      console.log('data', data);
+        setParticipantsInChatroom(data);
+        participantsInChatroom.map(participants => {
+          if(participants.account_id === userID) {
+            setUserParticipantID(participants.account_id);
+          };
+        });
+      };
+
+    fetchParticipantDataFromChatroomID(key);
   };
+
+  console.log('userParticipantID', userParticipantID);
+  console.log('participantsinChatroom', participantsInChatroom);
+  console.log('chatroomKey', chatroomKey);
   /* --------------------------------- */
 
-  //load conversations
   useEffect(() => {
     let isLoaded = true;
     const getChatroomData = async () => {
@@ -146,55 +161,37 @@ function ChatIndex() {
       isLoaded = false;
     }
 
-  }, [addNewMessage, messages.length, chatroomKey]);
+  }, [messages.length]);
 
+  console.log('messages', messages);
 
-  //second useEffect to get messages 
+  // //set participants based on chatroom clicked
   // useEffect(() => {
-  //   let isLoaded = true;
-  //   const fetchMessageData = async () => {
-  //     const messageData = await getMessagesByChatroomID(chatroomKey);
-  //     console.log('messages messageData', messageData);
-  //     if (isLoaded) {
-  //       setMessages(messageData);
+  //   let dataLoaded = true;
+  //   const fetchParticipantDataFromChatroomID = async (chatroomKey) => {
+  //     const data = await getParticipantIDFromChatroomID (chatroomKey);
+  //     if(dataLoaded) {
+  //       setParticipantsInChatroom(data);
   //     };
   //   };
-  //   fetchMessageData()
-  //   .catch(console.error);
 
-  //   return () => {
-  //     isLoaded = false;
+  //   //get participant id of user
+  //   const fetchUserParticipantIDFromChatroomID = async (chatroomKey) => {
+  //     const data = await getParticipantIDFromChatroomID(chatroomKey);
+  //     data.map(values => {
+  //       //if current user id matches account_id in chatroom, set the participant id
+  //       if(userID === values.account_id && dataLoaded) {
+  //         setUserParticipantID(values.id);
+  //       };
+  //     });
   //   };
 
+  //   fetchParticipantDataFromChatroomID(chatroomKey);
+  //   fetchUserParticipantIDFromChatroomID(chatroomKey);
+  //   return () => {
+  //     dataLoaded = false;
+  //   };
   // }, []);
-
-  //set participants based on chatroom clicked
-  useEffect(() => {
-    let dataLoaded = true;
-    const fetchParticipantDataFromChatroomID = async (chatroomKey) => {
-      const data = await getParticipantIDFromChatroomID (chatroomKey);
-      if(dataLoaded) {
-        setParticipantsInChatroom(data);
-      };
-    };
-
-    //get participant id of user
-    const fetchUserParticipantIDFromChatroomID = async (chatroomKey) => {
-      const data = await getParticipantIDFromChatroomID(chatroomKey);
-      data.map(values => {
-        //if current user id matches account_id in chatroom, set the participant id
-        if(userID === values.account_id && dataLoaded) {
-          setUserParticipantID(values.id);
-        };
-      });
-    };
-
-    fetchParticipantDataFromChatroomID(chatroomKey);
-    fetchUserParticipantIDFromChatroomID(chatroomKey);
-    return () => {
-      dataLoaded = false;
-    };
-  }, [chatroomKey]);
 
   const onChangeMessage = (e) => {
     const message = e.target.value;
@@ -219,8 +216,6 @@ function ChatIndex() {
         participant_id: userParticipantID,
         sent_datetime: timestamp.toDateString()
       }]);
-
-      setAddNewMessage(true);
     } else {
       console.log('no message');
     };
@@ -275,7 +270,6 @@ function ChatIndex() {
             <Message 
               userID={userID} 
               messages={messages}
-              addNewMessage={addNewMessage}
               userHasLeft={userHasLeftConversation}
             />
           </div>
