@@ -16,6 +16,7 @@ import {
   getChatroomByUserID,
   getParticipantIDFromChatroomID,
   getMessagesByChatroomID,
+  getFriendsListById
 } from '../../services/chat.service';
 import { io } from 'socket.io-client';
 
@@ -39,7 +40,8 @@ function ChatIndex() {
   //participants
   const [participantsInChatroom, setParticipantsInChatroom] = useState([]);
   //friends
-  const [onlineFriends, setOnlineFriends] = useState([]);
+  const [friendsList, setFriendsList] = useState([]);
+  const [onlineFriendsData, setOnlineFriendsData] = useState([]);
   //socket
   const socket = useRef();
 
@@ -53,7 +55,15 @@ function ChatIndex() {
     });
 
     socket.current.on('getUsers', users => {
-      setOnlineFriends(users);
+      if(users.length > 1) {
+        users.map(user => {
+          if (user.userID !== userID) {
+            setOnlineFriendsData(user);
+          };
+        });
+      } else {
+        setOnlineFriendsData([]);
+      };
     });
 
     socket.current.on('getUserMessage', message => {
@@ -70,8 +80,6 @@ function ChatIndex() {
       }]);
     });
 
-    console.log('socket', socket);
-
     return () => {
       socket.current.off('chatMessage');
       socket.current.off('getUsers');
@@ -80,18 +88,36 @@ function ChatIndex() {
     };
   }, []);
 
+  //emit to backend which users are live
   useEffect(() => {
     socket.current.emit('liveUsers', userID);
 
     return () => {
       socket.current.off('liveUsers');
-      console.log('liveusers returned');
-    }
+    };
   }, [userID]);
 
   /* ------ Socket End ------ */
 
-    /* ------ Conversation Modal ------ */
+  /* ------ Friends List ------ */
+  useEffect(() => {
+    let isLoaded = true;
+    if (isLoaded) {
+      const fetchFriendsListByID = async () => {
+        const data = await getFriendsListById(userID);
+        setFriendsList(data);
+      };
+      fetchFriendsListByID()
+      .catch(console.error);
+    };
+
+    return () => {
+      isLoaded = false;
+    };
+  }, []);
+  /* --------------------------------- */
+
+  /* ------ Conversation Modal ------ */
   //opening and closing new conversation modal
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -110,16 +136,17 @@ function ChatIndex() {
     setUserHasLeftConversation(boolean => !boolean);
   };
 
-  console.log('userID', userID);
-  console.log('userParticipantID', userParticipantID);
-  console.log('participantsinChatroom', participantsInChatroom);
-  console.log('chatroomKey', chatroomKey);
-  console.log('conversations---', conversations);
-  console.log('messages', messages);
+  // console.log('userID', userID);
+  // console.log('userParticipantID', userParticipantID);
+  // console.log('participantsinChatroom', participantsInChatroom);
+  // console.log('chatroomKey', chatroomKey);
+  // console.log('conversations---', conversations);
+  // console.log('messages', messages);
+  console.log('friendsOnline ChatIndex', onlineFriendsData);
+  console.log('friendsList ChatIndex', friendsList);
   /* --------------------------------- */
 
   useEffect(() => {
-
     let isLoaded = true;
     const getChatroomData = async () => {
       const chatroomData = await getChatroomByUserID(userID);
@@ -127,7 +154,6 @@ function ChatIndex() {
         setConversations(chatroomData);
       };
     };
-
     getChatroomData()
     .catch(console.error);
 
@@ -141,12 +167,9 @@ function ChatIndex() {
     let isLoaded = true;
     if (isLoaded) {
       const fetchParticipantDataFromChatroomID = async (chatroomKey) => {
-        console.log('fetchParticipant--------', chatroomKey);
         const data = await getParticipantIDFromChatroomID(chatroomKey);
-        console.log('data', data);
         setParticipantsInChatroom(data);
         participantsInChatroom.map(participants => {
-          console.log(participants);
           if(participants.account_id === userID) {
             setUserParticipantID(participants.account_id);
           };
@@ -179,7 +202,6 @@ function ChatIndex() {
     e.preventDefault();
     console.log('sent');
     if (messageText) {
-
       const receiverID = participantsInChatroom.filter((item) => {
         return item.id !== userParticipantID;
       });
@@ -279,7 +301,10 @@ function ChatIndex() {
       </div>
         <div className="chatOnline">
           <div className="chatOnlineWrapper">
-            <FriendsOnline userID={userID}/>
+            <FriendsOnline 
+              userID={userID}
+              // onlineFriends={onlineFriends}
+            />
           </div>
         </div>   
       </div>

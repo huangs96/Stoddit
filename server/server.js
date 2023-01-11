@@ -74,14 +74,14 @@ io.on("connection", (socket) => {
   socket.on('liveUsers', (userID) => {
     addUser(userID, socket.id);
     io.emit('getUsers', users);
-    io.emit('getUserMessage', `${userID} has joined!`);
+    // io.emit('getUserMessage', `${userID} has joined!`);
   });
 
   //runs when client disconnects
   socket.on("disconnect", () => {
     removeUser(socket.id);
     io.emit('getUsers', users);
-    io.emit('getUsers', 'User has left the chat.');
+    // io.emit('getUsers', 'User has left the chat.');
   });
 });
 /* --------------------------------- */

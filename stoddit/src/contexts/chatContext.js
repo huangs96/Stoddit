@@ -9,8 +9,7 @@ const createNewChatroomWithParticipants = async (data) => {
     userIDs: data.userIDs,
     sDate: data.sDate,
     lDate: data.lDate
-  }
-  console.log('data', chatroomBody);
+  };
   await createNewChatroom(chatroomBody);
 };
 

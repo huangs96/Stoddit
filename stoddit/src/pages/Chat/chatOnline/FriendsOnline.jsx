@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { getFriendsListById } from '../../../services/chat.service';
 
 
-function FriendsOnline({userID}) {
+function FriendsOnline({userID, onlineFriends}) {
   const [friendsList, setFriendsList] = useState([]);
-  // console.log('friendsOnline', userID);
+  // console.log('friendsOnline', friendsList);
 
   useEffect(() => {
     const fetchData = async () => {

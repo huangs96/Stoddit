@@ -23,7 +23,7 @@ const createMessage = "INSERT INTO message (participant_id, message_text, sent_d
 
 /* ------ Friend_list ------ */
 const getFriendsList = "SELECT * FROM friend_list";
-const getFriendsListByUser = "SELECT * FROM friend_list WHERE account_id = $1";
+const getFriendsListByUser = "SELECT friend_list.id, friend_list.account_id, friend_list.contact_name, friend_list.contact_img, account.id AS contact_name_id FROM friend_list INNER JOIN account ON friend_list.contact_name = account.username WHERE friend_list.account_id = $1;";
 const getUserIDfromFriendListName = "SELECT id FROM account WHERE username = $1";
 const addFriend = "";
 const deleteFriend = "";

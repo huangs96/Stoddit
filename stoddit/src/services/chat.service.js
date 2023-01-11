@@ -103,7 +103,6 @@ const deleteParticipantFromChatroom = async (participantData) => {
     body: JSON.stringify(participantData)
   })
   .then(res => res.json());
-  console.log('res', res);
   return res;
 };
 /* -------------------------------- */

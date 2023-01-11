@@ -22,7 +22,6 @@ function Conversation({conversation, userParticipantID, conversationDeleted}) {
       <div className="conversationContainer">
         <div
           className="conversation"
-          // onClick={handleConversation}
         >
           <img 
               className="conversationImg" 
