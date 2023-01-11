@@ -134,25 +134,27 @@ function ChatIndex() {
     return () => {
       isLoaded = false;
     };
-    
+
   }, []);
 
   useEffect(() => {
     let isLoaded = true;
-    const fetchParticipantDataFromChatroomID = async (chatroomKey) => {
-      console.log('fetchParticipant--------', chatroomKey);
-      const data = await getParticipantIDFromChatroomID(chatroomKey);
-      console.log('data', data);
-      setParticipantsInChatroom(data);
-      participantsInChatroom.map(participants => {
-        if(participants.account_id === userID) {
-          setUserParticipantID(participants.account_id);
-        };
-      });
-    };
-
-    if (chatroomKey) {
-      fetchParticipantDataFromChatroomID(chatroomKey);
+    if (isLoaded) {
+      const fetchParticipantDataFromChatroomID = async (chatroomKey) => {
+        console.log('fetchParticipant--------', chatroomKey);
+        const data = await getParticipantIDFromChatroomID(chatroomKey);
+        console.log('data', data);
+        setParticipantsInChatroom(data);
+        participantsInChatroom.map(participants => {
+          console.log(participants);
+          if(participants.account_id === userID) {
+            setUserParticipantID(participants.account_id);
+          };
+        });
+      };
+      if (chatroomKey) {
+        fetchParticipantDataFromChatroomID(chatroomKey);
+      };
     };
 
     return () => {
@@ -168,6 +170,7 @@ function ChatIndex() {
   const selectConversation = async (key) => {
     if (key) {
       const data = await getMessagesByChatroomID(key);
+      setChatroomKey(key);
       setMessages(data);
     };
   };
