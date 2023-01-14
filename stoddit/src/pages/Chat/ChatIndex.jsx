@@ -136,8 +136,8 @@ function ChatIndex() {
   };
 
   // console.log('userID', userID);
-  // console.log('userParticipantID', userParticipantID);
-  // console.log('participantsinChatroom', participantsInChatroom);
+  console.log('userParticipantID', userParticipantID);
+  console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);
   // console.log('conversations---', conversations);
   // console.log('messages', messages);
@@ -161,6 +161,27 @@ function ChatIndex() {
     };
 
   }, []);
+
+  useEffect(() => {
+    let isLoaded = true;
+    const getChatroomDataByChatroomID = async () => {
+      const chatroomData = await getMessagesByChatroomID(chatroomKey);
+      console.log('chatroomData', chatroomData);
+      setMessages(chatroomData);
+    };
+    if (isLoaded && chatroomKey) {
+      getChatroomDataByChatroomID();
+    } else {
+      console.log('click conversation');
+    }
+
+    return () => {
+      isLoaded = false;
+      console.log('getMessagesFromChatroom returned');
+    };
+
+
+  }, [chatroomKey])
 
   //user participant id retrieved for sending messages
   // useEffect(() => {
@@ -194,19 +215,19 @@ function ChatIndex() {
   const selectConversation = async (key) => {
     if (key) {
       setChatroomKey(key);
-      console.log('key set', chatroomKey);
-      const chatroomData = await getMessagesByChatroomID(chatroomKey);
-      const participantData = await getParticipantIDFromChatroomID(chatroomKey);
-      setParticipantsInChatroom(participantData);
-      console.log('participants set', participantsInChatroom);
-      participantsInChatroom.map(participants => {
-        if(participants.account_id === userID) {
-          setUserParticipantID(participants.id);
-          console.log('changed', userParticipantID);
-        };
-      });
-      setMessages(chatroomData);
-      console.log('messages changed', messages);
+
+      // const chatroomData = await getMessagesByChatroomID(chatroomKey);
+      // const participantData = await getParticipantIDFromChatroomID(chatroomKey);
+      // setParticipantsInChatroom(participantData);
+      // console.log('participants set', participantsInChatroom);
+      // participantsInChatroom.map(participants => {
+      //   if(participants.account_id === userID) {
+      //     setUserParticipantID(participants.id);
+      //     console.log('changed', userParticipantID);
+      //   };
+      // });
+      // setMessages(chatroomData);
+      // console.log('messages changed', messages);
     };
   };
 
@@ -255,7 +276,7 @@ function ChatIndex() {
             conversations.map((convo) => (
               <div 
                 onClick={() => {
-                  selectConversation(convo.chatroom_id);                
+                  selectConversation(convo.chatroom_id);          
                 }}
               >
                 <Conversation 
