@@ -12,6 +12,7 @@ const getParticipantFromChatroomID = "SELECT * FROM (SELECT * FROM participant W
 const getParticipantFromAccountID = "SELECT * FROM participant WHERE account_id = $1";
 const createParticipantFromChatroom = "INSERT INTO participant (chatroom_id, account_id, joined_datetime, left_datetime) VALUES ($1, $2, $3, $4)";
 const deleteParticipantFromChatroom = "UPDATE participant SET deleted_at = $1 WHERE account_id = $2 AND chatroom_id = $3";
+const getUserParticipantInChatroom = "SELECT id FROM participant WHERE account_id = $1 AND chatroom_id = $2";
 /* -------------------------------- */
 
 
@@ -41,6 +42,7 @@ module.exports = {
   createParticipantFromChatroom,
   getParticipantFromAccountID,
   getParticipantFromChatroomID,
+  getUserParticipantInChatroom,
   deleteParticipantFromChatroom,
   //message
   getMessage,

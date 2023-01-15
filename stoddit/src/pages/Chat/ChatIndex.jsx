@@ -140,7 +140,7 @@ function ChatIndex() {
   console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);
   // console.log('conversations---', conversations);
-  // console.log('messages', messages);
+  console.log('messages', messages);
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
   // console.log('friendsList ChatIndex', friendsList);
   /* --------------------------------- */
@@ -166,14 +166,17 @@ function ChatIndex() {
     let isLoaded = true;
     const getChatroomDataByChatroomID = async () => {
       const chatroomData = await getMessagesByChatroomID(chatroomKey);
-      console.log('chatroomData', chatroomData);
       setMessages(chatroomData);
+      if (chatroomData) {
+        console.log('true');
+      }
     };
+
     if (isLoaded && chatroomKey) {
       getChatroomDataByChatroomID();
     } else {
       console.log('click conversation');
-    }
+    };
 
     return () => {
       isLoaded = false;
@@ -212,22 +215,9 @@ function ChatIndex() {
     setMessageText(message);
   };
 
-  const selectConversation = async (key) => {
+  const selectConversation = (key) => {
     if (key) {
       setChatroomKey(key);
-
-      // const chatroomData = await getMessagesByChatroomID(chatroomKey);
-      // const participantData = await getParticipantIDFromChatroomID(chatroomKey);
-      // setParticipantsInChatroom(participantData);
-      // console.log('participants set', participantsInChatroom);
-      // participantsInChatroom.map(participants => {
-      //   if(participants.account_id === userID) {
-      //     setUserParticipantID(participants.id);
-      //     console.log('changed', userParticipantID);
-      //   };
-      // });
-      // setMessages(chatroomData);
-      // console.log('messages changed', messages);
     };
   };
 
