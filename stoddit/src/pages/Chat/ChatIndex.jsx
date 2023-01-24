@@ -136,11 +136,11 @@ function ChatIndex() {
   };
 
   // console.log('userID', userID);
-  console.log('userParticipantID', userParticipantID);
-  console.log('participantsinChatroom', participantsInChatroom);
+  // console.log('userParticipantID', userParticipantID);
+  // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);
   // console.log('conversations---', conversations);
-  console.log('messages', messages);
+  // console.log('messages', messages);
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
   // console.log('friendsList ChatIndex', friendsList);
   /* --------------------------------- */
@@ -168,7 +168,8 @@ function ChatIndex() {
       const chatroomData = await getMessagesByChatroomID(chatroomKey);
       setMessages(chatroomData);
       if (chatroomData) {
-        console.log('true');
+        const participantData = await getParticipantIDFromChatroomID(chatroomKey);
+        setParticipantsInChatroom(participantData);
       }
     };
 
@@ -186,57 +187,49 @@ function ChatIndex() {
 
   }, [chatroomKey])
 
-  //user participant id retrieved for sending messages
-  // useEffect(() => {
-  //   let isLoaded = true;
-  //   if (isLoaded) {
-  //     const fetchParticipantDataFromChatroomID = async (chatroomKey) => {
-  //       const data = await getParticipantIDFromChatroomID(chatroomKey);
-  //       setParticipantsInChatroom(data);
-  //       participantsInChatroom.map(participants => {
-  //         if(participants.account_id === userID) {
-  //           console.log(participants);
-  //           setUserParticipantID(participants.id);
-  //         };
-  //       });
-  //     };
-  //     if (chatroomKey) {
-  //       fetchParticipantDataFromChatroomID(chatroomKey);
-  //     };
-  //   };
-
-  //   return () => {
-  //     isLoaded = false;
-  //   };
-  // }, []);
-
-  const onChangeMessage = (e) => {
-    const message = e.target.value;
-    setMessageText(message);
-  };
-
+  
   const selectConversation = (key) => {
     if (key) {
       setChatroomKey(key);
     };
   };
+  
+  const onChangeMessage = (e) => {
+    const message = e.target.value;
+    setMessageText(message);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('participantsInChatroom', participantsInChatroom);
     console.log('sent');
     if (messageText) {
       const receiverID = participantsInChatroom.filter((item) => {
-        return item.id !== userParticipantID;
+        if (item.account_id !== userID) {
+          return item.id;
+        };
       });
 
-      addMessageToConversation(userParticipantID, messageText, timestamp, receiverID);
+      const userParticipantID = participantsInChatroom.find((item) => {
+        if (item.account_id === userID) {
+          return item.id;
+        };
+      });
+
+      console.log('receiverID', receiverID);
+      console.log('userParticipantID', userParticipantID);
+
+      // addMessageToConversation(userParticipantID, messageText, timestamp, receiverID);
 
       setMessages(msgData => [...msgData, {
         account_id: userID,
+        chatroom_id: chatroomKey,
+        deleted_at: null,
         message_text: messageText,
         ownMessage: true,
         participant_id: userParticipantID,
-        sent_datetime: timestamp.toDateString()
+        sent_datetime: timestamp.toDateString(),
+        username: username
       }]);
     } else {
       console.log('no message');

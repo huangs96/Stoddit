@@ -26,6 +26,7 @@ const addMessageToConversation = async (participantID, text, time, receiverID) =
     sent_datetime: time,
     receiverID: receiverID
   };
+  console.log('body', body);
   //insert message into database to refresh and get new message
   await sendMessage(body);
 };
