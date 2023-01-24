@@ -4,6 +4,7 @@ import { getFriendsListById } from '../../../services/chat.service';
 
 
 function FriendsOnline({userID, friendsList, onlineFriends}) {
+
   const displayFriendsList = friendsList.map((friends, i) => {
     let online = false;
 
@@ -14,7 +15,19 @@ function FriendsOnline({userID, friendsList, onlineFriends}) {
     if (onlineFriends.length > 1) {
       onlineFriends.map(onlineFriend => {
         if (onlineFriend.userID === friends.contact_name_id) {
-          console.log('onlineFriendResult', friends.userID);
+          return <div className="friendsOnline">
+          <div className="chatOnlineFriend">
+            <div className="friendOnlineImgContainer">
+              <img
+              className="friendsOnlineImg"
+              src={friends.contact_img}
+              alt=""
+              />
+              <div className="chatOnlineBadge"></div>
+            </div>
+            <span className="onlineFriendName" key={i}>{friends.contact_name}</span>
+          </div>
+        </div>
         };
       });
     } else {
@@ -35,17 +48,17 @@ function FriendsOnline({userID, friendsList, onlineFriends}) {
       };
     };
 
-    return <div className="friendsOnline">
-      <div className="chatOnlineFriend">
-        <div className="friendOnlineImgContainer">
+    return <div className="friendsOffline">
+      <div className="chatOfflineFriend">
+        <div className="friendOfflineImgContainer">
           <img
-          className="friendsOnlineImg"
+          className="friendsOfflineImg"
           src={friends.contact_img}
           alt=""
           />
           <div className="chatOfflineBadge"></div>
         </div>
-        <span className="onlineFriendName" key={i}>{friends.contact_name}</span>
+        <span className="offlineFriendName" key={i}>{friends.contact_name}</span>
       </div>
     </div>
   });

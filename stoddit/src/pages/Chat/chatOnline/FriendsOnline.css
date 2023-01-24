@@ -33,7 +33,38 @@
   left: 0;
 }
 
-.chatOfflineBade {
+.friendsOffline {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  padding-left: 10px;
+}
+
+.friendsffline:hover {
+  background-color: gray;
+}
+
+.friendsOfflineImg {
+  opacity: 0.5;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid white;
+}
+
+.offlineFriendName {
+  opacity: 0.5;
+}
+
+.friendOfflineImgContainer {
+  opacity: 0.5;
+  margin-top: 10px;
+  margin-right: 10px;
+  position: relative;
+}
+
+.chatOfflineBadge {
   width: 10px;
   height: 10px;
   border-radius: 50%;

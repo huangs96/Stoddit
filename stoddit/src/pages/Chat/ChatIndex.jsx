@@ -54,6 +54,8 @@ function ChatIndex() {
       withCredentials: true,
     });
 
+    //need to get live updates of when friends are offline and online, so far can only get online friends
+
     socket.current.on('getUsers', users => {
       console.log('users', users);
       if(users.length > 1) {
