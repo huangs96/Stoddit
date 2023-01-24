@@ -91,6 +91,22 @@ const getParticipantIDFromAccountID = async (userID) => {
   });
 };
 
+const getUserParticipantID = async (userID, chatroomID) => {
+  return fetch(`http://localhost:5000/chat/participant/user/${userID}/${chatroomID}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    mode: 'cors',
+    credentials: 'include'
+  })
+  .then(response => {
+    if(response.ok) {
+      return response.json();
+    }
+    throw response;
+  });
+};
+
 const deleteParticipantFromChatroom = async (participantData) => {
   const res = await fetch('http://localhost:5000/chat/leavechatroom', {
     method: 'POST',
@@ -204,6 +220,7 @@ module.exports = {
   //participant
   getParticipantIDFromChatroomID,
   getParticipantIDFromAccountID,
+  getUserParticipantID,
   deleteParticipantFromChatroom,
   //message
   getMessagesByChatroomID,

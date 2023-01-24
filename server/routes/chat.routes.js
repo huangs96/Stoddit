@@ -18,7 +18,7 @@ module.exports = (io, getUser) => {
   router.get('/participant', controller.getParticipant);
   router.get('/participant/chatroom/:id', controller.getParticipantFromChatroomID);
   router.get('/participant/user/:id', controller.getParticipantFromAccountID);
-  router.get('/participant/user/test', controller.getUserParticipantInChatroom);
+  router.get('/participant/user/:userid/:chatroomid', controller.getUserParticipantInChatroom);
   router.post('/leavechatroom', controller.deleteParticipantFromChatroom);
   /* -------------------------------- */
   

@@ -134,13 +134,13 @@ const getParticipantFromAccountID = (async (req, res) => {
 });
 
 const getUserParticipantInChatroom = (async (req, res) => {
-  const user_id = parseInt(req.params.id);
-  const chatroom_id = req.body.chatroomID;
-  console.log(req.body);
-  console.log(req.params);
+  const userData = {
+    "user_id": req.params.userid,
+    "chatroom_id": req.params.chatroomid
+  };
 
   try {
-    const participantInChatroom = await client.query(queries.getUserParticipantInChatroom, [user_id, chatroom_id]);
+    const participantInChatroom = await client.query(queries.getUserParticipantInChatroom, [userData.user_id, userData.chatroom_id]);
     if (participantInChatroom.rows.length) {
       res.status(200).json(participantInChatroom.rows);
     };
