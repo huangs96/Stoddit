@@ -55,10 +55,12 @@ function ChatIndex() {
     });
 
     socket.current.on('getUsers', users => {
+      console.log('users', users);
       if(users.length > 1) {
         users.map(user => {
           if (user.userID !== userID) {
             setOnlineFriendsData(user);
+            console.log(onlineFriendsData);
           };
         });
       } else {
@@ -90,6 +92,7 @@ function ChatIndex() {
   //emit to backend which users are live
   useEffect(() => {
     socket.current.emit('liveUsers', userID);
+    console.log('online');
 
     return () => {
       socket.current.off('liveUsers');
@@ -140,8 +143,8 @@ function ChatIndex() {
   // console.log('chatroomKey', chatroomKey);
   // console.log('conversations---', conversations);
   // console.log('messages', messages);
-  // console.log('friendsOnline ChatIndex', onlineFriendsData);
-  // console.log('friendsList ChatIndex', friendsList);
+  console.log('friendsOnline ChatIndex', onlineFriendsData);
+  console.log('friendsList ChatIndex', friendsList);
   /* --------------------------------- */
 
   useEffect(() => {
@@ -315,7 +318,8 @@ function ChatIndex() {
           <div className="chatOnlineWrapper">
             <FriendsOnline 
               userID={userID}
-              // onlineFriends={onlineFriends}
+              friendsList={friendsList}
+              onlineFriends={onlineFriendsData}
             />
           </div>
         </div>   
