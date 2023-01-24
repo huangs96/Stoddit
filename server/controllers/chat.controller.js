@@ -202,27 +202,23 @@ const createMessage = (io, getUser) => (async (req,res) => {
     const newMessage = await client.query(queries.createMessage, [participantData.id, message_text, sent_datetime]);
     
     if (newMessage) {
-      console.log('receiverID', receiverID.length);
       if (participantData.length >= 2) {
         const users = participantData.map(data => {
           getUser(data);
         });
-
         io.to(users.socketID).emit('chatMessage', {
           receiverID,
           senderID: participantData.id,
           text: message_text
         });
-        
+        return res.status(200).json('Message successfully sent');
       } else {
         const user = getUser(receiverID);
-
         io.to(user.socketID).emit('chatMessage', {
           receiverID,
           senderID: participantData.id,
           text: message_text
         });
-  
         return res.status(200).json('Message successfully sent');
       };
     };

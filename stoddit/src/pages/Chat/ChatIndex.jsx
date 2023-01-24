@@ -169,7 +169,7 @@ function ChatIndex() {
       if (chatroomData) {
         const participantData = await getParticipantIDFromChatroomID(chatroomKey);
         setParticipantsInChatroom(participantData);
-      }
+      };
     };
 
     if (isLoaded && chatroomKey) {
@@ -204,7 +204,6 @@ function ChatIndex() {
     if (messageText) {
       const receiverID = participantsInChatroom.filter((item) => {
         if (item.account_id !== userID) {
-          console.log('Ritemid', item.id);
           return item.id;
         };
       });
