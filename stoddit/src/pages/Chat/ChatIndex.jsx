@@ -209,14 +209,14 @@ function ChatIndex() {
         };
       });
 
-      const userParticipantID = participantsInChatroom.find((item) => {
+      const userParticipant = participantsInChatroom.find((item) => {
         if (item.account_id === userID) {
-          console.log('Uitemid', item.id);
-          return item.id;
+          setUserParticipantID(item.id);
+          return item;
         };
       });
 
-      addMessageToConversation(userParticipantID, messageText, timestamp, receiverID);
+      addMessageToConversation(userParticipant, messageText, timestamp, receiverID);
 
       setMessages(msgData => [...msgData, {
         account_id: userID,
@@ -224,7 +224,7 @@ function ChatIndex() {
         deleted_at: null,
         message_text: messageText,
         ownMessage: true,
-        participant_id: userParticipantID,
+        participant_id: userParticipant,
         sent_datetime: timestamp.toDateString(),
         username: username
       }]);

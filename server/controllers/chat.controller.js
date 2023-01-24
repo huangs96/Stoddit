@@ -203,14 +203,19 @@ const createMessage = (io, getUser) => (async (req,res) => {
     
     if (newMessage) {
       console.log('receiverID', receiverID.length);
-      if (receiverID.length >= 2) {
-        const users = receiverID.map(data => {
+      if (participantData.length >= 2) {
+        const users = participantData.map(data => {
           getUser(data);
         });
-        console.log('users', users);
+
+        io.to(users.socketID).emit('chatMessage', {
+          receiverID,
+          senderID: participantData.id,
+          text: message_text
+        });
+        
       } else {
         const user = getUser(receiverID);
-        console.log('user', user);
 
         io.to(user.socketID).emit('chatMessage', {
           receiverID,
