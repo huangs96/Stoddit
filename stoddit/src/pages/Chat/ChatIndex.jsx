@@ -71,7 +71,6 @@ function ChatIndex() {
     });
 
     socket.current.on('chatMessage', messageData => {
-      console.log(messageData);
       console.log('messagedata', messageData);
       setMessages(msgData => [...msgData, {
         message_text: messageData.text,
@@ -201,25 +200,23 @@ function ChatIndex() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('participantsInChatroom', participantsInChatroom);
     console.log('sent');
     if (messageText) {
       const receiverID = participantsInChatroom.filter((item) => {
         if (item.account_id !== userID) {
+          console.log('Ritemid', item.id);
           return item.id;
         };
       });
 
       const userParticipantID = participantsInChatroom.find((item) => {
         if (item.account_id === userID) {
+          console.log('Uitemid', item.id);
           return item.id;
         };
       });
 
-      console.log('receiverID', receiverID);
-      console.log('userParticipantID', userParticipantID);
-
-      // addMessageToConversation(userParticipantID, messageText, timestamp, receiverID);
+      addMessageToConversation(userParticipantID, messageText, timestamp, receiverID);
 
       setMessages(msgData => [...msgData, {
         account_id: userID,

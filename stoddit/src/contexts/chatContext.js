@@ -19,9 +19,9 @@ const createNewChatroomWithParticipants = async (data) => {
 /* -------------------------------- */
 
 /* ------ Message ------ */
-const addMessageToConversation = async (participantID, text, time, receiverID) => {
+const addMessageToConversation = async (participantData, text, time, receiverID) => {
   let body = {
-    participant_id: participantID,
+    participantData: participantData,
     message_text: text,
     sent_datetime: time,
     receiverID: receiverID

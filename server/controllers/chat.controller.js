@@ -194,26 +194,33 @@ const getMessageByChatroom = (async (req, res) => {
 
 //function creating a function
 const createMessage = (io, getUser) => (async (req,res) => {
-  const {participant_id, message_text, sent_datetime, receiverID} = req.body;
+  const {participantData, message_text, sent_datetime, receiverID} = req.body;
+
+  console.log('req.body', participantData);
 
   try {
-    const newMessage = await client.query(queries.createMessage, [participant_id, message_text, sent_datetime]);
+    const newMessage = await client.query(queries.createMessage, [participantData.id, message_text, sent_datetime]);
     
     if (newMessage) {
-      const user = getUser(receiverID);
-      // const sender = getUser(senderID);
-      // console.log('sender----', senderID);
-      console.log('user---', user);
-      console.log('user.socketid', user.socketID);
-  
-      io.to(user.socketID).emit('chatMessage', {
-        receiverID,
-        senderID: participant_id,
-        text: message_text
-      });
+      console.log('receiverID', receiverID.length);
+      if (receiverID.length >= 2) {
+        const users = receiverID.map(data => {
+          getUser(data);
+        });
+        console.log('users', users);
+      } else {
+        const user = getUser(receiverID);
+        console.log('user', user);
 
-      return res.status(200).json('Message successfully sent');
-    }
+        io.to(user.socketID).emit('chatMessage', {
+          receiverID,
+          senderID: participantData.id,
+          text: message_text
+        });
+  
+        return res.status(200).json('Message successfully sent');
+      };
+    };
   } catch (err) {
     console.log(err);
     return res.status(400).json(err);

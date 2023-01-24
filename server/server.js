@@ -61,9 +61,14 @@ const removeUser = (socketID) => {
 };
 
 const getUser = (participants) => {
-  // console.log('participants---', participants);
-  const userData = users.find(user => participants.some(participant => participant.account_id === user.userID));
-  return userData;
+  console.log('participants---', participants);
+  console.log('users', users);
+  if (users.length > 0) {
+    const userData = users.find(user => participants.some(participant => participant.account_id === user.userID));
+    return userData;
+  } else {
+    console.log('no users to send');
+  };
 };
 
 /* ------ Socket Server ------ */
@@ -75,6 +80,11 @@ io.on("connection", (socket) => {
     addUser(userID, socket.id);
     io.emit('getUsers', users);
     // io.emit('getUserMessage', `${userID} has joined!`);
+  });
+
+  socket.on('chatMessage', messageData => {
+    console.log('messageData', messageData);
+    io.emit(messageData);
   });
 
   //runs when client disconnects
