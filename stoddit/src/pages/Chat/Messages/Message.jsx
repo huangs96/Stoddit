@@ -45,7 +45,7 @@ function Message({userID, messages}) {
       }
       {/* {userHasLeft && */}
         <div className="leftMessage">
-          <p3>User has left the chat</p3>
+          {/* <p3>User has left the chat</p3> */}
         </div>
       {/* } */}
       {/* <div ref={bottomRef} /> */}
