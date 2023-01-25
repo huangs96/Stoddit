@@ -30,8 +30,7 @@ function FriendsOnline({userID, friendsList, onlineFriends}) {
         </div>
         };
       });
-    } else {
-      if (friends.contact_name_id === onlineFriends.userID) {
+    } else if (friends.contact_name_id === onlineFriends.userID) {
         return <div className="friendsOnline">
           <div className="chatOnlineFriend">
             <div className="friendOnlineImgContainer">
@@ -45,10 +44,8 @@ function FriendsOnline({userID, friendsList, onlineFriends}) {
             <span className="onlineFriendName" key={i}>{friends.contact_name}</span>
           </div>
         </div>
-      };
-    };
-
-    return <div className="friendsOffline">
+    } else {
+      return <div className="friendsOffline">
       <div className="chatOfflineFriend">
         <div className="friendOfflineImgContainer">
           <img
@@ -61,7 +58,9 @@ function FriendsOnline({userID, friendsList, onlineFriends}) {
         <span className="offlineFriendName" key={i}>{friends.contact_name}</span>
       </div>
     </div>
+    };
   });
+  
   return (
     <>
       <div>
