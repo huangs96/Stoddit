@@ -17,8 +17,6 @@ import { createNewChatroomWithParticipants } from '../../../contexts/chatContext
 import { getUser } from '../../../services/user.service';
 
 function NewConversation(props) {
-  const [friendsList, setFriendsList] = useState([]);
-  const [userData, setUserData] = useState('');
   const [conversationName, setConversationName] = useState('');
   const [conversationTitle, setConversationTitle] = useState('');
   const [conversationDescription, setConversationDescription] = useState('');
@@ -34,27 +32,12 @@ function NewConversation(props) {
     lDate: null
   };
 
-  // console.log('newconversation', props.userID);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getFriendsListById(props.userID);
-      setFriendsList(data);
-    };
-    fetchData()
-    .catch(console.error);
-
-  }, []);
-
-  // console.log('newconversation friendslist', friendsList);
-
   const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {
     onClose(selectedValue);
   };
 
-  
   const onChangeConversationName = (e) => {
     const conversationName = e.target.value;
     setConversationName(conversationName);
@@ -138,7 +121,7 @@ function NewConversation(props) {
         Select Friends to Join Conversation
       </Typography>
       <List sx={{ pt: 0 }}>
-        {friendsList.map((friend, i) => (
+        {props.friendsList.map((friend, i) => (
           <ListItem 
             selected={selectedFriend ? true : false}
             button onClick={() => handleListItemClick(friend.contact_name)} 

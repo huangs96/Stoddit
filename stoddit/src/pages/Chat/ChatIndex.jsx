@@ -139,7 +139,7 @@ function ChatIndex() {
   // console.log('userParticipantID', userParticipantID);
   // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);
-  // console.log('conversations---', conversations);
+  console.log('conversations---', conversations);
   // console.log('messages', messages);
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
   // console.log('friendsList ChatIndex', friendsList);
@@ -160,7 +160,7 @@ function ChatIndex() {
       isLoaded = false;
     };
 
-  }, [userHasLeftConversation]);
+  }, [newConversation, userHasLeftConversation]);
 
   useEffect(() => {
     let isLoaded = true;
@@ -185,7 +185,7 @@ function ChatIndex() {
     };
 
 
-  }, [chatroomKey, userHasLeftConversation])
+  }, [chatroomKey, newConversation, userHasLeftConversation]);
 
   
   const selectConversation = (key) => {
@@ -276,6 +276,7 @@ function ChatIndex() {
           <NewConversation 
             userID={userID}
             open={open}
+            friendsList={friendsList}
             onClose={handleClose}
             getNewConversation={getNewConversation}
           />
