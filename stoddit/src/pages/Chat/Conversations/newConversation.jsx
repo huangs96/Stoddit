@@ -40,22 +40,20 @@ function NewConversation(props) {
 
   const onChangeConversationName = (e) => {
     const conversationName = e.target.value;
+    console.log(conversationName);
     setConversationName(conversationName);
   };
-  // console.log(conversationName);
   
   const onChangeConversationTitle = (e) => {
     const conversationTitle = e.target.value;
     setConversationTitle(conversationTitle);
   };
-  // console.log(conversationTitle);
 
   const onChangeConversationDescription = (e) => {
     const conversationDescription = e.target.value;
     setConversationDescription(conversationDescription);
   };
-  // console.log(conversationDescription);
-  
+
   const handleListItemClick = async (value) => {
     selectedFriend = true;
     const idFromUsername = await getUserIDByUsername(value);
@@ -67,23 +65,21 @@ function NewConversation(props) {
       startConversationData.userIDs.push(finalIDFromUsername);
     } else {
       return;
-    }
-    
-    console.log('startConversationData', startConversationData);
-
-    // onClose(value);
+    };
   };
 
-  const createConversation = (e) => {
+  const createConversation = async (e) => {
     //populating conversation data object
     startConversationData.chatroomName = conversationName;
     startConversationData.chatroomTitle = conversationTitle;
     startConversationData.chatroomDescription = conversationDescription;
     startConversationData.userIDs.push(props.userID);
 
-    props.getNewConversation();
+    
+    let chatroomIDGenerated = await createNewChatroomWithParticipants(startConversationData);
 
-    createNewChatroomWithParticipants(startConversationData);
+    props.getNewConversation(chatroomIDGenerated, conversationName);
+
     handleClose();
   };
 

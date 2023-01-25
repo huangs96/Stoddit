@@ -127,8 +127,16 @@ function ChatIndex() {
     setOpen(false);
   };
 
-  const getNewConversation = () => {
-    setNewConversation(boolean => !boolean);
+  const getNewConversation = (newChatroomID, convoName) => {
+    // console.log('newchatroomID', newChatroomID);
+    let splitChatroomReturnStr = newChatroomID.split(':');
+    let newGeneratedChatroomID = parseInt(splitChatroomReturnStr[splitChatroomReturnStr.length-1]);
+    // setNewConversation(boolean => !boolean);
+    setConversations(convos => [...convos, {
+      account_id: userID,
+      name: convoName,
+      chatroom_id: newGeneratedChatroomID
+    }]);
   };
   
   const conversationDeleted = () => {
@@ -139,8 +147,8 @@ function ChatIndex() {
   // console.log('userParticipantID', userParticipantID);
   // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);
-  console.log('conversations---', conversations);
-  console.log('setNewConversation---', newConversation);
+  // console.log('conversations---', conversations);
+  // console.log('setNewConversation---', newConversation);
   // console.log('messages', messages);
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
   // console.log('friendsList ChatIndex', friendsList);
@@ -161,7 +169,7 @@ function ChatIndex() {
       isLoaded = false;
     };
 
-  }, [newConversation, userHasLeftConversation]);
+  }, [userHasLeftConversation]);
 
   useEffect(() => {
     let isLoaded = true;
