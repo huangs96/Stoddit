@@ -1,13 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { authUser } from '../../services/auth.service';
 import { useNavigate } from "react-router-dom";
-import CheckButton from 'react-validation/build/button';
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import { useParams } from 'react-router-dom';
-import HomePage from '../Home/Home';
-import { getUser } from '../../services/user.service';
-// import axios from 'axios';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function LoginPage() {
 
@@ -17,6 +23,7 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const theme = createTheme();
 
   const navigate = useNavigate();
 
@@ -50,9 +57,7 @@ function LoginPage() {
       password
     });
 
-    console.log('token', token);
-
-    if (token.length > 0) {
+    if (token) {
       navigate('/home');
     };
   };
@@ -63,53 +68,76 @@ function LoginPage() {
   };
 
   return (
-    
-    <form onSubmit={handleSubmit} ref={form}>
-      <div className="form-inner">
-        <h2>Login</h2>
-        <div className="form-group">
-          <label htmlFor='username'>Username:</label>
-          <input 
-            type="text" 
-            name="username" 
-            id="username" 
-            onChange={onChangeUsername} 
-            value={username}
-            validations={[required]}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor='password'>Password:</label>
-          <input 
-            type="password" 
-            name="password" 
-            id="password" 
-            onChange={onChangePassword} 
-            value={password}
-            validations={[required]}
-          />
-        </div>
-        <div className="form-group">
-            <button className="btn btn-primary btn-block" disabled={loading}>
-              {loading && (
-                <span className="spinner-border spinner-border-sm"></span>
-              )}
-              <span>Login</span>
-            </button>
-          </div>
-          {message && (
-            <div className="form-group">
-              <div className="alert alert-danger" role="alert">
-                {message}
-              </div>
-            </div>
-          )}
-        <button onClick={navToRegister} className="forgotPassword" >Forgot Password?</button>
-        <button onClick={navToRegister}> No account? Register now!</button>
-      </div>
-    </form>
-    
-
+    <>
+      <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 30,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} ref={form} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Username"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              onChange={onChangeUsername}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onChange={onChangePassword}
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="/register" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
+      </ThemeProvider>
+    </>
   )
 }
 
