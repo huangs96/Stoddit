@@ -27,6 +27,7 @@ function RegisterPage() {
   const [message, setMessage] = useState("");
   const [registered, setRegistered] = useState(false);
   const theme = createTheme();
+  const navigate = useNavigate();
 
   const onChangeUsername = (e) => {
     const userName = e.target.value;
@@ -73,8 +74,6 @@ function RegisterPage() {
 
     setRegistered(true);
   };
-
-  const navigate = useNavigate();
 
   const navToLogin = () => {
     navigate("/login");
@@ -150,10 +149,10 @@ function RegisterPage() {
                   error={!passwordMatch && confirmPassword.length > 0}
                   helperText={!passwordMatch && confirmPassword.length > 0 ? 'Password does not match' : ' '}
                   fullWidth
-                  name="password"
+                  name="confirmPassword"
                   label="Confirm Password"
                   type="password"
-                  id="password"
+                  id="confirmPassword"
                   autoComplete="current-password"
                   onChange={onChangeConfirmPassword}
                 />

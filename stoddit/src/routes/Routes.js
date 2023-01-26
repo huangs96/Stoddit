@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 import { useState, useContext, useEffect } from 'react';
-import UserContext from '../contexts/userContext';
 import { getAuthedUser } from '../services/user.service';
 import HomePage from '../pages/Home/Home';
 import LoginPage from '../pages/Login/LoginIndex';
@@ -26,38 +25,36 @@ function AppRoutes() {
   }, []);
 
   return (
-    // <UserContext.Provider value={user}>
-      <Routes>
+    <Routes>
+        <Route
+          path="login"
+          element={<LoginPage />}
+        />
+        <Route
+          path="register"
+          element={<RegisterPage />}
+        />
           <Route
-            path="login"
-            element={<LoginPage />}
-          />
-          <Route
-            path="register"
-            element={<RegisterPage />}
-          />
-            <Route
-            path="home"
-            element={<HomePage />}
-          />
-          <Route
-            path="chat"
-            element={<ChatIndex />}
-          />
-          <Route
-            path="portfolio"
-            element={<PortfolioIndex />}
-          />
-          <Route
-            path="trade"
-            element={<TradeIndex />}
-          />
-          <Route
-            path="profile"
-            element={<ProfileIndex />}
-          />
-        </Routes>
-      // </UserContext.Provider>
+          path="home"
+          element={<HomePage />}
+        />
+        <Route
+          path="chat"
+          element={<ChatIndex />}
+        />
+        <Route
+          path="portfolio"
+          element={<PortfolioIndex />}
+        />
+        <Route
+          path="trade"
+          element={<TradeIndex />}
+        />
+        <Route
+          path="profile"
+          element={<ProfileIndex />}
+        />
+    </Routes>
   );
 }
 
