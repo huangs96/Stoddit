@@ -80,6 +80,7 @@ function RegisterPage() {
     navigate("/login");
   };
   
+
   return (
     <>
     <ThemeProvider theme={theme}>
