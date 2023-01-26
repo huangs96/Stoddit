@@ -27,16 +27,6 @@ function LoginPage() {
 
   const navigate = useNavigate();
 
-  const required = (value) => {
-    if (!value) {
-      return (
-        <div>
-          This field is required!
-        </div>
-      );
-    };
-  };
-
   const onChangeUsername = (e) => {
     const userName = e.target.value;
     setUserName(userName);
@@ -60,11 +50,6 @@ function LoginPage() {
     if (token) {
       navigate('/home');
     };
-  };
-
-  //go to register if no account
-  const navToRegister = () => {
-    navigate('/register');
   };
 
   return (
