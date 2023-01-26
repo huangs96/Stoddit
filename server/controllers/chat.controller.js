@@ -71,7 +71,7 @@ const createChatroom = (async (req, res) => {
     };
     //if both are working, confirm creation
     if (dataSubmit) {
-      res.status(201).json('New Chatroom Created with Participants');
+      res.status(201).json(`New Chatroom Created with Participants, chatroom id: ${chatroom_id}`);
     };
   } catch (err) {
     return res.status(400).send(err);

@@ -10,9 +10,9 @@ const createNewChatroomWithParticipants = async (data) => {
     sDate: data.sDate,
     lDate: data.lDate
   };
-  await createNewChatroom(chatroomBody);
+  let result = await createNewChatroom(chatroomBody);
+  return result;
 };
-
 /* -------------------------------- */
 
 /* ------ Participant ------ */

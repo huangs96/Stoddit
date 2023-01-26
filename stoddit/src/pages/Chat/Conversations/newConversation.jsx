@@ -17,8 +17,6 @@ import { createNewChatroomWithParticipants } from '../../../contexts/chatContext
 import { getUser } from '../../../services/user.service';
 
 function NewConversation(props) {
-  const [friendsList, setFriendsList] = useState([]);
-  const [userData, setUserData] = useState('');
   const [conversationName, setConversationName] = useState('');
   const [conversationTitle, setConversationTitle] = useState('');
   const [conversationDescription, setConversationDescription] = useState('');
@@ -34,45 +32,28 @@ function NewConversation(props) {
     lDate: null
   };
 
-  // console.log('newconversation', props.userID);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getFriendsListById(props.userID);
-      setFriendsList(data);
-    };
-    fetchData()
-    .catch(console.error);
-
-  }, []);
-
-  // console.log('newconversation friendslist', friendsList);
-
   const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {
     onClose(selectedValue);
   };
 
-  
   const onChangeConversationName = (e) => {
     const conversationName = e.target.value;
+    console.log(conversationName);
     setConversationName(conversationName);
   };
-  // console.log(conversationName);
   
   const onChangeConversationTitle = (e) => {
     const conversationTitle = e.target.value;
     setConversationTitle(conversationTitle);
   };
-  // console.log(conversationTitle);
 
   const onChangeConversationDescription = (e) => {
     const conversationDescription = e.target.value;
     setConversationDescription(conversationDescription);
   };
-  // console.log(conversationDescription);
-  
+
   const handleListItemClick = async (value) => {
     selectedFriend = true;
     const idFromUsername = await getUserIDByUsername(value);
@@ -84,23 +65,21 @@ function NewConversation(props) {
       startConversationData.userIDs.push(finalIDFromUsername);
     } else {
       return;
-    }
-    
-    console.log('startConversationData', startConversationData);
-
-    // onClose(value);
+    };
   };
 
-  const createConversation = (e) => {
+  const createConversation = async (e) => {
     //populating conversation data object
     startConversationData.chatroomName = conversationName;
     startConversationData.chatroomTitle = conversationTitle;
     startConversationData.chatroomDescription = conversationDescription;
     startConversationData.userIDs.push(props.userID);
 
-    props.getNewConversation();
+    
+    let chatroomIDGenerated = await createNewChatroomWithParticipants(startConversationData);
 
-    createNewChatroomWithParticipants(startConversationData);
+    props.getNewConversation(chatroomIDGenerated, conversationName);
+
     handleClose();
   };
 
@@ -138,7 +117,7 @@ function NewConversation(props) {
         Select Friends to Join Conversation
       </Typography>
       <List sx={{ pt: 0 }}>
-        {friendsList.map((friend, i) => (
+        {props.friendsList.map((friend, i) => (
           <ListItem 
             selected={selectedFriend ? true : false}
             button onClick={() => handleListItemClick(friend.contact_name)} 

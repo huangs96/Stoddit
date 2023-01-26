@@ -89,7 +89,7 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     removeUser(socket.id);
     io.emit('getUsers', users);
-    // io.emit('getUsers', 'User has left the chat.');
+    io.emit('getUsers', 'User has left the chat.');
   });
 });
 /* --------------------------------- */

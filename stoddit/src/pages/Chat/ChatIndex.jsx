@@ -58,15 +58,18 @@ function ChatIndex() {
 
     socket.current.on('getUsers', users => {
       console.log('users', users);
-      if(users.length > 1) {
+      if(users.length <= 1) {
+        console.log('it got here');
+        setOnlineFriendsData([]);
+        return;
+      } else {
+        console.log('it got here instead');
         users.map(user => {
-          if (user.userID !== userID) {
+          if (user.userID !== userID && user.userID !== null) {
             setOnlineFriendsData(user);
-            console.log(onlineFriendsData);
+            return;
           };
         });
-      } else {
-        setOnlineFriendsData([]);
       };
     });
 
@@ -94,7 +97,6 @@ function ChatIndex() {
   //emit to backend which users are live
   useEffect(() => {
     socket.current.emit('liveUsers', userID);
-    console.log('online');
 
     return () => {
       socket.current.off('liveUsers');
@@ -130,12 +132,19 @@ function ChatIndex() {
     setOpen(false);
   };
 
-  const getNewConversation = () => {
-    setNewConversation(boolean => !boolean);
+  const getNewConversation = (newChatroomID, convoName) => {
+    // console.log('newchatroomID', newChatroomID);
+    let splitChatroomReturnStr = newChatroomID.split(':');
+    let newGeneratedChatroomID = parseInt(splitChatroomReturnStr[splitChatroomReturnStr.length-1]);
+    // setNewConversation(boolean => !boolean);
+    setConversations(convos => [...convos, {
+      account_id: userID,
+      name: convoName,
+      chatroom_id: newGeneratedChatroomID
+    }]);
   };
   
   const conversationDeleted = () => {
-    // setDeletedConversation(boolean => !boolean);
     setUserHasLeftConversation(boolean => !boolean);
   };
 
@@ -144,9 +153,10 @@ function ChatIndex() {
   // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);
   // console.log('conversations---', conversations);
+  // console.log('setNewConversation---', newConversation);
   // console.log('messages', messages);
-  console.log('friendsOnline ChatIndex', onlineFriendsData);
-  console.log('friendsList ChatIndex', friendsList);
+  // console.log('friendsOnline ChatIndex', onlineFriendsData);
+  // console.log('friendsList ChatIndex', friendsList);
   /* --------------------------------- */
 
   useEffect(() => {
@@ -164,7 +174,7 @@ function ChatIndex() {
       isLoaded = false;
     };
 
-  }, []);
+  }, [userHasLeftConversation]);
 
   useEffect(() => {
     let isLoaded = true;
@@ -189,7 +199,7 @@ function ChatIndex() {
     };
 
 
-  }, [chatroomKey])
+  }, [chatroomKey, newConversation, userHasLeftConversation]);
 
   
   const selectConversation = (key) => {
@@ -280,6 +290,7 @@ function ChatIndex() {
           <NewConversation 
             userID={userID}
             open={open}
+            friendsList={friendsList}
             onClose={handleClose}
             getNewConversation={getNewConversation}
           />
