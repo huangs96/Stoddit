@@ -19,8 +19,10 @@ function RegisterPage() {
 
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordMatch, setPasswordMatch] = useState(null);
   const [phone, setPhone] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(null);
   const [message, setMessage] = useState("");
   const [registered, setRegistered] = useState(false);
   const theme = createTheme();
@@ -45,6 +47,16 @@ function RegisterPage() {
     setPassword(password);
   };
 
+  const onChangeConfirmPassword = (e) => {
+    const confirmPassword = e.target.value;
+    setConfirmPassword(confirmPassword);
+    if (confirmPassword !== password) {
+      setPasswordMatch(false);
+    } else {
+      setPasswordMatch(true);
+    };
+  };
+
   const onChangePhone = (e) => {
     const phone = e.target.value;
     setPhone(phone);
@@ -59,7 +71,8 @@ function RegisterPage() {
     if (!password || !username ||!phone) {
       console.log("invalid");
       setLoading(false);
-      return alert("fields unfilled");
+    } else {
+      setLoading(true);
     }
 
     await registerUser({
@@ -69,11 +82,7 @@ function RegisterPage() {
     });
 
     setRegistered(true);
-
-    console.log(username, password, phone);
-    console.log(registered);
-    // console.log("registered----", registeredUser);
-  }
+  };
 
   const navigate = useNavigate();
 
@@ -179,6 +188,8 @@ function RegisterPage() {
             <TextField
               margin="normal"
               required
+              error={username.length !== 0 && username.length < 8}
+              helperText={username.length !== 0 && username.length < 8 ? 'Less than 8 characters!' : ' '}
               fullWidth
               id="email"
               label="Username"
@@ -190,6 +201,8 @@ function RegisterPage() {
             <TextField
               margin="normal"
               required
+              error={password.length !== 0 && password.length < 8}
+              helperText={password.length !== 0 && password.length < 8 ? 'Less than 8 characters!' : ' '}
               fullWidth
               name="password"
               label="Password"
@@ -201,13 +214,15 @@ function RegisterPage() {
             <TextField
               margin="normal"
               required
+              error={!passwordMatch && confirmPassword.length > 0}
+              helperText={!passwordMatch && confirmPassword.length > 0 ? 'Password does not match' : ' '}
               fullWidth
               name="password"
               label="Confirm Password"
               type="password"
               id="password"
               autoComplete="current-password"
-              onChange={onChangePassword}
+              onChange={onChangeConfirmPassword}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -218,6 +233,7 @@ function RegisterPage() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={!passwordMatch}
             >
               Register
             </Button>
