@@ -1,6 +1,5 @@
 import './FriendsOnline.css';
 import React, { useEffect, useState } from 'react';
-import { getFriendsListById } from '../../../services/chat.service';
 
 
 function FriendsOnline({userID, friendsList, onlineFriends}) {

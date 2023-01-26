@@ -1,3 +1,4 @@
+import './RegisterIndex.css';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../services/auth.service";
@@ -26,16 +27,6 @@ function RegisterPage() {
   const [message, setMessage] = useState("");
   const [registered, setRegistered] = useState(false);
   const theme = createTheme();
- 
-  const required = (value) => {
-    if (!value) {
-      return (
-        <div>
-          This field is required!
-        </div>
-      );
-    }
-  };
 
   const onChangeUsername = (e) => {
     const userName = e.target.value;
@@ -69,7 +60,6 @@ function RegisterPage() {
     setLoading(true);
 
     if (!password || !username ||!phone) {
-      console.log("invalid");
       setLoading(false);
     } else {
       setLoading(true);
@@ -88,175 +78,124 @@ function RegisterPage() {
 
   const navToLogin = () => {
     navigate("/login");
-  }
+  };
   
   return (
     <>
-    {registered && 
-    <div>
-      <h3>registered!</h3>
-      <button onClick={navToLogin}>
-        Login Now
-      </button>
-    </div>
-    }
-    {!registered &&
-    <>
-    <form onSubmit={handleSubmit}>
-      <div className="form-inner">
-        <h2>Registration</h2>
-        <div className="form-group">
-          <label htmlFor="username">Username:</label>
-          <input 
-            type="text" 
-            name="username" 
-            id="username" 
-            onChange={onChangeUsername} 
-            value={username}
-            validations={[required]}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <input 
-            type="password" 
-            name="password" 
-            id="password"
-            onChange={onChangePassword} 
-            value={password}
-            validations={[required]}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Confirm Password:</label>
-          <input 
-            type="password" 
-            name="confirmPassword" 
-            id="confirmPassword"
-            validations={[required]}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="phone">Phone:</label>
-          <input 
-            type="text" 
-            name="phone" 
-            id="phone"
-            onChange={onChangePhone} 
-            value={phone}
-            maxLength="10"
-            validations={[required]}
-          />
-        </div>
-        <div className="form-group">
-            <button className="btn btn-primary btn-block" disabled={loading}>
-              {loading && (
-                <span className="spinner-border spinner-border-sm"></span>
-              )}
-              <span>Register</span>
-            </button>
-          </div>
-          {message && (
-            <div className="form-group">
-              <div className="alert alert-danger" role="alert">
-                {message}
-              </div>
-            </div>
-          )}
-        <button onClick={navToLogin} className="accountExists">Already have an account? Sign in!</button>
-      </div>
-    </form>
-
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
             marginTop: 30,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
           }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign Up
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              error={username.length !== 0 && username.length < 8}
-              helperText={username.length !== 0 && username.length < 8 ? 'Less than 8 characters!' : ' '}
-              fullWidth
-              id="email"
-              label="Username"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              onChange={onChangeUsername}
-            />
-            <TextField
-              margin="normal"
-              required
-              error={password.length !== 0 && password.length < 8}
-              helperText={password.length !== 0 && password.length < 8 ? 'Less than 8 characters!' : ' '}
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              onChange={onChangePassword}
-            />
-            <TextField
-              margin="normal"
-              required
-              error={!passwordMatch && confirmPassword.length > 0}
-              helperText={!passwordMatch && confirmPassword.length > 0 ? 'Password does not match' : ' '}
-              fullWidth
-              name="password"
-              label="Confirm Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              onChange={onChangeConfirmPassword}
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              disabled={!passwordMatch}
-            >
-              Register
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/login" variant="body2">
-                  {"Already have an account?"}
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
+          >
+          {registered &&
+            <div className="registeredBox">
+              <Typography component="h1" variant="h5">
+              You are Registered!
+              </Typography>
+              <Button
+                sx={{ 
+                  mt: 3, 
+                  mb: 2, 
+                }}
+                onClick={navToLogin}
+              >
+                Login Now
+              </Button>
+            </div>
+          }
+          {!registered && 
+            <div className="registeringBox">
+              <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                Sign Up
+              </Typography>
+              <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                <TextField
+                  margin="normal"
+                  required
+                  error={username.length !== 0 && username.length < 8}
+                  helperText={username.length !== 0 && username.length < 8 ? 'Less than 8 characters!' : ' '}
+                  fullWidth
+                  id="email"
+                  label="Username"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                  onChange={onChangeUsername}
+                  value={username}
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  error={password.length !== 0 && password.length < 8}
+                  helperText={password.length !== 0 && password.length < 8 ? 'Less than 8 characters!' : ' '}
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  onChange={onChangePassword}
+                  value={password}
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  error={!passwordMatch && confirmPassword.length > 0}
+                  helperText={!passwordMatch && confirmPassword.length > 0 ? 'Password does not match' : ' '}
+                  fullWidth
+                  name="password"
+                  label="Confirm Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  onChange={onChangeConfirmPassword}
+                />
+                <TextField
+                  label="Phone" 
+                  fullWidth
+                  inputProps={{maxLength: 10}}
+                  value={phone} 
+                  onChange={onChangePhone}
+                >
+                </TextField>
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  disabled={!passwordMatch}
+                >
+                  Register
+                </Button>
+                <Grid container>
+                  <Grid item xs>
+                    <Link href="#" variant="body2">
+                      Forgot password?
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link href="/login" variant="body2">
+                      {"Already have an account?"}
+                    </Link>
+                  </Grid>
+                </Grid>
+              </Box>
+            </div>
+          }
         </Box>
       </Container>
       </ThemeProvider>
     </>
-    }
-    </>
   )
 }
-
 export default RegisterPage
