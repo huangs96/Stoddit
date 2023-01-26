@@ -27,7 +27,7 @@ function LoginPage() {
           This field is required!
         </div>
       );
-    }
+    };
   };
 
   const onChangeUsername = (e) => {
@@ -50,16 +50,17 @@ function LoginPage() {
       password
     });
 
-    if (token) {
-      navigate('/home');
-    }
+    console.log('token', token);
 
-  }
+    if (token.length > 0) {
+      navigate('/home');
+    };
+  };
 
   //go to register if no account
   const navToRegister = () => {
     navigate('/register');
-  }
+  };
 
   return (
     
