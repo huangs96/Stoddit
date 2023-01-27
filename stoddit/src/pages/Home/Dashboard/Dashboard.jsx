@@ -19,6 +19,7 @@ import Deposits from './Deposits';
 import Orders from './Orders';
 
 const username = JSON.parse(localStorage.getItem('Username'));
+console.log('username', username);
 const drawerWidth = 240;
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
