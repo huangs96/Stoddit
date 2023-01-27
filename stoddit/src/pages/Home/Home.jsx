@@ -22,17 +22,15 @@ function HomePage() {
     .catch(console.error);
   }, []);
 
-  console.log(localStorage)
-
-  const logout = async () => {
-    const deleteDetails = await logoutUser();
-    if (deleteDetails.error) {
-      console.log(deleteDetails.error);
-      return;
-    }
-    console.log(deleteDetails.message);
-    return navigate('/login');
-  };
+  // const logout = async () => {
+  //   const deleteDetails = await logoutUser();
+  //   if (deleteDetails.error) {
+  //     console.log(deleteDetails.error);
+  //     return;
+  //   }
+  //   console.log(deleteDetails.message);
+  //   return navigate('/login');
+  // };
 
   return (
     <>

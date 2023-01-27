@@ -48,6 +48,8 @@ function LoginPage() {
     });
 
     if (token) {
+      localStorage.setItem('authed', true);
+      console.log('localstorage', localStorage);
       navigate('/home');
     };
   };
