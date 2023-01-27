@@ -6,21 +6,23 @@ import ChatIndex from '../pages/Chat/ChatIndex';
 import PortfolioIndex from '../pages/Portfolio/PortfolioIndex';
 import TradeIndex from '../pages/Trade/TradeIndex';
 import ProfileIndex from '../pages/Profile/ProfileIndex';
+import PrivateRoutes from './privateRoutes';
 
 function AppRoutes() {
   return (
     <Routes>
+      <Route
+        path="login"
+        element={<LoginPage />}
+      />
+      <Route
+        path="register"
+        element={<RegisterPage />}
+      />
+      <Route element={<PrivateRoutes />}>
         <Route
-          path="login"
-          element={<LoginPage />}
-        />
-        <Route
-          path="register"
-          element={<RegisterPage />}
-        />
-          <Route
-          path="home"
-          element={<HomePage />}
+        path="home"
+        element={<HomePage />}
         />
         <Route
           path="chat"
@@ -38,6 +40,7 @@ function AppRoutes() {
           path="profile"
           element={<ProfileIndex />}
         />
+      </Route>
     </Routes>
   );
 }

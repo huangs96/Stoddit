@@ -46,7 +46,7 @@ function ChatIndex() {
   const socket = useRef();
   //misc
   const navigate = useNavigate();
-  
+
   /* ------ Socket Connection ------ */
   //run socket connection once only
 
@@ -249,10 +249,6 @@ function ChatIndex() {
 
     //empty textbox
     setMessageText('');
-  };
-
-  if (!userID && !username) {
-    return navigate('/login');
   };
 
   return (
