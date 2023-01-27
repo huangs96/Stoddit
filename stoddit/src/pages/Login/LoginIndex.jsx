@@ -50,13 +50,16 @@ function LoginPage() {
       setIncorrectInput(state => ({...state, shortUsername: 'Username must contain at least 5 characters.'}));
     } else {
       error = false;
-    }
+      setIncorrectInput(state => ({...state, shortUsername: ''}));
+    };
+
     if (password.length !== 0 && password.length < 8) {
       error = true;
       console.log('Password too short');
       setIncorrectInput(state => ({...state, shortPassword: 'Password must be atleast 8 characters.'}));
     } else {
       error = false;
+      setIncorrectInput(state => ({...state, shortPassword: ''}));
     }
     return error;
   };
