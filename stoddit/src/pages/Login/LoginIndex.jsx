@@ -22,9 +22,12 @@ function LoginPage() {
 
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const [incorrectInput, setIncorrectInput] = useState({
+    shortUsername: '',
+    shortPassword: '',
+    incorrect: ''
+  });
   const [user, setUser] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
   const theme = createTheme();
 
   const navigate = useNavigate();
@@ -38,11 +41,34 @@ function LoginPage() {
     const password = e.target.value;
     setPassword(password);
   };
+  
+  const validateFields = () => {
+    let error = false;
+    if (username.length !== 0 && username.length < 5) {
+      error = true;
+      console.log('username too short');
+      setIncorrectInput(state => ({...state, shortUsername: 'Username must contain at least 5 characters.'}));
+    } else {
+      error = false;
+    }
+    if (password.length !== 0 && password.length < 8) {
+      error = true;
+      console.log('Password too short');
+      setIncorrectInput(state => ({...state, shortPassword: 'Password must be atleast 8 characters.'}));
+    } else {
+      error = false;
+    }
+    return error;
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setMessage("");
-    setLoading(true);
+    setUserName('');
+    setPassword('');
+
+    if (validateFields()) {
+      return;
+    };
 
     try {
       let token = await authUser({
@@ -51,13 +77,16 @@ function LoginPage() {
       });
 
       if (token) {
+        // setWrongInput(false);
         const data = await getAuthedUser();
         setUser(data);
         localStorage.setItem('UserID', JSON.stringify(data.user.id));
         localStorage.setItem('Username', JSON.stringify(data.user.username));
         localStorage.setItem('authed', true);
         navigate('/home');
-      };
+      } else {
+
+      }
     } catch (err) {
       console.log('cannot log in')
     };
@@ -93,6 +122,8 @@ function LoginPage() {
               autoComplete="email"
               autoFocus
               onChange={onChangeUsername}
+              error={Boolean(incorrectInput?.shortUsername)}
+              helperText={incorrectInput?.shortUsername}
             />
             <TextField
               margin="normal"
@@ -104,6 +135,8 @@ function LoginPage() {
               id="password"
               autoComplete="current-password"
               onChange={onChangePassword}
+              error={Boolean(incorrectInput?.shortPassword)}
+              helperText={incorrectInput?.shortPassword}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
