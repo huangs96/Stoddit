@@ -14,6 +14,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { getAuthedUser } from '../../services/user.service';
 
 function LoginPage() {
 
@@ -21,6 +22,7 @@ function LoginPage() {
 
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const [user, setUser] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const theme = createTheme();
@@ -42,15 +44,22 @@ function LoginPage() {
     setMessage("");
     setLoading(true);
 
-    let token = await authUser({
-      username,
-      password
-    });
+    try {
+      let token = await authUser({
+        username,
+        password
+      });
 
-    if (token) {
-      localStorage.setItem('authed', true);
-      console.log('localstorage', localStorage);
-      navigate('/home');
+      if (token) {
+        const data = await getAuthedUser();
+        setUser(data);
+        localStorage.setItem('UserID', JSON.stringify(data.user.id));
+        localStorage.setItem('Username', JSON.stringify(data.user.username));
+        localStorage.setItem('authed', true);
+        navigate('/home');
+      };
+    } catch (err) {
+      console.log('cannot log in')
     };
   };
 

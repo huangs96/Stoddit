@@ -3,9 +3,10 @@ import { Outlet, Navigate } from 'react-router-dom';
 
 function PrivateRoutes() {
   const authed = localStorage.getItem('authed');
+  const userID = JSON.parse(localStorage.getItem('UserID'));
 
   return (
-    authed ? <Outlet /> : <Navigate to='/login' />
+    authed && userID ? <Outlet /> : <Navigate to='/login' />
   )
 }
 

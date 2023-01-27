@@ -18,7 +18,6 @@ import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 
-const userID = JSON.parse(localStorage.getItem('UserID'));
 const username = JSON.parse(localStorage.getItem('Username'));
 const drawerWidth = 240;
 

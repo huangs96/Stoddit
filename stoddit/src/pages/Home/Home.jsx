@@ -11,16 +11,16 @@ function HomePage() {
   const [user, setUser] = useState(null);
 
   //grab user information as soon as authetication has been established
-  useEffect(()=> {
-    const fetchData = async () => {
-      const data = await getAuthedUser();
-      setUser(data);
-      localStorage.setItem('UserID', JSON.stringify(data.user.id));
-      localStorage.setItem('Username', JSON.stringify(data.user.username));
-    }
-    fetchData()
-    .catch(console.error);
-  }, []);
+  // useEffect(()=> {
+  //   const fetchData = async () => {
+  //     const data = await getAuthedUser();
+  //     setUser(data);
+  //     localStorage.setItem('UserID', JSON.stringify(data.user.id));
+  //     localStorage.setItem('Username', JSON.stringify(data.user.username));
+  //   }
+  //   fetchData()
+  //   .catch(console.error);
+  // }, []);
 
   // const logout = async () => {
   //   const deleteDetails = await logoutUser();
