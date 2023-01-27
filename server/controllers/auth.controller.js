@@ -38,7 +38,7 @@ const authUser = async (req, res) => {
         maxAge: 24 * 60 * 60 * 1000
       })
       res.json({ accessToken })
-    }
+    };
   } catch (err) {
     return res.status(400).send(err);
   }

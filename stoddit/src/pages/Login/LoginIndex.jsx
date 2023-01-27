@@ -13,6 +13,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Alert from '@mui/material/Alert';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { getAuthedUser } from '../../services/user.service';
 
@@ -20,12 +21,12 @@ function LoginPage() {
 
   const form = useRef();
 
-  const [username, setUserName] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [incorrectInput, setIncorrectInput] = useState({
     shortUsername: '',
     shortPassword: '',
-    incorrect: ''
+    status: ''
   });
   const [user, setUser] = useState('');
   const theme = createTheme();
@@ -34,7 +35,7 @@ function LoginPage() {
 
   const onChangeUsername = (e) => {
     const userName = e.target.value;
-    setUserName(userName);
+    setUsername(userName);
   };
 
   const onChangePassword = (e) => {
@@ -46,17 +47,16 @@ function LoginPage() {
     let error = false;
     if (username.length !== 0 && username.length < 5) {
       error = true;
-      console.log('username too short');
       setIncorrectInput(state => ({...state, shortUsername: 'Username must contain at least 5 characters.'}));
     } else {
       error = false;
       setIncorrectInput(state => ({...state, shortUsername: ''}));
     };
 
-    if (password.length !== 0 && password.length < 8) {
+    if (password.length !== 0 && password.length < 5) {
       error = true;
       console.log('Password too short');
-      setIncorrectInput(state => ({...state, shortPassword: 'Password must be atleast 8 characters.'}));
+      setIncorrectInput(state => ({...state, shortPassword: 'Password must be atleast 5 characters.'}));
     } else {
       error = false;
       setIncorrectInput(state => ({...state, shortPassword: ''}));
@@ -64,34 +64,48 @@ function LoginPage() {
     return error;
   };
 
+  const postLoginMessage = () => {
+    let postLoginMsg;
+    if (incorrectInput.status === 'incorrect') {
+      postLoginMsg = <Alert severity="error">Username and/or Password Incorrect - Please Try Again!</Alert>
+    } else if (incorrectInput.status === 'correct') {
+      postLoginMsg = <Alert severity="success">Login Successful - You are being Redirected!</Alert>
+    };
+    console.log(postLoginMsg);
+    return postLoginMsg;
+  };
+
+  console.log(incorrectInput);
+  postLoginMessage();
+
   const handleSubmit = async e => {
     e.preventDefault();
-    setUserName('');
-    setPassword('');
-
     if (validateFields()) {
       return;
     };
-
+    
     try {
+
       let token = await authUser({
         username,
         password
       });
 
       if (token) {
-        // setWrongInput(false);
+        console.log('here2');
+        setIncorrectInput(state => ({...state, status: 'correct'}));
         const data = await getAuthedUser();
         setUser(data);
         localStorage.setItem('UserID', JSON.stringify(data.user.id));
         localStorage.setItem('Username', JSON.stringify(data.user.username));
         localStorage.setItem('authed', true);
         navigate('/home');
-      } else {
-
-      }
+      };
     } catch (err) {
-      console.log('cannot log in')
+      console.log(err)
+      setIncorrectInput(state => ({...state, status: 'incorrect'}));
+      setUsername('');
+      setPassword('');
     };
   };
 
@@ -141,6 +155,7 @@ function LoginPage() {
               error={Boolean(incorrectInput?.shortPassword)}
               helperText={incorrectInput?.shortPassword}
             />
+            {postLoginMessage()}
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
