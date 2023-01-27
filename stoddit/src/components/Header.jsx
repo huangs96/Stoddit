@@ -25,7 +25,7 @@ function Header() {
 
   return (
     <React.Fragment>
-      <AppBar>
+      <AppBar position='absolute'>
         <Toolbar>
           <iconButton aria-label='home' component={Link} to='/home'>
             <ShowChartIcon />
@@ -36,6 +36,12 @@ function Header() {
             onChange={(e, value)=> setValue(value)} indicatorColor='secondary'
             orientation='horizontal'
           >
+            <Tab 
+              label='Dashboard'
+              value='Dashboard'
+              component={Link}
+              to={'/home'}
+            />
             <Tab 
               label='Chat'
               value='Chat'

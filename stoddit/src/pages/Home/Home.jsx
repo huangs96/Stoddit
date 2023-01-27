@@ -3,8 +3,7 @@ import UserContext from '../../contexts/userContext';
 import { useParams, redirect, useNavigate } from 'react-router-dom';
 import { getAuthedUser, fetchRefreshToken } from '../../services/user.service';
 import { logoutUser } from '../../services/auth.service';
-import App from '../../App';
-// import Header from '../../components/Header';
+import Dashboard from './Dashboard/Dashboard';
 
 
 function HomePage() {
@@ -37,9 +36,8 @@ function HomePage() {
 
   return (
     <>
-    <div style={{marginTop: '10vh'}}>
-      {user && <h1>Welcome {user.user.username}</h1>}
-      <button onClick={logout}>logout</button>
+    <div>
+      <Dashboard />
     </div>
     </>
     )
