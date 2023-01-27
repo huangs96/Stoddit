@@ -4,6 +4,7 @@ import React, {
   useEffect, 
   useRef
 } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
@@ -35,7 +36,6 @@ function ChatIndex() {
   const [conversations, setConversations] = useState([]);
   const [newConversation, setNewConversation] = useState(false);
   //deleting chatroom
-  // const [deletedConversation, setDeletedConversation] = useState(false);
   const [userHasLeftConversation, setUserHasLeftConversation] = useState(false);
   //participants
   const [participantsInChatroom, setParticipantsInChatroom] = useState([]);
@@ -44,7 +44,9 @@ function ChatIndex() {
   const [onlineFriendsData, setOnlineFriendsData] = useState([]);
   //socket
   const socket = useRef();
-
+  //misc
+  const navigate = useNavigate();
+  
   /* ------ Socket Connection ------ */
   //run socket connection once only
 
@@ -158,7 +160,6 @@ function ChatIndex() {
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
   // console.log('friendsList ChatIndex', friendsList);
   /* --------------------------------- */
-
   useEffect(() => {
     let isLoaded = true;
     const getChatroomData = async () => {
@@ -248,6 +249,10 @@ function ChatIndex() {
 
     //empty textbox
     setMessageText('');
+  };
+
+  if (!userID && !username) {
+    return navigate('/login');
   };
 
   return (
