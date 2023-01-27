@@ -32,7 +32,7 @@ function Header() {
           </iconButton>
           <Tabs 
             textColor='inherit' 
-            value='Chat'
+            value={value}
             onChange={(e, value)=> setValue(value)} indicatorColor='secondary'
             orientation='horizontal'
           >

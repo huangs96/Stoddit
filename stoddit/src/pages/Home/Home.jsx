@@ -23,6 +23,8 @@ function HomePage() {
     .catch(console.error);
   }, []);
 
+  console.log(localStorage)
+
   const logout = async () => {
     const deleteDetails = await logoutUser();
     if (deleteDetails.error) {
