@@ -80,7 +80,6 @@ function ChatIndex() {
     });
 
     socket.current.on('chatMessage', messageData => {
-      console.log('messagedata', messageData);
       setMessages(msgData => [...msgData, {
         message_text: messageData.text,
         participantID: messageData.receiverID[0].id,
