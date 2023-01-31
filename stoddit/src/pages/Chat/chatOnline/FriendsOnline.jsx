@@ -1,6 +1,4 @@
 import './FriendsOnline.css';
-// import React, { useEffect, useState } from 'react';
-
 
 function FriendsOnline({userID, friendsList, onlineFriends}) {
 
