@@ -252,8 +252,7 @@ function ChatIndex() {
 
   return (
     <>
-      <div 
-      style={{ marginTop:'10vh'}} 
+      <div
       className="chat"
       >
       <div className="chatMenu">
@@ -264,7 +263,10 @@ function ChatIndex() {
           >
           </TextField>
           <div>
-          <h2>{username}'s Conversations</h2>
+            <h3>Live Chatrooms</h3>
+          </div>
+          <div>
+            <h3>{username}'s Conversations</h3>
           </div>
           {
             conversations.map((convo) => (
@@ -281,19 +283,22 @@ function ChatIndex() {
               </div>
             ))
           }
-          <Button
-            onClick={handleOpen} 
-            variant="contained"
-          >
-            New Conversation
-          </Button>
-          <NewConversation 
-            userID={userID}
-            open={open}
-            friendsList={friendsList}
-            onClose={handleClose}
-            getNewConversation={getNewConversation}
-          />
+          <div className='newConversationContainer'>
+            <Button
+              fullwidth={true}
+              onClick={handleOpen} 
+              variant="contained"
+            >
+              New Conversation
+            </Button>
+            <NewConversation
+              userID={userID}
+              open={open}
+              friendsList={friendsList}
+              onClose={handleClose}
+              getNewConversation={getNewConversation}
+            />
+          </div>
         </div>
       </div>
       <div className="chatBox">

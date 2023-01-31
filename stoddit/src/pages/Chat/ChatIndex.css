@@ -2,6 +2,8 @@
   display: flex;
   font-weight: 500;
   cursor: pointer;
+  margin-top: 75px;
+  height: 100%;
 }
 
 .chatMenu {
@@ -27,7 +29,7 @@
 
 .chatMenuWrapper, .chatBoxWrapper, .chatOnlineWrapper {
   padding: 10px;
-  height: 50%;
+  height: 100%;
 }
 
 .chatBoxTop {
@@ -76,4 +78,9 @@
   position: absolute;
   top: 2px;
   right: 2px;
+}
+
+.newConversationContainer {
+  display: flex;
+  justify-content: center;
 }
