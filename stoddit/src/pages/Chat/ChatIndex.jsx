@@ -266,7 +266,7 @@ function ChatIndex() {
         <div className="chatMenuWrapper">
           <TextField 
             className="chatMenuInput" 
-            label="Search Chats, Friends, or Users"
+            label="Search Chats, Direct Messages, Friends, or Users"
           >
           </TextField>
           {/* <div>
@@ -279,7 +279,7 @@ function ChatIndex() {
           <Tab label="Direct Messages" />
           <Tab label="Live Chatrooms" />
           </Tabs>
-          {value == 1 &&
+          {value == 0 ?
             conversations.map((convo) => (
               <div 
                 onClick={() => {
@@ -293,6 +293,8 @@ function ChatIndex() {
                 />
               </div>
             ))
+            :
+            <h1>Live Chatroom</h1>
           }
           <div className='newConversationContainer'>
             <Button
