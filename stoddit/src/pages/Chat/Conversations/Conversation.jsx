@@ -27,7 +27,6 @@ function Conversation({conversation, userParticipantID, conversationDeleted}) {
           className="conversation"
         >
           <img 
-              
               className="conversationImg" 
               src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg' 
               alt="" 
@@ -38,16 +37,20 @@ function Conversation({conversation, userParticipantID, conversationDeleted}) {
               >
                 {conversation.name}
               </span>
-              <span
-                STYLE="font-size: 10pt"
-              >
-                {conversation.description}
-              </span>
-              <span
-                STYLE="font-size: 8pt; color: gray"
-              >
-                {conversation.description}
-              </span>
+              {conversation.description.length > 0 &&
+              <>
+                <span
+                  STYLE="font-size: 10pt; padding: 12px 3px 12px 0px"
+                >
+                  {conversation.description}
+                </span>
+                <span
+                  STYLE="font-size: 8pt; color: gray"
+                >
+                  {conversation.description}
+                </span>
+              </>
+              }
             </div>
         </div>
             <DeleteOutlinedIcon sx={{ "&:hover": { color: "red" } }} onClick={deleteConversation}/>
