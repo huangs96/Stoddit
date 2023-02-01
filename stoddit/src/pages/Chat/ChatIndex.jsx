@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import Conversation from './Conversations/Conversation';
 import NewConversation from './Conversations/newConversation'
 import Message from './Messages/Message';
@@ -125,14 +127,18 @@ function ChatIndex() {
 
   /* ------ Conversation Modal ------ */
   //opening and closing new conversation modal
+  const [value, setValue] = React.useState(0);
   const [open, setOpen] = useState(false);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    console.log('value', value);
+  };
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
-
   const getNewConversation = (newChatroomID, convoName, convoDescription) => {
     // console.log('newchatroomID', newChatroomID);
     let splitChatroomReturnStr = newChatroomID.split(':');
@@ -263,13 +269,17 @@ function ChatIndex() {
             label="Search Chats, Friends, or Users"
           >
           </TextField>
-          <div>
+          {/* <div>
             <h3>Live Chatrooms</h3>
           </div>
           <div>
             <h3>{username}'s Conversations</h3>
-          </div>
-          {
+          </div> */}
+          <Tabs value={value} onChange={handleChange} aria-label="conversationTabs">
+          <Tab label="Direct Messages" />
+          <Tab label="Live Chatrooms" />
+          </Tabs>
+          {value == 1 &&
             conversations.map((convo) => (
               <div 
                 onClick={() => {
@@ -286,7 +296,7 @@ function ChatIndex() {
           }
           <div className='newConversationContainer'>
             <Button
-              sx={{width: 350}}
+              sx={{width: 320}}
               size="medium"
               onClick={handleOpen} 
               variant="contained"

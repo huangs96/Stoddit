@@ -1,7 +1,8 @@
 import './Conversation.css';
 import React, { useEffect, useState } from 'react';
 import { getChatroomByUserID, deleteParticipantFromChatroom} from '../../../services/chat.service';
-import { Button, Modal, Typography, Box } from '@mui/material';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 function Conversation({conversation, userParticipantID, conversationDeleted}) {
@@ -26,6 +27,7 @@ function Conversation({conversation, userParticipantID, conversationDeleted}) {
           className="conversation"
         >
           <img 
+              
               className="conversationImg" 
               src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg' 
               alt="" 
@@ -36,11 +38,16 @@ function Conversation({conversation, userParticipantID, conversationDeleted}) {
               >
                 {conversation.name}
               </span>
-              <h5
-                className="conversationName" 
+              <span
+                STYLE="font-size: 10pt"
               >
                 {conversation.description}
-              </h5>
+              </span>
+              <span
+                STYLE="font-size: 8pt; color: gray"
+              >
+                {conversation.description}
+              </span>
             </div>
         </div>
             <DeleteOutlinedIcon sx={{ "&:hover": { color: "red" } }} onClick={deleteConversation}/>
