@@ -153,7 +153,7 @@ function ChatIndex() {
   // console.log('userParticipantID', userParticipantID);
   // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);
-  // console.log('conversations---', conversations);
+  console.log('conversations---', conversations);
   // console.log('setNewConversation---', newConversation);
   // console.log('messages', messages);
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
@@ -285,7 +285,8 @@ function ChatIndex() {
           }
           <div className='newConversationContainer'>
             <Button
-              fullwidth={true}
+              sx={{width: 350}}
+              size="medium"
               onClick={handleOpen} 
               variant="contained"
             >

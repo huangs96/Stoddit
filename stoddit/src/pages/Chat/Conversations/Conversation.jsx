@@ -17,6 +17,8 @@ function Conversation({conversation, userParticipantID, conversationDeleted}) {
     conversationDeleted();
   };
 
+  console.log(conversation)
+
   return (
     <>
       <div className="conversationContainer">
@@ -28,11 +30,18 @@ function Conversation({conversation, userParticipantID, conversationDeleted}) {
               src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg' 
               alt="" 
             />
-            <span 
-              className="conversationName" 
-            >
-              {conversation.name}
-            </span>
+            <div className="conversationInfoContainer">
+              <span 
+                className="conversationName" 
+              >
+                {conversation.name}
+              </span>
+              <h5
+                className="conversationName" 
+              >
+                {conversation.description}
+              </h5>
+            </div>
         </div>
             <DeleteOutlinedIcon sx={{ "&:hover": { color: "red" } }} onClick={deleteConversation}/>
       </div>

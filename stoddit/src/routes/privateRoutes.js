@@ -8,6 +8,6 @@ function PrivateRoutes() {
   return (
     authed && userID ? <Outlet /> : <Navigate to='/login' />
   )
-}
+};
 
 export default PrivateRoutes
