@@ -269,13 +269,10 @@ function ChatIndex() {
             label="Search Chats, Direct Messages, Friends, or Users"
           >
           </TextField>
-          {/* <div>
-            <h3>Live Chatrooms</h3>
-          </div>
-          <div>
-            <h3>{username}'s Conversations</h3>
-          </div> */}
-          <Tabs value={value} onChange={handleChange} aria-label="conversationTabs">
+          <Tabs 
+            value={value} 
+            onChange={handleChange} aria-label="conversationTabs"
+          >
           <Tab label="Direct Messages" />
           <Tab label="Live Chatrooms" />
           </Tabs>
@@ -294,7 +291,7 @@ function ChatIndex() {
               </div>
             ))
             :
-            <h1>Live Chatroom</h1>
+            <h1>Live Chatrooms</h1>
           }
           <div className='newConversationContainer'>
             <Button
