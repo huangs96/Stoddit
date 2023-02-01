@@ -23,8 +23,6 @@ function NewConversation(props) {
   const [conversationDescription, setConversationDescription] = useState('');
   const todaysDate = new Date();
   const [selectedFriends, setSelectedFriends] = useState([])
-  // let selectedFriendsList = [];
-  let selectedFriend = true;
   
   const startConversationData = {
     chatroomName: '',
@@ -63,13 +61,18 @@ function NewConversation(props) {
     } else {
       setSelectedFriends(friends => [...friends, value])
     };
+
     const idFromUsername = await getUserIDByUsername(value);
     const finalIDFromUsername = idFromUsername[0].id;
 
+    console.log('finalid', finalIDFromUsername);
+
     if (startConversationData.userIDs.length === 0) {
       startConversationData.userIDs.push(finalIDFromUsername);
-    } else if (!startConversationData.userIDs.includes(finalIDFromUsername)) {
+      console.log('here1', startConversationData.userIDs);
+    } else if (!startConversationData.userIDs.includes(finalIDFromUsername) && startConversationData.userIDs.length > 0) {
       startConversationData.userIDs.push(finalIDFromUsername);
+      console.log('here2', startConversationData.userIDs);
     } else {
       return;
     };
