@@ -1,5 +1,6 @@
 import './newConversation.css';
 import {useState, useEffect} from 'react';
+import Box from '@mui/material/Box';
 import { TextField, Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import List from '@mui/material/List';
@@ -8,7 +9,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
-import PersonIcon from '@mui/icons-material/Person';
+import CheckIcon from '@mui/icons-material/Check';
 import AddIcon from '@mui/icons-material/Add';
 import { blue } from '@mui/material/colors';
 import PropTypes from 'prop-types';
@@ -21,6 +22,7 @@ function NewConversation(props) {
   const [conversationTitle, setConversationTitle] = useState('');
   const [conversationDescription, setConversationDescription] = useState('');
   const todaysDate = new Date();
+  let selectedFriendsList = [];
   let selectedFriend = false;
   
   const startConversationData = {
@@ -55,7 +57,14 @@ function NewConversation(props) {
   };
 
   const handleListItemClick = async (value) => {
-    selectedFriend = true;
+    selectedFriendsList.push(value);
+    console.log('selectedFriendsLIst', selectedFriendsList)
+    console.log(selectedFriendsList.includes(value));
+    if (!selectedFriend) {
+      selectedFriend = true;
+    } else {
+      selectedFriend = false;
+    };
     const idFromUsername = await getUserIDByUsername(value);
     const finalIDFromUsername = idFromUsername[0].id;
 
@@ -83,64 +92,89 @@ function NewConversation(props) {
     handleClose();
   };
 
+  const style = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+
   return (
     <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Start a Conversation</DialogTitle>
-      <TextField
-        name="conversationName"
-        className="conversationName"
-        label="Conversation Name" 
-        variant="filled" 
-        size="small"
-        onChange={onChangeConversationName}
-        value={conversationName}
-      />
-      <TextField 
-        name="conversationTitle"
-        className="conversationTitle"
-        label="Conversation Title" 
-        variant="filled" 
-        size="small" 
-        onChange={onChangeConversationTitle}
-        value={conversationTitle}
-      />
-      <TextField 
-        name="conversationDescription"
-        className="conversationDescription"
-        label="Conversation Description" 
-        variant="filled" 
-        size="small"
-        onChange={onChangeConversationDescription}
-        value={conversationDescription}
-      />
-      <Typography>
-        Select Friends to Join Conversation
-      </Typography>
-      <List sx={{ pt: 0 }}>
-        {props.friendsList.map((friend, i) => (
-          <ListItem 
-            selected={selectedFriend ? true : false}
-            button onClick={() => handleListItemClick(friend.contact_name)} 
-            key={i}
-          >
+      <Box sx={style}>
+        <DialogTitle variant="h4">
+          Start a Conversation
+        </DialogTitle>
+        <TextField
+          name="conversationName"
+          className="conversationName"
+          label="Conversation Name" 
+          variant="filled" 
+          size="small"
+          onChange={onChangeConversationName}
+          value={conversationName}
+        />
+        <TextField
+          name="conversationTitle"
+          className="conversationTitle"
+          label="Conversation Title" 
+          variant="filled" 
+          size="small" 
+          onChange={onChangeConversationTitle}
+          value={conversationTitle}
+          
+        />
+        <TextField 
+          name="conversationDescription"
+          className="conversationDescription"
+          label="Conversation Description" 
+          variant="filled" 
+          size="small"
+          onChange={onChangeConversationDescription}
+          value={conversationDescription}
+        />
+        <Typography
+          sx={{padding: 2}}
+          variant="h6"
+        >
+          Select Friends to Join Conversation
+        </Typography>
+        <List sx={{ pt: 0 }}>
+          {props.friendsList.map((friend, i) => (
+            <ListItem 
+              selected={true}
+              button onClick={() => handleListItemClick(friend.contact_name, i)} 
+              key={i}
+            >
+              <ListItemAvatar>
+                <Avatar
+                  src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg'
+                >
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary={friend.contact_name} />
+              {/* {selectedFriend ?              
+                <p>no</p>
+                :
+                <CheckIcon />
+              } */}
+            </ListItem>
+          ))}
+
+          <ListItem autoFocus button onClick={createConversation}>
             <ListItemAvatar>
-              <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
-                <PersonIcon />
+              <Avatar>
+                <AddIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={friend.contact_name} />
+            <ListItemText primary="Create Conversation" />
           </ListItem>
-        ))}
-
-        <ListItem autoFocus button onClick={createConversation}>
-          <ListItemAvatar>
-            <Avatar>
-              <AddIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Create Conversation" />
-        </ListItem>
-      </List>
+        </List>
+      </Box>
     </Dialog>
   );
 }
