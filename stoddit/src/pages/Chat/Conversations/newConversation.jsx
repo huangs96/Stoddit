@@ -22,8 +22,9 @@ function NewConversation(props) {
   const [conversationTitle, setConversationTitle] = useState('');
   const [conversationDescription, setConversationDescription] = useState('');
   const todaysDate = new Date();
-  let selectedFriendsList = [];
-  let selectedFriend = false;
+  const [selectedFriends, setSelectedFriends] = useState([])
+  // let selectedFriendsList = [];
+  let selectedFriend = true;
   
   const startConversationData = {
     chatroomName: '',
@@ -57,13 +58,10 @@ function NewConversation(props) {
   };
 
   const handleListItemClick = async (value) => {
-    selectedFriendsList.push(value);
-    console.log('selectedFriendsLIst', selectedFriendsList)
-    console.log(selectedFriendsList.includes(value));
-    if (!selectedFriend) {
-      selectedFriend = true;
+    if (selectedFriends.includes(value)) {
+      setSelectedFriends (friends => friends.filter((friend) => friend !== value));
     } else {
-      selectedFriend = false;
+      setSelectedFriends(friends => [...friends, value])
     };
     const idFromUsername = await getUserIDByUsername(value);
     const finalIDFromUsername = idFromUsername[0].id;
@@ -83,6 +81,8 @@ function NewConversation(props) {
     startConversationData.chatroomTitle = conversationTitle;
     startConversationData.chatroomDescription = conversationDescription;
     startConversationData.userIDs.push(props.userID);
+
+    console.log(conversationName, conversationDescription, startConversationData.userIDs);
 
     
     let chatroomIDGenerated = await createNewChatroomWithParticipants(startConversationData);
@@ -146,8 +146,8 @@ function NewConversation(props) {
         <List sx={{ pt: 0 }}>
           {props.friendsList.map((friend, i) => (
             <ListItem 
-              selected={true}
               button onClick={() => handleListItemClick(friend.contact_name, i)} 
+              selected={selectedFriends.includes(friend.contact_name)}
               key={i}
             >
               <ListItemAvatar>
