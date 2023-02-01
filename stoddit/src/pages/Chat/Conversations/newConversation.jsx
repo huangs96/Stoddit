@@ -78,7 +78,7 @@ function NewConversation(props) {
     
     let chatroomIDGenerated = await createNewChatroomWithParticipants(startConversationData);
 
-    props.getNewConversation(chatroomIDGenerated, conversationName);
+    props.getNewConversation(chatroomIDGenerated, conversationName, conversationDescription);
 
     handleClose();
   };

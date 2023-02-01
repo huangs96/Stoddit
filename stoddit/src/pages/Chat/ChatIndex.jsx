@@ -133,7 +133,7 @@ function ChatIndex() {
     setOpen(false);
   };
 
-  const getNewConversation = (newChatroomID, convoName) => {
+  const getNewConversation = (newChatroomID, convoName, convoDescription) => {
     // console.log('newchatroomID', newChatroomID);
     let splitChatroomReturnStr = newChatroomID.split(':');
     let newGeneratedChatroomID = parseInt(splitChatroomReturnStr[splitChatroomReturnStr.length-1]);
@@ -141,7 +141,8 @@ function ChatIndex() {
     setConversations(convos => [...convos, {
       account_id: userID,
       name: convoName,
-      chatroom_id: newGeneratedChatroomID
+      chatroom_id: newGeneratedChatroomID,
+      description: convoDescription
     }]);
   };
   
