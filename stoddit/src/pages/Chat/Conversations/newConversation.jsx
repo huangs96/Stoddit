@@ -70,37 +70,41 @@ function NewConversation(props) {
       setSelectedFriends(friends => [...friends, value])
     };
 
-    const idFromUsername = await getUserIDByUsername(value);
-    const finalIDFromUsername = idFromUsername[0].id;
+    // const idFromUsername = await getUserIDByUsername(value);
+    // const finalIDFromUsername = idFromUsername[0].id;
 
-    console.log('finalid', finalIDFromUsername);
+    // console.log('finalid', finalIDFromUsername);
 
-    if (conversationData.userIDs.length === 0) {
-      conversationData.userIDs.push(finalIDFromUsername);
-      console.log('here1', conversationData.userIDs);
-    } else if (!conversationData.userIDs.includes(finalIDFromUsername)) {
-      conversationData.userIDs.push(finalIDFromUsername);
-      console.log('here2', conversationData.userIDs);
-    } else {
-      setConversationData(data => data.userIDs.filter((id) => id !== finalIDFromUsername));
-    };
+    // if (conversationData.userIDs.length === 0) {
+    //   conversationData.userIDs.push(finalIDFromUsername);
+    //   console.log('here1', conversationData.userIDs);
+    // } else if (!conversationData.userIDs.includes(finalIDFromUsername)) {
+    //   conversationData.userIDs.push(finalIDFromUsername);
+    //   console.log('here2', conversationData.userIDs);
+    // } else {
+    //   setConversationData(data => data.userIDs.filter((id) => id !== finalIDFromUsername));
+    // };
   };
 
-  console.log('here3', conversationData.userIDs);
+  console.log('here3', selectedFriends);
 
   const createConversation = async (e) => {
     //populating conversation data object
+    const idFromUsername = await getUserIDByUsername(selectedFriends);
+    console.log('id', idFromUsername);
+
     conversationData.chatroomName = conversationName;
     conversationData.chatroomTitle = conversationTitle;
     conversationData.chatroomDescription = conversationDescription;
-    conversationData.userIDs.push(props.userID);
+    conversationData.userIDs.push(idFromUsername);
 
     console.log(conversationName, conversationDescription, conversationData.userIDs);
+    console.log(conversationData);
 
     
-    let chatroomIDGenerated = await createNewChatroomWithParticipants(conversationData);
+    // let chatroomIDGenerated = await createNewChatroomWithParticipants(conversationData);
 
-    props.getNewConversation(chatroomIDGenerated, conversationName, conversationDescription);
+    // props.getNewConversation(chatroomIDGenerated, conversationName, conversationDescription);
 
     handleClose();
   };

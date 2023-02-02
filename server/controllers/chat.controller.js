@@ -255,13 +255,30 @@ const getFriendsListById = (async (req, res) => {
 });
 
 const getUserIDfromName = (async (req, res) => {
-  const nameFromFriendList = req.params.id;
-  console.log(req.params.id);
+  let nameFromFriendList = req.params.id;
+  if (nameFromFriendList.includes(',')) {
+    nameFromFriendList = nameFromFriendList.split(',');
+  };
+
+  console.log('friendlist', typeof(nameFromFriendList));
 
   try {
-    const idFromName = await client.query(queries.getUserIDfromFriendListName, [nameFromFriendList]);
-    if (idFromName) {
-      return res.status(200).json(idFromName.rows);
+    if (typeof(nameFromFriendList) === 'string') {
+      const idFromName = await client.query(queries.getUserIDfromFriendListName, [nameFromFriendList]);
+      if (idFromName) {
+        console.log('id', idFromName)
+        return res.status(200).json(idFromName.rows[0].id);
+      };
+    } else if (nameFromFriendList.length > 1) {
+      const userIDs = [];
+      for (let x=0; x<nameFromFriendList.length; x++) {
+        console.log('here2', nameFromFriendList[x]);
+        const idsFromNames = await client.query(queries.getUserIDfromFriendListName, [nameFromFriendList[x]]);
+        if (idsFromNames) {
+          userIDs.push(idsFromNames.rows[0].id);
+        };
+      };
+      return res.status(200).json(userIDs);
     };
   } catch (err) {
     return res.status(400).json(err);
