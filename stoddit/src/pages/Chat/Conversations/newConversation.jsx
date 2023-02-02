@@ -66,11 +66,12 @@ function NewConversation(props) {
   const createConversation = async (e) => {
     //populating conversation data object
     const idFromUsername = await getUserIDByUsername(selectedFriends);
-    console.log('id', idFromUsername);
-    if (idFromUsername.length > 1) {
+ 
+    if (idFromUsername.length > 1 && !conversationData.userIDs.includes(idFromUsername)) {
       idFromUsername.map((ids) => {
-        conversationData.userIDs.push(ids, props.userID);
+        conversationData.userIDs.push(ids);
       });
+      conversationData.userIDs.push(props.userID);
     } else {
       conversationData.userIDs.push(idFromUsername, props.userID);
     };
@@ -78,14 +79,12 @@ function NewConversation(props) {
     conversationData.chatroomName = conversationName;
     conversationData.chatroomTitle = conversationTitle;
     conversationData.chatroomDescription = conversationDescription;
-    // conversationData.userIDs.push(idFromUsername);
-    // console.log(conversationName, conversationDescription, conversationData.userIDs);
-    console.log(conversationData);
+
     let chatroomIDGenerated = await createNewChatroomWithParticipants(conversationData);
 
     props.getNewConversation(chatroomIDGenerated, conversationName, conversationDescription);
-    
-    // conversationData.userIDs = [];
+
+    conversationData.userIDs = [];
 
     handleClose();
   };
