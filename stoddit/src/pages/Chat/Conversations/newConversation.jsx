@@ -61,7 +61,21 @@ function NewConversation(props) {
     };
   };
 
-  // console.log('here3', selectedFriends);
+  const resetConversationData = () => {
+    setConversationData({
+      chatroomName: '',
+      chatroomTitle: '',
+      chatroomDescription: '',
+      userIDs: [],
+      sDate: todaysDate,
+      lDate: null
+    });
+    setConversationName('');
+    setConversationTitle('');
+    setConversationDescription('');
+    setSelectedFriends([]);
+  };
+
 
   const createConversation = async (e) => {
     //populating conversation data object
@@ -84,11 +98,7 @@ function NewConversation(props) {
 
     props.getNewConversation(chatroomIDGenerated, conversationName, conversationDescription);
 
-    conversationData.chatroomName = '';
-    conversationData.chatroomTitle = '';
-    conversationData.chatroomDescription = '';
-    conversationData.userIDs = [];
-    
+    resetConversationData();
     handleClose();
   };
 
