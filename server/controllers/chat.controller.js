@@ -64,7 +64,7 @@ const createChatroom = (async (req, res) => {
         dataSubmit = true;
       };
     } else {
-      await client.query(queries.createParticipantFromChatroom, [chatroom_id, id, sDate, lDate]);
+      await client.query(queries.createParticipantFromChatroom, [chatroom_id, id[0], sDate, lDate]);
       console.log('single conversation successfully created');
       //change dataSubmit to true to indicate successful query
       dataSubmit = true;

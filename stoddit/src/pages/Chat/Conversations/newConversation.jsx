@@ -11,7 +11,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import CheckIcon from '@mui/icons-material/Check';
 import AddIcon from '@mui/icons-material/Add';
-import { blue } from '@mui/material/colors';
 import PropTypes from 'prop-types';
 import { getFriendsListById, createNewChatroom, getUserIDByUsername } from '../../../services/chat.service';
 import { createNewChatroomWithParticipants } from '../../../contexts/chatContext';
@@ -31,15 +30,6 @@ function NewConversation(props) {
     sDate: todaysDate,
     lDate: null
   });
-  
-  // const startConversationData = {
-  //   chatroomName: '',
-  //   chatroomTitle: '',
-  //   chatroomDescription: '',
-  //   userIDs: [],
-  //   sDate: todaysDate,
-  //   lDate: null
-  // };
 
   const { onClose, selectedValue, open } = props;
 
@@ -49,7 +39,7 @@ function NewConversation(props) {
 
   const onChangeConversationName = (e) => {
     const conversationName = e.target.value;
-    console.log(conversationName);
+    // console.log(conversationName);
     setConversationName(conversationName);
   };
   
@@ -69,42 +59,33 @@ function NewConversation(props) {
     } else {
       setSelectedFriends(friends => [...friends, value])
     };
-
-    // const idFromUsername = await getUserIDByUsername(value);
-    // const finalIDFromUsername = idFromUsername[0].id;
-
-    // console.log('finalid', finalIDFromUsername);
-
-    // if (conversationData.userIDs.length === 0) {
-    //   conversationData.userIDs.push(finalIDFromUsername);
-    //   console.log('here1', conversationData.userIDs);
-    // } else if (!conversationData.userIDs.includes(finalIDFromUsername)) {
-    //   conversationData.userIDs.push(finalIDFromUsername);
-    //   console.log('here2', conversationData.userIDs);
-    // } else {
-    //   setConversationData(data => data.userIDs.filter((id) => id !== finalIDFromUsername));
-    // };
   };
 
-  console.log('here3', selectedFriends);
+  // console.log('here3', selectedFriends);
 
   const createConversation = async (e) => {
     //populating conversation data object
     const idFromUsername = await getUserIDByUsername(selectedFriends);
     console.log('id', idFromUsername);
+    if (idFromUsername.length > 1) {
+      idFromUsername.map((ids) => {
+        conversationData.userIDs.push(ids, props.userID);
+      });
+    } else {
+      conversationData.userIDs.push(idFromUsername, props.userID);
+    };
 
     conversationData.chatroomName = conversationName;
     conversationData.chatroomTitle = conversationTitle;
     conversationData.chatroomDescription = conversationDescription;
-    conversationData.userIDs.push(idFromUsername);
-
-    console.log(conversationName, conversationDescription, conversationData.userIDs);
+    // conversationData.userIDs.push(idFromUsername);
+    // console.log(conversationName, conversationDescription, conversationData.userIDs);
     console.log(conversationData);
+    let chatroomIDGenerated = await createNewChatroomWithParticipants(conversationData);
 
+    props.getNewConversation(chatroomIDGenerated, conversationName, conversationDescription);
     
-    // let chatroomIDGenerated = await createNewChatroomWithParticipants(conversationData);
-
-    // props.getNewConversation(chatroomIDGenerated, conversationName, conversationDescription);
+    // conversationData.userIDs = [];
 
     handleClose();
   };
