@@ -84,8 +84,11 @@ function NewConversation(props) {
 
     props.getNewConversation(chatroomIDGenerated, conversationName, conversationDescription);
 
+    conversationData.chatroomName = '';
+    conversationData.chatroomTitle = '';
+    conversationData.chatroomDescription = '';
     conversationData.userIDs = [];
-
+    
     handleClose();
   };
 
