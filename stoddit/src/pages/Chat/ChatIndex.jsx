@@ -348,15 +348,7 @@ function ChatIndex() {
         <div className="chatOnline">
           <div className="chatOnlineWrapper">
             <h4>
-              Online
-            </h4>
-            <FriendsOnline 
-              userID={userID}
-              friendsList={friendsList}
-              onlineFriends={onlineFriendsData}
-            />
-            <h4>
-              Offline
+              Friends
             </h4>
             <FriendsOnline 
               userID={userID}
