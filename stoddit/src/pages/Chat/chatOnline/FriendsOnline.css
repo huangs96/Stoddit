@@ -6,7 +6,7 @@
 }
 
 .friendsOnline:hover {
-  background-color: gray;
+  background-color: rgb(124, 174, 248);
 }
 
 .friendsOnlineImg {
@@ -41,7 +41,7 @@
 }
 
 .friendsOffline:hover {
-  background-color: gray;
+  background-color: rgb(124, 174, 248);
 }
 
 .friendsOfflineImg {

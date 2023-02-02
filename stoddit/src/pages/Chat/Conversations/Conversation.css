@@ -19,7 +19,7 @@
 }
 
 .conversation:hover {
-  background-color: gray;
+  background-color: rgb(124, 174, 248);
 }
 
 .conversationImg {
