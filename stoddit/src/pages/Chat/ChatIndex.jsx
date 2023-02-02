@@ -271,7 +271,9 @@ function ChatIndex() {
           </TextField>
           <Tabs 
             value={value} 
-            onChange={handleChange} aria-label="conversationTabs"
+            onChange={handleChange} 
+            aria-label="conversationTabs"
+            centered
           >
           <Tab label="Direct Messages" />
           <Tab label="Live Chatrooms" />
@@ -345,9 +347,6 @@ function ChatIndex() {
       </div>
         <div className="chatOnline">
           <div className="chatOnlineWrapper">
-            <h2>
-              Friends List
-            </h2>
             <h4>
               Online
             </h4>
