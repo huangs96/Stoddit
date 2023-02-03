@@ -18,7 +18,7 @@ function Conversation({conversation, userParticipantID, conversationDeleted}) {
     conversationDeleted();
   };
 
-  console.log(conversation)
+  // console.log(conversation)
 
   return (
     <>

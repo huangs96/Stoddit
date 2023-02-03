@@ -132,7 +132,7 @@ function ChatIndex() {
   const [open, setOpen] = useState(false);
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    console.log('value', value);
+    // console.log('value', value);
   };
   const handleOpen = () => {
     setOpen(true);
