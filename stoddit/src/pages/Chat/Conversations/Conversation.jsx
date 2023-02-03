@@ -37,20 +37,11 @@ function Conversation({conversation, userParticipantID, conversationDeleted}) {
               >
                 {conversation.name}
               </span>
-              {conversation.description.length > 0 &&
-              <>
-                <span
-                  STYLE="font-size: 10pt; padding: 12px 3px 12px 0px"
-                >
-                  {conversation.description}
-                </span>
-                <span
-                  STYLE="font-size: 8pt; color: gray"
-                >
-                  {conversation.description}
-                </span>
-              </>
-              }
+              <h5
+                STYLE="font-size: 10pt; color: gray"
+              >
+                {conversation.description}
+              </h5>
             </div>
         </div>
             <DeleteOutlinedIcon sx={{ "&:hover": { color: "red" } }} onClick={deleteConversation}/>

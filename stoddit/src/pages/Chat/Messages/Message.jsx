@@ -1,9 +1,12 @@
 import './Message.css';
 import React, { useRef } from 'react';
+import {format} from 'timeago.js';
 
 function Message({userID, messages}) {
   const prevMessage = useRef('');
   const bottomRef = useRef(null);
+
+  console.log(messages);
 
   return (
     <>
@@ -17,10 +20,18 @@ function Message({userID, messages}) {
           };
           return (
             <div className={data.ownMessage ? "message own" : "message"}> 
+            <div 
+                className="messageInfo"
+                key={i}
+              >
+                <span STYLE="margin-right: 10px">
+                  {data.username}
+                </span>
+                <span>
+                  {data.sent_datetime}
+                </span>
+              </div>
               <div className="messageTop">
-              <h6>
-                {data.username}
-              </h6>
               <img 
                 className="messageImg" 
                 src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg'
@@ -33,12 +44,6 @@ function Message({userID, messages}) {
                 {data.message_text}
               </p>
             </div>
-              <div 
-                className="messageBottom"
-                key={i}
-              >
-                {data.sent_datetime}
-              </div>
             </div>
           )
         })

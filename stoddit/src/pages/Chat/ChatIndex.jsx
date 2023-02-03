@@ -237,7 +237,7 @@ function ChatIndex() {
         };
       });
 
-      addMessageToConversation(userParticipant, messageText, timestamp, receiverID);
+      addMessageToConversation(userParticipant, messageText, new Date(), receiverID);
 
       setMessages(msgData => [...msgData, {
         account_id: userID,
@@ -246,9 +246,13 @@ function ChatIndex() {
         message_text: messageText,
         ownMessage: true,
         participant_id: userParticipant,
-        sent_datetime: timestamp.toDateString(),
+        sent_datetime: new Date().toString(),
         username: username
       }]);
+      // console.log('datetest', new Date().toLocaleString('en-US', {
+      //   hour: '2-digit',
+      //   minute: '2-digit'
+      // }));
     } else {
       console.log('no message');
     };
