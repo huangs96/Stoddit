@@ -28,7 +28,7 @@ function Message({userID, messages}) {
                   {data.username}
                 </span>
                 <span>
-                  {data.sent_datetime}
+                  {format(data.sent_at)}
                 </span>
               </div>
               <div className="messageTop">

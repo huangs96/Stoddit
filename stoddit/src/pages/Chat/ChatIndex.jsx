@@ -82,7 +82,7 @@ function ChatIndex() {
       setMessages(msgData => [...msgData, {
         message_text: messageData.text,
         participantID: messageData.receiverID[0].id,
-        sent_datetime: new Date().toLocaleString('en-US', {
+        sent_at: new Date().toLocaleString('en-US', {
           hour: '2-digit',
           minute: '2-digit'
         }),
@@ -247,7 +247,7 @@ function ChatIndex() {
         message_text: messageText,
         ownMessage: true,
         participant_id: userParticipant,
-        sent_datetime: new Date().toLocaleString('en-US', {
+        sent_at: new Date().toLocaleString('en-US', {
           hour: '2-digit',
           minute: '2-digit'
         }),
