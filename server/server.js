@@ -86,6 +86,8 @@ io.on("connection", (socket) => {
     io.emit(messageData);
   });
 
+  //need to see how we can avoid different chats receiving different messages
+
   //runs when client disconnects
   socket.on("disconnect", () => {
     removeUser(socket.id);
