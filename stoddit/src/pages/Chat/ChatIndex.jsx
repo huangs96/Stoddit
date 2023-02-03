@@ -77,10 +77,6 @@ function ChatIndex() {
       };
     });
 
-    socket.current.on('getUserMessage', message => {
-      console.log('messageOnClient', message);
-    });
-
     socket.current.on('chatMessage', messageData => {
       console.log('msgData', messageData);
       setMessages(msgData => [...msgData, {
