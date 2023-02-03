@@ -7,7 +7,6 @@ const createNewChatroomWithParticipants = async (data) => {
     title: data.chatroomTitle,
     description: data.chatroomDescription,
     userIDs: data.userIDs,
-    sDate: data.sDate,
     lDate: data.lDate
   };
   let result = await createNewChatroom(chatroomBody);

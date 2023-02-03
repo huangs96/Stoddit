@@ -10,7 +10,7 @@ const deleteChatroom = "UPDATE chatroom SET deleted_at = $1 WHERE id = $2;";
 const getParticipant = "SELECT * FROM participant";
 const getParticipantFromChatroomID = "SELECT * FROM (SELECT * FROM participant WHERE chatroom_id = $1) chatroom";
 const getParticipantFromAccountID = "SELECT * FROM participant WHERE account_id = $1";
-const createParticipantFromChatroom = "INSERT INTO participant (chatroom_id, account_id, joined_datetime, left_datetime) VALUES ($1, $2, $3, $4)";
+const createParticipantFromChatroom = "INSERT INTO participant (chatroom_id, account_id, left_datetime) VALUES ($1, $2, $3)";
 const deleteParticipantFromChatroom = "UPDATE participant SET deleted_at = $1 WHERE account_id = $2 AND chatroom_id = $3";
 const getUserParticipantInChatroom = "SELECT id FROM participant WHERE account_id = $1 AND chatroom_id = $2";
 /* -------------------------------- */
