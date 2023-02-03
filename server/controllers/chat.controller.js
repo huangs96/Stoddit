@@ -194,12 +194,12 @@ const getMessageByChatroom = (async (req, res) => {
 
 //function creating a function
 const createMessage = (io, getUser) => (async (req,res) => {
-  const {participantData, message_text, sent_datetime, receiverID} = req.body;
+  const {participantData, message_text, receiverID} = req.body;
 
-  console.log('req.body', participantData);
+  console.log('createMessage', participantData);
 
   try {
-    const newMessage = await client.query(queries.createMessage, [participantData.id, message_text, sent_datetime]);
+    const newMessage = await client.query(queries.createMessage, [participantData.id, message_text]);
     
     if (newMessage) {
       if (participantData.length >= 2) {

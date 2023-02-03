@@ -82,13 +82,15 @@ function ChatIndex() {
     });
 
     socket.current.on('chatMessage', messageData => {
+      console.log('msgData', messageData);
       setMessages(msgData => [...msgData, {
         message_text: messageData.text,
         participantID: messageData.receiverID[0].id,
         sent_datetime: new Date().toLocaleString('en-US', {
           hour: '2-digit',
           minute: '2-digit'
-        })
+        }),
+        // username: username
       }]);
     });
 
@@ -249,7 +251,10 @@ function ChatIndex() {
         message_text: messageText,
         ownMessage: true,
         participant_id: userParticipant,
-        sent_datetime: new Date().toString(),
+        sent_datetime: new Date().toLocaleString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit'
+        }),
         username: username
       }]);
     } else {
