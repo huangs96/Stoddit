@@ -61,6 +61,7 @@ const removeUser = (socketID) => {
 };
 
 const getUser = (participants) => {
+  console.log('participants', participants);
   if (users.length > 0) {
     const userData = users.find(user => participants.some(participant => participant.account_id === user.userID));
     return userData;

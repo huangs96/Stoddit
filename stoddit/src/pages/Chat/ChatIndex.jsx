@@ -161,7 +161,7 @@ function ChatIndex() {
   // console.log('userParticipantID', userParticipantID);
   // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);
-  console.log('conversations---', conversations);
+  // console.log('conversations---', conversations);
   // console.log('setNewConversation---', newConversation);
   // console.log('messages', messages);
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
@@ -238,7 +238,7 @@ function ChatIndex() {
         };
       });
 
-      addMessageToConversation(userParticipant, messageText, new Date(), receiverID);
+      addMessageToConversation(userParticipant, messageText, receiverID);
 
       setMessages(msgData => [...msgData, {
         account_id: userID,
