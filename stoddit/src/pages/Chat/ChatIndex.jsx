@@ -85,7 +85,10 @@ function ChatIndex() {
       setMessages(msgData => [...msgData, {
         message_text: messageData.text,
         participantID: messageData.receiverID[0].id,
-        sent_datetime: timestamp.toLocaleDateString()
+        sent_datetime: new Date().toLocaleString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit'
+        })
       }]);
     });
 
@@ -249,10 +252,6 @@ function ChatIndex() {
         sent_datetime: new Date().toString(),
         username: username
       }]);
-      // console.log('datetest', new Date().toLocaleString('en-US', {
-      //   hour: '2-digit',
-      //   minute: '2-digit'
-      // }));
     } else {
       console.log('no message');
     };
