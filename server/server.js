@@ -73,6 +73,8 @@ const getUser = (participants) => {
 /* ------ Socket Server ------ */
 //Run when connected
 io.on("connection", (socket) => {
+  let chatroom = 0;
+
   console.log(`newsocketconnection: ${socket.id}`);
   
   socket.on('liveUsers', (userID) => {
@@ -82,8 +84,16 @@ io.on("connection", (socket) => {
   });
 
   socket.on('chatMessage', messageData => {
-    console.log('messageData', messageData);
-    io.emit(messageData);
+    // io.emit(messageData);
+    console.log('chatroomFromMsg', chatroom);
+    // socket.to(chatroom)
+  });
+
+  socket.on('conversationSocket', conversationData => {
+    console.log('convodata', conversationData);
+    // socket.join(conversationData);
+    chatroom = conversationData;
+    console.log('chatroom', chatroom);
   });
 
   //need to see how we can avoid different chats receiving different messages

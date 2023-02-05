@@ -132,7 +132,6 @@ function ChatIndex() {
   const [open, setOpen] = useState(false);
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    // console.log('value', value);
   };
   const handleOpen = () => {
     setOpen(true);
@@ -141,10 +140,8 @@ function ChatIndex() {
     setOpen(false);
   };
   const getNewConversation = (newChatroomID, convoName, convoDescription) => {
-    // console.log('newchatroomID', newChatroomID);
     let splitChatroomReturnStr = newChatroomID.split(':');
     let newGeneratedChatroomID = parseInt(splitChatroomReturnStr[splitChatroomReturnStr.length-1]);
-    // setNewConversation(boolean => !boolean);
     setConversations(convos => [...convos, {
       account_id: userID,
       name: convoName,
@@ -286,7 +283,9 @@ function ChatIndex() {
             conversations.map((convo) => (
               <div 
                 onClick={() => {
-                  selectConversation(convo.chatroom_id);          
+                  selectConversation(convo.chatroom_id);
+                  console.log('conversation', convo.chatroom_id);
+                  socket.current.emit('conversationSocket', convo.chatroom_id);
                 }}
               >
                 <Conversation 

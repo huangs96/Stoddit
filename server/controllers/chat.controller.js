@@ -45,10 +45,10 @@ const createChatroom = (async (req, res) => {
   const description = req.body.description;
   const id = req.body.userIDs;
   const lDate = req.body.lDate;
-  console.log('reqbody', req.body);
+  // console.log('reqbody', req.body);
   let dataSubmit = false;
 
-  console.log('id---', id);
+  // console.log('id---', id);
 
   try {
     //create chatroom
@@ -151,7 +151,7 @@ const getUserParticipantInChatroom = (async (req, res) => {
 const deleteParticipantFromChatroom = (async (req, res) => {
   const newDate = new Date();
   const deleteDate = newDate;
-  console.log(req.body);
+  // console.log(req.body);
   const account_ID = req.body.userID;
   const chatroom_ID = req.body.chatroomID;
   
@@ -196,8 +196,8 @@ const createMessage = (io, getUser) => (async (req,res) => {
   const {participantData, message_text, receiverID} = req.body;
 
   
-  console.log('reqbody', req.body);
-  console.log('participantData', participantData);
+  // console.log('reqbody', req.body);
+  // console.log('participantData', participantData);
 
   try {
     const newMessage = await client.query(queries.createMessage, [participantData.id, message_text]);
@@ -215,6 +215,7 @@ const createMessage = (io, getUser) => (async (req,res) => {
         return res.status(200).json('Message successfully sent');
       } else {
         const user = getUser(receiverID);
+        // console.log('user', user);
         io.to(user.socketID).emit('chatMessage', {
           receiverID,
           senderID: participantData.id,
