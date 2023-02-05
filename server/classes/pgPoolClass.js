@@ -1,13 +1,14 @@
+require('dotenv').config();
 const pgPool = require('pg').Pool;
 
 class Pool {
   constructor() {
     this.client = new pgPool({
-      user: 'postgres1',
-      host: '127.0.0.1',
+      user: process.env.DB_USERNAME,
+      host: process.env.DB_HOST,
       database: 'postgres',
-      password: 'changeme',
-      port: 5432,
+      password: process.env.DB_PASSWORD,
+      port: process.env.DEV_PORT,
     });
 
     this.client.connect(function(err) {
