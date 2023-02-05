@@ -27,9 +27,9 @@ function Header() {
     <React.Fragment>
       <AppBar position='absolute'>
         <Toolbar>
-          <iconButton aria-label='home' component={Link} to='/home'>
+          {/* <iconButton aria-label='home' component={Link} to='/home'>
             <ShowChartIcon />
-          </iconButton>
+          </iconButton> */}
           <Tabs 
             textColor='inherit' 
             value={value}
@@ -37,8 +37,8 @@ function Header() {
             orientation='horizontal'
           >
             <Tab 
-              label='Dashboard'
-              value='Dashboard'
+              label='Home'
+              value='Home'
               component={Link}
               to={'/home'}
             />
