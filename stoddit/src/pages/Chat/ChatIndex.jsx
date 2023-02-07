@@ -167,8 +167,8 @@ function ChatIndex() {
   // console.log('setNewConversation---', newConversation);
   // console.log('messages', messages);
   // console.log('realtimeMsg', realtimeMessage);
-  // console.log('friendsOnline ChatIndex', onlineFriendsData);
-  // console.log('friendsList ChatIndex', friendsList);
+  console.log('friendsOnline ChatIndex', onlineFriendsData);
+  console.log('friendsList ChatIndex', friendsList);
   /* --------------------------------- */
   useEffect(() => {
     let isLoaded = true;
