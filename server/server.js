@@ -5,6 +5,7 @@ const registerRoutes = require("./routes/register.routes");
 const userRoutes = require("./routes/user.routes");
 const authRoutes = require("./routes/auth.routes");
 const chatRoutes = require("./routes/chat.routes");
+const socketHelper = require('./helpers/socketHelpers');
 const http = require("http");
 const { Server } = require("socket.io");
 
@@ -12,7 +13,7 @@ const app = express();
 
 app.use(
   cookieParser()
-  );
+);
   
 app.use(cors({
   origin: "http://localhost:3000",
@@ -41,43 +42,43 @@ app.get("/", (req, res) =>
   res.send("working")
 );
 
-let users = [];
+// const addUser = (userID, socketID) => {
+//   if (users.length > 0) {
+//     if (users.some(user => user.userID === userID)) {
+//       console.log('exists---');
+//       return;
+//     } else {
+//       users.push({userID, socketID});
+//     }
+//   } else {
+//     users.push({userID, socketID});
+//   };
+// };
 
-const addUser = (userID, socketID) => {
-  if (users.length > 0) {
-    if (users.some(user => user.userID === userID)) {
-      console.log('exists---');
-      return;
-    } else {
-      users.push({userID, socketID});
-    }
-  } else {
-    users.push({userID, socketID});
-  };
-};
+// const removeUser = (socketID) => {
+//   users = users.filter((user) => user.socketID !== socketID);
+// };
 
-const removeUser = (socketID) => {
-  users = users.filter((user) => user.socketID !== socketID);
-};
-
-const getUser = (participants) => {
-  // console.log('participants', participants);
-  if (users.length > 0) {
-    const userData = users.find(user => participants.some(participant => participant.account_id === user.userID));
-    return userData;
-  } else {
-    console.log('no users to send');
-  };
-};
+// const getUser = (participants) => {
+//   // console.log('participants', participants);
+//   if (users.length > 0) {
+//     const userData = users.find(user => participants.some(participant => participant.account_id === user.userID));
+//     return userData;
+//   } else {
+//     console.log('no users to send');
+//   };
+// };
 
 /* ------ Socket Server ------ */
+let users = socketHelper.users;
+console.log('users', users);
 //Run when connected
 io.on("connection", (socket) => {
 
   console.log(`newsocketconnection: ${socket.id}`);
   
   socket.on('liveUsers', (userID) => {
-    addUser(userID, socket.id);
+    socketHelper.addUser(userID, socket.id);
     io.emit('getUsers', users);
     // io.emit('getUserMessage', `${userID} has joined!`);
   });
@@ -97,7 +98,7 @@ io.on("connection", (socket) => {
 
   //runs when client disconnects
   socket.on("disconnect", () => {
-    removeUser(socket.id);
+    socketHelper.removeUser(socket.id);
     io.emit('getUsers', users);
     io.emit('getUsers', 'User has left the chat.');
   });
@@ -113,7 +114,7 @@ app.use("/login", authRoutes);
 /* --------------------------------- */
 
 /* ------ Chat Routes ------ */
-app.use("/chat", chatRoutes(io, getUser));
+app.use("/chat", chatRoutes(io));
 /* --------------------------------- */
 
 /* ------ Setting Routes ------ */

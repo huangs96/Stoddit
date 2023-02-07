@@ -25,6 +25,7 @@ const getUser = (participants) => {
 };
 
 module.exports = {
+  users,
   addUser,
   removeUser,
   getUser
