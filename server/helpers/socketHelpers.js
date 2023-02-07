@@ -1,4 +1,4 @@
-const users = [];
+let users = [];
 
 const addUser = (userID, socketID) => {
   if (users.length > 0) {
