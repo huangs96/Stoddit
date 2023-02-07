@@ -82,7 +82,8 @@ function ChatIndex() {
     });
 
     socket.current.on('chatMessage', messageData => {
-      console.log('msgData', messageData);
+      console.log('chatroomKey in Socket', chatroomKey);
+      console.log('messageData ChatroomID', messageData.chatroomID);
       setMessages(msgData => [...msgData, {
         message_text: messageData.text,
         participantID: messageData.receiverID[0].id,
@@ -161,7 +162,7 @@ function ChatIndex() {
   // console.log('userID', userID);
   // console.log('userParticipantID', userParticipantID);
   // console.log('participantsinChatroom', participantsInChatroom);
-  // console.log('chatroomKey', chatroomKey);
+  console.log('chatroomKey', chatroomKey);
   // console.log('conversations---', conversations);
   // console.log('setNewConversation---', newConversation);
   // console.log('messages', messages);
@@ -239,7 +240,7 @@ function ChatIndex() {
         };
       });
 
-      addMessageToConversation(userParticipant, messageText, receiverID);
+      addMessageToConversation(userParticipant, messageText, receiverID, chatroomKey);
 
       setMessages(msgData => [...msgData, {
         account_id: userID,
@@ -288,7 +289,6 @@ function ChatIndex() {
               <div 
                 onClick={() => {
                   selectConversation(convo.chatroom_id);
-                  // console.log('conversation', convo.chatroom_id);
                   socket.current.emit('conversationSocket', convo.chatroom_id);
                 }}
               >

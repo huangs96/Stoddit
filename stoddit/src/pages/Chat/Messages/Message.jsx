@@ -6,7 +6,7 @@ function Message({userID, messages}) {
   const prevMessage = useRef('');
   const bottomRef = useRef(null);
 
-  console.log(messages);
+  console.log('message', messages);
 
   return (
     <>

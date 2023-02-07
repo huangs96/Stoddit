@@ -18,11 +18,12 @@ const createNewChatroomWithParticipants = async (data) => {
 /* -------------------------------- */
 
 /* ------ Message ------ */
-const addMessageToConversation = async (participantData, text, receiverID) => {
+const addMessageToConversation = async (participantData, text, receiverID, chatroomID) => {
   let body = {
     participantData: participantData,
     message_text: text,
-    receiverID: receiverID
+    receiverID: receiverID,
+    chatroomID: chatroomID
   };
   //insert message into database to refresh and get new message
   await sendMessage(body);
