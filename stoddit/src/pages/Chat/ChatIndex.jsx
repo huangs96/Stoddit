@@ -31,6 +31,7 @@ function ChatIndex() {
   const [userParticipantID, setUserParticipantID] = useState('');
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState('');
+  const [realtimeMessage, setRealtimeMessage] = useState(null);
   const timestamp = new Date();
   const bottomRef = useRef(null);
   //chatroom state
@@ -77,22 +78,21 @@ function ChatIndex() {
       };
     });
 
-    socket.current.on('conversationSocket', conversationData => {
-      console.log('convoData', conversationData);
-    });
-
     socket.current.on('chatMessage', messageData => {
-      console.log('chatroomKey in Socket', chatroomKey);
-      console.log('messageData ChatroomID', messageData.chatroomID);
-      setMessages(msgData => [...msgData, {
+      setRealtimeMessage({
         message_text: messageData.text,
         participantID: messageData.receiverID[0].id,
         sent_at: new Date().toLocaleString('en-US', {
           hour: '2-digit',
           minute: '2-digit'
         }),
-        username: username
-      }]);
+        username: username,
+        chatroomID: messageData.chatroomID
+      });
+    });
+
+    socket.current.on('conversationSocket', conversationData => {
+      console.log('convoData', conversationData);
     });
 
     return () => {
@@ -162,10 +162,11 @@ function ChatIndex() {
   // console.log('userID', userID);
   // console.log('userParticipantID', userParticipantID);
   // console.log('participantsinChatroom', participantsInChatroom);
-  console.log('chatroomKey', chatroomKey);
+  // console.log('chatroomKey', chatroomKey);
   // console.log('conversations---', conversations);
   // console.log('setNewConversation---', newConversation);
   // console.log('messages', messages);
+  console.log('realtimeMsg', realtimeMessage);
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
   // console.log('friendsList ChatIndex', friendsList);
   /* --------------------------------- */
@@ -210,6 +211,17 @@ function ChatIndex() {
 
 
   }, [chatroomKey, newConversation, userHasLeftConversation]);
+
+  useEffect(() => {
+    if (realtimeMessage && chatroomKey === realtimeMessage.chatroomID) {
+      setMessages(msgData => [...msgData, {
+        message_text: realtimeMessage.message_text,
+        participantID: realtimeMessage.participantID,
+        sent_at: realtimeMessage.sent_at,
+        username: realtimeMessage.username
+      }]);
+    };
+  }, [realtimeMessage]);
 
   
   const selectConversation = (key) => {
