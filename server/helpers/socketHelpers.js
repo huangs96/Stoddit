@@ -1,3 +1,5 @@
+const users = [];
+
 const addUser = (userID, socketID) => {
   if (users.length > 0) {
     if (users.some(user => user.userID === userID)) {

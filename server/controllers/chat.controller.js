@@ -1,7 +1,7 @@
 require('dotenv').config();
 const client = require('../config/db.config');
 const queries = require('../queries/chat.queries');
-// const socketHelper = require('../helpers/socketHelpers');
+const socketHelper = require('../helpers/socketHelpers');
 
 /* ------ Chatroom ------ */
 const getChatroom = (async (req, res) => {
@@ -192,9 +192,8 @@ const getMessageByChatroom = (async (req, res) => {
 });
 
 //function creating a function
-const createMessage = (io, getUser) => (async (req,res) => {
+const createMessage = (io) => (async (req,res) => {
   const {participantData, message_text, receiverID, chatroomID} = req.body;
-  console.log(req.body);
 
   try {
     const newMessage = await client.query(queries.createMessage, [participantData.id, message_text]);
@@ -202,7 +201,7 @@ const createMessage = (io, getUser) => (async (req,res) => {
     if (newMessage) {
       if (participantData.length >= 2) {
         const users = participantData.map(data => {
-          getUser(data);
+          socketHelper.getUser(data);
         });
         io.to(users.socketID).emit('chatMessage', {
           receiverID,

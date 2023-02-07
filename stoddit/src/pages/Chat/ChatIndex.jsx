@@ -166,7 +166,7 @@ function ChatIndex() {
   // console.log('conversations---', conversations);
   // console.log('setNewConversation---', newConversation);
   // console.log('messages', messages);
-  console.log('realtimeMsg', realtimeMessage);
+  // console.log('realtimeMsg', realtimeMessage);
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
   // console.log('friendsList ChatIndex', friendsList);
   /* --------------------------------- */
