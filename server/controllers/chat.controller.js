@@ -215,7 +215,6 @@ const createMessage = (io, getUser) => (async (req,res) => {
         return res.status(200).json('Message successfully sent');
       } else {
         const user = getUser(receiverID);
-        // console.log('user', user);
         io.to(user.socketID).emit('chatMessage', {
           receiverID,
           senderID: participantData.id,

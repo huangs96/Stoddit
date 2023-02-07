@@ -58,7 +58,7 @@ function ChatIndex() {
       withCredentials: true,
     });
 
-    //need to get live updates of when friends are offline and online, so far can only get online friends
+    //need to get live updates of when friends are offline and online
 
     socket.current.on('getUsers', users => {
       console.log('users', users);
@@ -75,6 +75,10 @@ function ChatIndex() {
           };
         });
       };
+    });
+
+    socket.current.on('conversationSocket', conversationData => {
+      console.log('convoData', conversationData);
     });
 
     socket.current.on('chatMessage', messageData => {
@@ -284,7 +288,7 @@ function ChatIndex() {
               <div 
                 onClick={() => {
                   selectConversation(convo.chatroom_id);
-                  console.log('conversation', convo.chatroom_id);
+                  // console.log('conversation', convo.chatroom_id);
                   socket.current.emit('conversationSocket', convo.chatroom_id);
                 }}
               >
