@@ -70,15 +70,19 @@ app.get("/", (req, res) =>
 // };
 
 /* ------ Socket Server ------ */
-let users = socketHelper.users;
-console.log('users', users);
+let users = [];
+
 //Run when connected
 io.on("connection", (socket) => {
+  
+  console.log('users', users);
 
   console.log(`newsocketconnection: ${socket.id}`);
   
   socket.on('liveUsers', (userID) => {
-    socketHelper.addUser(userID, socket.id);
+    console.log('users1', users);
+    socketHelper.addUser(users, userID, socket.id);
+    console.log('users2', users);
     io.emit('getUsers', users);
     // io.emit('getUserMessage', `${userID} has joined!`);
   });
@@ -98,7 +102,7 @@ io.on("connection", (socket) => {
 
   //runs when client disconnects
   socket.on("disconnect", () => {
-    socketHelper.removeUser(socket.id);
+    socketHelper.removeUser(users, socket.id);
     io.emit('getUsers', users);
     io.emit('getUsers', 'User has left the chat.');
   });

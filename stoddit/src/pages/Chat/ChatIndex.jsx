@@ -91,10 +91,6 @@ function ChatIndex() {
       });
     });
 
-    socket.current.on('conversationSocket', conversationData => {
-      console.log('convoData', conversationData);
-    });
-
     return () => {
       socket.current.off('chatMessage');
       socket.current.off('getUsers');
