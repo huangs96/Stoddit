@@ -1,7 +1,4 @@
-const http = require("http");
 const { Server } = require("socket.io");
-
-const server = http.createServer(app);
 
 class SocketManager {
   constructor() {
@@ -9,11 +6,25 @@ class SocketManager {
   };
 
   start(server) {
-    this.io = new Server(server);
+    this.io = new Server(server, {
+      cors: {
+        origin: "http://localhost:3000",
+        methods: ["GET", "POST"],
+        credentials: true
+      }
+    });
   };
+
+  socketOn() {
+    this.io.on(string, (socket) => {
+      
+    })
+  }
+
 
 
 }
 
 
 module.exports = new SocketManager();
+
