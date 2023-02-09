@@ -42,33 +42,6 @@ app.get("/", (req, res) =>
   res.send("working")
 );
 
-// const addUser = (userID, socketID) => {
-//   if (users.length > 0) {
-//     if (users.some(user => user.userID === userID)) {
-//       console.log('exists---');
-//       return;
-//     } else {
-//       users.push({userID, socketID});
-//     }
-//   } else {
-//     users.push({userID, socketID});
-//   };
-// };
-
-// const removeUser = (socketID) => {
-//   users = users.filter((user) => user.socketID !== socketID);
-// };
-
-// const getUser = (participants) => {
-//   // console.log('participants', participants);
-//   if (users.length > 0) {
-//     const userData = users.find(user => participants.some(participant => participant.account_id === user.userID));
-//     return userData;
-//   } else {
-//     console.log('no users to send');
-//   };
-// };
-
 /* ------ Socket Server ------ */
 let users = [];
 
@@ -128,4 +101,4 @@ app.use("/users", userRoutes);
 
 const port = process.env.PORT || 5000;
 
-server.listen(port, () => console.log("Server running on port 5000"));
+server.listen(port, () => console.log(`Server running on port ${port}`));

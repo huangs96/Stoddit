@@ -1,4 +1,4 @@
-const client = require('../config/db.config');
+const client = require('../classes/pgPoolClass');
 const queries = require('../queries/register.queries');
 const bcrypt = require('bcryptjs');
 

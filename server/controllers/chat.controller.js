@@ -1,5 +1,5 @@
 require('dotenv').config();
-const client = require('../config/db.config');
+const client = require('../classes/pgPoolClass');
 const queries = require('../queries/chat.queries');
 const socketHelper = require('../helpers/socketHelpers');
 

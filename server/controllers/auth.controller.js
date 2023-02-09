@@ -1,5 +1,5 @@
 require('dotenv').config();
-const client = require('../config/db.config');
+const client = require('../classes/pgPoolClass');
 const queries = require('../queries/auth.queries')
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
