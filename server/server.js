@@ -15,17 +15,17 @@ const app = express();
 
 app.use(
   cookieParser()
-  );
+);
   
-  app.use(cors({
-    origin: "http://localhost:3000",
-    credentials: true
-  }));
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true
+}));
   
-  // new server for socket
-  
-  const server = http.createServer(app);
-  console.log('sockethelper', socketClass.start(http.createServer(app)));
+// new server for socket
+
+const server = http.createServer(app);
+console.log('sockethelper', socketClass.start(server));
 
 const io = new Server(server, {
   cors: {
