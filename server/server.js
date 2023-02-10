@@ -10,7 +10,6 @@ const socketClass = require('./classes/socketClass');
 const http = require("http");
 const { Server } = require("socket.io");
 
-
 const app = express();
 
 app.use(
@@ -25,7 +24,10 @@ app.use(cors({
 // new server for socket
 
 const server = http.createServer(app);
-console.log('sockethelper', socketClass.start(server));
+const io1 = new socketClass(server);
+const socket = 'socket';
+const string = 'string';
+console.log('sockethelper', io1.socketOn(string, socket));
 
 const io = new Server(server, {
   cors: {
