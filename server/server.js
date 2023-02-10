@@ -6,23 +6,26 @@ const userRoutes = require("./routes/user.routes");
 const authRoutes = require("./routes/auth.routes");
 const chatRoutes = require("./routes/chat.routes");
 const socketHelper = require('./helpers/socketHelpers');
+const socketClass = require('./classes/socketClass');
 const http = require("http");
 const { Server } = require("socket.io");
+
 
 const app = express();
 
 app.use(
   cookieParser()
-);
+  );
   
-app.use(cors({
-  origin: "http://localhost:3000",
-  credentials: true
-}));
-
-// new server for socket
-
-const server = http.createServer(app);
+  app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+  }));
+  
+  // new server for socket
+  
+  const server = http.createServer(app);
+  console.log('sockethelper', socketClass.start(http.createServer(app)));
 
 const io = new Server(server, {
   cors: {
@@ -31,6 +34,7 @@ const io = new Server(server, {
     credentials: true
   }
 });
+// console.log('io', io);
 
 //parse requests of content-type - application/json
 app.use(express.json());
