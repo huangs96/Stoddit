@@ -1,5 +1,23 @@
 const { Server } = require("socket.io");
 
+class Socket {
+  constructor(socket) {
+    this.socket = socket;
+  }
+
+  onLiveUsers(cb) {
+    this.socket.on('liveUsers', (userID) => {
+      console.log('users1', users);
+      socketHelper.addUser(users, userID, socket.id);
+      console.log('users2', users);
+      io.emit('getUsers', users);
+      // io.emit('getUserMessage', `${userID} has joined!`);
+    });
+  }
+}
+
+
+
 class SocketManager {
   constructor(server) {
     this.io = new Server(server, {
@@ -12,9 +30,9 @@ class SocketManager {
   };
 
 
-  socketOn() {
-    this.io.on(string, socket => {
-      console.log('socketOn', socket, string);
+  onConnection(cb) {
+    this.io.on('connection', (socket) => {
+      cb(new Socket(socket))
     })
   }
 

@@ -25,9 +25,7 @@ app.use(cors({
 
 const server = http.createServer(app);
 const io1 = new socketClass(server);
-const socket = 'socket';
-const string = 'string';
-console.log('sockethelper', io1.socketOn(string, socket));
+// io1.socketChatOn();
 
 const io = new Server(server, {
   cors: {
@@ -52,6 +50,12 @@ app.get("/", (req, res) =>
 let users = [];
 
 //Run when connected
+// new stuff
+io1.onConnection((socket) => {
+  
+})
+
+
 io.on("connection", (socket) => {
   
   console.log('users', users);
