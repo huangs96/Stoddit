@@ -6,9 +6,9 @@ const userRoutes = require("./routes/user.routes");
 const authRoutes = require("./routes/auth.routes");
 const chatRoutes = require("./routes/chat.routes");
 const socketHelper = require('./helpers/socketHelpers');
-const socketClass = require('./classes/socketClass');
 const http = require("http");
 const { Server } = require("socket.io");
+const { LiveUserContainer } = require("./classes/usersClass");
 
 const app = express();
 
@@ -21,20 +21,6 @@ app.use(cors({
   credentials: true
 }));
   
-// new server for socket
-
-const server = http.createServer(app);
-const io1 = new socketClass(server);
-// io1.socketChatOn();
-
-const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-    credentials: true
-  }
-});
-// console.log('io', io);
 
 //parse requests of content-type - application/json
 app.use(express.json());
@@ -43,19 +29,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => 
-  res.send("working")
+res.send("working")
 );
 
+// new server for socket
+
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+});
 /* ------ Socket Server ------ */
 let users = [];
+let users1 = new LiveUserContainer;
 
 //Run when connected
-// new stuff
-io1.onConnection((socket) => {
-  
-})
-
-
 io.on("connection", (socket) => {
   
   console.log('users', users);
