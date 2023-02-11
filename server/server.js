@@ -8,7 +8,7 @@ const chatRoutes = require("./routes/chat.routes");
 const socketHelper = require('./helpers/socketHelpers');
 const http = require("http");
 const { Server } = require("socket.io");
-const { LiveUserContainer } = require("./classes/usersClass");
+const LiveUserContainer = require("./classes/usersClass");
 
 const app = express();
 
@@ -56,8 +56,11 @@ io.on("connection", (socket) => {
   socket.on('liveUsers', (userID) => {
     console.log('users1', users);
     socketHelper.addUser(users, userID, socket.id);
+    users1.addUser(userID, socket.id);
+    console.log('users1.5', users1);
     console.log('users2', users);
     io.emit('getUsers', users);
+    io.emit('getUSers', users1);
     // io.emit('getUserMessage', `${userID} has joined!`);
   });
 
