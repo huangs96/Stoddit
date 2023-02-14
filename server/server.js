@@ -54,7 +54,6 @@ io.on("connection", (socket) => {
   console.log(`newsocketconnection: ${socket.id}`);
   
   socket.on('liveUsers', (userID) => {
-    socketHelper.addUser(users, userID, socket.id);
     users1.addUser(userID, socket.id);
     io.emit('getUsers', users);
     io.emit('getUSers', users1);
@@ -76,7 +75,7 @@ io.on("connection", (socket) => {
 
   //runs when client disconnects
   socket.on("disconnect", () => {
-    socketHelper.removeUser(users, socket.id);
+    users1.removeUser(users, socket.id);
     io.emit('getUsers', users);
     io.emit('getUsers', 'User has left the chat.');
   });
