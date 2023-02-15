@@ -4,8 +4,10 @@ class LiveUserContainer {
   }
 
   addUser(socketID, userID) {
-    this.users.set(socketID, userID);
-  }
+    if (!this.users.has(socketID)) {
+      this.users.set(socketID, userID);
+    };
+  };
 
   removeUser(socketID) {
     this.users.delete(socketID);

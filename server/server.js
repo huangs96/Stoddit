@@ -45,6 +45,7 @@ const io = new Server(server, {
 /* ------ Socket Server ------ */
 let users = [];
 let users1 = new LiveUserContainer;
+console.log('users1OutsideScope', users1);
 
 //Run when connected
 io.on("connection", (socket) => {
@@ -52,7 +53,7 @@ io.on("connection", (socket) => {
   console.log(`newsocketconnection: ${socket.id}`);
   
   socket.on('liveUsers', (userID) => {
-    users1.addUser(socket.ID, userID);
+    users1.addUser(socket.id, userID);
     // io.emit('getUsers', users);
     io.emit('getUsers', users1);
     console.log('users', users1);
