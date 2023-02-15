@@ -48,15 +48,14 @@ let users1 = new LiveUserContainer;
 
 //Run when connected
 io.on("connection", (socket) => {
-  
-  console.log('users', users);
 
   console.log(`newsocketconnection: ${socket.id}`);
   
   socket.on('liveUsers', (userID) => {
     users1.addUser(userID, socket.id);
-    io.emit('getUsers', users);
-    io.emit('getUSers', users1);
+    // io.emit('getUsers', users);
+    io.emit('getUsers', users1);
+    console.log('users', users1);
     // io.emit('getUserMessage', `${userID} has joined!`);
   });
 
@@ -71,12 +70,14 @@ io.on("connection", (socket) => {
     io.emit(conversationData);
   });
 
-  //need to see how we can avoid different chats receiving different messages
-
   //runs when client disconnects
-  socket.on("disconnect", () => {
-    users1.removeUser(users, socket.id);
-    io.emit('getUsers', users);
+  socket.on("disconnect", (userID) => {
+    for(let data of users1.entries()){
+      console.log('sockets', data);
+    }
+    console.log('userID', userID);
+    io.emit('getUsers', users1);
+    console.log('leftUser', users1);
     io.emit('getUsers', 'User has left the chat.');
   });
 });

@@ -44,7 +44,7 @@ function ChatIndex() {
   const [participantsInChatroom, setParticipantsInChatroom] = useState([]);
   //friends
   const [friendsList, setFriendsList] = useState([]);
-  const [onlineFriendsData, setOnlineFriendsData] = useState([]);
+  const [onlineFriendsData, setOnlineFriendsData] = useState({});
   //socket
   const socket = useRef();
   //misc
@@ -63,19 +63,19 @@ function ChatIndex() {
 
     socket.current.on('getUsers', users => {
       console.log('users', users);
-      if(users.length <= 1) {
-        console.log('it got here');
-        setOnlineFriendsData([]);
-        return;
-      } else {
-        console.log('it got here instead');
-        users.map(user => {
-          if (user.userID !== userID && user.userID !== null) {
-            setOnlineFriendsData(user);
-            return;
-          };
-        });
-      };
+      // if(users.length <= 1) {
+      //   console.log('it got here');
+      //   setOnlineFriendsData([]);
+      //   return;
+      // } else {
+      //   console.log('it got here instead');
+      //   users.map(user => {
+      //     if (user.userID !== userID && user.userID !== null) {
+      //       setOnlineFriendsData(user);
+      //       return;
+      //     };
+      //   });
+      // };
     });
 
     socket.current.on('chatMessage', messageData => {
