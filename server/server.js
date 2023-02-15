@@ -52,7 +52,7 @@ io.on("connection", (socket) => {
   console.log(`newsocketconnection: ${socket.id}`);
   
   socket.on('liveUsers', (userID) => {
-    users1.addUser(userID, socket.id);
+    users1.addUser(socket.ID, userID);
     // io.emit('getUsers', users);
     io.emit('getUsers', users1);
     console.log('users', users1);
@@ -71,13 +71,10 @@ io.on("connection", (socket) => {
   });
 
   //runs when client disconnects
-  socket.on("disconnect", (userID) => {
-    for(let data of users1.entries()){
-      console.log('sockets', data);
-    }
-    console.log('userID', userID);
+  socket.on("disconnect", () => {
+    users1.removeUser(socket.ID);
     io.emit('getUsers', users1);
-    console.log('leftUser', users1);
+    console.log('removedUser', users1);
     io.emit('getUsers', 'User has left the chat.');
   });
 });

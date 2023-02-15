@@ -3,24 +3,16 @@ class LiveUserContainer {
     this.users = new Map();
   }
 
-  addUser(userID, socketID) {
-    this.users.set(userID, socketID);
+  addUser(socketID, userID) {
+    this.users.set(socketID, userID);
   }
 
-  getUserIDByValue(users, socketID) {
-    for (let [key, value] of users.entries()) {
-      if (value === socketID) {
-        return key;
-      };
-    };
+  removeUser(socketID) {
+    this.users.delete(socketID);
   };
 
-  removeUser(userID) {
-    this.users.delete(userID);
-  };
-
-  getUser(userID) {
-    this.users.get(userID);
+  getUser(socketID) {
+    this.users.get(socketID);
   };
 };
 
