@@ -1,12 +1,14 @@
 class LiveUserContainer {
   constructor() {
-    this.users = new Map();
+    this.users = {};
   }
 
-  addUser(socketID, userID) {
-    if (!this.users.has(socketID)) {
-      this.users.set(socketID, userID);
-    };
+  addUser(userID, socketID) {
+    if (users[userID] !== userID) {
+      this.users[userID] = socketID;
+    } else {
+      console.log('exists');
+    }
   };
 
   removeUser(socketID) {
