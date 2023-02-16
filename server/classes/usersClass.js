@@ -4,11 +4,16 @@ class LiveUserContainer {
   }
 
   addUser(socketID, userID) {
-    if (!this.users.has(socketID)) {
-      this.users.set(socketID, userID);
+    if (this.users.size > 0) {
+      const userIDs = [...this.users.values()];
+      if (!userIDs.includes(userID)) {
+        console.log('it got here111');
+        this.users.set(socketID, userID);
+      };
     } else {
-      console.log('exists');
-    }
+      console.log('it got here');
+      this.users.set(socketID, userID);
+    };
   };
 
   removeUser(socketID) {
