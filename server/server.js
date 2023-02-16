@@ -53,7 +53,7 @@ io.on("connection", (socket) => {
   console.log(`newsocketconnection: ${socket.id}`);
   
   socket.on('liveUsers', (userID) => {
-    users1.addUser(socket.id, userID);
+    users1.addUser(userID, socket.id);
     // io.emit('getUsers', users);
     console.log('users', users1);
     const transitString = JSON.stringify(Array.from(users1));

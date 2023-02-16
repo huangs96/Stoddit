@@ -1,22 +1,20 @@
 class LiveUserContainer {
   constructor() {
-    this.users = new Map();
+    this.users = {};
   }
 
-  addUser(socketID, userID) {
-    if (this.users.size > 0) {
-      const userIDs = [...this.users.values()];
-      if (!userIDs.includes(userID)) {
-        this.users.set(socketID, userID);
-      };
+  addUser(userID, socketID) {
+    if (Object.keys(this.users).length > 0 && !Object.keys(this.users).includes(userID)) {
+      this.users[userID] = socketID;
     } else {
-      this.users.set(socketID, userID);
+      console.log('it got here222')
+      this.users[userID] = socketID;
     };
   };
 
   removeUser(socketID) {
-    this.users.delete(socketID);
-    console.log('users', this.users);
+    // this.users.delete(socketID);
+    // console.log('users', this.users);
   };
 
   getUser(socketID) {
