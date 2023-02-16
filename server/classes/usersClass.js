@@ -13,8 +13,11 @@ class LiveUserContainer {
   };
 
   removeUser(socketID) {
-    // this.users.delete(socketID);
-    // console.log('users', this.users);
+    if (Object.values(this.users).includes(socketID)) {
+      console.log('true');
+      const userKey = Object.keys(this.users).find(key => this.users[key] = socketID);
+      delete this.users[userKey];
+    };
   };
 
   getUser(socketID) {
