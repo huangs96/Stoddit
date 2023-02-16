@@ -63,19 +63,22 @@ function ChatIndex() {
 
     socket.current.on('getUsers', users => {
       console.log('users', users);
-      // if(users.length <= 1) {
-      //   console.log('it got here');
-      //   setOnlineFriendsData([]);
-      //   return;
-      // } else {
-      //   console.log('it got here instead');
-      //   users.map(user => {
-      //     if (user.userID !== userID && user.userID !== null) {
-      //       setOnlineFriendsData(user);
-      //       return;
-      //     };
-      //   });
-      // };
+      if(Object.keys(users).length <= 1) {
+        console.log('it got here');
+        setOnlineFriendsData([]);
+        return;
+      } else {
+        console.log('it got here instead');
+        // users.map(user => {
+        //   if (user.userID !== userID && user.userID !== null) {
+        //     setOnlineFriendsData(user);
+        //     return;
+        //   };
+        // });
+        for (let user of users) {
+          console.log('userLoopObj', user)
+        }
+      };
     });
 
     socket.current.on('chatMessage', messageData => {
