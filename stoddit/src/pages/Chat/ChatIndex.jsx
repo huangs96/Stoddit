@@ -62,7 +62,8 @@ function ChatIndex() {
     //need to get live updates of when friends are offline and online
 
     socket.current.on('getUsers', users => {
-      console.log('users', users);
+      const usersMap = JSON.parse(users);
+      console.log('users', usersMap);
       // if(users.length <= 1) {
       //   console.log('it got here');
       //   setOnlineFriendsData([]);

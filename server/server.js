@@ -56,7 +56,9 @@ io.on("connection", (socket) => {
     users1.addUser(socket.id, userID);
     // io.emit('getUsers', users);
     console.log('users', users1);
-    io.emit('getUsers', users1);
+    const transitString = JSON.stringify(Array.from(users1));
+    console.log('transitString', transitString);
+    io.emit('getUsers', {'test': 'test'});
     // io.emit('getUserMessage', `${userID} has joined!`);
   });
 

@@ -1,7 +1,6 @@
 class LiveUserContainer {
   constructor() {
     this.users = new Map();
-    this.users1 = {};
   }
 
   addUser(socketID, userID) {
