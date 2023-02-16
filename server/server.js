@@ -55,8 +55,8 @@ io.on("connection", (socket) => {
   socket.on('liveUsers', (userID) => {
     users1.addUser(socket.id, userID);
     // io.emit('getUsers', users);
-    io.emit('getUsers', users1);
     console.log('users', users1);
+    io.emit('getUsers', users1);
     // io.emit('getUserMessage', `${userID} has joined!`);
   });
 
