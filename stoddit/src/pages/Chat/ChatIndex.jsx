@@ -63,28 +63,30 @@ function ChatIndex() {
 
     socket.current.on('getUsers', users => {
       console.log('users', users);
-      if(Object.keys(users.users).length <= 1) {
-        console.log('it got here');
-        setOnlineFriendsData([]);
-        return;
-      } else {
-        console.log('it got here instead');
-        // users.map(user => {
-        //   if (user.userID !== userID && user.userID !== null) {
-        //     setOnlineFriendsData(user);
-        //     return;
-        //   };
-        // });
-        let liveUsers = Object.keys(users.users);
-        for (let liveUser of liveUsers) {
-          if (liveUser !== userID) {
-            setOnlineFriendsData([liveUser]);
-          }
-        }
-        
-
-        
-      };
+      let liveUsersID = Object.keys(users.users);
+      console.log('liveUserID', liveUsersID);
+      for (let liveUser of liveUsersID) {
+        let liveUserInt = parseInt(liveUser);
+        if (liveUserInt !== userID) {
+          setOnlineFriendsData(liveUserInt);
+        };
+      }
+      // if(Object.keys(users.users).length <= 1) {
+      //   console.log('it got here');
+      //   setOnlineFriendsData([]);
+      //   return;
+      // } else {
+      //   console.log('it got here instead');
+      //   let liveUsers = Object.keys(users.users);
+      //   console.log('live Users', liveUsers);
+      //   for (let liveUser of liveUsers) {
+      //     console.log('userID in socket', userID);
+      //     console.log('liveUser in socket', liveUser);
+      //     if (liveUser !== userID) {
+      //       setOnlineFriendsData([liveUser]);
+      //     };
+      //   };
+      // };
     });
 
     socket.current.on('chatMessage', messageData => {

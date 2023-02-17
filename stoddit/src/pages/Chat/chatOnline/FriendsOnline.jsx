@@ -1,8 +1,8 @@
 import './FriendsOnline.css';
 
 function FriendsOnline({userID, friendsList, onlineFriends}) {
-  console.log('111', onlineFriends);
-  console.log('111222', onlineFriends.length);
+  // console.log('111', onlineFriends);
+  // console.log('111222', onlineFriends.length);
 
   const displayFriendsList = friendsList.map((friends, i) => {
 
