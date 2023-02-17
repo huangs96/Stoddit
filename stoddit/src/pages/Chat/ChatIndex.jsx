@@ -38,6 +38,7 @@ function ChatIndex() {
   const [chatroomKey, setChatroomKey] = useState(null);
   const [conversations, setConversations] = useState([]);
   const [newConversation, setNewConversation] = useState(false);
+  const [searchConvo, setSearchConvo] = useState(null);
   //deleting chatroom
   const [userHasLeftConversation, setUserHasLeftConversation] = useState(false);
   //participants
@@ -215,6 +216,10 @@ function ChatIndex() {
     };
   }, [realtimeMessage]);
 
+  const onChangeSearch = (e) => {
+    const searchInput = e.target.value;
+    setSearchConvo(searchInput);
+  };
   
   const selectConversation = (key) => {
     if (key) {
@@ -277,6 +282,7 @@ function ChatIndex() {
           <TextField 
             className="chatMenuInput" 
             label="Search Chats, Direct Messages, Friends, or Users"
+            onChange={onChangeSearch}
           >
           </TextField>
           <Tabs 
