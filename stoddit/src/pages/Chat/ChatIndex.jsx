@@ -6,6 +6,8 @@ import React, {
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Tabs from '@mui/material/Tabs';
@@ -220,6 +222,10 @@ function ChatIndex() {
     const searchInput = e.target.value;
     setSearchConvo(searchInput);
   };
+
+  const onClearSearch = async () => {
+    setSearchConvo(null);
+  }
   
   const selectConversation = (key) => {
     if (key) {
@@ -283,6 +289,15 @@ function ChatIndex() {
             className="chatMenuInput" 
             label="Search Chats, Direct Messages, Friends, or Users"
             onChange={onChangeSearch}
+            InputProps={{
+              startAdornment: <InputAdornment position="start">
+                <DeleteOutlinedIcon
+                  sx={{ "&:hover": { color: "red" } }}
+                > 
+                
+                </DeleteOutlinedIcon>
+              </InputAdornment>,
+            }}
           >
           </TextField>
           <Tabs 
