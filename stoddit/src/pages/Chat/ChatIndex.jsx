@@ -78,7 +78,7 @@ function ChatIndex() {
         let liveUsers = Object.keys(users.users);
         for (let liveUser of liveUsers) {
           if (liveUser !== userID) {
-            setOnlineFriendsData(liveUser);
+            setOnlineFriendsData([liveUser]);
           }
         }
         
@@ -173,6 +173,7 @@ function ChatIndex() {
   // console.log('messages', messages);
   // console.log('realtimeMsg', realtimeMessage);
   console.log('friendsOnline ChatIndex', onlineFriendsData);
+  console.log('friendsOnline ChatIndex length', onlineFriendsData.length);
   console.log('friendsList ChatIndex', friendsList);
   /* --------------------------------- */
   useEffect(() => {
