@@ -1,8 +1,8 @@
 import './FriendsOnline.css';
 
 function FriendsOnline({userID, friendsList, onlineFriends}) {
-  // console.log('111', onlineFriends);
-  // console.log('111222', onlineFriends.length);
+  console.log('111', onlineFriends);
+  console.log('111222', onlineFriends.length);
 
   const displayFriendsList = friendsList.map((friends, i) => {
 
@@ -11,11 +11,9 @@ function FriendsOnline({userID, friendsList, onlineFriends}) {
     };
 
     if (onlineFriends.length > 1) {
-      console.log('onlineFriends', onlineFriends);
-      console.log(onlineFriends.length);
       console.log('it got here map1');
       onlineFriends.map(onlineFriend => {
-        if (onlineFriend.userID === friends.contact_name_id) {
+        if (onlineFriend === friends.contact_name_id) {
           return <div className="friendsOnline">
           <div className="chatOnlineFriend">
             <div className="friendOnlineImgContainer">
@@ -31,9 +29,8 @@ function FriendsOnline({userID, friendsList, onlineFriends}) {
         </div>
         };
       });
-    } else if (friends.contact_name_id === parseInt(onlineFriends[0])) {
-        console.log('check', friends.contact_name_id);
-        console.log('check1', onlineFriends[0]);
+    } else if (friends.contact_name_id === onlineFriends) {
+        console.log('one friend online')
         return <div className="friendsOnline">
           <div className="chatOnlineFriend">
             <div className="friendOnlineImgContainer">

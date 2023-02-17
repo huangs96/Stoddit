@@ -70,7 +70,7 @@ function ChatIndex() {
         if (liveUserInt !== userID) {
           setOnlineFriendsData(liveUserInt);
         };
-      }
+      };
       // if(Object.keys(users.users).length <= 1) {
       //   console.log('it got here');
       //   setOnlineFriendsData([]);

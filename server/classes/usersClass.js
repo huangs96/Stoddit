@@ -13,10 +13,12 @@ class LiveUserContainer {
   };
 
   removeUser(socketID) {
-    if (Object.values(this.users).includes(socketID)) {
-      console.log('true');
-      const userKey = Object.keys(this.users).find(key => this.users[key] = socketID);
-      delete this.users[userKey];
+    console.log('socketID in remove', socketID);
+    for (let liveUsers in this.users) {
+      console.log('loopedliveusers', liveUsers);
+      if (this.users[liveUsers] === socketID) {
+        delete this.users[liveUsers];
+      };
     };
   };
 
