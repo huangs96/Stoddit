@@ -61,13 +61,18 @@ function ChatIndex() {
     //need to get live updates of when friends are offline and online
 
     socket.current.on('getUsers', users => {
+      console.log('users in socket', users.users);
       let liveUsersID = Object.keys(users.users);
       console.log('liveUserID', liveUsersID);
-      for (let liveUser of liveUsersID) {
-        let liveUserInt = parseInt(liveUser);
-        if (liveUserInt !== userID) {
-          setOnlineFriendsData(liveUserInt);
-        };
+      if (liveUsersID.length > 1) {
+        for (let liveUser of liveUsersID) {
+          let liveUserInt = parseInt(liveUser);
+          if (liveUserInt !== userID) {
+            setOnlineFriendsData(liveUserInt);
+          };
+        }  
+      } else {
+        setOnlineFriendsData([]);
       };
     });
 

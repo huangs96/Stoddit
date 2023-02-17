@@ -74,8 +74,7 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     users1.removeUser(socket.id);
     io.emit('getUsers', users1);
-    console.log('removedUser', users1);
-    io.emit('getUsers', 'User has left the chat.');
+    // io.emit('getUsers', 'User has left the chat.');
   });
 });
 /* --------------------------------- */
