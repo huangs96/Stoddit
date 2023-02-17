@@ -218,15 +218,17 @@ function ChatIndex() {
     };
   }, [realtimeMessage]);
 
-  const searchConvos = (searchedValue) => {
+  const searchConvos = (e) => {
     const filteredConvos = conversations.filter((convo) => {
-      console.log('convo in filter', convo.name);
-    })
+      let searchedValue = e.target.value;
+      return convo.name.toLowerCase().includes(searchedValue.toLowerCase());
+    });
+    setConversations(filteredConvos);
   };
 
   const onClearSearch = async () => {
-    searchConvo('');
-  }
+    searchConvos('');
+  };
   
   const selectConversation = (key) => {
     if (key) {
@@ -289,11 +291,12 @@ function ChatIndex() {
           <TextField 
             className="chatMenuInput" 
             label="Search Chats, Direct Messages, Friends, or Users"
-            onChange={(searchedValue) => searchConvos(searchedValue)}
+            onChange={searchConvos}
             InputProps={{
               startAdornment: <InputAdornment position="start">
                 <DeleteOutlinedIcon
                   sx={{ "&:hover": { color: "red" } }}
+                  onClick={onClearSearch}
                 > 
                 
                 </DeleteOutlinedIcon>
