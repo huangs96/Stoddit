@@ -218,13 +218,14 @@ function ChatIndex() {
     };
   }, [realtimeMessage]);
 
-  const onChangeSearch = (e) => {
-    const searchInput = e.target.value;
-    setSearchConvo(searchInput);
+  const searchConvos = (searchedValue) => {
+    const filteredConvos = conversations.filter((convo) => {
+      console.log('convo in filter', convo.name);
+    })
   };
 
   const onClearSearch = async () => {
-    setSearchConvo(null);
+    searchConvo('');
   }
   
   const selectConversation = (key) => {
@@ -288,7 +289,7 @@ function ChatIndex() {
           <TextField 
             className="chatMenuInput" 
             label="Search Chats, Direct Messages, Friends, or Users"
-            onChange={onChangeSearch}
+            onChange={(searchedValue) => searchConvos(searchedValue)}
             InputProps={{
               startAdornment: <InputAdornment position="start">
                 <DeleteOutlinedIcon
