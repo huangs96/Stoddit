@@ -43,9 +43,7 @@ const io = new Server(server, {
   }
 });
 /* ------ Socket Server ------ */
-let users = [];
-let users1 = new LiveUserContainer;
-console.log('users1OutsideScope', users1);
+let users = new LiveUserContainer;
 
 //Run when connected
 io.on("connection", (socket) => {
@@ -53,9 +51,8 @@ io.on("connection", (socket) => {
   console.log(`newsocketconnection: ${socket.id}`);
   
   socket.on('liveUsers', (userID) => {
-    users1.addUser(userID, socket.id);
-    console.log('currentUsers', users1)
-    io.emit('getUsers', users1);
+    users.addUser(userID, socket.id);
+    io.emit('getUsers', users);
     // io.emit('getUserMessage', `${userID} has joined!`);
   });
 
@@ -72,8 +69,8 @@ io.on("connection", (socket) => {
 
   //runs when client disconnects
   socket.on("disconnect", () => {
-    users1.removeUser(socket.id);
-    io.emit('getUsers', users1);
+    users.removeUser(socket.id);
+    io.emit('getUsers', users);
     // io.emit('getUsers', 'User has left the chat.');
   });
 });
