@@ -44,7 +44,7 @@ function ChatIndex() {
   const [participantsInChatroom, setParticipantsInChatroom] = useState([]);
   //friends
   const [friendsList, setFriendsList] = useState([]);
-  const [onlineFriendsData, setOnlineFriendsData] = useState({});
+  const [onlineFriendsData, setOnlineFriendsData] = useState([]);
   //socket
   const socket = useRef();
   //misc
@@ -63,7 +63,7 @@ function ChatIndex() {
 
     socket.current.on('getUsers', users => {
       console.log('users', users);
-      if(Object.keys(users).length <= 1) {
+      if(Object.keys(users.users).length <= 1) {
         console.log('it got here');
         setOnlineFriendsData([]);
         return;
@@ -75,9 +75,15 @@ function ChatIndex() {
         //     return;
         //   };
         // });
-        for (let user of users) {
-          console.log('userLoopObj', user)
+        let liveUsers = Object.keys(users.users);
+        for (let liveUser of liveUsers) {
+          if (liveUser !== userID) {
+            setOnlineFriendsData(liveUser);
+          }
         }
+        
+
+        
       };
     });
 
