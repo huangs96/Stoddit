@@ -7,6 +7,7 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 function Conversation({conversation, userParticipantID, conversationDeleted}) {
 
+
   const deleteConversation = async () => {
     const participantData = {
       'userID': conversation.account_id,

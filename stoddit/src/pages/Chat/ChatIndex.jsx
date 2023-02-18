@@ -39,7 +39,7 @@ function ChatIndex() {
   //chatroom state
   const [chatroomKey, setChatroomKey] = useState(null);
   const [conversations, setConversations] = useState([]);
-  const [searchedConversations, setSearchedConversations] = useState([]);
+  const [searchInput, setSearchInput] = useState('');
   const [newConversation, setNewConversation] = useState(false);
   const [searchConvo, setSearchConvo] = useState(null);
   //deleting chatroom
@@ -219,15 +219,18 @@ function ChatIndex() {
     };
   }, [realtimeMessage]);
 
-  const searchConvos = (e) => {
-    const filteredConvos = conversations.filter((convo) => {
-      let searchedValue = e.target.value;
-      console.log('searchvalue', searchedValue);
-      return convo.name.toLowerCase().includes(searchedValue.toLowerCase());
-    });
-    console.log('filteredConvos1111', filteredConvos);
-    // setConversations(filteredConvos);
+  const getSearchInput = (e) => {
+    const searchInput = e.target.value;
+    setSearchInput(searchInput);
   };
+
+  const filteredConversations = conversations.filter((convos) => {
+    if (searchInput == '') {
+      return convos;
+    } else {
+      return convos.name.toLowerCase().includes((searchInput));
+    };
+  });
 
   const onClearSearch = async () => {
     setConversations(conversations);
@@ -294,7 +297,7 @@ function ChatIndex() {
           <TextField 
             className="chatMenuInput" 
             label="Search Chats, Direct Messages, Friends, or Users"
-            onChange={searchConvos}
+            onChange={getSearchInput}
             InputProps={{
               startAdornment: <InputAdornment position="start">
                 <DeleteOutlinedIcon
@@ -317,7 +320,7 @@ function ChatIndex() {
           <Tab label="Live Chatrooms" />
           </Tabs>
           {value == 0 ?
-            conversations.map((convo) => (
+            filteredConversations.map((convo) => (
               <div 
                 onClick={() => {
                   selectConversation(convo.chatroom_id);
