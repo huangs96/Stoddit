@@ -39,6 +39,7 @@ function ChatIndex() {
   //chatroom state
   const [chatroomKey, setChatroomKey] = useState(null);
   const [conversations, setConversations] = useState([]);
+  const [searchedConversations, setSearchedConversations] = useState([]);
   const [newConversation, setNewConversation] = useState(false);
   const [searchConvo, setSearchConvo] = useState(null);
   //deleting chatroom
@@ -221,13 +222,15 @@ function ChatIndex() {
   const searchConvos = (e) => {
     const filteredConvos = conversations.filter((convo) => {
       let searchedValue = e.target.value;
+      console.log('searchvalue', searchedValue);
       return convo.name.toLowerCase().includes(searchedValue.toLowerCase());
     });
-    setConversations(filteredConvos);
+    console.log('filteredConvos1111', filteredConvos);
+    // setConversations(filteredConvos);
   };
 
   const onClearSearch = async () => {
-    searchConvos('');
+    setConversations(conversations);
   };
   
   const selectConversation = (key) => {
