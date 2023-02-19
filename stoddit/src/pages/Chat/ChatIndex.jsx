@@ -7,7 +7,7 @@ import React, {
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import ClearIcon from '@mui/icons-material/Clear';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Tabs from '@mui/material/Tabs';
@@ -300,12 +300,12 @@ function ChatIndex() {
             onChange={getSearchInput}
             value={searchInput}
             InputProps={{
-              startAdornment: <InputAdornment position="start">
-                <DeleteOutlinedIcon
+              endAdornment: <InputAdornment>
+                <ClearIcon
                   sx={{ "&:hover": { color: "red" } }}
                   onClick={onClearSearch}
                 >             
-                </DeleteOutlinedIcon>
+                </ClearIcon>
               </InputAdornment>,
             }}
           >
