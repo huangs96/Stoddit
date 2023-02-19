@@ -233,7 +233,7 @@ function ChatIndex() {
   });
 
   const onClearSearch = async () => {
-    setConversations(conversations);
+    setSearchInput('');
   };
   
   const selectConversation = (key) => {
