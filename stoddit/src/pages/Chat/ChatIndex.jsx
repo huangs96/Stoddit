@@ -298,13 +298,13 @@ function ChatIndex() {
             className="chatMenuInput" 
             label="Search Chats, Direct Messages, Friends, or Users"
             onChange={getSearchInput}
+            value={searchInput}
             InputProps={{
               startAdornment: <InputAdornment position="start">
                 <DeleteOutlinedIcon
                   sx={{ "&:hover": { color: "red" } }}
                   onClick={onClearSearch}
-                > 
-                
+                >             
                 </DeleteOutlinedIcon>
               </InputAdornment>,
             }}
