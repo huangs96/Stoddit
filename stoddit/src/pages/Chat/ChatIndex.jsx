@@ -397,6 +397,14 @@ function ChatIndex() {
               friendsList={friendsList}
               onlineFriends={onlineFriendsData}
             />
+            <Button
+              sx={{width: 320}}
+              size="medium"
+              onClick={handleOpen} 
+              variant="contained"
+            >
+              Add Friends
+            </Button>
           </div>
         </div>   
       </div>

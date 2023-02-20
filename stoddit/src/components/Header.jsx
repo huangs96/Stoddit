@@ -18,8 +18,11 @@ function Header() {
     console.log(deleteDetails.message);
     localStorage.clear();
     console.log('localstorage should be cleared', localStorage);
+    setValue('Home');
     return navigate('/login');
   };
+
+  console.log('value header', value);
 
   if (window.location.pathname === '/login' || window.location.pathname === '/register') return null;
 
