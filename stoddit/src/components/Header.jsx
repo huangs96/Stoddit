@@ -1,9 +1,13 @@
 import React, { useState, useHistory } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppBar, Typography, Toolbar, Tabs, Tab, Button } from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
+import ChatIcon from '@mui/icons-material/Chat';
+import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import { logoutUser } from '../services/auth.service';
+import PersonPin from '@mui/icons-material/PersonPin';
 
 function Header() {
   const [value, setValue] = useState('/home');
@@ -40,28 +44,36 @@ function Header() {
             orientation='horizontal'
           >
             <Tab 
-              label='Home'
+              // label='Home'
               value='Home'
               component={Link}
               to={'/home'}
+              icon={<HomeIcon />}
+              iconPosition='start'
             />
             <Tab 
-              label='Chat'
+              // label='Chat'
               value='Chat'
               component={Link}
               to={'/chat'}
+              icon={<ChatIcon />}
+              iconPosition='start'
             />
             <Tab 
-              label='Portfolio' 
+              // label='Portfolio' 
               value='Portfolio'
               component={Link}
               to={'/portfolio'}
+              icon={<RecentActorsIcon />}
+              iconPosition='start'
             />
             <Tab 
-              label='Trade'
+              // label='Trade'
               value='Trade'
               component={Link}
-              to={'/trade'} 
+              to={'/trade'}
+              icon={<ShowChartIcon />}
+              iconPosition='start'
             />
             <Tab 
               icon={<PersonPinIcon />} 
