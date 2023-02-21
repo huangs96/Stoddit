@@ -1,11 +1,9 @@
 import './Conversation.css';
 import React, { useEffect, useState } from 'react';
-import { getChatroomByUserID, deleteParticipantFromChatroom} from '../../../services/chat.service';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import { deleteParticipantFromChatroom} from '../../../services/chat.service';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-function Conversation({conversation, userParticipantID, conversationDeleted}) {
+function Conversation({conversation, conversationDeleted}) {
 
 
   const deleteConversation = async () => {

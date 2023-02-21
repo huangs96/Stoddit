@@ -24,7 +24,7 @@ const getChatroomByChatroomID = (async (req, res) => {
     }
   } catch (err) {
     return res.status(400).send(err);
-  }
+  };
 });
 
 const getChatroomByUserID = (async (req, res) => {
@@ -36,7 +36,7 @@ const getChatroomByUserID = (async (req, res) => {
     }
   } catch (err) {
     return res.status(400).send(err);
-  }
+  };
 });
 
 const createChatroom = (async (req, res) => {
@@ -165,7 +165,6 @@ const deleteParticipantFromChatroom = (async (req, res) => {
   };
 });
 /* -------------------------------- */
-
 
 /* ------ Message ------ */
 const getMessage = (async (req, res) => {

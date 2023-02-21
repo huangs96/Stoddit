@@ -3,8 +3,9 @@ import './FriendsOnline.css';
 function FriendsOnline({userID, friendsList, onlineFriends}) {
   console.log('111', onlineFriends);
 
-  const displayFriendsList = friendsList.map((friends, i) => {
+  const displaySearchedUsers = console.log('display search input');
 
+  const displayFriendsList = friendsList.map((friends, i) => {
     if (friends.contact_img === null) {
       friends.contact_img = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
     };
