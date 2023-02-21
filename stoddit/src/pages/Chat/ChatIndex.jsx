@@ -24,6 +24,7 @@ import {
   getFriendsListById
 } from '../../services/chat.service';
 import { io } from 'socket.io-client';
+import LiveChatrooms from './LiveChatrooms/LiveChatrooms';
 
 function ChatIndex() {
   //user data
@@ -39,7 +40,7 @@ function ChatIndex() {
   //chatroom state
   const [chatroomKey, setChatroomKey] = useState(null);
   const [conversations, setConversations] = useState([]);
-  const [searchInput, setSearchInput] = useState('');
+  const [searchConversationInput, setConversationSearchInput] = useState('');
   const [newConversation, setNewConversation] = useState(false);
   const [searchConvo, setSearchConvo] = useState(null);
   //deleting chatroom
@@ -219,22 +220,31 @@ function ChatIndex() {
     };
   }, [realtimeMessage]);
 
-  const getSearchInput = (e) => {
-    const searchInput = e.target.value;
-    setSearchInput(searchInput);
+  //Conversation Searchbar
+  const getConversationSearchInput = (e) => {
+    const searchConversationInput = e.target.value;
+    setConversationSearchInput(searchConversationInput);
   };
 
   const filteredConversations = conversations.filter((convos) => {
-    if (searchInput == '') {
+    if (searchConversationInput == '') {
       return convos;
     } else {
-      return convos.name.toLowerCase().includes((searchInput));
+      return convos.name.toLowerCase().includes((searchConversationInput));
     };
   });
 
-  const onClearSearch = async () => {
-    setSearchInput('');
+  const onClearConversationSearch = async () => {
+    setConversationSearchInput('');
   };
+
+  //Friends Searchbar
+
+  const getFriendsSearchInput = (e) => {
+
+  }
+
+
   
   const selectConversation = (key) => {
     if (key) {
@@ -296,14 +306,14 @@ function ChatIndex() {
         <div className="chatMenuWrapper">
           <TextField 
             className="chatMenuInput" 
-            label="Search Chats, Direct Messages, Friends, or Users"
-            onChange={getSearchInput}
-            value={searchInput}
+            label="Search Chats and Direct Messages"
+            onChange={getConversationSearchInput}
+            value={searchConversationInput}
             InputProps={{
               endAdornment: <InputAdornment>
                 <ClearIcon
                   sx={{ "&:hover": { color: "red" } }}
-                  onClick={onClearSearch}
+                  onClick={onClearConversationSearch}
                 >             
                 </ClearIcon>
               </InputAdornment>,
@@ -335,7 +345,11 @@ function ChatIndex() {
               </div>
             ))
             :
-            <h1>Live Chatrooms</h1>
+            <>
+            <LiveChatrooms>
+
+            </LiveChatrooms>
+            </>
           }
           <div className='newConversationContainer'>
             <Button
@@ -389,6 +403,22 @@ function ChatIndex() {
       </div>
         <div className="chatOnline">
           <div className="chatOnlineWrapper">
+            <TextField 
+              className="chatMenuInput" 
+              label="Search Friends or Users"
+              onChange={getFriendsSearchInput}
+              // value={searchInput}
+              InputProps={{
+                endAdornment: <InputAdornment>
+                  <ClearIcon
+                    sx={{ "&:hover": { color: "red" } }}
+                    // onClick={onClearSearch}
+                  >             
+                  </ClearIcon>
+                </InputAdornment>,
+              }}
+            >
+            </TextField>
             <h4>
               Friends
             </h4>
