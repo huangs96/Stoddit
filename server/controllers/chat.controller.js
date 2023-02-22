@@ -284,13 +284,16 @@ const getUserIDfromName = (async (req, res) => {
 });
 
 const addFriend = (async (req, res) => {
-  
+  const contactName = req.params.contactName;
 
   try {
-
+    const addFriend = await client.query(queries.addFriend, [userID, contactName]);
+    if (addFriend) {
+      return res.status(200).json();
+    }
   } catch (err) {
-
-  }
+    return res.status(400).json(err);
+  };
 })
 /* -------------------------------- */
 

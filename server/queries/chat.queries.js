@@ -51,6 +51,7 @@ module.exports = {
   //friend_list
   getFriendsList,
   getFriendsListByUser,
-  getUserIDfromFriendListName
+  getUserIDfromFriendListName,
+  addFriend
 
 }
