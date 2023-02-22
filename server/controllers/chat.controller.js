@@ -282,6 +282,16 @@ const getUserIDfromName = (async (req, res) => {
     return res.status(400).json(err);
   };
 });
+
+const addFriend = (async (req, res) => {
+  
+
+  try {
+
+  } catch (err) {
+
+  }
+})
 /* -------------------------------- */
 
 module.exports = {
