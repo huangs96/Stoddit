@@ -290,11 +290,15 @@ const addFriend = (async (req, res) => {
   try {
     const addFriend = await client.query(queries.addFriend, [userID, contactName]);
     if (addFriend) {
-      return res.status(200).json();
+      return res.status(200).json(`${contactName} successfully added.`);
     };
   } catch (err) {
     return res.status(400).json(err);
   };
+})
+
+const deleteFriend = (async (req, res) => {
+  
 })
 /* -------------------------------- */
 
