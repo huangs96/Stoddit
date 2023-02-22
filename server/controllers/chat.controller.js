@@ -298,8 +298,18 @@ const addFriend = (async (req, res) => {
 })
 
 const deleteFriend = (async (req, res) => {
-  
-})
+  const userID = req.body.userID;
+  const contactName = req.body.contactName;
+
+  try {
+    const deleteFriend = await client.query(queries.deleteFriend, [userID, contactName]);
+    if (deleteFriend) {
+      return res.status(200).json(`${contactName} successfully removed.`);
+    }
+  } catch (err) {
+    return res.status(400).json(err);
+  };
+});
 /* -------------------------------- */
 
 module.exports = {
