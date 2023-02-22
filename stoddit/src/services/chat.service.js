@@ -210,6 +210,10 @@ const getUserIDByUsername = async (username) => {
     throw response;
   });
 };
+
+const addFriend = async (userID, contactName) => {
+  
+}
 /* -------------------------------- */
 
 module.exports = {
