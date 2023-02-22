@@ -43,7 +43,6 @@ function ChatIndex() {
   const [conversations, setConversations] = useState([]);
   const [searchConversationInput, setConversationSearchInput] = useState('');
   const [newConversation, setNewConversation] = useState(false);
-  const [searchConvo, setSearchConvo] = useState(null);
   //deleting chatroom
   const [userHasLeftConversation, setUserHasLeftConversation] = useState(false);
   //participants
@@ -52,6 +51,7 @@ function ChatIndex() {
   const [friendsList, setFriendsList] = useState([]);
   const [onlineFriendsData, setOnlineFriendsData] = useState([]);
   const [allUsers, setAllUsers] = useState(null);
+  const [allUsersInput, setAllUsersInput] = useState('');
   //socket
   const socket = useRef();
   //misc
@@ -231,7 +231,7 @@ function ChatIndex() {
   }, [realtimeMessage]);
 
   //Conversation Searchbar
-  const getConversationSearchInput = (e) => {
+  const getConversationSearchInput = async (e) => {
     const searchConversationInput = e.target.value;
     setConversationSearchInput(searchConversationInput);
   };
@@ -250,9 +250,14 @@ function ChatIndex() {
 
   //Friends Searchbar
 
-  const getFriendsSearchInput = (e) => {
+  const getFriendsSearchInput = async (e) => {
+    const searchUserInput = e.target.value;
+    setAllUsersInput(searchUserInput);
+  };
 
-  }
+  const onClearUsersSearch = async () => {
+    setAllUsers('');
+  };
 
 
   
@@ -417,12 +422,12 @@ function ChatIndex() {
               className="chatMenuInput" 
               label="Search Friends or Users"
               onChange={getFriendsSearchInput}
-              // value={searchInput}
+              value={searchUserInput}
               InputProps={{
                 endAdornment: <InputAdornment>
                   <ClearIcon
                     sx={{ "&:hover": { color: "red" } }}
-                    // onClick={onClearSearch}
+                    onClick={onClearUserSearch}
                   >             
                   </ClearIcon>
                 </InputAdornment>,
@@ -436,6 +441,7 @@ function ChatIndex() {
               userID={userID}
               friendsList={friendsList}
               onlineFriends={onlineFriendsData}
+              // allUsers={allUsers}
             />
             <Button
               sx={{width: 320}}
