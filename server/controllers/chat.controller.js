@@ -333,5 +333,6 @@ module.exports = {
   getFriendsList,
   getFriendsListById,
   getUserIDfromName,
-  addFriend
+  addFriend,
+  deleteFriend
 }
