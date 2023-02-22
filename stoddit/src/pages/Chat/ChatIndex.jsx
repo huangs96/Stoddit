@@ -250,13 +250,13 @@ function ChatIndex() {
 
   //Friends Searchbar
 
-  const getFriendsSearchInput = async (e) => {
+  const getFriendSearchInput = async (e) => {
     const searchUserInput = e.target.value;
     setAllUsersInput(searchUserInput);
   };
 
-  const onClearUsersSearch = async () => {
-    setAllUsers('');
+  const onClearUserSearch = async () => {
+    setAllUsersInput('');
   };
 
 
@@ -421,8 +421,8 @@ function ChatIndex() {
             <TextField 
               className="chatMenuInput" 
               label="Search Friends or Users"
-              onChange={getFriendsSearchInput}
-              value={searchUserInput}
+              onChange={getFriendSearchInput}
+              value={allUsersInput}
               InputProps={{
                 endAdornment: <InputAdornment>
                   <ClearIcon
