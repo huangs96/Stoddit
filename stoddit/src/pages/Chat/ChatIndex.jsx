@@ -21,7 +21,8 @@ import {
   getChatroomByUserID,
   getParticipantIDFromChatroomID,
   getMessagesByChatroomID,
-  getFriendsListById
+  getFriendsListById,
+  getAllUsers
 } from '../../services/chat.service';
 import { io } from 'socket.io-client';
 import LiveChatrooms from './LiveChatrooms/LiveChatrooms';
@@ -47,9 +48,10 @@ function ChatIndex() {
   const [userHasLeftConversation, setUserHasLeftConversation] = useState(false);
   //participants
   const [participantsInChatroom, setParticipantsInChatroom] = useState([]);
-  //friends
+  //friendslist
   const [friendsList, setFriendsList] = useState([]);
   const [onlineFriendsData, setOnlineFriendsData] = useState([]);
+  const [allUsers, setAllUsers] = useState(null);
   //socket
   const socket = useRef();
   //misc
@@ -119,8 +121,15 @@ function ChatIndex() {
         const data = await getFriendsListById(userID);
         setFriendsList(data);
       };
+      const loadAllUsers = async () => {
+        const data = await getAllUsers();
+        setAllUsers(data);
+      };
+
+
       fetchFriendsListByID()
-      .catch(console.error);
+      loadAllUsers()
+      .catch(console.error);      
     };
     return () => {
       isLoaded = false;
@@ -166,6 +175,7 @@ function ChatIndex() {
   // console.log('realtimeMsg', realtimeMessage);
   console.log('friendsOnline ChatIndex', onlineFriendsData);
   // console.log('friendsList ChatIndex', friendsList);
+  console.log('allUsers ChatIndex', allUsers);
   /* --------------------------------- */
   useEffect(() => {
     let isLoaded = true;
