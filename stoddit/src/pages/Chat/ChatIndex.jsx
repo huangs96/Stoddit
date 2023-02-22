@@ -50,7 +50,7 @@ function ChatIndex() {
   //friendslist
   const [friendsList, setFriendsList] = useState([]);
   const [onlineFriendsData, setOnlineFriendsData] = useState([]);
-  const [allUsers, setAllUsers] = useState(null);
+  const [allUsers, setAllUsers] = useState([]);
   const [allUsersInput, setAllUsersInput] = useState('');
   //socket
   const socket = useRef();
@@ -121,13 +121,21 @@ function ChatIndex() {
         const data = await getFriendsListById(userID);
         setFriendsList(data);
       };
+      fetchFriendsListByID()
+      .catch(console.error);      
+    };
+    return () => {
+      isLoaded = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    let isLoaded = true;
+    if (isLoaded) {
       const loadAllUsers = async () => {
         const data = await getAllUsers();
         setAllUsers(data);
       };
-
-
-      fetchFriendsListByID()
       loadAllUsers()
       .catch(console.error);      
     };
@@ -176,6 +184,7 @@ function ChatIndex() {
   console.log('friendsOnline ChatIndex', onlineFriendsData);
   // console.log('friendsList ChatIndex', friendsList);
   console.log('allUsers ChatIndex', allUsers);
+  console.log('allUsersInput ChatIndex', allUsersInput);
   /* --------------------------------- */
   useEffect(() => {
     let isLoaded = true;
@@ -441,7 +450,7 @@ function ChatIndex() {
               userID={userID}
               friendsList={friendsList}
               onlineFriends={onlineFriendsData}
-              // allUsers={allUsers}
+              allUsers={allUsers}
             />
             <Button
               sx={{width: 320}}
