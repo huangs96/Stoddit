@@ -284,13 +284,14 @@ const getUserIDfromName = (async (req, res) => {
 });
 
 const addFriend = (async (req, res) => {
-  const contactName = req.params.contactName;
+  const contactName = req.body.contactName;
+  const userID = req.body.userID;
 
   try {
     const addFriend = await client.query(queries.addFriend, [userID, contactName]);
     if (addFriend) {
       return res.status(200).json();
-    }
+    };
   } catch (err) {
     return res.status(400).json(err);
   };
@@ -317,5 +318,6 @@ module.exports = {
   //friends_list
   getFriendsList,
   getFriendsListById,
-  getUserIDfromName
+  getUserIDfromName,
+  addFriend
 }

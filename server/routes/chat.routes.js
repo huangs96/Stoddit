@@ -33,6 +33,7 @@ module.exports = (io) => {
   router.get('/friends', controller.getFriendsList);
   router.get('/friends/:id', controller.getFriendsListById);
   router.get('/friends/user/:id', controller.getUserIDfromName);
+  router.post('/friends/addfriend', controller.addFriend);
   /* -------------------------------- */
 
   return router;
