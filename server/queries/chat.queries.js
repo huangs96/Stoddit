@@ -23,7 +23,6 @@ const createMessage = "INSERT INTO message (participant_id, message_text) VALUES
 /* -------------------------------- */
 
 /* ------ Friend_list ------ */
-const getFriendsList = "SELECT * FROM friend_list;";
 const getFriendsListByUser = "SELECT friend_list.id, friend_list.account_id, friend_list.contact_name, friend_list.contact_img, account.id AS contact_name_id FROM friend_list INNER JOIN account ON friend_list.contact_name = account.username WHERE friend_list.account_id = $1;";
 const getUserIDfromFriendListName = "SELECT id FROM account WHERE username = $1;";
 const addFriend = "INSERT INTO friend_list (account_id, contact_name) VALUES ($1, $2);";
@@ -49,7 +48,6 @@ module.exports = {
   getMessagesByChatroom,
   createMessage,
   //friend_list
-  getFriendsList,
   getFriendsListByUser,
   getUserIDfromFriendListName,
   addFriend,

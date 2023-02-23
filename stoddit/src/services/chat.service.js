@@ -211,22 +211,6 @@ const getUserIDByUsername = async (username) => {
   });
 };
 
-const getAllUsers = async () => {
-  return fetch('http://localhost:5000/chat/friends', {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    mode: 'cors',
-    credentials: 'include'
-  })
-  .then(response => {
-    if (response.ok) {
-      return response.json();
-    }
-    throw response;
-  });
-};
-
 const addFriend = async (userID, contactName) => {
   
 };
@@ -249,5 +233,4 @@ module.exports = {
   getFriendsList,
   getFriendsListById,
   getUserIDByUsername,
-  getAllUsers
 }
