@@ -1,14 +1,13 @@
 import './FriendsOnline.css';
 
 function FriendsOnline({userID, friendsList, onlineFriends, allUsers}) {
-  let searched = true;
+  let searched = false;
   console.log('searched', searched);
 
   const displayFriendsList = friendsList.map((friends, i) => {
     if (friends.contact_img === null) {
       friends.contact_img = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
     };
-
     if (onlineFriends.length > 1) {
       console.log('it got here map1');
       onlineFriends.map(onlineFriend => {
@@ -29,7 +28,7 @@ function FriendsOnline({userID, friendsList, onlineFriends, allUsers}) {
         };
       });
     } else if (friends.contact_name_id === onlineFriends) {
-        console.log('one friend online')
+        console.log('one friend online');
         return <div className="friendsOnline">
           <div className="chatOnlineFriend">
             <div className="friendOnlineImgContainer">
@@ -65,11 +64,11 @@ function FriendsOnline({userID, friendsList, onlineFriends, allUsers}) {
       user.contact_img = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
     };
 
-    // if (allUsers.length < 1) {
-    //   searched = false;
-    // } else {
-    //   searched = true;
-    // };
+    if (allUsers.length < 1) {
+      searched = false;
+    } else {
+      searched = true;
+    };
 
     return <div className="friendsOffline">
       <div className="chatOfflineFriend">
@@ -95,8 +94,6 @@ function FriendsOnline({userID, friendsList, onlineFriends, allUsers}) {
           :
           displaySearchedUser
         }
-        {/* {displayFriendsList}
-        {displaySearchedUser} */}
       </div>
     </>
   );

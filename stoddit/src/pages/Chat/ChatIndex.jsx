@@ -272,7 +272,7 @@ function ChatIndex() {
     if (allUsersInput == '') {
       return allUsers;
     } else {
-      return users.contact_name.toLowerCase().includes((allUsersInput));
+      return users.username.toLowerCase().includes((allUsersInput));
     };
   });
 
@@ -461,14 +461,6 @@ function ChatIndex() {
               onlineFriends={onlineFriendsData}
               allUsers={filteredUsers}
             />
-            <Button
-              sx={{width: 320}}
-              size="medium"
-              onClick={handleOpen} 
-              variant="contained"
-            >
-              Add Friends
-            </Button>
           </div>
         </div>   
       </div>
