@@ -1,4 +1,6 @@
 import './FriendsOnline.css';
+import AddIcon from '@mui/icons-material/Add';
+import Box from '@mui/material/Box';
 
 function FriendsOnline({userID, friendsList, onlineFriends, allUsers, searched}) {
   console.log('searched', searched);
@@ -74,6 +76,15 @@ function FriendsOnline({userID, friendsList, onlineFriends, allUsers, searched})
         </div>
         <span className="offlineFriendName" key={i}>{user.username}</span>
       </div>
+      <Box
+        sx={{ p: 2 }}
+      >
+        <AddIcon
+          sx={{ "&:hover": { color: "green" } }}
+        >
+          
+        </AddIcon>
+      </Box>
     </div>
   });
 
