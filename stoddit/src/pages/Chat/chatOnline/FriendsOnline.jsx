@@ -2,7 +2,7 @@ import './FriendsOnline.css';
 
 function FriendsOnline({userID, friendsList, onlineFriends, allUsers}) {
   let searched = true;
-  console.log('allUsers friendsOnline', allUsers);
+  console.log('searched', searched);
 
   const displayFriendsList = friendsList.map((friends, i) => {
     if (friends.contact_img === null) {
@@ -59,10 +59,18 @@ function FriendsOnline({userID, friendsList, onlineFriends, allUsers}) {
     </div>
     };
   });
+
   const displaySearchedUser = allUsers.map((user,i) => {
     if (user.contact_img === null) {
       user.contact_img = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
     };
+
+    // if (allUsers.length < 1) {
+    //   searched = false;
+    // } else {
+    //   searched = true;
+    // };
+
     return <div className="friendsOffline">
       <div className="chatOfflineFriend">
         <div className="friendOfflineImgContainer">

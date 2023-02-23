@@ -270,7 +270,7 @@ function ChatIndex() {
 
   const filteredUsers = allUsers.filter((users) => {
     if (allUsersInput == '') {
-      return false;
+      return allUsers;
     } else {
       return users.contact_name.toLowerCase().includes((allUsersInput));
     };
