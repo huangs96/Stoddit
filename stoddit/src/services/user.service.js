@@ -17,7 +17,7 @@ const getAuthedUser = () => {
 };
 
 const getAllUsers = async () => {
-  return fetch('http://localhost:5000/chat/friends', {
+  return fetch('http://localhost:5000/users', {
     headers: {
       'Content-Type': 'application/json'
     },

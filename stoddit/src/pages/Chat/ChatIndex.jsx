@@ -22,8 +22,8 @@ import {
   getParticipantIDFromChatroomID,
   getMessagesByChatroomID,
   getFriendsListById,
-  getAllUsers
 } from '../../services/chat.service';
+import { getAllUsers } from '../../services/user.service';
 import { io } from 'socket.io-client';
 import LiveChatrooms from './LiveChatrooms/LiveChatrooms';
 
