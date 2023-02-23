@@ -1,4 +1,3 @@
-const e = require('express');
 const client = require('../config/db.config');
 const queries = require('../queries/user.queries');
 const existQueries = require('../queries/register.queries');
@@ -7,6 +6,7 @@ const getUsers = (async (req, res) => {
   try {
     const allUsers = await client.query(queries.getUsers);
     if (allUsers.rows.length) {
+      console.log(allUsers);
       res.status(200).json(allUsers.rows);
     }
   } catch (err) {

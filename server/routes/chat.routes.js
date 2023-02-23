@@ -30,7 +30,6 @@ module.exports = (io) => {
   /* -------------------------------- */
   
   /* ------ Friend_list Routes ------ */
-  router.get('/friends', controller.getFriendsList);
   router.get('/friends/:id', controller.getFriendsListById);
   router.get('/friends/user/:id', controller.getUserIDfromName);
   router.post('/friends/add', controller.addFriend);
@@ -38,8 +37,5 @@ module.exports = (io) => {
   /* -------------------------------- */
 
   return router;
-}
+};
 
-
-
-// module.exports = router;
