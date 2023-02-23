@@ -81,7 +81,7 @@ function FriendsOnline({userID, friendsList, onlineFriends, allUsers}) {
           />
           <div className="chatOfflineBadge"></div>
         </div>
-        <span className="offlineFriendName" key={i}>{user.contact_name}</span>
+        <span className="offlineFriendName" key={i}>{user.username}</span>
       </div>
     </div>
   });
