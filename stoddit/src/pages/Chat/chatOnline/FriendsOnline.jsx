@@ -5,7 +5,12 @@ import Box from '@mui/material/Box';
 function FriendsOnline({userID, friendsList, onlineFriends, allUsers, searched}) {
   console.log('searched', searched);
 
+  const friendsListDictionary = new Map();
+
   const displayFriendsList = friendsList.map((friends, i) => {
+    friendsListDictionary.set(friends.contact_name, friends);
+    console.log('friendsListDictionary friendsOnline', friendsListDictionary)
+
     if (friends.contact_img === null) {
       friends.contact_img = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
     };
@@ -61,9 +66,11 @@ function FriendsOnline({userID, friendsList, onlineFriends, allUsers, searched})
   });
 
   const displaySearchedUser = allUsers.map((user,i) => {
+    // if friendlist has user (dictionary.has(user)), remove add icon. If friend list does not have user, return icon
     if (user.contact_img === null) {
       user.contact_img = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
     };
+
     return <div className="friendsOffline">
       <div className="chatOfflineFriend">
         <div className="friendOfflineImgContainer">
@@ -82,7 +89,6 @@ function FriendsOnline({userID, friendsList, onlineFriends, allUsers, searched})
         <AddIcon
           sx={{ "&:hover": { color: "green" } }}
         >
-          
         </AddIcon>
       </Box>
     </div>
