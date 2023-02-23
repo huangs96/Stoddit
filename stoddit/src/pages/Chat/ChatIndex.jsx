@@ -52,6 +52,7 @@ function ChatIndex() {
   const [onlineFriendsData, setOnlineFriendsData] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
   const [allUsersInput, setAllUsersInput] = useState('');
+  let searched = false;
   //socket
   const socket = useRef();
   //misc
@@ -270,8 +271,10 @@ function ChatIndex() {
 
   const filteredUsers = allUsers.filter((users) => {
     if (allUsersInput == '') {
+      searched = false;
       return allUsers;
     } else {
+      searched = true;
       return users.username.toLowerCase().includes((allUsersInput));
     };
   });
@@ -460,6 +463,7 @@ function ChatIndex() {
               friendsList={friendsList}
               onlineFriends={onlineFriendsData}
               allUsers={filteredUsers}
+              searched={searched}
             />
           </div>
         </div>   
