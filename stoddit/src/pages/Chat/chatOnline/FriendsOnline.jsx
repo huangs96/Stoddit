@@ -8,8 +8,7 @@ function FriendsOnline({userID, friendsList, onlineFriends, allUsers, searched})
   const friendsListDictionary = new Map();
 
   const displayFriendsList = friendsList.map((friends, i) => {
-    friendsListDictionary.set(friends.contact_name, friends);
-    console.log('friendsListDictionary friendsOnline', friendsListDictionary)
+    friendsListDictionary.set(i, friends);
 
     if (friends.contact_img === null) {
       friends.contact_img = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
@@ -70,33 +69,57 @@ function FriendsOnline({userID, friendsList, onlineFriends, allUsers, searched})
       user.contact_img = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
     };
 
-    for (const friends of friendsListDictionary) {
-      if (user.username === friends[0]) {
-        console.log(user);
-      }
-    }
-
-    return <div className="friendsOffline">
-      <div className="chatOfflineFriend">
-        <div className="friendOfflineImgContainer">
-          <img
-          className="friendsOfflineImg"
-          src={user.contact_img}
-          alt=""
-          />
-          <div className="chatOfflineBadge"></div>
-        </div>
-        <span className="offlineFriendName" key={i}>{user.username}</span>
-      </div>
-      <Box
-        sx={{ p: 2 }}
-      >
-        <AddIcon
-          sx={{ "&:hover": { color: "green" } }}
-        >
-        </AddIcon>
-      </Box>
-    </div>
+    for (const friend of friendsListDictionary.values()) {
+      // console.log('dict', friendsListDictionary.keys());
+      console.log('allUsers', user.username);
+      console.log('friend', friend.contact_name);
+      console.log('allUsers', user.username == friend.contact_name);
+      if (user.username !== friend.contact_name) {
+        user.alreadyFriend = false;
+      //   console.log('if', user.username);
+      // console.log('if', friend[0]);
+      //   return <div className="friendsOffline">
+      //   <div className="chatOfflineFriend">
+      //     <div className="friendOfflineImgContainer">
+      //       <img
+      //       className="friendsOfflineImg"
+      //       src={user.contact_img}
+      //       alt=""
+      //       />
+      //       <div className="chatOfflineBadge"></div>
+      //     </div>
+      //     <span className="offlineFriendName" key={i}>{user.username}</span>
+      //   </div>
+      //   <Box
+      //     sx={{ p: 2 }}
+      //   >
+      //     <AddIcon
+      //       sx={{ "&:hover": { color: "green" } }}
+      //     >
+      //     </AddIcon>
+      //   </Box>
+      // </div>
+        // console.log('user if', user);
+      } else {
+        user.alreadyFriend = true;
+        // console.log('else', user.username);
+        // console.log('else', friend[0]);
+    //     return <div className="friendsOffline">
+    //   <div className="chatOfflineFriend">
+    //     <div className="friendOfflineImgContainer">
+    //       <img
+    //       className="friendsOfflineImg"
+    //       src={user.contact_img}
+    //       alt=""
+    //       />
+    //       <div className="chatOfflineBadge"></div>
+    //     </div>
+    //     <span className="offlineFriendName" key={i}>{user.username}</span>
+    //   </div>
+    // </div>
+        // console.log('user else', user);
+      };
+    };
   });
 
   return (
