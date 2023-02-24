@@ -3,12 +3,10 @@ import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
 
 function FriendsOnline({userID, friendsList, onlineFriends, allUsers, searched}) {
-  console.log('searched', searched);
-
   const friendsListDictionary = new Map();
 
   const displayFriendsList = friendsList.map((friends, i) => {
-    friendsListDictionary.set(i, friends);
+    friendsListDictionary.set(friends.contact_name, i);
 
     if (friends.contact_img === null) {
       friends.contact_img = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
@@ -69,16 +67,10 @@ function FriendsOnline({userID, friendsList, onlineFriends, allUsers, searched})
       user.contact_img = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
     };
 
-    for (const friend of friendsListDictionary.values()) {
-      // console.log('dict', friendsListDictionary.keys());
-      // console.log('allUsers', user.username);
-      // console.log('friend', friend.contact_name);
-      // console.log('allUsers', user.username == friend.contact_name);
-      if (user.username !== friend.contact_name) {
-        user.alreadyFriend = false;
-      } else {
-        user.alreadyFriend = true;
-      };
+    if (!friendsListDictionary.has(user.username)) {
+      user.alreadyFriend = false;
+    } else {
+      user.alreadyFriend = true;
     };
 
     return <div className="friendsOffline">
