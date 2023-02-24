@@ -66,10 +66,15 @@ function FriendsOnline({userID, friendsList, onlineFriends, allUsers, searched})
   });
 
   const displaySearchedUser = allUsers.map((user,i) => {
-    // if friendlist has user (dictionary.has(user)), remove add icon. If friend list does not have user, return icon
     if (user.contact_img === null) {
       user.contact_img = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
     };
+
+    for (const friends of friendsListDictionary) {
+      if (user.username === friends[0]) {
+        console.log(user);
+      }
+    }
 
     return <div className="friendsOffline">
       <div className="chatOfflineFriend">
