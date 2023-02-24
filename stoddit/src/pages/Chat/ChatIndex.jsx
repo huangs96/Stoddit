@@ -278,10 +278,8 @@ function ChatIndex() {
       return users.username.toLowerCase().includes((allUsersInput));
     };
   });
-
   
   console.log('filteredUsers ChatIndex', filteredUsers);
-
   
   const selectConversation = (key) => {
     if (key) {
@@ -461,6 +459,7 @@ function ChatIndex() {
             </h4>
             <FriendsOnline 
               userID={userID}
+              username={username}
               friendsList={friendsList}
               onlineFriends={onlineFriendsData}
               allUsers={filteredUsers}
