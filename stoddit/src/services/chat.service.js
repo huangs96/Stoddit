@@ -212,7 +212,7 @@ const getUserIDByUsername = async (username) => {
 };
 
 const addFriend = async (userID, contactName) => {
-  
+  const 
 };
 /* -------------------------------- */
 
