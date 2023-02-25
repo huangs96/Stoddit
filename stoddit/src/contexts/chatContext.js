@@ -1,4 +1,4 @@
-import {sendMessage, createNewChatroom} from '../services/chat.service';
+import {sendMessage, createNewChatroom, addFriend} from '../services/chat.service';
 
 /* ------ Chatroom ------ */
 const createNewChatroomWithParticipants = async (data) => {
@@ -28,6 +28,17 @@ const addMessageToConversation = async (participantData, text, receiverID, chatr
   //insert message into database to refresh and get new message
   await sendMessage(body);
 };
+/* -------------------------------- */
+
+/* ------ Friend_List ------ */
+const addFriendtoFriendList = async (userID, username) => {
+  let body = {
+    userID: userID,
+    username: username
+  }
+
+  addFriend(body);
+}
 /* -------------------------------- */
 
 

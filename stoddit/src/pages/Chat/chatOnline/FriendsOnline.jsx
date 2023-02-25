@@ -1,13 +1,14 @@
 import './FriendsOnline.css';
 import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
+import { addFriend } from '../../../services/chat.service';
 
 function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, searched}) {
   const friendsListDictionary = new Map();
 
-  const addFriend = async (userID, user) => {
-    const nameOfUser = user.username;
-  }
+  const addFriendtoFriendsList = async (userID, username) => {
+    return addFriend(userID, username);
+  };
 
   const displayFriendsList = friendsList.map((friends, i) => {
     friendsListDictionary.set(friends.contact_name, i);
@@ -95,7 +96,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
       >
         <AddIcon
           sx={{ "&:hover": { color: "green" } }}
-          onClick={() => addFriend(userID, user)}
+          onClick={() => addFriendtoFriendsList(userID, user.username)}
         >
         </AddIcon>
       </Box>

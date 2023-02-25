@@ -211,17 +211,19 @@ const getUserIDByUsername = async (username) => {
   });
 };
 
-const addFriend = async (userID, contactName) => {
+const addFriend = async (addFriendData) => {
   const res = await fetch('http://localhost:5000/chat/friends/add', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',    
     },
-    mode: 'CORS',
-    body: JSON.stringify(userID, contactName)
+    mode: 'cors',
+    credentials: 'include',
+    body: JSON.stringify(addFriendData)
   })
   .then(res => res.json());
+  console.log(res);
   return res;
 };
 /* -------------------------------- */
