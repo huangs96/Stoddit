@@ -5,6 +5,14 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 function Conversation({conversation, conversationDeleted}) {
 
+  const [hovered, setHovered] = useState(false);
+
+  const conversationHovered = async () => {
+    setHovered(true);
+  };
+  const conversationUnhovered = async () => {
+    setHovered(false);
+  };
 
   const deleteConversation = async () => {
     const participantData = {
@@ -24,6 +32,8 @@ function Conversation({conversation, conversationDeleted}) {
       <div className="conversationContainer">
         <div
           className="conversation"
+          onMouseOver={conversationHovered}
+          onMouseLeave={conversationUnhovered}
         >
           <div className="contentContainer">
             <img
@@ -44,12 +54,14 @@ function Conversation({conversation, conversationDeleted}) {
               </h5>
             </div>
           </div>
+          {hovered &&
           <div className="deleteButtonContainer">
-            <DeleteOutlinedIcon 
-              sx={{ "&:hover": { color: "red" } }} 
-              onClick={deleteConversation}
-            />
+              <DeleteOutlinedIcon 
+                sx={{ "&:hover": { color: "red" } }} 
+                onClick={deleteConversation}
+              />
           </div>
+          }
         </div>
       </div>
     </>
