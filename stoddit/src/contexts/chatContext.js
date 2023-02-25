@@ -33,12 +33,12 @@ const addMessageToConversation = async (participantData, text, receiverID, chatr
 /* ------ Friend_List ------ */
 const addFriendtoFriendList = async (userID, username) => {
   let body = {
-    contactName: userID,
-    username: username
+    userID: userID,
+    contactName: username
   };
 
   addFriend(body);
-}
+};
 /* -------------------------------- */
 
 
