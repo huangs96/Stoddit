@@ -33,9 +33,9 @@ const addMessageToConversation = async (participantData, text, receiverID, chatr
 /* ------ Friend_List ------ */
 const addFriendtoFriendList = async (userID, username) => {
   let body = {
-    userID: userID,
+    contactName: userID,
     username: username
-  }
+  };
 
   addFriend(body);
 }
@@ -45,5 +45,6 @@ const addFriendtoFriendList = async (userID, username) => {
 
 export {
   addMessageToConversation,
-  createNewChatroomWithParticipants
+  createNewChatroomWithParticipants,
+  addFriendtoFriendList
 }

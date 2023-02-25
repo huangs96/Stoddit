@@ -211,7 +211,8 @@ const getUserIDByUsername = async (username) => {
   });
 };
 
-const addFriend = async (addFriendData) => {
+const addFriend = async (addUserData) => {
+  console.log('adduserdata', addUserData);
   const res = await fetch('http://localhost:5000/chat/friends/add', {
     method: 'POST',
     headers: {
@@ -220,7 +221,7 @@ const addFriend = async (addFriendData) => {
     },
     mode: 'cors',
     credentials: 'include',
-    body: JSON.stringify(addFriendData)
+    body: JSON.stringify(addUserData)
   })
   .then(res => res.json());
   console.log(res);
