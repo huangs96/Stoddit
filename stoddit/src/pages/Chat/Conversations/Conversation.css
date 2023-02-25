@@ -6,6 +6,7 @@
 
 .conversation {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 25px 10px 10px 10px;
   cursor: pointer;
@@ -33,6 +34,11 @@
 .conversationName {
   font-weight: 500;
   font-size: large;
+}
+
+.contentContainer {
+  display: flex;
+  align-items: center;
 }
 
 #modal-box {

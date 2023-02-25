@@ -6,10 +6,11 @@ import { addFriendtoFriendList } from '../../../contexts/chatContext';
 function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, searched}) {
   const friendsListDictionary = new Map();
 
-  const addFriendtoFriendsList = async (userID, username) => {
-    console.log(username);
+  const addUser = async (userID, username) => {
     return addFriendtoFriendList(userID, username);
   };
+
+  console.log(addUser());
 
   const displayFriendsList = friendsList.map((friends, i) => {
     friendsListDictionary.set(friends.contact_name, i);
@@ -97,7 +98,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
       >
         <AddIcon
           sx={{ "&:hover": { color: "green" } }}
-          onClick={() => addFriendtoFriendsList(userID, user.username)}
+          onClick={() => addUser(userID, user.username)}
         >
         </AddIcon>
       </Box>

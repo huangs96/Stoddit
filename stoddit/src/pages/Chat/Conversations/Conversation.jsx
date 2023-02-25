@@ -25,7 +25,8 @@ function Conversation({conversation, conversationDeleted}) {
         <div
           className="conversation"
         >
-          <img 
+          <div className="contentContainer">
+            <img
               className="conversationImg" 
               src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg' 
               alt="" 
@@ -42,8 +43,14 @@ function Conversation({conversation, conversationDeleted}) {
                 {conversation.description}
               </h5>
             </div>
+          </div>
+          <div className="deleteButtonContainer">
+            <DeleteOutlinedIcon 
+              sx={{ "&:hover": { color: "red" } }} 
+              onClick={deleteConversation}
+            />
+          </div>
         </div>
-            <DeleteOutlinedIcon sx={{ "&:hover": { color: "red" } }} onClick={deleteConversation}/>
       </div>
     </>
   )

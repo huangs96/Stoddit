@@ -36,7 +36,6 @@ const addFriendtoFriendList = async (userID, username) => {
     userID: userID,
     contactName: username
   };
-
   addFriend(body);
 };
 /* -------------------------------- */
