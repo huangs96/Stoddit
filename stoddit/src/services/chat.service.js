@@ -212,7 +212,17 @@ const getUserIDByUsername = async (username) => {
 };
 
 const addFriend = async (userID, contactName) => {
-  const 
+  const res = await fetch('http://localhost:5000/chat/friends/add', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',    
+    },
+    mode: 'CORS',
+    body: JSON.stringify(userID, contactName)
+  })
+  .then(res => res.json());
+  return res;
 };
 /* -------------------------------- */
 
@@ -233,4 +243,5 @@ module.exports = {
   getFriendsList,
   getFriendsListById,
   getUserIDByUsername,
+  addFriend,
 }

@@ -5,8 +5,8 @@ import Box from '@mui/material/Box';
 function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, searched}) {
   const friendsListDictionary = new Map();
 
-  const addFriend = async () => {
-    
+  const addFriend = async (userID, user) => {
+    const nameOfUser = user.username;
   }
 
   const displayFriendsList = friendsList.map((friends, i) => {
@@ -95,7 +95,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
       >
         <AddIcon
           sx={{ "&:hover": { color: "green" } }}
-          onClick={addFriend}
+          onClick={() => addFriend(userID, user)}
         >
         </AddIcon>
       </Box>
