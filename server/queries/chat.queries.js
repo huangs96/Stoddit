@@ -25,7 +25,7 @@ const createMessage = "INSERT INTO message (participant_id, message_text) VALUES
 /* ------ Friend_list ------ */
 const getFriendsListByUser = "SELECT friend_list.id, friend_list.account_id, friend_list.contact_name, account.contact_img, account.id AS contact_name_id FROM friend_list INNER JOIN account ON friend_list.contact_name = account.username WHERE friend_list.account_id = $1;";
 const getUserIDfromFriendListName = "SELECT id FROM account WHERE username = $1;";
-const addFriend = "INSERT INTO friend_list (account_id, contact_name) VALUES ($1, $2);";
+const addFriend = "INSERT INTO friend_list (account_id, contact_name) VALUES ($1, $2) RETURNING friend_list.id;";
 const deleteFriend = "DELETE FROM friend_list WHERE account_id = $1 AND contact_name = $2;";
 /* -------------------------------- */
 
