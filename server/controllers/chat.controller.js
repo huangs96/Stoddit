@@ -278,7 +278,7 @@ const addFriend = (async (req, res) => {
   const userID = req.body.userID;
 
   try {
-    const addFriend = await client.query(queries.addFriend, [userID, contactName]);
+    const addFriend = await client.query(queries.addFriend, [userID, contactName, userID, contactName]);
     if (addFriend) {
       return res.status(200).json(addFriend.rows[0]);
     };
