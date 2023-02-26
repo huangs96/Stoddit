@@ -153,7 +153,7 @@ function ChatIndex() {
       contact_name: username,
       contact_name_id: newFriendID
     }]);
-    return searched = false;
+    onClearUserSearch();
   };
 
   /* --------------------------------- */
@@ -180,7 +180,6 @@ function ChatIndex() {
       chatroom_id: newGeneratedChatroomID,
       description: convoDescription
     }]);
-    onClearUserSearch();
   };
   
   const conversationDeleted = () => {
