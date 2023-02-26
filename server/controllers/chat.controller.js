@@ -280,8 +280,7 @@ const addFriend = (async (req, res) => {
   try {
     const addFriend = await client.query(queries.addFriend, [userID, contactName]);
     if (addFriend) {
-      console.log(addFriend);
-      return res.status(200).json(`${contactName} successfully added.`);
+      return res.status(200).json(addFriend.rows[0]);
     };
   } catch (err) {
     return res.status(400).json(err);
