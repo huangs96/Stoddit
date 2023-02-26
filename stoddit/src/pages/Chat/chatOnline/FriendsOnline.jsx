@@ -6,11 +6,16 @@ import { addFriendtoFriendList } from '../../../contexts/chatContext';
 function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, searched}) {
   const friendsListDictionary = new Map();
 
+  console.log([...friendsList]);
+  console.log(allUsers);
+
   const addUser = async (userID, username) => {
-    return addFriendtoFriendList(userID, username);
+    addFriendtoFriendList(userID, username);
+    // [...friendsList, {
+
+    // }]
   };
 
-  console.log(addUser());
 
   const displayFriendsList = friendsList.map((friends, i) => {
     friendsListDictionary.set(friends.contact_name, i);
