@@ -16,7 +16,7 @@ import Conversation from './Conversations/Conversation';
 import NewConversation from './Conversations/newConversation'
 import Message from './Messages/Message';
 import FriendsOnline from './ChatOnline/FriendsOnline';
-import { addMessageToConversation } from '../../contexts/chatContext';
+import { addMessageToConversation, addFriendtoFriendList } from '../../contexts/chatContext';
 import { 
   getChatroomByUserID,
   getParticipantIDFromChatroomID,
@@ -144,6 +144,18 @@ function ChatIndex() {
       isLoaded = false;
     };
   }, []);
+
+  const addUser = async (userID, username) => {
+    const newFriendID = addFriendtoFriendList(userID, username);
+    setFriendsList(convos => [...convos, {
+      account_id: userID,
+      contact_img: null,
+      contact_name: username,
+      contact_name_id: newFriendID
+    }]);
+    return searched = false;
+  };
+
   /* --------------------------------- */
 
   /* ------ Conversation Modal ------ */
@@ -168,6 +180,7 @@ function ChatIndex() {
       chatroom_id: newGeneratedChatroomID,
       description: convoDescription
     }]);
+    onClearUserSearch();
   };
   
   const conversationDeleted = () => {
@@ -464,6 +477,7 @@ function ChatIndex() {
               onlineFriends={onlineFriendsData}
               allUsers={filteredUsers}
               searched={searched}
+              addUser={addUser}
             />
           </div>
         </div>   

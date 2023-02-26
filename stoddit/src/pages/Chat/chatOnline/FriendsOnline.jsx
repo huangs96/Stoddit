@@ -3,19 +3,8 @@ import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
 import { addFriendtoFriendList } from '../../../contexts/chatContext';
 
-function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, searched}) {
+function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, addUser,searched}) {
   const friendsListDictionary = new Map();
-
-  console.log([...friendsList]);
-  console.log(allUsers);
-
-  const addUser = async (userID, username) => {
-    addFriendtoFriendList(userID, username);
-    // [...friendsList, {
-
-    // }]
-  };
-
 
   const displayFriendsList = friendsList.map((friends, i) => {
     friendsListDictionary.set(friends.contact_name, i);
