@@ -151,7 +151,7 @@ function ChatIndex() {
 
   const addUser = async (userID, username) => {
     const newFriendID = addFriendtoFriendList(userID, username);
-    setFriendsList(convos => [...convos, {
+    setFriendsList(friends => [...friends, {
       account_id: userID,
       contact_img: null,
       contact_name: username,
@@ -162,8 +162,10 @@ function ChatIndex() {
 
   const deleteUser = async (userID, username) => {
     const deleteFriendID = deleteFriendFromFriendList(userID, username);
-    setFriendsList(convos => convos.splice())
-  }
+    setFriendsList(friends.filter(friend => {
+      friend.account_id == userID && friend.contact_name == username;
+    }));
+  };
 
   /* --------------------------------- */
 
@@ -484,6 +486,7 @@ function ChatIndex() {
               allUsers={filteredUsers}
               searched={searched}
               addUser={addUser}
+              deleteUser={deleteUser}
             />
           </div>
         </div>   

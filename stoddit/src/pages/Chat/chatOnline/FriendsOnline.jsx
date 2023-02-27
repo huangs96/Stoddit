@@ -5,7 +5,7 @@ import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
 
 
-function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, addUser,searched}) {
+function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, addUser, deleteUser, searched}) {
   const friendsListDictionary = new Map();
   const [showContextMenu, setShowContextMenu] = useState(false);
 
