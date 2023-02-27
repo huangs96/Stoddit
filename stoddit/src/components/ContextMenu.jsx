@@ -20,19 +20,16 @@ export default function ContextMenu(props) {
       <MenuList>
         <MenuItem>
           <ListItemIcon>
-            <ContentCut fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>{props.message}</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
             <SendIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText>Send</ListItemText>
+          <ListItemText>Message</ListItemText>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <DeleteOutlineIcon fontSize="small"/>
+            <DeleteOutlineIcon 
+              fontSize="small"
+              onClick={props.delete}
+            />
           </ListItemIcon>
           <ListItemText>Delete</ListItemText>
         </MenuItem>
@@ -47,7 +44,7 @@ export default function ContextMenu(props) {
     </Paper>
     )
   }
-  console.log('context props', props);
+  console.log('context props', props.delete);
   return (
     <>
       {menuTemplate()}

@@ -104,16 +104,10 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   });
   return (
     <>
-      <div
-        onContextMenu={(e) => {
-          console.log('Context');
-          e.preventDefault();
-          setShowContextMenu(true);
-        }}
-      >
+      <div>
         <ContextMenu
           message={'hello'}
-          delete={'delete'}
+          delete={deleteUser}
         >
         </ContextMenu>
       </div>
