@@ -291,8 +291,6 @@ function ChatIndex() {
     };
   });
   
-  console.log('filteredUsers ChatIndex', filteredUsers);
-  
   const selectConversation = (key) => {
     if (key) {
       setChatroomKey(key);

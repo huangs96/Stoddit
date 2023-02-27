@@ -1,10 +1,12 @@
 import './FriendsOnline.css';
+import { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
-import { addFriendtoFriendList } from '../../../contexts/chatContext';
+
 
 function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, addUser,searched}) {
   const friendsListDictionary = new Map();
+  const [showContextMenu, setShowContextMenu] = useState(false);
 
   const displayFriendsList = friendsList.map((friends, i) => {
     friendsListDictionary.set(friends.contact_name, i);
@@ -101,6 +103,15 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   });
   return (
     <>
+      <div
+        onContextMenu={(e) => {
+          console.log('Context');
+          e.preventDefault();
+          setShowContextMenu(true);
+        }}
+      >
+
+      </div>
       <div>
         {!searched ?
           displayFriendsList
