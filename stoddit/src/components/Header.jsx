@@ -7,7 +7,7 @@ import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import { logoutUser } from '../services/auth.service';
-import PersonPin from '@mui/icons-material/PersonPin';
+// import PersonPin from '@mui/icons-material/PersonPin';
 
 function Header() {
   const [value, setValue] = useState('/home');
