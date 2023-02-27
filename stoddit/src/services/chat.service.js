@@ -212,7 +212,6 @@ const getUserIDByUsername = async (username) => {
 };
 
 const addFriend = async (addUserData) => {
-  console.log('adduserdata', addUserData);
   const res = await fetch('http://localhost:5000/chat/friends/add', {
     method: 'POST',
     headers: {
@@ -229,8 +228,16 @@ const addFriend = async (addUserData) => {
 };
 
 const deleteFriend = async (deleteUserData) => {
-  
-}
+  const res = await fetch('http://localhost:5000/chat/friends/delete', {
+    method: 'DELETE',
+    mode: 'cors',
+    credentials: 'include',
+    body: JSON.stringify(deleteUserData)
+  })
+  .then(res => res.json());
+  console.log(res);
+  return res;
+};
 /* -------------------------------- */
 
 module.exports = {
@@ -251,4 +258,5 @@ module.exports = {
   getFriendsListById,
   getUserIDByUsername,
   addFriend,
+  deleteFriend
 }
