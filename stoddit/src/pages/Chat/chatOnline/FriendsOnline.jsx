@@ -1,5 +1,6 @@
 import './FriendsOnline.css';
 import { useState } from 'react';
+import ContextMenu from '../../../components/ContextMenu';
 import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
 
@@ -110,7 +111,11 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
           setShowContextMenu(true);
         }}
       >
-
+        <ContextMenu
+          message={'hello'}
+          delete={'delete'}
+        >
+        </ContextMenu>
       </div>
       <div>
         {!searched ?

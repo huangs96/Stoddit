@@ -227,6 +227,10 @@ const addFriend = async (addUserData) => {
   console.log(res);
   return res;
 };
+
+const deleteFriend = async (deleteUserData) => {
+  
+}
 /* -------------------------------- */
 
 module.exports = {
