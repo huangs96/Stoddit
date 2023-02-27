@@ -53,5 +53,6 @@ const deleteFriendFromFriendList = async (userID, username) => {
 export {
   addMessageToConversation,
   createNewChatroomWithParticipants,
-  addFriendtoFriendList
+  addFriendtoFriendList,
+  deleteFriendFromFriendList,
 }

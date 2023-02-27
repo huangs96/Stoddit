@@ -16,7 +16,11 @@ import Conversation from './Conversations/Conversation';
 import NewConversation from './Conversations/newConversation'
 import Message from './Messages/Message';
 import FriendsOnline from './ChatOnline/FriendsOnline';
-import { addMessageToConversation, addFriendtoFriendList } from '../../contexts/chatContext';
+import { 
+  addMessageToConversation, 
+  addFriendtoFriendList,
+  deleteFriendFromFriendList
+ } from '../../contexts/chatContext';
 import { 
   getChatroomByUserID,
   getParticipantIDFromChatroomID,
@@ -156,6 +160,11 @@ function ChatIndex() {
     onClearUserSearch();
   };
 
+  const deleteUser = async (userID, username) => {
+    const deleteFriendID = deleteFriendFromFriendList(userID, username);
+    setFriendsList(convos => convos.splice())
+  }
+
   /* --------------------------------- */
 
   /* ------ Conversation Modal ------ */
@@ -239,7 +248,7 @@ function ChatIndex() {
     };
 
 
-  }, [chatroomKey, newConversation, userHasLeftConversation]);
+  }, [chatroomKey, newConversation]);
 
   useEffect(() => {
     if (realtimeMessage && chatroomKey === realtimeMessage.chatroomID) {
