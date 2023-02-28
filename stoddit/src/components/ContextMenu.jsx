@@ -12,6 +12,9 @@ import SendIcon from '@mui/icons-material/Send';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 export default function ContextMenu(props) {
+  const test = () => {
+    props.delete(props.userID, props.selectedFriend);
+  }
   
   const menuTemplate = () => {
     return (
@@ -29,14 +32,13 @@ export default function ContextMenu(props) {
           }}
         >
           <MenuItem>Message</MenuItem>
-          <MenuItem>Delete</MenuItem>
+          <MenuItem onClick={test}>Delete</MenuItem>
           <MenuItem>View Profile</MenuItem>
         </Menu>
       </div>
     );
   };
-  // console.log('context props', props.delete);
-  console.log(props);
+  console.log(props.selectedFriend);
   return (
     <>
       {menuTemplate()}

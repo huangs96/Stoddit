@@ -44,6 +44,7 @@ const deleteFriendFromFriendList = async (userID, username) => {
     userID: userID,
     contactName: username
   };
+  console.log('context body delete', body);
   deleteFriend(body);
 };
 /* -------------------------------- */
