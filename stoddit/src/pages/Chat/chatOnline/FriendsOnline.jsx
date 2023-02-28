@@ -21,7 +21,6 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   };
 
   const selectFriend = async (friend) => {
-    console.log('username select friend', username);
     setSelectedFriend(friend.contact_name);
   };
 

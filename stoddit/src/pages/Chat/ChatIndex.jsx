@@ -163,7 +163,7 @@ function ChatIndex() {
   const deleteUser = async (userID, username) => {
     deleteFriendFromFriendList(userID, username);
     setFriendsList(friends => friends.filter(friend => 
-      friend.account_id == userID && friend.contact_name == username
+      friend.account_id != userID && friend.contact_name != username
     ));
   };
 

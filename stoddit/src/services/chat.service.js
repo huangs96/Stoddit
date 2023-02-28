@@ -228,14 +228,18 @@ const addFriend = async (addUserData) => {
 };
 
 const deleteFriend = async (deleteUserData) => {
+  console.log('deleteUserData', deleteUserData);
   const res = await fetch('http://localhost:5000/chat/friends/delete', {
     method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     mode: 'cors',
     credentials: 'include',
     body: JSON.stringify(deleteUserData)
   })
   .then(res => res.json());
-  console.log(res);
+  console.log('response', res);
   return res;
 };
 /* -------------------------------- */
