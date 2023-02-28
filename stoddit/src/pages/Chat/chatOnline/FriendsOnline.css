@@ -40,10 +40,10 @@
   font-weight: 500;
   padding-left: 10px;
 }
-/* 
+
 .friendsOffline:hover {
   background-color: rgb(124, 174, 248);
-} */
+}
 
 .friendsOfflineImg {
   opacity: 0.5;
@@ -73,4 +73,10 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.contextMenuContainer {
+  position: absolute;
+  top: 400px;
+  left: 500px;
 }

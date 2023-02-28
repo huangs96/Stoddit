@@ -128,7 +128,13 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
     <>
       {
         showContextMenu &&
-        <div>
+        <div 
+          style={{
+            position: 'absolute',
+            top: `${points.y}px`,
+            left: `${points.x}px`
+          }}
+        >
           <ContextMenu
             message={'hello'}
             delete={deleteUser}

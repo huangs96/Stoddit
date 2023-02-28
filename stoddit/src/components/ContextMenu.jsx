@@ -14,13 +14,7 @@ export default function ContextMenu(props) {
   
   const menuTemplate = () => {
     return (
-      <div
-        style={{
-          position: 'absolute',
-          top: props.top,
-          left: props.left
-        }}
-      >
+      <div>
         <Paper sx={{ width: 150, maxWidth: '100%'}}>
           <MenuList>
             <MenuItem>
