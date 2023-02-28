@@ -41,18 +41,18 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
             aria-expanded={open ? 'true' : undefined}
             onContextMenu={handleToggle}
           >
-          <div className="chatOnlineFriend">
-            <div className="friendOnlineImgContainer">
-              <img
-              className="friendsOnlineImg"
-              src={friends.contact_img}
-              alt=""
-              />
-              <div className="chatOnlineBadge"></div>
+            <div className="chatOnlineFriend">
+              <div className="friendOnlineImgContainer">
+                <img
+                className="friendsOnlineImg"
+                src={friends.contact_img}
+                alt=""
+                />
+                <div className="chatOnlineBadge"></div>
+              </div>
+              <span className="onlineFriendName" key={i}>{friends.contact_name}</span>
             </div>
-            <span className="onlineFriendName" key={i}>{friends.contact_name}</span>
           </div>
-        </div>
         };
       });
     } else if (friends.contact_name_id === onlineFriends) {
@@ -143,23 +143,6 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
             delete={deleteUser}
           >
           </ContextMenu>
-          {/* <Menu
-        aria-labelledby="demo-positioned-button"
-        anchorEl={anchorEl}
-        open={open}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-      >
-        <MenuItem>Profile</MenuItem>
-        <MenuItem>My account</MenuItem>
-        <MenuItem>Logout</MenuItem>
-      </Menu> */}
         </div>
       }
       <div>

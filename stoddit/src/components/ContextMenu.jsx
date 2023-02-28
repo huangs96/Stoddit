@@ -28,39 +28,13 @@ export default function ContextMenu(props) {
             horizontal: 'left',
           }}
         >
-        <MenuItem>Message</MenuItem>
-        <MenuItem>Delete</MenuItem>
-        <MenuItem>View Profile</MenuItem>
-      </Menu>
-        {/* <Paper sx={{ width: 150, maxWidth: '100%'}}>
-          <MenuList>
-            <MenuItem>
-              <ListItemIcon>
-                <SendIcon fontSize="small" />
-              </ListItemIcon>
-              <ListItemText>Message</ListItemText>
-            </MenuItem>
-            <MenuItem>
-              <ListItemIcon>
-                <DeleteOutlineIcon 
-                  fontSize="small"
-                  onClick={props.delete}
-                />
-              </ListItemIcon>
-              <ListItemText>Delete</ListItemText>
-            </MenuItem>
-            <Divider />
-            <MenuItem>
-              <ListItemIcon>
-                <AccountBoxIcon fontSize="small" />
-              </ListItemIcon>
-              <ListItemText>View Profile</ListItemText>
-            </MenuItem>
-          </MenuList>
-        </Paper> */}
+          <MenuItem>Message</MenuItem>
+          <MenuItem onClick={props.delete}>Delete</MenuItem>
+          <MenuItem>View Profile</MenuItem>
+        </Menu>
       </div>
-    )
-  }
+    );
+  };
   console.log('context props', props.delete);
   return (
     <>
