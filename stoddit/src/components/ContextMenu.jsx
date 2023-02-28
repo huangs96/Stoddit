@@ -35,7 +35,7 @@ export default function ContextMenu(props) {
       </div>
     );
   };
-  console.log('context props', props.delete);
+  // console.log('context props', props.delete);
   return (
     <>
       {menuTemplate()}

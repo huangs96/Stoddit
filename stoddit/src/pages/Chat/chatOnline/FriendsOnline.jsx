@@ -19,6 +19,11 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
     setShowContextMenu(true);
   };
 
+  const getFriendInfo = async (userID, username) => {
+    console.log(userID);
+    console.log(username);
+  }
+
   useEffect(() => {
     const handleClick = () => setShowContextMenu(false);
     window.addEventListener('click', handleClick);
@@ -39,7 +44,10 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
           return <div className="friendsOnline"
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
-            onContextMenu={handleToggle}
+            onContextMenu={(e) => {
+              handleToggle(e);
+              getFriendInfo(userID, friends);
+            }}
           >
             <div className="chatOnlineFriend">
               <div className="friendOnlineImgContainer">
@@ -60,7 +68,10 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
         return <div className="friendsOnline"
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
-          onContextMenu={handleToggle}
+          onContextMenu={(e) => {
+            handleToggle(e);
+            getFriendInfo(userID, friends);
+          }}
         >
           <div className="chatOnlineFriend">
             <div className="friendOnlineImgContainer">
@@ -78,7 +89,10 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
       return <div className="friendsOffline"
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
-        onContextMenu={handleToggle}
+        onContextMenu={(e) => {
+          handleToggle(e);
+          getFriendInfo(userID, friends);
+        }}
       >
       <div className="chatOfflineFriend">
         <div className="friendOfflineImgContainer">
