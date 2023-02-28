@@ -1,6 +1,8 @@
 import './FriendsOnline.css';
 import { useEffect, useState } from 'react';
 import ContextMenu from '../../../components/ContextMenu';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
 
@@ -8,22 +10,24 @@ import Box from '@mui/material/Box';
 function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, addUser, deleteUser, searched}) {
   const friendsListDictionary = new Map();
   const [showContextMenu, setShowContextMenu] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
   const [points, setPoints] = useState({x: 0, y: 0});
   
-  const rightClickFunction = async (e) => {
+  const handleToggle = async (e) => {
     console.log('menu opened');
+    console.log('menu opened', e);
     e.preventDefault();
+    setAnchorEl(e.currentTarget);
     setShowContextMenu(true);
-    console.log('e', e.pageX);
-    console.log('e', e.pageY);
-    setPoints({x: e.pageX, y: e.PageY});
   };
 
   useEffect(() => {
     const handleClick = () => setShowContextMenu(false);
     window.addEventListener('click', handleClick);
+    setAnchorEl(null);
     return () => window.removeEventListener('click', handleClick);
-  }, [])
+  }, []);
 
   const displayFriendsList = friendsList.map((friends, i) => {
     friendsListDictionary.set(friends.contact_name, i);
@@ -36,7 +40,11 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
       onlineFriends.map(onlineFriend => {
         if (onlineFriend === friends.contact_name_id) {
           return <div className="friendsOnline"
-            onContextMenu={rightClickFunction}
+            aria-controls={open ? 'demo-positioned-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleToggle}
+            onContextMenu={handleToggle}
           >
           <div className="chatOnlineFriend">
             <div className="friendOnlineImgContainer">
@@ -55,7 +63,10 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
     } else if (friends.contact_name_id === onlineFriends) {
         console.log('one friend online');
         return <div className="friendsOnline"
-          onContextMenu={rightClickFunction}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          onClick={handleToggle}
+          onContextMenu={handleToggle}
         >
           <div className="chatOnlineFriend">
             <div className="friendOnlineImgContainer">
@@ -71,7 +82,11 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
         </div>
     } else {
       return <div className="friendsOffline"
-        onContextMenu={rightClickFunction}
+        aria-controls={open ? 'demo-positioned-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleToggle}
+        onContextMenu={handleToggle}
       >
       <div className="chatOfflineFriend">
         <div className="friendOfflineImgContainer">
@@ -128,20 +143,29 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
     <>
       {
         showContextMenu &&
-        <div 
-          style={{
-            position: 'absolute',
-            top: `${points.y}px`,
-            left: `${points.x}px`
-          }}
-        >
-          <ContextMenu
+        <div>
+          {/* <ContextMenu
             message={'hello'}
             delete={deleteUser}
-            top={points.y}
-            left={points.x}
           >
-          </ContextMenu>
+          </ContextMenu> */}
+          <Menu
+        aria-labelledby="demo-positioned-button"
+        anchorEl={anchorEl}
+        open={open}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+      >
+        <MenuItem>Profile</MenuItem>
+        <MenuItem>My account</MenuItem>
+        <MenuItem>Logout</MenuItem>
+      </Menu>
         </div>
       }
       <div>
