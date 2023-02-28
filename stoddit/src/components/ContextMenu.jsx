@@ -6,10 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Typography from '@mui/material/Typography';
-import ContentCut from '@mui/icons-material/ContentCut';
-import ContentCopy from '@mui/icons-material/ContentCopy';
-import ContentPaste from '@mui/icons-material/ContentPaste';
-import Cloud from '@mui/icons-material/Cloud';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import SendIcon from '@mui/icons-material/Send';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
@@ -36,9 +33,9 @@ export default function ContextMenu(props) {
         <Divider />
         <MenuItem>
           <ListItemIcon>
-            <Cloud fontSize="small" />
+            <AccountBoxIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText>Web Clipboard</ListItemText>
+          <ListItemText>View Profile</ListItemText>
         </MenuItem>
       </MenuList>
     </Paper>
