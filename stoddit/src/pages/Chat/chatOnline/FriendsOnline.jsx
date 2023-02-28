@@ -8,12 +8,14 @@ import Box from '@mui/material/Box';
 function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, addUser, deleteUser, searched}) {
   const friendsListDictionary = new Map();
   const [showContextMenu, setShowContextMenu] = useState(false);
-  const [points, setPoints] = useState({top: 0, left: 0});
+  const [points, setPoints] = useState({x: 0, y: 0});
   
   const rightClickFunction = async (e) => {
     console.log('menu opened');
     e.preventDefault();
     setShowContextMenu(true);
+    console.log('e', e.pageX);
+    console.log('e', e.pageY);
   };
 
   useEffect(() => {
@@ -129,6 +131,8 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
           <ContextMenu
             message={'hello'}
             delete={deleteUser}
+            top={points.y}
+            left={points.x}
           >
           </ContextMenu>
         </div>
