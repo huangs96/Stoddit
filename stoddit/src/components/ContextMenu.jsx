@@ -11,6 +11,7 @@ import SendIcon from '@mui/icons-material/Send';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 export default function ContextMenu(props) {
+  
   const menuTemplate = () => {
     return (
       <Paper sx={{ width: 150, maxWidth: '100%' }}>

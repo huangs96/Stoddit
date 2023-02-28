@@ -19,7 +19,13 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
       console.log('it got here map1');
       onlineFriends.map(onlineFriend => {
         if (onlineFriend === friends.contact_name_id) {
-          return <div className="friendsOnline">
+          return <div className="friendsOnline"
+            onContextMenu={(e) => {
+              console.log('menu opened');
+              e.preveentDefault();
+              setShowContextMenu(true);
+            }}
+          >
           <div className="chatOnlineFriend">
             <div className="friendOnlineImgContainer">
               <img
