@@ -14,32 +14,40 @@ export default function ContextMenu(props) {
   
   const menuTemplate = () => {
     return (
-      <Paper sx={{ width: 150, maxWidth: '100%' }}>
-      <MenuList>
-        <MenuItem>
-          <ListItemIcon>
-            <SendIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Message</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <DeleteOutlineIcon 
-              fontSize="small"
-              onClick={props.delete}
-            />
-          </ListItemIcon>
-          <ListItemText>Delete</ListItemText>
-        </MenuItem>
-        <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            <AccountBoxIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>View Profile</ListItemText>
-        </MenuItem>
-      </MenuList>
-    </Paper>
+      <div
+        style={{
+          position: 'absolute',
+          top: props.top,
+          left: props.left
+        }}
+      >
+        <Paper sx={{ width: 150, maxWidth: '100%'}}>
+          <MenuList>
+            <MenuItem>
+              <ListItemIcon>
+                <SendIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText>Message</ListItemText>
+            </MenuItem>
+            <MenuItem>
+              <ListItemIcon>
+                <DeleteOutlineIcon 
+                  fontSize="small"
+                  onClick={props.delete}
+                />
+              </ListItemIcon>
+              <ListItemText>Delete</ListItemText>
+            </MenuItem>
+            <Divider />
+            <MenuItem>
+              <ListItemIcon>
+                <AccountBoxIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText>View Profile</ListItemText>
+            </MenuItem>
+          </MenuList>
+        </Paper>
+      </div>
     )
   }
   console.log('context props', props.delete);

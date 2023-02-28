@@ -16,6 +16,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
     setShowContextMenu(true);
     console.log('e', e.pageX);
     console.log('e', e.pageY);
+    setPoints({x: e.pageX, y: e.PageY});
   };
 
   useEffect(() => {
