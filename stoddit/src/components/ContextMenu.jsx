@@ -29,13 +29,14 @@ export default function ContextMenu(props) {
           }}
         >
           <MenuItem>Message</MenuItem>
-          <MenuItem onClick={props.delete}>Delete</MenuItem>
+          <MenuItem>Delete</MenuItem>
           <MenuItem>View Profile</MenuItem>
         </Menu>
       </div>
     );
   };
   // console.log('context props', props.delete);
+  console.log(props);
   return (
     <>
       {menuTemplate()}

@@ -9,6 +9,10 @@ import Box from '@mui/material/Box';
 
 function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, addUser, deleteUser, searched}) {
   const friendsListDictionary = new Map();
+  const [selectedFriend, setSelectedFriend] = useState({
+    userID: userID, 
+    username: username
+  });
   const [showContextMenu, setShowContextMenu] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -19,10 +23,13 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
     setShowContextMenu(true);
   };
 
-  const getFriendInfo = async (userID, username) => {
-    console.log(userID);
-    console.log(username);
-  }
+  const selectFriend = async (userID, username) => {
+    setSelectedFriend({
+      userID: userID,
+      username: username
+    });
+    console.log(selectedFriend);
+  };
 
   useEffect(() => {
     const handleClick = () => setShowContextMenu(false);
@@ -46,7 +53,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
             aria-expanded={open ? 'true' : undefined}
             onContextMenu={(e) => {
               handleToggle(e);
-              getFriendInfo(userID, friends);
+              selectFriend(userID, friends);
             }}
           >
             <div className="chatOnlineFriend">
@@ -70,7 +77,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
           aria-expanded={open ? 'true' : undefined}
           onContextMenu={(e) => {
             handleToggle(e);
-            getFriendInfo(userID, friends);
+            selectFriend(userID, friends);
           }}
         >
           <div className="chatOnlineFriend">
@@ -91,7 +98,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
         aria-expanded={open ? 'true' : undefined}
         onContextMenu={(e) => {
           handleToggle(e);
-          getFriendInfo(userID, friends);
+          selectFriend(userID, friends);
         }}
       >
       <div className="chatOfflineFriend">
@@ -154,7 +161,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
             anchorEl={anchorEl}
             open={open}
             message={'hello'}
-            delete={deleteUser}
+            // delete={deleteUser(selectedFriend.userID, selectedFriend.username)}
           >
           </ContextMenu>
         </div>
