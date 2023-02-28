@@ -38,15 +38,6 @@ const addFriendtoFriendList = async (userID, username) => {
   };
   addFriend(body);
 };
-
-const deleteFriendFromFriendList = async (userID, username) => {
-  let body = {
-    userID: userID,
-    contactName: username
-  };
-  console.log('context body delete', body);
-  deleteFriend(body);
-};
 /* -------------------------------- */
 
 
@@ -54,6 +45,5 @@ const deleteFriendFromFriendList = async (userID, username) => {
 export {
   addMessageToConversation,
   createNewChatroomWithParticipants,
-  addFriendtoFriendList,
-  deleteFriendFromFriendList,
+  addFriendtoFriendList
 }

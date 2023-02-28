@@ -38,6 +38,7 @@ export default function ContextMenu(props) {
       </div>
     );
   };
+  console.log(props.friend);
   return (
     <>
       {menuTemplate()}

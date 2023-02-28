@@ -21,7 +21,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   };
 
   const selectFriend = async (friend) => {
-    setSelectedFriend(friend.contact_name);
+    setSelectedFriend(friend.id);
   };
 
   useEffect(() => {

@@ -18,14 +18,14 @@ import Message from './Messages/Message';
 import FriendsOnline from './ChatOnline/FriendsOnline';
 import { 
   addMessageToConversation, 
-  addFriendtoFriendList,
-  deleteFriendFromFriendList
+  addFriendtoFriendList
  } from '../../contexts/chatContext';
 import { 
   getChatroomByUserID,
   getParticipantIDFromChatroomID,
   getMessagesByChatroomID,
   getFriendsListById,
+  deleteFriend
 } from '../../services/chat.service';
 import { getAllUsers } from '../../services/user.service';
 import { io } from 'socket.io-client';
@@ -160,8 +160,8 @@ function ChatIndex() {
     onClearUserSearch();
   };
 
-  const deleteUser = async (userID, username) => {
-    deleteFriendFromFriendList(userID, username);
+  const deleteUser = async (friendID) => {
+    deleteFriend(friendID);
     setFriendsList(friends => friends.filter(friend => 
       friend.account_id != userID && friend.contact_name != username
     ));

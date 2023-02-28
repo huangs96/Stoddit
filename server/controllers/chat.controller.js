@@ -288,17 +288,17 @@ const addFriend = (async (req, res) => {
 })
 
 const deleteFriend = (async (req, res) => {
-  const userID = req.body.userID;
-  const contactName = req.body.contactName;
+  const idOfFriend = req.params;
+  console.log('id of Friend Delete', idOfFriend);
 
-  try {
-    const deleteFriend = await client.query(queries.deleteFriend, [userID, contactName]);
-    if (deleteFriend) {
-      return res.status(200).json(`${contactName} successfully removed.`);
-    }
-  } catch (err) {
-    return res.status(400).json(err);
-  };
+  // try {
+  //   const deleteFriend = await client.query(queries.deleteFriend, [idOfFriend]);
+  //   if (deleteFriend) {
+  //     return res.status(200).json(`User successfully removed from friendslist.`);
+  //   }
+  // } catch (err) {
+  //   return res.status(400).json(err);
+  // };
 });
 /* -------------------------------- */
 

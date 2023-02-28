@@ -33,7 +33,7 @@ module.exports = (io) => {
   router.get('/friends/:id', controller.getFriendsListById);
   router.get('/friends/user/:id', controller.getUserIDfromName);
   router.post('/friends/add', controller.addFriend);
-  router.delete('/friends/delete', controller.deleteFriend);
+  router.delete('/friends/delete/:id', controller.deleteFriend);
   /* -------------------------------- */
 
   return router;
