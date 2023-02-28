@@ -12,11 +12,8 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   const [showContextMenu, setShowContextMenu] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const [points, setPoints] = useState({x: 0, y: 0});
   
   const handleToggle = async (e) => {
-    console.log('menu opened');
-    console.log('menu opened', e);
     e.preventDefault();
     setAnchorEl(e.currentTarget);
     setShowContextMenu(true);
@@ -40,10 +37,8 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
       onlineFriends.map(onlineFriend => {
         if (onlineFriend === friends.contact_name_id) {
           return <div className="friendsOnline"
-            aria-controls={open ? 'demo-positioned-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
-            onClick={handleToggle}
             onContextMenu={handleToggle}
           >
           <div className="chatOnlineFriend">
@@ -65,7 +60,6 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
         return <div className="friendsOnline"
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
-          onClick={handleToggle}
           onContextMenu={handleToggle}
         >
           <div className="chatOnlineFriend">
@@ -82,10 +76,8 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
         </div>
     } else {
       return <div className="friendsOffline"
-        aria-controls={open ? 'demo-positioned-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
-        onClick={handleToggle}
         onContextMenu={handleToggle}
       >
       <div className="chatOfflineFriend">
@@ -144,12 +136,14 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
       {
         showContextMenu &&
         <div>
-          {/* <ContextMenu
+          <ContextMenu
+            anchorEl={anchorEl}
+            open={open}
             message={'hello'}
             delete={deleteUser}
           >
-          </ContextMenu> */}
-          <Menu
+          </ContextMenu>
+          {/* <Menu
         aria-labelledby="demo-positioned-button"
         anchorEl={anchorEl}
         open={open}
@@ -165,7 +159,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
         <MenuItem>Profile</MenuItem>
         <MenuItem>My account</MenuItem>
         <MenuItem>Logout</MenuItem>
-      </Menu>
+      </Menu> */}
         </div>
       }
       <div>
