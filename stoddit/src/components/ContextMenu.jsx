@@ -13,7 +13,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 export default function ContextMenu(props) {
   const deleteFriend = () => {
-    props.delete(props.userID, props.selectedFriend);
+    props.delete(props.selectedFriend);
   };
   
   const menuTemplate = () => {
@@ -38,7 +38,7 @@ export default function ContextMenu(props) {
       </div>
     );
   };
-  console.log(props.friend);
+  console.log(props.selectedFriend);
   return (
     <>
       {menuTemplate()}
