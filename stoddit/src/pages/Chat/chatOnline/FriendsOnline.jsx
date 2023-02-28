@@ -1,5 +1,5 @@
 import './FriendsOnline.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ContextMenu from '../../../components/ContextMenu';
 import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
@@ -8,6 +8,18 @@ import Box from '@mui/material/Box';
 function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, addUser, deleteUser, searched}) {
   const friendsListDictionary = new Map();
   const [showContextMenu, setShowContextMenu] = useState(false);
+  
+  const rightClickFunction = async (e) => {
+    console.log('menu opened');
+    e.preventDefault();
+    setShowContextMenu(true);
+  };
+
+  useEffect(() => {
+    const handleClick = () => setShowContextMenu(false);
+    window.addEventListener('click', handleClick);
+    return () => window.removeEventListener('click', handleClick);
+  }, [])
 
   const displayFriendsList = friendsList.map((friends, i) => {
     friendsListDictionary.set(friends.contact_name, i);
@@ -20,11 +32,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
       onlineFriends.map(onlineFriend => {
         if (onlineFriend === friends.contact_name_id) {
           return <div className="friendsOnline"
-            onContextMenu={(e) => {
-              console.log('menu opened');
-              e.preveentDefault();
-              setShowContextMenu(true);
-            }}
+            onContextMenu={rightClickFunction}
           >
           <div className="chatOnlineFriend">
             <div className="friendOnlineImgContainer">
@@ -42,7 +50,9 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
       });
     } else if (friends.contact_name_id === onlineFriends) {
         console.log('one friend online');
-        return <div className="friendsOnline">
+        return <div className="friendsOnline"
+          onContextMenu={rightClickFunction}
+        >
           <div className="chatOnlineFriend">
             <div className="friendOnlineImgContainer">
               <img
@@ -56,7 +66,9 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
           </div>
         </div>
     } else {
-      return <div className="friendsOffline">
+      return <div className="friendsOffline"
+        onContextMenu={rightClickFunction}
+      >
       <div className="chatOfflineFriend">
         <div className="friendOfflineImgContainer">
           <img
