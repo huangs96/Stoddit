@@ -207,7 +207,7 @@ function ChatIndex() {
   // console.log('realtimeMsg', realtimeMessage);
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
   console.log('friendsList ChatIndex', friendsList);
-  console.log('allUsers ChatIndex', allUsers);
+  // console.log('allUsers ChatIndex', allUsers);
   // console.log('allUsersInput ChatIndex', allUsersInput);
   /* --------------------------------- */
   useEffect(() => {

@@ -236,7 +236,7 @@ const deleteFriend = async (deleteUserData) => {
     },
     mode: 'cors',
     credentials: 'include',
-    body: JSON.stringify(deleteUserData)
+    body: deleteUserData
   })
   .then(res => res.json());
   console.log('response', res);
