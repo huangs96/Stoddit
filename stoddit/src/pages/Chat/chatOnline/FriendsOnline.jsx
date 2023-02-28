@@ -104,13 +104,16 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   });
   return (
     <>
-      <div>
-        <ContextMenu
-          message={'hello'}
-          delete={deleteUser}
-        >
-        </ContextMenu>
-      </div>
+      {
+        showContextMenu &&
+        <div>
+          <ContextMenu
+            message={'hello'}
+            delete={deleteUser}
+          >
+          </ContextMenu>
+        </div>
+      }
       <div>
         {!searched ?
           displayFriendsList
