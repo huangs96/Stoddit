@@ -14,7 +14,6 @@ import AddIcon from '@mui/icons-material/Add';
 import PropTypes from 'prop-types';
 import { getFriendsListById, createNewChatroom, getUserIDByUsername } from '../../../services/chat.service';
 import { createNewChatroomWithParticipants } from '../../../contexts/chatContext';
-import { getUser } from '../../../services/user.service';
 
 function NewConversation(props) {
   const [conversationName, setConversationName] = useState('');

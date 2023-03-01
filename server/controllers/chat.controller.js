@@ -289,8 +289,6 @@ const addFriend = (async (req, res) => {
 
 const deleteFriend = (async (req, res) => {
   const idOfFriend = req.params.id;
-  console.log('id of Friend Delete', idOfFriend);
-
   try {
     const deleteFriend = await client.query(queries.deleteFriend, [idOfFriend]);
     if (deleteFriend) {
