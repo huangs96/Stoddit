@@ -115,7 +115,7 @@ function NewConversation(props) {
 
   return (
     <Dialog onClose={handleClose} open={open}>
-      <Box sx={style}>
+      <Box sx={style} textAlign='center'>
         <DialogTitle variant="h4">
           Start a Conversation
         </DialogTitle>
@@ -155,7 +155,7 @@ function NewConversation(props) {
         </Typography>
         <List sx={{ pt: 0 }}>
           {props.friendsList.map((friend, i) => (
-            <ListItem 
+            <ListItem
               button onClick={() => handleListItemClick(friend.contact_name, i)} 
               selected={selectedFriends.includes(friend.contact_name)}
               key={i}
@@ -174,16 +174,10 @@ function NewConversation(props) {
               } */}
             </ListItem>
           ))}
-          <Button variant="contained" color="success" autoFocus onClick={createConversation}>
-              Create Conversation
-          </Button>
           <ListItem autoFocus button onClick={createConversation}>
-            <ListItemAvatar>
-              <Avatar>
-                <AddIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Create Conversation" />
+            <Button startIcon={<AddIcon />} variant="contained" color="success" autoFocus onClick={createConversation}>
+                Create Conversation
+            </Button>
           </ListItem>
         </List>
       </Box>
