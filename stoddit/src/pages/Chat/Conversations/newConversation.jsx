@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import Box from '@mui/material/Box';
 import { TextField, Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -173,7 +174,9 @@ function NewConversation(props) {
               } */}
             </ListItem>
           ))}
-
+          <Button variant="contained" color="success" autoFocus onClick={createConversation}>
+              Create Conversation
+          </Button>
           <ListItem autoFocus button onClick={createConversation}>
             <ListItemAvatar>
               <Avatar>
