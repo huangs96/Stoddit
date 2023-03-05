@@ -78,6 +78,7 @@ function Header() {
               value='Profile'
               component={Link}
               to={'/profile'}
+              iconPosition='end'
             />
           </Tabs>
           <Button onClick={logout} sx={{marginLeft: 'auto'}} variant='contained'>Logout</Button>
