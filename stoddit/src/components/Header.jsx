@@ -34,9 +34,6 @@ function Header() {
     <React.Fragment>
       <AppBar position='absolute'>
         <Toolbar>
-          {/* <iconButton aria-label='home' component={Link} to='/home'>
-            <ShowChartIcon />
-          </iconButton> */}
           <Tabs 
             textColor='inherit' 
             value={value}
