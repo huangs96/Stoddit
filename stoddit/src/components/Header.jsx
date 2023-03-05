@@ -18,7 +18,7 @@ function Header() {
     if (deleteDetails.error) {
       console.log(deleteDetails.error);
       return;
-    }
+    };
     console.log(deleteDetails.message);
     localStorage.clear();
     console.log('localstorage should be cleared', localStorage);
