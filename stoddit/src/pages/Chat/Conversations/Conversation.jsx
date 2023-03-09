@@ -28,7 +28,7 @@ function Conversation({conversation, conversationDeleted}) {
   };
   if (conversation.contact_img === null) { 
     conversation.contact_img = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
-  }
+  };
 
   return (
     <>
@@ -41,20 +41,19 @@ function Conversation({conversation, conversationDeleted}) {
           <div className="contentContainer">
             <div className="avatarContainer">
               <span className='avatarList'>
-                  {/* <img
+                  <img
                     className="conversationImg" 
-                    src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg' 
+                    src={conversation.contact_img}
                     alt="" 
-                  /> */}
-                  {conversation.contact_img}
+                  />
               </span>
-              {/* <span className='avatarList'>
-                <img
-                  className="conversationImg" 
-                  src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg' 
-                  alt="" 
-                />
-              </span>   */}
+              <span className='avatarList'>
+                  <img
+                    className="conversationImg" 
+                    src={conversation.contact_img}
+                    alt="" 
+                  />
+              </span>
             </div>
             <div className="conversationInfoContainer">
               <span 

@@ -400,7 +400,6 @@ function ChatIndex() {
                   conversation={convo}
                   userParticipantID={userParticipantID}
                   conversationDeleted={conversationDeleted}
-                  allUsers={allUsers}
                 />
               </div>
             ))
