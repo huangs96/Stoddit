@@ -45,6 +45,7 @@ function ChatIndex() {
   //chatroom state
   const [chatroomKey, setChatroomKey] = useState(null);
   const [conversations, setConversations] = useState([]);
+  const [conversationMembers, setConversationMembers] = useState([]);
   const [searchConversationInput, setConversationSearchInput] = useState('');
   const [newConversation, setNewConversation] = useState(false);
   //deleting chatroom
@@ -201,14 +202,15 @@ function ChatIndex() {
   // console.log('userParticipantID', userParticipantID);
   // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);
-  // console.log('conversations---', conversations);
+  console.log('conversations---', conversations);
   // console.log('setNewConversation---', newConversation);
   // console.log('messages', messages);
   // console.log('realtimeMsg', realtimeMessage);
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
   console.log('friendsList ChatIndex', friendsList);
-  // console.log('allUsers ChatIndex', allUsers);
+  console.log('allUsers ChatIndex', allUsers);
   // console.log('allUsersInput ChatIndex', allUsersInput);
+
   /* --------------------------------- */
   useEffect(() => {
     let isLoaded = true;
@@ -262,6 +264,7 @@ function ChatIndex() {
       }]);
     };
   }, [realtimeMessage]);
+
 
   //Conversation Searchbar
   const getConversationSearchInput = async (e) => {
@@ -397,6 +400,7 @@ function ChatIndex() {
                   conversation={convo}
                   userParticipantID={userParticipantID}
                   conversationDeleted={conversationDeleted}
+                  allUsers={allUsers}
                 />
               </div>
             ))
