@@ -31,6 +31,13 @@ const getChatroomByUserID = (async (req, res) => {
   const userID = parseInt(req.params.id);
   try {
     const chatroomByUserID = await client.query(queries.getChatroomByUserID, [userID]);
+    console.log('chatroomByUser', chatroomByUserID.rows);
+
+    for (let data of chatroomByUserID.rows) {
+      const participantsInChatroom = await client.query(queries.getParticipantFromChatroomID, [data.chatroom_id]);
+      console.log('pInChatroom', participantsInChatroom);
+    }
+
     if (chatroomByUserID) {
       res.status(200).json(chatroomByUserID.rows);
     }
