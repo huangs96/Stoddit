@@ -1,14 +1,14 @@
 import './Conversation.css';
 import React, { useEffect, useState } from 'react';
-import { deleteParticipantFromChatroom} from '../../../services/chat.service';
+import { 
+  deleteParticipantFromChatroom,
+  getParticipantIDFromChatroomID
+} from '../../../services/chat.service';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 function Conversation({conversation, conversationDeleted}) {
 
   const [hovered, setHovered] = useState(false);
-  useEffect(() => {
-    
-  })
 
   const conversationHovered = async () => {
     setHovered(true);
@@ -26,10 +26,9 @@ function Conversation({conversation, conversationDeleted}) {
     console.log('user has left the chat');
     conversationDeleted();
   };
-
-  
-
-  // console.log(conversation)
+  if (conversation.contact_img === null) { 
+    conversation.contact_img = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
+  }
 
   return (
     <>
@@ -42,19 +41,20 @@ function Conversation({conversation, conversationDeleted}) {
           <div className="contentContainer">
             <div className="avatarContainer">
               <span className='avatarList'>
-                  <img
+                  {/* <img
                     className="conversationImg" 
                     src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg' 
                     alt="" 
-                  />
+                  /> */}
+                  {conversation.contact_img}
               </span>
-              <span className='avatarList'>
+              {/* <span className='avatarList'>
                 <img
                   className="conversationImg" 
                   src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg' 
                   alt="" 
                 />
-              </span>  
+              </span>   */}
             </div>
             <div className="conversationInfoContainer">
               <span 
