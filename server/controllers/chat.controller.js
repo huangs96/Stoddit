@@ -44,13 +44,13 @@ const getChatroomByUserID = (async (req, res) => {
         finalChatroomData[data] = [conversationData, participantData]
       };
     };
-    // console.log('chatroomByUser', chatroomByUserID.rows);
+    console.log('chatroomByUser', chatroomByUserID.rows);
 
     console.log('final123213313213', finalChatroomData);
     console.log('final123213313213', chatroomByUserID.rows);
 
     if (chatroomByUserID) {
-      res.status(200).json(chatroomByUserID.rows);
+      res.status(200).json(finalChatroomData);
     }
   } catch (err) {
     return res.status(400).send(err);
