@@ -83,7 +83,7 @@ app.use("/login", authRoutes);
 /* --------------------------------- */
 
 /* ------ Chat Routes ------ */
-app.use("/chat", chatRoutes(io));
+app.use("/chat", chatRoutes(io, users));
 /* --------------------------------- */
 
 /* ------ Setting Routes ------ */

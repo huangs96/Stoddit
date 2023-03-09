@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const controller = require('../controllers/chat.controller');
 
-module.exports = (io) => {
+module.exports = (io, users) => {
 
   const router = Router();
 
@@ -26,7 +26,7 @@ module.exports = (io) => {
   /* ------ Message Routes ------ */
   router.get('/message', controller.getMessage);
   router.get('/message/chatroomid=:id', controller.getMessageByChatroom);
-  router.post('/message/new', controller.createMessage(io));
+  router.post('/message/new', controller.createMessage(io, users));
   /* -------------------------------- */
   
   /* ------ Friend_list Routes ------ */

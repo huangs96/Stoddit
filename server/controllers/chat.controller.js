@@ -197,10 +197,10 @@ const getMessageByChatroom = (async (req, res) => {
 });
 
 //function creating a function
-const createMessage = (io) => (async (req,res) => {
+const createMessage = (io, users) => (async (req,res) => {
   const {participantData, message_text, receiverID, chatroomID} = req.body;
-  console.log('req', req.body
-  );
+  console.log('req', req.body);
+  console.log('users', users);
   try {
     const newMessage = await client.query(queries.createMessage, [participantData.id, message_text]);
     
@@ -217,9 +217,7 @@ const createMessage = (io) => (async (req,res) => {
         });
         return res.status(200).json('Message successfully sent');
       } else {
-        console.log('receiverID', receiverID);
-        console.log('users', users);
-        const user = socketHelper.getUser(receiverID.account_id);
+        const user = receiverID.account_ID;
         io.to(user.socketID).emit('chatMessage', {
           receiverID,
           senderID: participantData.id,
