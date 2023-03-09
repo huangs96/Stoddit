@@ -234,10 +234,11 @@ function ChatIndex() {
     const getChatroomDataByChatroomID = async () => {
       const chatroomData = await getMessagesByChatroomID(chatroomKey);
       setMessages(chatroomData);
-      if (chatroomData) {
-        const participantData = await getParticipantIDFromChatroomID(chatroomKey);
-        setParticipantsInChatroom(participantData);
-      };
+      conversations.map(convos => {
+        if (chatroomKey === convos.chatroom_id) {
+          setParticipantsInChatroom(convos.participantData);
+        };
+      });
     };
 
     if (isLoaded && chatroomKey) {
