@@ -216,7 +216,7 @@ function ChatIndex() {
     let isLoaded = true;
     const getChatroomData = async () => {
       const chatroomData = await getChatroomByUserID(userID);
-      if (isLoaded) {
+      if (isLoaded && chatroomData) {
         setConversations(chatroomData);
       };
     };
