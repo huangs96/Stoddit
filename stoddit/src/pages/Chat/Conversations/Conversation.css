@@ -20,9 +20,23 @@
 }
 
 .avatarContainer {
-  display: flex;
-  flex-direction: row;
+  display: inline-flex;
+  flex-direction: row-reverse;
 }
+
+.avatarList {
+  position: relative;
+  overflow: hidden;
+}
+
+.avatarList:not(:last-child) {
+  margin-left: -50px;
+}
+
+.avatarList img {
+  display: block;
+}
+
 .conversation:hover {
   background-color: rgb(124, 174, 248);
 }
