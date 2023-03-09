@@ -19,6 +19,10 @@
   margin: 10px;
 }
 
+ul {
+  list-style-type: none;
+}
+
 .conversation:hover {
   background-color: rgb(124, 174, 248);
 }
