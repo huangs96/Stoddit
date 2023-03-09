@@ -19,12 +19,10 @@
   margin: 10px;
 }
 
-ul {
-  list-style-type: none;
+.avatarContainer {
   display: flex;
   flex-direction: row;
 }
-
 .conversation:hover {
   background-color: rgb(124, 174, 248);
 }

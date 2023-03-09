@@ -36,22 +36,22 @@ function Conversation({conversation, conversationDeleted}) {
           onMouseLeave={conversationUnhovered}
         >
           <div className="contentContainer">
-            <ul>
-              <li>
+            <div className="avatarContainer">
+              <span className='avatarList'>
+                  <img
+                    className="conversationImg" 
+                    src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg' 
+                    alt="" 
+                  />
+              </span>
+              <span className='avatarList'>
                 <img
                   className="conversationImg" 
                   src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg' 
                   alt="" 
                 />
-              </li>
-              <li>
-                <img
-                  className="conversationImg" 
-                  src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg' 
-                  alt="" 
-                />
-              </li>
-              </ul>
+              </span>  
+            </div>
             <div className="conversationInfoContainer">
               <span 
                 className="conversationName" 
