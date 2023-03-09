@@ -35,9 +35,10 @@ const getChatroomByUserID = (async (req, res) => {
       const conversationData = chatroomByUserID.rows[data];
       const participantsInChatroom = await client.query(queries.getParticipantFromChatroomID, [conversationData.chatroom_id]);
       const participantData = participantsInChatroom.rows;
-      console.log('conversation111', conversationData);
-      console.log('conversation222', participantData);
+      conversationData['participantData'] = participantData;
     };
+
+    console.log(chatroomByUserID.rows);
 
     if (chatroomByUserID) {
       res.status(200).json(chatroomByUserID.rows);
