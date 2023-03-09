@@ -200,7 +200,7 @@ function ChatIndex() {
 
   // console.log('userID', userID);
   // console.log('userParticipantID', userParticipantID);
-  // console.log('participantsinChatroom', participantsInChatroom);
+  console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);
   console.log('conversations---', conversations);
   // console.log('setNewConversation---', newConversation);

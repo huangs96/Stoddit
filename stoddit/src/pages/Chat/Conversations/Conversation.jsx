@@ -6,6 +6,9 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 function Conversation({conversation, conversationDeleted}) {
 
   const [hovered, setHovered] = useState(false);
+  useEffect(() => {
+    
+  })
 
   const conversationHovered = async () => {
     setHovered(true);
@@ -13,7 +16,6 @@ function Conversation({conversation, conversationDeleted}) {
   const conversationUnhovered = async () => {
     setHovered(false);
   };
-
   const deleteConversation = async () => {
     const participantData = {
       'userID': conversation.account_id,
@@ -24,6 +26,8 @@ function Conversation({conversation, conversationDeleted}) {
     console.log('user has left the chat');
     conversationDeleted();
   };
+
+  
 
   // console.log(conversation)
 
