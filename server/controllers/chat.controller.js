@@ -30,27 +30,17 @@ const getChatroomByChatroomID = (async (req, res) => {
 const getChatroomByUserID = (async (req, res) => {
   const userID = parseInt(req.params.id);
   try {
-    let finalChatroomData = {};
-
     const chatroomByUserID = await client.query(queries.getChatroomByUserID, [userID]);
-
     for (let data = 0; data < chatroomByUserID.rows.length; data++) {
       const conversationData = chatroomByUserID.rows[data];
       const participantsInChatroom = await client.query(queries.getParticipantFromChatroomID, [conversationData.chatroom_id]);
-
-      console.log('participantsInChatroomData', participantsInChatroom.rows[0].chatroom_id);
       const participantData = participantsInChatroom.rows;
-      if (conversationData.chatroom_id === participantData[0].chatroom_id) {
-        finalChatroomData[data] = [conversationData, participantData]
-      };
+      console.log('conversation111', conversationData);
+      console.log('conversation222', participantData);
     };
-    console.log('chatroomByUser', chatroomByUserID.rows);
-
-    console.log('final123213313213', finalChatroomData);
-    console.log('final123213313213', chatroomByUserID.rows);
 
     if (chatroomByUserID) {
-      res.status(200).json(finalChatroomData);
+      res.status(200).json(chatroomByUserID.rows);
     }
   } catch (err) {
     return res.status(400).send(err);
