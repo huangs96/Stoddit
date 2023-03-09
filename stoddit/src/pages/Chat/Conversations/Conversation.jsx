@@ -41,6 +41,11 @@ function Conversation({conversation, conversationDeleted}) {
               src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg' 
               alt="" 
             />
+            <img
+              className="conversationImg" 
+              src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg' 
+              alt="" 
+            />
             <div className="conversationInfoContainer">
               <span 
                 className="conversationName" 
