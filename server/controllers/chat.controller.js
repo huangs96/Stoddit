@@ -208,10 +208,13 @@ const createMessage = (io, users) => (async (req,res) => {
     if (newMessage) {
       if (receiverID.length >= 2) {
         const usersSocketID = receiverID.map(data => {
+          const socketIDs = [];
           console.log('data', data);
-          users.map(user => {
-            console.log(user);
-          })
+          console.log('userKey', users.users[data.account_id]);
+          if (users.users[data.account_id] !== undefined) {
+            socketIDs.push(users.users[data.account_id]);
+          };
+          return socketIDs;
         });
 
         console.log('userssocket', usersSocketID);
