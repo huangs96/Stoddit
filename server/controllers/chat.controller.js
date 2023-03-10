@@ -213,13 +213,23 @@ const createMessage = (io, users) => (async (req,res) => {
             socketIDs.push(users.users[data.account_id]);
           };
         });
-
-        // io.to(users.socketID).emit('chatMessage', {
-        //   receiverID,
-        //   senderID: participantData.id,
-        //   text: message_text,
-        //   chatroomID: chatroomID
-        // });
+        if (socketIDs.length >= 2) {
+          socketIDs.map(socketID => {    
+            io.to(socketID).emit('chatMessage', {
+              receiverID,
+              senderID: participantData.id,
+              text: message_text,
+              chatroomID: chatroomID
+            });
+          });
+        } else {
+          io.to(socketIDs[0]).emit('chatMessage', {
+            receiverID,
+            senderID: participantData.id,
+            text: message_text,
+            chatroomID: chatroomID
+          });
+        };
         return res.status(200).json('Message successfully sent');
       } else {
         const stringedAccountID = receiverID.account_id.toString();
