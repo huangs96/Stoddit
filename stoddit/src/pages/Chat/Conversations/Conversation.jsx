@@ -31,14 +31,20 @@ function Conversation({conversation, conversationDeleted}) {
     }
 
     if (data.account_id === 49) {
-      data.contact_img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_CQ3IrjZcisW-FO12jxRtSA9shZYuykqA2w&usqp=CAU";
+      data.contact_img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDNWWWycwnB0mZIfX1wA4DQlKTLxqrGEigjI6tJz4&s";
     }
 
     if (data.account_id === 50) {
       data.contact_img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_CQ3IrjZcisW-FO12jxRtSA9shZYuykqA2w&usqp=CAU";
     }
 
-    return data.contact_img
+    return (
+      <img
+          className="conversationImg" 
+          src={data.contact_img}
+          alt="" 
+      />
+    )
   });
 
   return (
@@ -52,11 +58,7 @@ function Conversation({conversation, conversationDeleted}) {
           <div className="contentContainer">
             <div className="avatarContainer">
               <span className='avatarList'>
-                  <img
-                    className="conversationImg" 
-                    src={conversationImages}
-                    alt="" 
-                  />
+                  {conversationImages}
               </span>
               {/* <span className='avatarList'>
                   <img
