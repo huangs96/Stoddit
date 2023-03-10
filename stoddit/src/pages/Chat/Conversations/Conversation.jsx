@@ -25,6 +25,22 @@ function Conversation({conversation, conversationDeleted}) {
     conversationDeleted();
   };
 
+  const conversationImages = conversation.participantData.map(data => {
+    if (data.account_id === 48) {
+      data.contact_img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_CQ3IrjZcisW-FO12jxRtSA9shZYuykqA2w&usqp=CAU";
+    }
+
+    if (data.account_id === 49) {
+      data.contact_img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_CQ3IrjZcisW-FO12jxRtSA9shZYuykqA2w&usqp=CAU";
+    }
+
+    if (data.account_id === 50) {
+      data.contact_img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_CQ3IrjZcisW-FO12jxRtSA9shZYuykqA2w&usqp=CAU";
+    }
+
+    return data.contact_img
+  });
+
   return (
     <>
       <div className="conversationContainer">
@@ -38,17 +54,17 @@ function Conversation({conversation, conversationDeleted}) {
               <span className='avatarList'>
                   <img
                     className="conversationImg" 
-                    src={conversation.contact_img}
+                    src={conversationImages}
                     alt="" 
                   />
               </span>
-              <span className='avatarList'>
+              {/* <span className='avatarList'>
                   <img
                     className="conversationImg" 
                     src={conversation.contact_img}
                     alt="" 
                   />
-              </span>
+              </span> */}
             </div>
             <div className="conversationInfoContainer">
               <span 
