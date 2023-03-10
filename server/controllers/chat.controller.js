@@ -207,17 +207,13 @@ const createMessage = (io, users) => (async (req,res) => {
     
     if (newMessage) {
       if (receiverID.length >= 2) {
-        const usersSocketID = receiverID.map(data => {
-          const socketIDs = [];
-          console.log('data', data);
-          console.log('userKey', users.users[data.account_id]);
-          if (users.users[data.account_id] !== undefined) {
+        const socketIDs = [];
+        receiverID.map(data => {
+          if (users.users[data.account_id] !== undefined && !socketIDs.includes(users.users[data.account_id])) {
             socketIDs.push(users.users[data.account_id]);
           };
-          return socketIDs;
         });
 
-        console.log('userssocket', usersSocketID);
         // io.to(users.socketID).emit('chatMessage', {
         //   receiverID,
         //   senderID: participantData.id,
