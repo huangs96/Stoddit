@@ -48,32 +48,18 @@ function Conversation({conversation, conversationDeleted, participantData}) {
           onMouseLeave={conversationUnhovered}
         >
           <div className="contentContainer">
-            {participantData.map((data) => (
               <div className="avatarContainer">
-                <span className='avatarList'>
-                  <img
-                    className="conversationImg" 
-                    src={data.contact_img}
-                    alt="" 
-                  />
-                </span>
-                {/* <span className='avatarList'>
-                  <img
-                    className="conversationImg" 
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_CQ3IrjZcisW-FO12jxRtSA9shZYuykqA2w&usqp=CAU"
-                    alt="" 
-                  />
-                </span>
-                <span className='avatarList'>
-                  <img
-                    className="conversationImg" 
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_CQ3IrjZcisW-FO12jxRtSA9shZYuykqA2w&usqp=CAU"
-                    alt="" 
-                  />
-                </span> */}
-              </div>
-            ))
-            }
+              {participantData.map((data) => (
+                  <span className='avatarList'>
+                    <img
+                      className="conversationImg" 
+                      src={data.contact_img}
+                      alt="" 
+                    />
+                  </span>
+                ))
+              }
+            </div>
             <div className="conversationInfoContainer">
               <span 
                 className="conversationName" 
