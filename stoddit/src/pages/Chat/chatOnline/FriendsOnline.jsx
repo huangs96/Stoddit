@@ -36,7 +36,16 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
 
     if (friends.contact_img === null) {
       friends.contact_img = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
-    };
+    } 
+    if (friends.contact_name_id === 48) {
+      friends.contact_img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_CQ3IrjZcisW-FO12jxRtSA9shZYuykqA2w&usqp=CAU'
+    } 
+    if (friends.contact_name_id === 49) {
+      friends.contact_img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDNWWWycwnB0mZIfX1wA4DQlKTLxqrGEigjI6tJz4&s';
+    }
+    if (friends.contact_name_id === 50) {
+      friends.contact_img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZDabpYnE3St-xoZZgVSGgRMIn3km-RjzE4YooiGV5R4kklAzNzb8GVZwLGCHzPW4puQ&usqp=CAU';
+    }
     if (onlineFriends.length > 1) {
       console.log('it got here map1');
       onlineFriends.map(onlineFriend => {
