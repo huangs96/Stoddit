@@ -201,23 +201,32 @@ const createMessage = (io, users) => (async (req,res) => {
   const {participantData, message_text, receiverID, chatroomID} = req.body;
   console.log('req', req.body);
   console.log('users', users);
+
   try {
     const newMessage = await client.query(queries.createMessage, [participantData.id, message_text]);
     
     if (newMessage) {
-      if (participantData.length >= 2) {
-        const users = participantData.map(data => {
-          socketHelper.getUser(data);
+      if (receiverID.length >= 2) {
+        const usersSocketID = receiverID.map(data => {
+          console.log('data', data);
+          users.map(user => {
+            console.log(user);
+          })
         });
-        io.to(users.socketID).emit('chatMessage', {
-          receiverID,
-          senderID: participantData.id,
-          text: message_text,
-          chatroomID: chatroomID
-        });
+
+        console.log('userssocket', usersSocketID);
+        // io.to(users.socketID).emit('chatMessage', {
+        //   receiverID,
+        //   senderID: participantData.id,
+        //   text: message_text,
+        //   chatroomID: chatroomID
+        // });
         return res.status(200).json('Message successfully sent');
       } else {
-        const user = receiverID.account_ID;
+        const stringedAccountID = receiverID.account_id.toString();
+        console.log('stringedACcount', stringedAccountID);
+        const user = users.getUser(receiverID.account_id.toString());
+        console.log('user111', user);
         io.to(user.socketID).emit('chatMessage', {
           receiverID,
           senderID: participantData.id,

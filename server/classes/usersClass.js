@@ -22,8 +22,8 @@ class LiveUserContainer {
     };
   };
 
-  getUser(socketID) {
-    this.users.get(socketID);
+  getUser(userID) {
+    this.users.get(userID);
   };
 };
 
