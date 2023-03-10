@@ -5,7 +5,7 @@ import {
 } from '../../../services/chat.service';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-function Conversation({conversation, conversationDeleted}) {
+function Conversation({conversation, conversationDeleted, participantData}) {
 
   const [hovered, setHovered] = useState(false);
 
@@ -25,26 +25,18 @@ function Conversation({conversation, conversationDeleted}) {
     conversationDeleted();
   };
 
-  const conversationImages = conversation.participantData.map(data => {
+  participantData.map(data => {
     if (data.account_id === 48) {
       data.contact_img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_CQ3IrjZcisW-FO12jxRtSA9shZYuykqA2w&usqp=CAU";
-    }
+    };
 
     if (data.account_id === 49) {
       data.contact_img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDNWWWycwnB0mZIfX1wA4DQlKTLxqrGEigjI6tJz4&s";
-    }
+    };
 
     if (data.account_id === 50) {
       data.contact_img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_CQ3IrjZcisW-FO12jxRtSA9shZYuykqA2w&usqp=CAU";
-    }
-
-    return (
-      <img
-          className="conversationImg" 
-          src={data.contact_img}
-          alt="" 
-      />
-    )
+    };
   });
 
   return (
@@ -56,18 +48,32 @@ function Conversation({conversation, conversationDeleted}) {
           onMouseLeave={conversationUnhovered}
         >
           <div className="contentContainer">
-            <div className="avatarContainer">
-              <span className='avatarList'>
-                  {conversationImages}
-              </span>
-              {/* <span className='avatarList'>
+            {participantData.map((data) => (
+              <div className="avatarContainer">
+                <span className='avatarList'>
                   <img
                     className="conversationImg" 
-                    src={conversation.contact_img}
+                    src={data.contact_img}
                     alt="" 
                   />
-              </span> */}
-            </div>
+                </span>
+                {/* <span className='avatarList'>
+                  <img
+                    className="conversationImg" 
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_CQ3IrjZcisW-FO12jxRtSA9shZYuykqA2w&usqp=CAU"
+                    alt="" 
+                  />
+                </span>
+                <span className='avatarList'>
+                  <img
+                    className="conversationImg" 
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_CQ3IrjZcisW-FO12jxRtSA9shZYuykqA2w&usqp=CAU"
+                    alt="" 
+                  />
+                </span> */}
+              </div>
+            ))
+            }
             <div className="conversationInfoContainer">
               <span 
                 className="conversationName" 

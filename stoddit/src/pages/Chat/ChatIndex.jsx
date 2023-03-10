@@ -401,6 +401,7 @@ function ChatIndex() {
                   conversation={convo}
                   userParticipantID={userParticipantID}
                   conversationDeleted={conversationDeleted}
+                  participantData={convo.participantData}
                 />
               </div>
             ))
