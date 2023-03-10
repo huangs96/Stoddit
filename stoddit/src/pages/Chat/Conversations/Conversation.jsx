@@ -35,7 +35,7 @@ function Conversation({conversation, conversationDeleted, participantData}) {
     };
 
     if (data.account_id === 50) {
-      data.contact_img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_CQ3IrjZcisW-FO12jxRtSA9shZYuykqA2w&usqp=CAU";
+      data.contact_img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZDabpYnE3St-xoZZgVSGgRMIn3km-RjzE4YooiGV5R4kklAzNzb8GVZwLGCHzPW4puQ&usqp=CAU";
     };
   });
 
