@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ClickAwayListener } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
@@ -22,22 +23,24 @@ export default function ContextMenu(props) {
   
   const menuTemplate = () => {
     return (
-      <div>
-        <Menu
-          anchorEl={props.anchorEl}
-          open={props.open}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
-        >
-          {menuItems}
-        </Menu>
-      </div>
+      <ClickAwayListener onClickAway={props.clickAway}>
+        <div>
+          <Menu
+            anchorEl={props.anchorEl}
+            open={props.open}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+          >
+            {menuItems}
+          </Menu>
+        </div>
+      </ClickAwayListener>
     );
   };
 

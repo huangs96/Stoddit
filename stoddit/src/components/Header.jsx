@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useHistory } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ContextMenu from './ContextMenu';
-import { ClickAwayListener } from '@mui/material';
-import { Box } from '@mui/material';
-import { AppBar, Typography, Toolbar, Tabs, Tab, Button } from '@mui/material';
+import { AppBar, Typography, Toolbar, Tabs, Tab, Button, IconButton } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import ChatIcon from '@mui/icons-material/Chat';
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
@@ -41,7 +39,12 @@ function Header() {
 
   const handleToggle = async (e) => {
     setAnchorEl(e.currentTarget);
-    setShowContextMenu((boolean) => !boolean);
+    setShowContextMenu((prev) => !prev);
+  };
+
+  const handleClickAway = () => {
+    console.log('here');
+    setShowContextMenu(false);
   };
 
   
@@ -107,19 +110,18 @@ function Header() {
             />
           </Tabs>
           <Button onClick={logout} sx={{marginLeft: 'auto'}} variant='contained'>Logout</Button>
+          <IconButton>
           <PersonPinIcon onClick={handleToggle} sx={{marginLeft: 'auto'}}/>
-          <Box>
+          </IconButton>
             {showContextMenu &&
-              <div>
-                <ContextMenu
-                  anchorEl={anchorEl}
-                  open={open}
-                  fill={fill}
-                >
-                </ContextMenu>
-              </div>
+              <ContextMenu
+                anchorEl={anchorEl}
+                open={open}
+                fill={fill}
+                clickAway={handleClickAway}
+              >
+              </ContextMenu>
             }
-          </Box>
         </Toolbar>
       </AppBar>
     </React.Fragment>
