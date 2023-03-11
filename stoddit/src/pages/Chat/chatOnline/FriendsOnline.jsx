@@ -13,6 +13,12 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   const [showContextMenu, setShowContextMenu] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
+  const fill = {
+    'first': 'Message',
+    'second': 'Delete',
+    'third': 'View Profile'
+  };
   
   const handleToggle = async (e) => {
     e.preventDefault();

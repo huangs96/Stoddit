@@ -31,9 +31,12 @@ export default function ContextMenu(props) {
             horizontal: 'left',
           }}
         >
-          <MenuItem>Message</MenuItem>
-          <MenuItem onClick={deleteFriend}>Delete</MenuItem>
-          <MenuItem>View Profile</MenuItem>
+          <MenuItem>{props.fill['first']}</MenuItem> 
+          //message
+          <MenuItem onClick={deleteFriend}>{props.fill['second']}</MenuItem>
+          //delete
+          <MenuItem>{props.fill['third']}</MenuItem>
+          //view profile
         </Menu>
       </div>
     );
