@@ -40,8 +40,6 @@ function Header() {
   const handleToggle = async (e) => {
     setAnchorEl(e.currentTarget);
     setShowContextMenu(true);
-    console.log('open', anchorEl);
-    console.log('open', open);
   };
 
   const handleClose = () => {
