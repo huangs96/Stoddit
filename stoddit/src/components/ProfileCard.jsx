@@ -7,7 +7,7 @@ import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
 
-function ProfileCard() {
+function ProfileCard(props) {
 
   // STYLES
   const styles = {

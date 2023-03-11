@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
 import { TextField, MenuItem, Typography, Grid, Button } from '@mui/material';
+import CssBaseline from "@mui/material/CssBaseline";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import ProfileCard from "../../components/ProfileCard";
 import './ProfileIndex.css';
+
+// STYLE & THEME
+const theme = createTheme();
 
 function ProfileIndex() {
 
@@ -27,22 +33,6 @@ function ProfileIndex() {
     <>
       <ThemeProvider theme={theme}>
       <CssBaseline>
-        {/* BACKGROUND */}
-        <Grid container direction="column" sx={{ overflowX: "hidden" }}>
-          <Grid item xs={12} md={6}>
-            <img
-              alt="avatar"
-              style={{
-                width: "100vw",
-                height: "35vh",
-                objectFit: "cover",
-                objectPosition: "50% 50%",
-                position: "relative"
-              }}
-              src="https://iris2.gettimely.com/images/default-cover-image.jpg"
-            />
-          </Grid>
-
           {/* COMPONENTS */}
           <Grid
             container
@@ -66,9 +56,9 @@ function ProfileIndex() {
             </Grid>
 
             {/* SETTINGS CARD */}
-            <Grid item md={9}>
+            {/* <Grid item md={9}>
               <SettingsCard
-                expose={(v: string) => setText(v)}
+                // expose={(v: string) => setText(v)}
                 firstName={mainUser.firstName}
                 lastName={mainUser.lastName}
                 midName={mainUser.midName}
@@ -77,9 +67,8 @@ function ProfileIndex() {
                 pass={mainUser.pass}
                 gender={mainUser.gender}
               ></SettingsCard>
-            </Grid>
+            </Grid> */}
           </Grid>
-        </Grid>
       </CssBaseline>
     </ThemeProvider>
       
