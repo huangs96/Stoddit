@@ -1,6 +1,8 @@
-import React, { useState, useHistory } from 'react';
+import React, { useState, useEffect, useHistory } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ContextMenu from './ContextMenu';
+import { ClickAwayListener } from '@mui/material';
+import { Box } from '@mui/material';
 import { AppBar, Typography, Toolbar, Tabs, Tab, Button } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import ChatIcon from '@mui/icons-material/Chat';
@@ -39,13 +41,15 @@ function Header() {
 
   const handleToggle = async (e) => {
     setAnchorEl(e.currentTarget);
-    setShowContextMenu(true);
+    setShowContextMenu((boolean) => !boolean);
   };
+
+  
   const fill = {
     'View Profile': viewProfile,
     'Edit Profile': editProfile,
     'Logout': logout
-  }
+  };
 
   console.log('value header', value);
 
@@ -104,15 +108,18 @@ function Header() {
           </Tabs>
           <Button onClick={logout} sx={{marginLeft: 'auto'}} variant='contained'>Logout</Button>
           <PersonPinIcon onClick={handleToggle} sx={{marginLeft: 'auto'}}/>
-          {showContextMenu &&
-            <div>
-              <ContextMenu
-                anchorEl={anchorEl}
-                open={open}
-              >
-              </ContextMenu>
-            </div>
-          }
+          <Box>
+            {showContextMenu &&
+              <div>
+                <ContextMenu
+                  anchorEl={anchorEl}
+                  open={open}
+                  fill={fill}
+                >
+                </ContextMenu>
+              </div>
+            }
+          </Box>
         </Toolbar>
       </AppBar>
     </React.Fragment>
