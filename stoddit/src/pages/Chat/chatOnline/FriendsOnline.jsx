@@ -15,9 +15,9 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   const open = Boolean(anchorEl);
 
   const fill = {
-    'first': 'Message',
-    'second': 'Delete',
-    'third': 'View Profile'
+    'firstMenuOption': 'Message',
+    'secondMenuOption': 'Delete',
+    'thirdMenuOption': 'View Profile'
   };
   
   const handleToggle = async (e) => {
@@ -172,6 +172,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
             delete={deleteUser}
             userID={userID}
             selectedFriend={selectedFriend}
+            fill={fill}
           >
           </ContextMenu>
         </div>

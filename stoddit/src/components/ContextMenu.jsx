@@ -15,6 +15,12 @@ export default function ContextMenu(props) {
   const deleteFriend = () => {
     props.delete(props.selectedFriend);
   };
+
+  const menuItems = Object.values(props.fill).map(options => {
+    return (
+      <MenuItem>{options}</MenuItem>
+    )
+  });
   
   const menuTemplate = () => {
     return (
@@ -32,11 +38,9 @@ export default function ContextMenu(props) {
           }}
         >
           <MenuItem>{props.fill['first']}</MenuItem> 
-          //message
           <MenuItem onClick={deleteFriend}>{props.fill['second']}</MenuItem>
-          //delete
           <MenuItem>{props.fill['third']}</MenuItem>
-          //view profile
+          {menuItems}
         </Menu>
       </div>
     );
