@@ -8,10 +8,11 @@ import ShowChartIcon from '@mui/icons-material/ShowChart';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import { Popover } from '@mui/material';
 import { logoutUser } from '../services/auth.service';
-// import PersonPin from '@mui/icons-material/PersonPin';
 
 function Header() {
   const [value, setValue] = useState('/home');
+  const [showContextMenu, setShowContextMenu] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
 
   const logout = async () => {
@@ -83,6 +84,7 @@ function Header() {
             />
           </Tabs>
           <Button onClick={logout} sx={{marginLeft: 'auto'}} variant='contained'>Logout</Button>
+          <PersonPinIcon sx={{marginLeft: 'auto'}}/>
         </Toolbar>
       </AppBar>
     </React.Fragment>
