@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useHistory } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ContextMenu from './ContextMenu';
+import viewProfile from '../Helpers/menuHelpers'
 import { AppBar, Box, Typography, Toolbar, Tabs, Tab, Button, IconButton } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import ChatIcon from '@mui/icons-material/Chat';
@@ -16,13 +17,6 @@ function Header() {
   const open = Boolean(anchorEl);
 
   const navigate = useNavigate();
-
-  const viewProfile = () => {
-    console.log('viewProfile');
-  };
-  const editProfile = () => {
-    console.log('editProfile');
-  };
 
   const logout = async () => {
     const deleteDetails = await logoutUser();
@@ -46,10 +40,13 @@ function Header() {
     setAnchorEl(null);
     setShowContextMenu(false);
   };
+
+  const viewProfile = () => {
+    return navigate('/profile');
+  };
    
   const fill = {
     'View Profile': viewProfile,
-    'Edit Profile': editProfile,
     'Logout': logout
   };
 
