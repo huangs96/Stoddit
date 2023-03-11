@@ -1,0 +1,15 @@
+.accountFormContainer {
+  margin-top: 100px;
+}
+
+.accountForm {
+  margin-top: 62px;
+}
+
+.accountTitleText {
+  font-size: "13px";
+  color: "#AAAAAA";
+  position: "relative";
+  top: "10px";
+  left: "7px"
+}
