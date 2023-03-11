@@ -23,11 +23,12 @@ export default function ContextMenu(props) {
   
   const menuTemplate = () => {
     return (
-      <ClickAwayListener onClickAway={props.clickAway}>
+      <ClickAwayListener onClickAway={onclose}>
         <div>
           <Menu
             anchorEl={props.anchorEl}
             open={props.open}
+            onClose={props.onClose}
             anchorOrigin={{
               vertical: 'bottom',
               horizontal: 'left',

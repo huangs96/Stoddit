@@ -39,15 +39,16 @@ function Header() {
 
   const handleToggle = async (e) => {
     setAnchorEl(e.currentTarget);
-    setShowContextMenu((prev) => !prev);
+    setShowContextMenu(true);
+    console.log('open', anchorEl);
+    console.log('open', open);
   };
 
-  const handleClickAway = () => {
-    console.log('here');
+  const handleClose = () => {
+    setAnchorEl(null);
     setShowContextMenu(false);
   };
-
-  
+   
   const fill = {
     'View Profile': viewProfile,
     'Edit Profile': editProfile,
@@ -113,17 +114,20 @@ function Header() {
           <IconButton>
           <PersonPinIcon onClick={handleToggle} sx={{marginLeft: 'auto'}}/>
           </IconButton>
+          <Button onClick={handleClose}>
+            close
+          </Button>
+        </Toolbar>
+      </AppBar>
             {showContextMenu &&
               <ContextMenu
                 anchorEl={anchorEl}
                 open={open}
                 fill={fill}
-                clickAway={handleClickAway}
+                onClose={handleClose}
               >
               </ContextMenu>
             }
-        </Toolbar>
-      </AppBar>
     </React.Fragment>
   )
 }
