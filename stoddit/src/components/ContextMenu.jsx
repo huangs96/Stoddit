@@ -16,7 +16,7 @@ export default function ContextMenu(props) {
     props.delete(props.selectedFriend);
   };
 
-  const menuItems = Object.values(props.fill).map(options => {
+  const menuItems = Object.keys(props.fill).map(options => {
     return (
       <MenuItem>{options}</MenuItem>
     )
@@ -37,9 +37,6 @@ export default function ContextMenu(props) {
             horizontal: 'left',
           }}
         >
-          <MenuItem>{props.fill['first']}</MenuItem> 
-          <MenuItem onClick={deleteFriend}>{props.fill['second']}</MenuItem>
-          <MenuItem>{props.fill['third']}</MenuItem>
           {menuItems}
         </Menu>
       </div>

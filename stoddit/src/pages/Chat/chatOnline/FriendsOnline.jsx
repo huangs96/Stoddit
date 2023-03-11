@@ -15,9 +15,9 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   const open = Boolean(anchorEl);
 
   const fill = {
-    'firstMenuOption': 'Message',
-    'secondMenuOption': 'Delete',
-    'thirdMenuOption': 'View Profile'
+    'Message': 'Message',
+    'Delete': 'Delete',
+    'View Profile': 'View Profile'
   };
   
   const handleToggle = async (e) => {
