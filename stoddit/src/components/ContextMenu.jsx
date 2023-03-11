@@ -16,9 +16,11 @@ export default function ContextMenu(props) {
     props.delete(props.selectedFriend);
   };
 
-  const menuItems = Object.keys(props.fill).map(options => {
+  const menuItems = Object.entries(props.fill).map(options => {
+    console.log('options', options);
+    // const onClick = Object.values(props.fill);
     return (
-      <MenuItem>{options}</MenuItem>
+      <MenuItem>{options[0]}</MenuItem>
     )
   });
   

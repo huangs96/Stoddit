@@ -16,7 +16,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
 
   const fill = {
     'Message': 'Message',
-    'Delete': 'Delete',
+    'Delete': deleteUser,
     'View Profile': 'View Profile'
   };
   
