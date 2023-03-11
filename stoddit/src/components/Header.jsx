@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useHistory } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ContextMenu from './ContextMenu';
-import { AppBar, Typography, Toolbar, Tabs, Tab, Button, IconButton } from '@mui/material';
+import { AppBar, Box, Typography, Toolbar, Tabs, Tab, Button, IconButton } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import ChatIcon from '@mui/icons-material/Chat';
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
@@ -63,60 +63,58 @@ function Header() {
     <React.Fragment>
       <AppBar position='absolute'>
         <Toolbar>
-          <Tabs 
-            textColor='inherit' 
-            value={value}
-            onChange={(e, value)=> setValue(value)} indicatorColor='secondary'
-            orientation='horizontal'
-          >
-            <Tab 
-              // label='Home'
-              value='Home'
-              component={Link}
-              to={'/home'}
-              icon={<HomeIcon />}
-              iconPosition='start'
-            />
-            <Tab 
-              // label='Chat'
-              value='Chat'
-              component={Link}
-              to={'/chat'}
-              icon={<ChatIcon />}
-              iconPosition='start'
-            />
-            <Tab 
-              // label='Portfolio' 
-              value='Portfolio'
-              component={Link}
-              to={'/portfolio'}
-              icon={<RecentActorsIcon />}
-              iconPosition='start'
-            />
-            <Tab 
-              // label='Trade'
-              value='Trade'
-              component={Link}
-              to={'/trade'}
-              icon={<ShowChartIcon />}
-              iconPosition='start'
-            />
-            <Tab 
-              icon={<PersonPinIcon />} 
-              aria-label='person'
-              value='Profile'
-              component={Link}
-              to={'/profile'}
-              iconPosition='end'
-            />
-          </Tabs>
-          <Button onClick={logout} sx={{marginLeft: 'auto'}} variant='contained'>Logout</Button>
-          <IconButton>
-          <PersonPinIcon onClick={handleToggle} sx={{marginLeft: 'auto'}}/>
+          <Box display='flex' flexGrow={1}>
+            <Tabs 
+              textColor='inherit' 
+              value={value}
+              onChange={(e, value)=> setValue(value)} indicatorColor='secondary'
+              orientation='horizontal'
+            >
+              <Tab 
+                // label='Home'
+                value='Home'
+                component={Link}
+                to={'/home'}
+                icon={<HomeIcon />}
+                iconPosition='start'
+              />
+              <Tab 
+                // label='Chat'
+                value='Chat'
+                component={Link}
+                to={'/chat'}
+                icon={<ChatIcon />}
+                iconPosition='start'
+              />
+              <Tab 
+                // label='Portfolio' 
+                value='Portfolio'
+                component={Link}
+                to={'/portfolio'}
+                icon={<RecentActorsIcon />}
+                iconPosition='start'
+              />
+              <Tab 
+                // label='Trade'
+                value='Trade'
+                component={Link}
+                to={'/trade'}
+                icon={<ShowChartIcon />}
+                iconPosition='start'
+              />
+              <Tab 
+                icon={<PersonPinIcon />} 
+                aria-label='person'
+                value='Profile'
+                component={Link}
+                to={'/profile'}
+                iconPosition='end'
+              />
+            </Tabs>
+          </Box>
+          <IconButton size='large'>
+            <PersonPinIcon onClick={handleToggle} sx={{marginLeft: 'auto'}}/>
           </IconButton>
-          <Button onClick={handleClose}>
-            close
-          </Button>
         </Toolbar>
       </AppBar>
             {showContextMenu &&
