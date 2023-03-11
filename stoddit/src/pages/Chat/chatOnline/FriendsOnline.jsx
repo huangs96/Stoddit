@@ -180,9 +180,6 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
           <ContextMenu
             anchorEl={anchorEl}
             open={open}
-            message={'hello'}
-            delete={deleteUser}
-            userID={userID}
             fill={fill}
           >
           </ContextMenu>

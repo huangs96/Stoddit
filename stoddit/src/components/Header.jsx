@@ -12,7 +12,17 @@ import { logoutUser } from '../services/auth.service';
 function Header() {
   const [value, setValue] = useState('/home');
   const [showContextMenu, setShowContextMenu] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
   const navigate = useNavigate();
+
+  const viewProfile = () => {
+    console.log('viewProfile');
+  };
+  const editProfile = () => {
+    console.log('editProfile');
+  };
 
   const logout = async () => {
     const deleteDetails = await logoutUser();
@@ -27,9 +37,15 @@ function Header() {
     return navigate('/login');
   };
 
-  const handleToggle = async () => {
+  const handleToggle = async (e) => {
+    setAnchorEl(e.currentTarget);
     setShowContextMenu(true);
   };
+  const fill = {
+    'View Profile': viewProfile,
+    'Edit Profile': editProfile,
+    'Logout': logout
+  }
 
   console.log('value header', value);
 
@@ -90,8 +106,10 @@ function Header() {
           <PersonPinIcon onClick={handleToggle} sx={{marginLeft: 'auto'}}/>
           {showContextMenu &&
             <div>
-              <ContextMenu>
-
+              <ContextMenu
+                anchorEl={anchorEl}
+                open={open}
+              >
               </ContextMenu>
             </div>
           }
