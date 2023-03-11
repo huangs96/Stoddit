@@ -13,11 +13,21 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   const [showContextMenu, setShowContextMenu] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  
+  const messageUser = () => {
+    console.log('message function');
+  };
+  const deleteFriend = () => {
+    deleteUser(selectedFriend);
+  };
+  const viewProfile = () => {
+    console.log('view profile function')
+  };
 
   const fill = {
-    'Message': 'Message',
-    'Delete': deleteUser,
-    'View Profile': 'View Profile'
+    'Message': messageUser,
+    'Delete': deleteFriend,
+    'View Profile': viewProfile
   };
   
   const handleToggle = async (e) => {
@@ -171,7 +181,6 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
             message={'hello'}
             delete={deleteUser}
             userID={userID}
-            selectedFriend={selectedFriend}
             fill={fill}
           >
           </ContextMenu>
