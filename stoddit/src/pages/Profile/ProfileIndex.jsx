@@ -3,6 +3,7 @@ import { TextField, MenuItem, Typography, Grid, Button } from '@mui/material';
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ProfileCard from "../../components/ProfileCard";
+import SettingsCard from '../../components/SettingForms';
 import './ProfileIndex.css';
 
 // STYLE & THEME
@@ -56,7 +57,7 @@ function ProfileIndex() {
             </Grid>
 
             {/* SETTINGS CARD */}
-            {/* <Grid item md={9}>
+            <Grid item md={9}>
               <SettingsCard
                 // expose={(v: string) => setText(v)}
                 firstName={mainUser.firstName}
@@ -67,7 +68,7 @@ function ProfileIndex() {
                 pass={mainUser.pass}
                 gender={mainUser.gender}
               ></SettingsCard>
-            </Grid> */}
+            </Grid>
           </Grid>
       </CssBaseline>
     </ThemeProvider>
