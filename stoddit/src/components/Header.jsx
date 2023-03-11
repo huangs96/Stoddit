@@ -102,14 +102,14 @@ function Header() {
                 icon={<ShowChartIcon />}
                 iconPosition='start'
               />
-              <Tab 
+              {/* <Tab 
                 icon={<PersonPinIcon />} 
                 aria-label='person'
                 value='Profile'
                 component={Link}
                 to={'/profile'}
                 iconPosition='end'
-              />
+              /> */}
             </Tabs>
           </Box>
           <IconButton size='large'>
