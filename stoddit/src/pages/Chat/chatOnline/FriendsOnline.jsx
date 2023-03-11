@@ -13,7 +13,8 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   const [showContextMenu, setShowContextMenu] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  
+
+  /* -------- Context Menu ---------*/
   const messageUser = () => {
     console.log('message function');
   };
@@ -46,6 +47,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
     setAnchorEl(null);
     return () => window.removeEventListener('click', handleClick);
   }, []);
+  /* ------------------------- */
 
   const displayFriendsList = friendsList.map((friends, i) => {
     friendsListDictionary.set(friends.contact_name, i);

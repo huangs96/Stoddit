@@ -1,18 +1,17 @@
 import React, { useState, useHistory } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import ContextMenu from './ContextMenu';
 import { AppBar, Typography, Toolbar, Tabs, Tab, Button } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import ChatIcon from '@mui/icons-material/Chat';
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
-import { Popover } from '@mui/material';
 import { logoutUser } from '../services/auth.service';
 
 function Header() {
   const [value, setValue] = useState('/home');
   const [showContextMenu, setShowContextMenu] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
 
   const logout = async () => {
@@ -26,6 +25,10 @@ function Header() {
     console.log('localstorage should be cleared', localStorage);
     setValue('Home');
     return navigate('/login');
+  };
+
+  const handleToggle = async () => {
+    setShowContextMenu(true);
   };
 
   console.log('value header', value);
@@ -84,7 +87,14 @@ function Header() {
             />
           </Tabs>
           <Button onClick={logout} sx={{marginLeft: 'auto'}} variant='contained'>Logout</Button>
-          <PersonPinIcon sx={{marginLeft: 'auto'}}/>
+          <PersonPinIcon onClick={handleToggle} sx={{marginLeft: 'auto'}}/>
+          {showContextMenu &&
+            <div>
+              <ContextMenu>
+
+              </ContextMenu>
+            </div>
+          }
         </Toolbar>
       </AppBar>
     </React.Fragment>
