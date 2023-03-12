@@ -77,7 +77,6 @@ function SettingForms(props) {
     setUser({ ...user });
   };
 
-  // RETURN
   return (
     <Card variant="outlined" sx={{ height: "100%", width: "100%" }}>
       {/* TABS */}
@@ -186,20 +185,6 @@ function SettingForms(props) {
                   }}
                 ></CustomInput>
               </Grid>
-
-              {/* ROW 3: EMAIL */}
-              {/* <Grid item xs={6}>
-                <CustomInput
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={user.email}
-                  onChange={changeField}
-                  title="Email Address"
-                  dis={edit.disabled}
-                  req={edit.required}
-                ></CustomInput>
-              </Grid> */}
 
               {/* ROW 4: PASSWORD */}
               <Grid item xs={6}>
