@@ -110,7 +110,6 @@ function SettingForms(props) {
               columnSpacing={5}
               rowSpacing={3}
             >
-              {/* ROW 1: FIRST NAME */}
               <Grid component="form" item xs={6}>
                 <CustomInput
                   id="firstName"
@@ -120,50 +119,6 @@ function SettingForms(props) {
                   title="First Name"
                   dis={edit.disabled}
                   req={edit.required}
-                ></CustomInput>
-              </Grid>
-
-              {/* ROW 1: LAST NAME */}
-              <Grid component="form" item xs={6}>
-                <CustomInput
-                  id="lastName"
-                  name="lastName"
-                  value={user.lastName}
-                  onChange={changeField}
-                  title="Last Name"
-                  dis={edit.disabled}
-                  req={edit.required}
-                ></CustomInput>
-              </Grid>
-
-              {/* ROW 2: MIDDLE NAME */}
-              <Grid item xs={6}>
-                <CustomInput
-                  id="midName"
-                  name="midName"
-                  value={user.midName}
-                  onChange={changeField}
-                  title="Middle Name"
-                  dis={edit.disabled}
-                  req={edit.required}
-                ></CustomInput>
-              </Grid>
-
-              {/* ROW 2: GENDER */}
-              <Grid item xs={6}>
-                <CustomInput
-                  select
-                  id="gender"
-                  name="gender"
-                  value={user.gender}
-                  onChange={changeField}
-                  title="Gender"
-                  dis={edit.disabled}
-                  req={edit.required}
-                  //MAP THRU OPTIONS
-                  content={genderSelect.map((option) => (
-                    <MenuItem value={option.value}>{option.label}</MenuItem>
-                  ))}
                 ></CustomInput>
               </Grid>
 

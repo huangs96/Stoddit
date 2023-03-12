@@ -20,29 +20,26 @@ function ProfileIndex() {
     let isLoaded = true;
     if (isLoaded) {
       const fetchUserSettingData = async () => {
-        const data = getUserByID(userID);
-        console.log('data', data);
+        const data = await getUserByID(userID);
+        console.log('data', data[0]);
+        setMainUser({
+          // DEFAULT VALUES
+          title: data[0].username,
+          dt1: 32,
+          dt2: 40,
+          dt3: 50,
+          firstName: data[0].username,
+          phone: data[0].phone,
+          email: "janedoe@gmail.com",
+        })
       };
       fetchUserSettingData()
       .catch(console.error);
     };
-
+    return () => {
+      isLoaded = false;
+    };
   }, []);
-
-  // const mainUser = {
-  //   // DEFAULT VALUES
-  //   title: "CEO of Apple",
-  //   dt1: 32,
-  //   dt2: 40,
-  //   dt3: 50,
-  //   firstName: { text },
-  //   lastName: "Doe",
-  //   midName: "Baker",
-  //   gender: "female",
-  //   phone: "932-555-4247",
-  //   email: "janedoe@gmail.com",
-  //   pass: "password123"
-  // };
 
   const fullName = `${mainUser.firstName} ${mainUser.lastName}`;
 
@@ -77,12 +74,7 @@ function ProfileIndex() {
                 <SettingsCard
                   expose={(v) => setText(v)}
                   firstName={mainUser.firstName}
-                  lastName={mainUser.lastName}
-                  midName={mainUser.midName}
                   phone={mainUser.phone}
-                  email={mainUser.email}
-                  pass={mainUser.pass}
-                  gender={mainUser.gender}
                 ></SettingsCard>
               </Grid>
             </Grid>
