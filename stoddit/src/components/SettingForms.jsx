@@ -188,7 +188,7 @@ function SettingForms(props) {
               </Grid>
 
               {/* ROW 3: EMAIL */}
-              <Grid item xs={6}>
+              {/* <Grid item xs={6}>
                 <CustomInput
                   type="email"
                   id="email"
@@ -199,7 +199,7 @@ function SettingForms(props) {
                   dis={edit.disabled}
                   req={edit.required}
                 ></CustomInput>
-              </Grid>
+              </Grid> */}
 
               {/* ROW 4: PASSWORD */}
               <Grid item xs={6}>
