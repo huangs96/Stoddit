@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { TextField, MenuItem, Typography, Grid, Button } from '@mui/material';
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -11,22 +11,28 @@ const theme = createTheme();
 
 function ProfileIndex() {
 
+  const userID = JSON.parse(localStorage.getItem('UserID'));
   const [text, setText] = useState("");
+  const [mainUser, setMainUser] = useState({});
+  
+  useEffect(() => {
+    
+  }, []);
 
-  const mainUser = {
-    // DEFAULT VALUES
-    title: "CEO of Apple",
-    dt1: 32,
-    dt2: 40,
-    dt3: 50,
-    firstName: { text },
-    lastName: "Doe",
-    midName: "Baker",
-    gender: "female",
-    phone: "932-555-4247",
-    email: "janedoe@gmail.com",
-    pass: "password123"
-  };
+  // const mainUser = {
+  //   // DEFAULT VALUES
+  //   title: "CEO of Apple",
+  //   dt1: 32,
+  //   dt2: 40,
+  //   dt3: 50,
+  //   firstName: { text },
+  //   lastName: "Doe",
+  //   midName: "Baker",
+  //   gender: "female",
+  //   phone: "932-555-4247",
+  //   email: "janedoe@gmail.com",
+  //   pass: "password123"
+  // };
 
   const fullName = `${mainUser.firstName} ${mainUser.lastName}`;
 
