@@ -46,7 +46,8 @@ function ProfileCard(props) {
                   width: 35,
                   height: 35
                 }}
-              ></PhotoCameraIcon>
+              >
+              </PhotoCameraIcon>
             }
           >
             <Avatar
