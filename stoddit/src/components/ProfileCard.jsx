@@ -22,6 +22,10 @@ function ProfileCard(props) {
     }
   };
 
+  const uploadPhoto = () => {
+    console.log('uplouad');
+  };
+
   return (
     <Card variant="outlined">
       <Grid
@@ -44,8 +48,10 @@ function ProfileCard(props) {
                   borderRadius: "50%",
                   padding: ".2rem",
                   width: 35,
-                  height: 35
+                  height: 35,
+                  cursor: 'pointer'
                 }}
+                onClick={uploadPhoto}
               >
               </PhotoCameraIcon>
             }

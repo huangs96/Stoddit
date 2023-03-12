@@ -53,13 +53,13 @@ function ProfileIndex() {
                   dt1={mainUser.dt1}
                   dt2={mainUser.dt2}
                   dt3={mainUser.dt3}
-                ></ProfileCard>
+                >
+                </ProfileCard>
               </Grid>
-
               {/* SETTINGS CARD */}
               <Grid item md={9}>
                 <SettingsCard
-                  // expose={(v: string) => setText(v)}
+                  expose={(v) => setText(v)}
                   firstName={mainUser.firstName}
                   lastName={mainUser.lastName}
                   midName={mainUser.midName}
