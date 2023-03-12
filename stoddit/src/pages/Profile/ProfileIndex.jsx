@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { getUserByID } from '../../services/user.service';
 import { TextField, MenuItem, Typography, Grid, Button } from '@mui/material';
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -16,7 +17,16 @@ function ProfileIndex() {
   const [mainUser, setMainUser] = useState({});
   
   useEffect(() => {
-    
+    let isLoaded = true;
+    if (isLoaded) {
+      const fetchUserSettingData = async () => {
+        const data = getUserByID(userID);
+        console.log('data', data);
+      };
+      fetchUserSettingData()
+      .catch(console.error);
+    };
+
   }, []);
 
   // const mainUser = {
