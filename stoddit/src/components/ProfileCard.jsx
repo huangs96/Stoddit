@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
@@ -8,6 +8,8 @@ import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
 
 function ProfileCard(props) {
+
+  const [image, setImage] = useState('');
 
   // STYLES
   const styles = {
@@ -22,12 +24,25 @@ function ProfileCard(props) {
     }
   };
 
-  const uploadPhoto = () => {
-    console.log('uplouad');
+  const uploadPhoto = (e) => {
+    console.log(e.target.files[0]);
+    setImage(e.target.files[0]);
   };
 
   return (
     <Card variant="outlined">
+      <div>
+      <input 
+        type="file"
+        name="file"
+        onChange={uploadPhoto}
+      >
+      </input>
+      <Button>
+        Submit
+      </Button>
+      </div>
+      
       <Grid
         container
         direction="column"
@@ -51,7 +66,7 @@ function ProfileCard(props) {
                   height: 35,
                   cursor: 'pointer'
                 }}
-                onClick={uploadPhoto}
+                onChange={uploadPhoto}
               >
               </PhotoCameraIcon>
             }

@@ -42,8 +42,6 @@ function SettingForms(props) {
     // DEFAULT VALUES
     firstName: props.firstName,
     lastName: props.lastName,
-    midName: props.midName,
-    gender: props.gender,
     phone: props.phone,
     email: props.email,
     pass: props.pass,
@@ -136,7 +134,7 @@ function SettingForms(props) {
                 ></CustomInput>
               </Grid>
 
-              {/* ROW 3: PHONE */}
+              {/* ROW 2: PHONE */}
               <Grid item xs={6}>
                 <CustomInput
                   id="phone"
@@ -155,7 +153,7 @@ function SettingForms(props) {
                 ></CustomInput>
               </Grid>
 
-              {/* ROW 4: PASSWORD */}
+              {/* ROW 2: PASSWORD */}
               <Grid item xs={6}>
                 <CustomInput
                   id="pass"
@@ -184,6 +182,19 @@ function SettingForms(props) {
                       </InputAdornment>
                     )
                   }}
+                ></CustomInput>
+              </Grid>
+
+              {/* ROW 3: Email */}
+              <Grid item xs={6}>
+                <CustomInput
+                  id="email"
+                  name="email"
+                  value={user.pass}
+                  onChange={changeField}
+                  title="Email"
+                  dis={edit.disabled}
+                  req={edit.required}
                 ></CustomInput>
               </Grid>
 
