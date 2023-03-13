@@ -87,9 +87,9 @@ function SettingForms(props) {
         textColor="secondary"
         indicatorColor="secondary"
       >
-        <Tab value="one" label="Account" />
-        <Tab value="two" label="Tab 2" />
-        <Tab value="three" label="Tab 3" />
+        <Tab value="accountSettings" label="Account" />
+        <Tab value="portfolioSettings" label="Portfolio" />
+        <Tab value="chatSettings" label="Chat" />
       </Tabs>
       <Divider></Divider>
 

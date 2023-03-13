@@ -47,6 +47,11 @@ function ProfileIndex() {
 
   return (
     <>
+    <div className="titleContainer">
+      <h1>
+        Edit Your Settings
+      </h1>
+    </div>
       <ThemeProvider theme={theme}>
         <CssBaseline>
             {/* COMPONENTS */}
