@@ -22,16 +22,18 @@ function ProfileIndex() {
       const fetchUserSettingData = async () => {
         const data = await getUserByID(userID);
         console.log('data', data[0]);
+        const userData = data[0];
         setMainUser({
           // DEFAULT VALUES
-          title: data[0].username,
+          title: userData.username,
           dt1: 32,
           dt2: 40,
           dt3: 50,
-          firstName: data[0].username,
-          phone: data[0].phone,
-          email: "janedoe@gmail.com",
-        })
+          firstName: userData.first_name,
+          lastName: userData.last_name,
+          phone: userData.phone,
+          email: userData.email
+        });
       };
       fetchUserSettingData()
       .catch(console.error);
