@@ -110,6 +110,7 @@ function SettingForms(props) {
               columnSpacing={5}
               rowSpacing={3}
             >
+              {/* ROW 1: FIRST NAME */}
               <Grid component="form" item xs={6}>
                 <CustomInput
                   id="firstName"
@@ -117,6 +118,19 @@ function SettingForms(props) {
                   value={user.firstName}
                   onChange={changeField}
                   title="First Name"
+                  dis={edit.disabled}
+                  req={edit.required}
+                ></CustomInput>
+              </Grid>
+
+              {/* ROW 1: LAST NAME */}
+              <Grid component="form" item xs={6}>
+                <CustomInput
+                  id="lastName"
+                  name="lastName"
+                  value={user.lastName}
+                  onChange={changeField}
+                  title="Last Name"
                   dis={edit.disabled}
                   req={edit.required}
                 ></CustomInput>
@@ -135,7 +149,7 @@ function SettingForms(props) {
                   //DIALING CODE
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position="start">63+</InputAdornment>
+                      <InputAdornment position="start">+1</InputAdornment>
                     )
                   }}
                 ></CustomInput>
