@@ -199,8 +199,7 @@ function SettingForms(props) {
                   component="button"
                   size="large"
                   variant="contained"
-                  color="secondary"
-                  onClick={() => props.expose("hello")}
+                  onClick={changeButton}
                 >
                   {edit.isEdit === false ? "UPDATE" : "EDIT"}
                 </Button>

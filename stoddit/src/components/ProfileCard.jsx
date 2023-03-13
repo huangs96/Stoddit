@@ -87,7 +87,6 @@ function ProfileCard(props) {
         <Grid item style={styles.details} sx={{ width: "100%" }}>
           <Button
             variant="contained"
-            color="secondary"
             sx={{ width: "99%", p: 1, my: 2 }}
           >
             View Public Profile
