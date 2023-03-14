@@ -57,12 +57,8 @@ function ProfileCard(props) {
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             badgeContent={
               <>
-                <input 
-                  accept="image/*" 
-                  className={classes.input} 
-                  id="icon-button-file" 
-                  type="file" 
-                />
+              <IconButton>
+                <input hidden accept="image/*" type="file" />
                 <PhotoCameraIcon
                   containerElement='photos'
                   sx={{
@@ -75,7 +71,8 @@ function ProfileCard(props) {
                     cursor: 'pointer'
                   }}
                 >
-              </PhotoCameraIcon>
+                </PhotoCameraIcon>
+              </IconButton>
               </>
             }
           >
