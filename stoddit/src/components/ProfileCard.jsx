@@ -5,6 +5,7 @@ import { Grid } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import Badge from "@mui/material/Badge";
+import { IconButton } from '@mui/material';
 import Button from "@mui/material/Button";
 
 function ProfileCard(props) {
@@ -31,18 +32,6 @@ function ProfileCard(props) {
 
   return (
     <Card variant="outlined">
-      <div>
-        <input 
-          type="file"
-          name="file"
-          onChange={uploadPhoto}
-        >
-        </input>
-        <Button>
-          Submit
-        </Button>
-      </div>
-      
       <Grid
         container
         direction="column"
@@ -57,8 +46,11 @@ function ProfileCard(props) {
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             badgeContent={
               <>
-              <IconButton>
-                <input hidden accept="image/*" type="file" />
+              <IconButton aria-label="upload picture" component="label">
+                <input 
+                  hidden accept="image/*" 
+                  type="file" 
+                />
                 <PhotoCameraIcon
                   containerElement='photos'
                   sx={{
@@ -70,7 +62,8 @@ function ProfileCard(props) {
                     height: 35,
                     cursor: 'pointer'
                   }}
-                >
+                  onChange={uploadPhoto}
+                  >
                 </PhotoCameraIcon>
               </IconButton>
               </>
