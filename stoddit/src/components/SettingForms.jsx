@@ -19,7 +19,7 @@ import CustomInput from "./CustomInput";
 //APP
 function SettingForms(props) {
   //TAB STATES
-  const [value, setValue] = React.useState("one");
+  const [value, setValue] = React.useState("Account");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

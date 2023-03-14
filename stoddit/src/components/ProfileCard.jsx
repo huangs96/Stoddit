@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 function ProfileCard(props) {
 
   const [image, setImage] = useState('');
+  const [showSave, setShowSave] = useState(false);
 
   // STYLES
   const styles = {
@@ -28,6 +29,8 @@ function ProfileCard(props) {
   const uploadPhoto = (e) => {
     console.log(e.target.files);
     setImage(e.target.files[0]);
+    setShowSave((prev) => !prev);
+    console.log('save', showSave);
   };
 
   const handlePhoto = () => {
@@ -51,31 +54,34 @@ function ProfileCard(props) {
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             badgeContent={
               <>
-              <IconButton 
-                aria-label="upload picture" 
-                component="label"
-              >
-                <input 
-                  hidden accept="image/*" 
-                  type="file"
-                  name="file"
-                  onChange={uploadPhoto}
-                />
-                <PhotoCameraIcon
-                  containerElement='photos'
-                  sx={{
-                    border: "5px solid white",
-                    backgroundColor: "#ff558f",
-                    borderRadius: "50%",
-                    padding: ".2rem",
-                    width: 35,
-                    height: 35,
-                    cursor: 'pointer'
-                  }}
-                  onClick={handlePhoto}
-                  >
-                </PhotoCameraIcon>
-              </IconButton>
+              {showSave ?
+                <IconButton 
+                  aria-label="upload picture" 
+                  component="label"
+                >
+                  <input 
+                    hidden accept="image/*" 
+                    type="file"
+                    name="file"
+                    onChange={uploadPhoto}
+                  />
+                  <PhotoCameraIcon
+                    containerElement='photos'
+                    sx={{
+                      border: "5px solid white",
+                      backgroundColor: "#ff558f",
+                      borderRadius: "50%",
+                      padding: ".2rem",
+                      width: 35,
+                      height: 35,
+                      cursor: 'pointer'
+                    }}
+                    onClick={handlePhoto}
+                  />
+                </IconButton>
+                :
+                <h1>save</h1>
+              }
               </>
             }
           >
