@@ -32,15 +32,15 @@ function ProfileCard(props) {
   return (
     <Card variant="outlined">
       <div>
-      <input 
-        type="file"
-        name="file"
-        onChange={uploadPhoto}
-      >
-      </input>
-      <Button>
-        Submit
-      </Button>
+        <input 
+          type="file"
+          name="file"
+          onChange={uploadPhoto}
+        >
+        </input>
+        <Button>
+          Submit
+        </Button>
       </div>
       
       <Grid
@@ -68,6 +68,12 @@ function ProfileCard(props) {
                 }}
                 onChange={uploadPhoto}
               >
+                 <input 
+          type="file"
+          name="file"
+          onChange={uploadPhoto}
+        >
+        </input>
               </PhotoCameraIcon>
             }
           >
