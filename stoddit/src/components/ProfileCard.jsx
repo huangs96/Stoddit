@@ -56,25 +56,27 @@ function ProfileCard(props) {
             overlap="circular"
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             badgeContent={
-              <PhotoCameraIcon
-                sx={{
-                  border: "5px solid white",
-                  backgroundColor: "#ff558f",
-                  borderRadius: "50%",
-                  padding: ".2rem",
-                  width: 35,
-                  height: 35,
-                  cursor: 'pointer'
-                }}
-                onChange={uploadPhoto}
-              >
-                 <input 
-          type="file"
-          name="file"
-          onChange={uploadPhoto}
-        >
-        </input>
+              <>
+                <input 
+                  accept="image/*" 
+                  className={classes.input} 
+                  id="icon-button-file" 
+                  type="file" 
+                />
+                <PhotoCameraIcon
+                  containerElement='photos'
+                  sx={{
+                    border: "5px solid white",
+                    backgroundColor: "#ff558f",
+                    borderRadius: "50%",
+                    padding: ".2rem",
+                    width: 35,
+                    height: 35,
+                    cursor: 'pointer'
+                  }}
+                >
               </PhotoCameraIcon>
+              </>
             }
           >
             <Avatar
