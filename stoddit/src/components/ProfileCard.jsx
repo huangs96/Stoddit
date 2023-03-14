@@ -26,7 +26,7 @@ function ProfileCard(props) {
   };
 
   const uploadPhoto = (e) => {
-    console.log(e.target.files[0]);
+    console.log(e.target.files);
     setImage(e.target.files[0]);
   };
 
@@ -52,7 +52,8 @@ function ProfileCard(props) {
               >
                 <input 
                   hidden accept="image/*" 
-                  type="file" 
+                  type="file"
+                  name="file"
                   onChange={uploadPhoto}
                 />
                 <PhotoCameraIcon
