@@ -31,7 +31,8 @@ function ProfileCard(props) {
   };
 
   const handlePhoto = () => {
-
+    const formData = new FormData();
+    console.log('formData', formData);
   };
 
   return (
@@ -71,6 +72,7 @@ function ProfileCard(props) {
                     height: 35,
                     cursor: 'pointer'
                   }}
+                  onClick={handlePhoto}
                   >
                 </PhotoCameraIcon>
               </IconButton>
