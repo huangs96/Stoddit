@@ -30,6 +30,10 @@ function ProfileCard(props) {
     setImage(e.target.files[0]);
   };
 
+  const handlePhoto = () => {
+
+  };
+
   return (
     <Card variant="outlined">
       <Grid
