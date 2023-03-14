@@ -3,8 +3,9 @@ import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
+import EditIcon from '@mui/icons-material/Edit';
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
-import SaveIcon from '@mui/icons-material/Save';
+import CheckIcon from '@mui/icons-material/Check';
 import Badge from "@mui/material/Badge";
 import { IconButton } from '@mui/material';
 import Button from "@mui/material/Button";
@@ -30,7 +31,7 @@ function ProfileCard(props) {
   const uploadPhoto = (e) => {
     console.log(e.target.files);
     setImage(e.target.files[0]);
-    setShowSave((prev) => !prev);
+    setShowSave(true);
     console.log('save', showSave);
   };
 
@@ -39,6 +40,7 @@ function ProfileCard(props) {
     formData.append('image', image);
     console.log('image', image);
     console.log('formData', formData);
+    setShowSave(false);
   };
 
   return (
@@ -68,7 +70,7 @@ function ProfileCard(props) {
                     name="file"
                     onChange={uploadPhoto}
                   />
-                  <PhotoCameraIcon
+                  <EditIcon
                     containerElement='photos'
                     sx={{
                       border: "5px solid white",
@@ -83,7 +85,7 @@ function ProfileCard(props) {
                 </IconButton>
                 :
                 <IconButton>
-                  <SaveIcon
+                  <CheckIcon
                     containerElement='save'
                     sx={{
                       border: "5px solid white",
@@ -96,7 +98,7 @@ function ProfileCard(props) {
                     }}
                     onClick={handlePhoto}
                   >
-                  </SaveIcon>
+                  </CheckIcon>
                 </IconButton>
               }
               </>
