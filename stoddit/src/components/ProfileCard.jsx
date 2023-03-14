@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
+import SaveIcon from '@mui/icons-material/Save';
 import Badge from "@mui/material/Badge";
 import { IconButton } from '@mui/material';
 import Button from "@mui/material/Button";
@@ -35,6 +36,8 @@ function ProfileCard(props) {
 
   const handlePhoto = () => {
     const formData = new FormData();
+    formData.append('image', image);
+    console.log('image', image);
     console.log('formData', formData);
   };
 
@@ -54,7 +57,7 @@ function ProfileCard(props) {
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             badgeContent={
               <>
-              {showSave ?
+              {!showSave ?
                 <IconButton 
                   aria-label="upload picture" 
                   component="label"
@@ -76,11 +79,25 @@ function ProfileCard(props) {
                       height: 35,
                       cursor: 'pointer'
                     }}
-                    onClick={handlePhoto}
                   />
                 </IconButton>
                 :
-                <h1>save</h1>
+                <IconButton>
+                  <SaveIcon
+                    containerElement='save'
+                    sx={{
+                      border: "5px solid white",
+                      backgroundColor: "#ff558f",
+                      borderRadius: "50%",
+                      padding: ".2rem",
+                      width: 35,
+                      height: 35,
+                      cursor: 'pointer'
+                    }}
+                    onClick={handlePhoto}
+                  >
+                  </SaveIcon>
+                </IconButton>
               }
               </>
             }
