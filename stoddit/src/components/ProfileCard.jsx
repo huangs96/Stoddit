@@ -46,10 +46,14 @@ function ProfileCard(props) {
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             badgeContent={
               <>
-              <IconButton aria-label="upload picture" component="label">
+              <IconButton 
+                aria-label="upload picture" 
+                component="label"
+              >
                 <input 
                   hidden accept="image/*" 
                   type="file" 
+                  onChange={uploadPhoto}
                 />
                 <PhotoCameraIcon
                   containerElement='photos'
@@ -62,7 +66,6 @@ function ProfileCard(props) {
                     height: 35,
                     cursor: 'pointer'
                   }}
-                  onChange={uploadPhoto}
                   >
                 </PhotoCameraIcon>
               </IconButton>
