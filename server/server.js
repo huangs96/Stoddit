@@ -1,5 +1,3 @@
-require('dotenv').config();
-const { S3Client, PutObjectCommand }= require("@aws-sdk/client-s3");
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -12,18 +10,18 @@ const http = require("http");
 const { Server } = require("socket.io");
 const LiveUserContainer = require("./classes/usersClass");
 
-const bucketName = process.env.BUCKET_NAME;
-const bucketRegion = process.env.BUCKET_REGION;
-const accessKey = process.env.ACCESS_KEY;
-const secretAccessKey = process.env.SECRET_ACCESS_KEY;
+// const bucketName = process.env.BUCKET_NAME;
+// const bucketRegion = process.env.BUCKET_REGION;
+// const accessKey = process.env.ACCESS_KEY;
+// const secretAccessKey = process.env.SECRET_ACCESS_KEY;
 
-const s3 = new S3Client({
-  credentials: {
-    accessKey: accessKey,
-    secretAccessKey: secretAccessKey
-  },
-  region: bucketRegion
-});
+// const s3 = new S3Client({
+//   credentials: {
+//     accessKey: accessKey,
+//     secretAccessKey: secretAccessKey
+//   },
+//   region: bucketRegion
+// });
 
 const app = express();
 
