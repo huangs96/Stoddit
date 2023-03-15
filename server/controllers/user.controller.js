@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+const crypto = require('crypto');
 const client = require('../classes/pgPoolClass');
 const queries = require('../queries/user.queries');
 const existQueries = require('../queries/register.queries');
@@ -87,7 +87,7 @@ const uploadImage = async (req, res) => {
   await s3.send(command)
 
   res.send({});
-}
+};
 
 module.exports = {
   getUsers,
@@ -96,4 +96,4 @@ module.exports = {
   deleteUser,
   updateUser,
   uploadImage
-} 
+};
