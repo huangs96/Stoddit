@@ -72,6 +72,20 @@ const updateUser = async (req, res) => {
   };
 };
 
+const uploadImage = async (req, res) => {
+  const params = {
+    Bucket: bucketName,
+    Key: randomImageName(),
+    Body: buffer,
+    ContentType:req.files.mimetype
+  }
+
+  const command = new PutObjectCommand(params)
+  await s3.send(command)
+
+  res.send({});
+}
+
 module.exports = {
   getUsers,
   getUsersById,
