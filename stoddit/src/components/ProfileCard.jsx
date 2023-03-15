@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import updateImage from '../services/user.service';
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import EditIcon from '@mui/icons-material/Edit';
-import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import CheckIcon from '@mui/icons-material/Check';
 import Badge from "@mui/material/Badge";
 import { IconButton } from '@mui/material';
@@ -40,6 +40,7 @@ function ProfileCard(props) {
     formData.append('image', image);
     console.log('image', image);
     console.log('formData', formData);
+    updateImage(formData);
     setShowSave(false);
   };
 

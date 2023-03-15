@@ -48,13 +48,29 @@ const getAllUsers = async () => {
   });
 };
 
-const updateImage = async () => {
-  return fetch('');
-}
+const updateImage = async (image) => {
+  return fetch('http://localhost:5000/users/image', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    mode: 'cors',
+    credentials: 'include',
+    body: JSON.stringify(image)
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw response;
+  });
+};
 
 module.exports = {
   getAllUsers,
   getAuthedUser,
-  getUserByID
+  getUserByID,
+  updateImage
   // fetchRefreshToken
 }
