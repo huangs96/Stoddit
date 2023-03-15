@@ -37,10 +37,9 @@ function ProfileCard(props) {
 
   const handlePhoto = () => {
     const formData = new FormData();
-    formData.append('image', image);
     console.log('image', image);
-    console.log('formData', formData);
-    updateImage(formData);
+    formData.append('image', image);
+    updateImage(image);
     setShowSave(false);
   };
 

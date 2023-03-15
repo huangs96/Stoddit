@@ -57,7 +57,7 @@ const updateImage = async (image) => {
     },
     mode: 'cors',
     credentials: 'include',
-    body: JSON.stringify(image)
+    body: image
   })
   .then(response => {
     if (response.ok) {
