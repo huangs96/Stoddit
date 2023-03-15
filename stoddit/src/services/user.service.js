@@ -49,7 +49,7 @@ const getAllUsers = async () => {
 };
 
 const updateProfilePic = async () => {
-  return fetch('')
+  return fetch('');
 }
 
 module.exports = {
