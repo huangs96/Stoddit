@@ -48,6 +48,10 @@ const getAllUsers = async () => {
   });
 };
 
+const updateProfilePic = async () => {
+  return fetch('')
+}
+
 module.exports = {
   getAllUsers,
   getAuthedUser,
