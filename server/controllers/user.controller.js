@@ -1,6 +1,8 @@
+import crypto from 'crypto';
 const client = require('../classes/pgPoolClass');
 const queries = require('../queries/user.queries');
 const existQueries = require('../queries/register.queries');
+
 
 const getUsers = (async (req, res) => {
   try {
@@ -73,12 +75,13 @@ const updateUser = async (req, res) => {
 };
 
 const uploadImage = async (req, res) => {
+  const randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
   const params = {
     Bucket: bucketName,
     Key: randomImageName(),
     Body: buffer,
-    ContentType:req.files.mimetype
-  }
+    ContentType: req.files.mimetype
+  };
 
   const command = new PutObjectCommand(params)
   await s3.send(command)
@@ -91,5 +94,6 @@ module.exports = {
   getUsersById,
   getUserHomePage,
   deleteUser,
-  updateUser
+  updateUser,
+  uploadImage
 } 
