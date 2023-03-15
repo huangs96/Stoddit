@@ -3,7 +3,7 @@ const controller = require('../controllers/user.controller');
 const router = Router();
 const auth = require('../middleware/verifyToken');
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/' })
+const upload = multer({ dest: 'uploads/' });
 
 router.get('/', controller.getUsers);
 router.get('/home', auth.authToken, controller.getUserHomePage);

@@ -48,7 +48,7 @@ const getAllUsers = async () => {
   });
 };
 
-const updateProfilePic = async () => {
+const updateImage = async () => {
   return fetch('');
 }
 
