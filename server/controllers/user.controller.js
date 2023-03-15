@@ -75,7 +75,7 @@ const updateUser = async (req, res) => {
 };
 
 const uploadImage = async (req, res) => {
-  console.log('res', res);
+  console.log('res', req.files);
   const randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
   const params = {
     Bucket: bucketName,
