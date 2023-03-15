@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+import { S3Client } from "@aws-sdk/client-s3";
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
