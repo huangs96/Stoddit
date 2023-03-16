@@ -18,7 +18,6 @@ const s3 = new S3Client({
   region: bucketRegion
 });
 
-
 const getUsers = (async (req, res) => {
   try {
     const allUsers = await client.query(queries.getUsers);
