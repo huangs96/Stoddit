@@ -40,7 +40,7 @@ function ProfileCard(props) {
     const formData = new FormData();
     console.log('image', image);
     formData.append('image', image);
-    updateImage();
+    updateImage(formData);
     setShowSave(false);
   };
 
