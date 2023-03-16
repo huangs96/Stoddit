@@ -53,8 +53,7 @@ const updateImage = async (image) => {
   return fetch('http://localhost:5000/users/image', {
     method: 'POST',
     headers: {
-      'Content-Type': 'multipart/form-data',
-      'Accept': 'application/json'
+      'Accept': 'multipart/form-data'
     },
     mode: 'cors',
     credentials: 'include',

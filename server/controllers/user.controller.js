@@ -90,19 +90,19 @@ const updateUser = async (req, res) => {
 };
 
 const uploadImage = async (req, res) => {
-  console.log('res', req.files);
-  const randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
-  const params = {
-    Bucket: bucketName,
-    Key: randomImageName(),
-    Body: req.files.buffer,
-    ContentType: req.files.mimetype
-  };
+  console.log('res', req.file);
+  // const randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
+  // const params = {
+  //   Bucket: bucketName,
+  //   Key: randomImageName(),
+  //   Body: req.files.buffer,
+  //   ContentType: req.files.mimetype
+  // };
 
-  const command = new PutObjectCommand(params)
-  await s3.send(command)
+  // const command = new PutObjectCommand(params)
+  // await s3.send(command)
 
-  res.send({});
+  // res.send({});
 };
 
 module.exports = {
