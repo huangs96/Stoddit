@@ -49,10 +49,11 @@ const getAllUsers = async () => {
 };
 
 const updateImage = async (image) => {
+  console.log('image from service', image);
   return fetch('http://localhost:5000/users/image', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'multipart/form-data',
       'Accept': 'application/json'
     },
     mode: 'cors',

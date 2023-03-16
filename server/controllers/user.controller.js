@@ -95,7 +95,7 @@ const uploadImage = async (req, res) => {
   const params = {
     Bucket: bucketName,
     Key: randomImageName(),
-    Body: buffer,
+    Body: req.files.buffer,
     ContentType: req.files.mimetype
   };
 
