@@ -36,6 +36,7 @@ function ProfileCard(props) {
   };
 
   const handlePhoto = () => {
+    e.preventDefault();
     const formData = new FormData();
     console.log('image', image);
     formData.append('image', image);
