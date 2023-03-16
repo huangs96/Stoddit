@@ -48,24 +48,24 @@ const getAllUsers = async () => {
   });
 };
 
-const updateImage = async (image) => {
-  console.log('image from service', image);
-  return fetch('http://localhost:5000/users/image', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      'Accept': 'application/json'
-    },
-    mode: 'cors',
-    credentials: 'include',
-    body: image
-  })
-  .then(response => {
-    if (response.ok) {
-      return response.json();
-    }
-    throw response;
-  });
+const updateImage = async () => {
+  console.log('image from service');
+  // return fetch('http://localhost:5000/users/image', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'multipart/form-data',
+  //     'Accept': 'application/json'
+  //   },
+  //   mode: 'cors',
+  //   credentials: 'include',
+  //   body: image
+  // })
+  // .then(response => {
+  //   if (response.ok) {
+  //     return response.json();
+  //   }
+  //   throw response;
+  // });
 };
 
 module.exports = {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import updateImage from '../services/user.service';
+import { updateImage } from '../services/user.service';
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
@@ -29,18 +29,18 @@ function ProfileCard(props) {
   };
 
   const uploadPhoto = (e) => {
-    console.log(e.target.files);
+    // console.log(e.target.files);
     setImage(e.target.files[0]);
     setShowSave(true);
     console.log('save', showSave);
   };
 
-  const handlePhoto = () => {
+  const handlePhoto = (e) => {
     e.preventDefault();
     const formData = new FormData();
     console.log('image', image);
     formData.append('image', image);
-    updateImage(image);
+    updateImage();
     setShowSave(false);
   };
 
@@ -85,7 +85,9 @@ function ProfileCard(props) {
                   />
                 </IconButton>
                 :
-                <IconButton>
+                <IconButton
+                  type="submit"
+                >
                   <CheckIcon
                     containerElement='save'
                     sx={{
