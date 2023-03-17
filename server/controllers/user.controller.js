@@ -26,7 +26,15 @@ const getUsers = (async (req, res) => {
   try {
     const allUsers = await client.query(queries.getUsers);
     if (allUsers.rows.length) {
-      console.log(allUsers.rows);
+      for (const users of allUsers.rows) {
+        const getObjectParams = { 
+          Bucket: bucketName,
+          Key: users.contact_img
+        };
+        const command = new GetObjectCommand(getObjectParams);
+        const url = await getSignedUrl(s3, command, { expiresIn: 3600,  });
+        console.log('url', url);
+      }
       // res.status(200).json(allUsers.rows);
     }
   } catch (err) {
