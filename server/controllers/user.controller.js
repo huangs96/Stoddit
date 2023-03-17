@@ -94,6 +94,7 @@ const uploadImage = async (req, res) => {
   const params = {
     Bucket: bucketName,
     Key: randomImageName(),
+    Fileobj: '/Stoddit-Images',
     Body: req.file.buffer,
     ContentType: req.file.mimetype
   };
