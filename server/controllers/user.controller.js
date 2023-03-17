@@ -19,6 +19,7 @@ const s3 = new S3Client({
   region: bucketRegion
 });
 
+
 const getUsers = (async (req, res) => {
   const allUsers = await client.query(queries.getUsers);
   console.log(allUsers.rows);
@@ -29,18 +30,14 @@ const getUsers = (async (req, res) => {
       if (userDetails.contact_img !== null) {
         const getObjectParams = { 
           Bucket: bucketName,
-          // Key: `Stoddit-Profile-Images/${userDetails.contact_img}`
-          Key: '9AB82A4D-F355-4A28-9E59-97CF961B4C58.heic'
+          Key: `Stoddit-Profile-Images/${userDetails.contact_img}`
         };
         const command = new GetObjectCommand(getObjectParams);
-        console.log('2', command);
         const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
-        console.log('3', url);
+        userDetails.imageUrl = url;
       };
-      // console.log(url);
-      // res.status(200).json(userDetails);
     };
-    // res.status(200).json(allUsers.rows);
+    res.status(200).json(allUsers.rows);
   };
   // try {
   // } catch (err) {
