@@ -28,19 +28,23 @@ const getUsers = (async (req, res) => {
     console.log(allUsers.rows);
     if (allUsers.rows.length) {
       for (let x=0; x<allUsers.rows.length; x++) {
-        console.log('users', allUsers.rows[x]);
         const userDetails = allUsers.rows[x];
         const getObjectParams = { 
           Bucket: bucketName,
-          Key: userDetails.contact_img
+          Key: 'Stoddit-Profile-Images/' + userDetails.contact_img
         };
         const command = new GetObjectCommand(getObjectParams);
-        const url = await getSignedUrl(s3, command, { expiresIn: 3600  });
-        userDetails.imageUrl = url;
-        console.log(url);
-        res.send(userDetails);
+        console.log('command', command.input.Key);
+        if (command.input.Key !== null) {
+          const url = await getSignedUrl(s3, command, { expiresIn: 60  });
+          console.log('here');
+          userDetails.imageUrl = url;
+          console.log('userdetails', userDetails);
+        };
+        // console.log(url);
+        // res.status(200).json(userDetails);
       };
-      res.status(200).json(allUsers.rows);
+      // res.status(200).json(allUsers.rows);
     };
   } catch (err) {
     return res.status(400).send(err);
