@@ -34,9 +34,10 @@ const getUsers = (async (req, res) => {
         };
         const command = new GetObjectCommand(getObjectParams);
         const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
-        userDetails.imageUrl = url;
+        userDetails.imgUrl = url;
       };
     };
+    console.log(allUsers.rows);
     res.status(200).json(allUsers.rows);
   };
   // try {
