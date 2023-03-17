@@ -66,7 +66,7 @@ function ProfileCard(props) {
                   component="label"
                 >
                   <input 
-                    hidden accept="image/*" 
+                    hidden accept="image/*, .heic" 
                     type="file"
                     name="file"
                     onChange={uploadPhoto}
