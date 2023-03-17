@@ -48,7 +48,7 @@ const getUserHomePage = async (req, res) => {
   return res.json({'user': req.user});
 }
 
-const deleteUser = async (req, res) => {
+const deleteUser = async (req, res) => { 
   const id = parseInt(req.params.id);
 
   try {
