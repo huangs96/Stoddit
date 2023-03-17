@@ -29,13 +29,13 @@ const getUsers = (async (req, res) => {
     if (allUsers.rows.length) {
       for (let x=0; x<allUsers.rows.length; x++) {
         const userDetails = allUsers.rows[x];
-        const getObjectParams = { 
-          Bucket: bucketName,
-          Key: 'Stoddit-Profile-Images/' + userDetails.contact_img
-        };
-        const command = new GetObjectCommand(getObjectParams);
-        console.log('command', command.input.Key);
-        if (command.input.Key !== null) {
+        if (userDetails.contact_img !== null) {
+          const getObjectParams = { 
+            Bucket: bucketName,
+            Key: userDetails.contact_img
+          };
+          console.log('1', getObjectParams);
+          const command = new GetObjectCommand(getObjectParams);
           const url = await getSignedUrl(s3, command, { expiresIn: 60  });
           console.log('here');
           userDetails.imageUrl = url;
