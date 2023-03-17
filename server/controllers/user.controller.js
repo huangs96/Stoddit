@@ -98,8 +98,8 @@ const uploadImage = async (req, res) => {
     ContentType: req.file.mimetype
   };
 
-  const command = new PutObjectCommand(params)
-  await s3.send(command)
+  const command = new PutObjectCommand(params);
+  await s3.send(command);
 
   res.send({});
 };
