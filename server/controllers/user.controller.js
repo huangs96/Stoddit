@@ -1,5 +1,9 @@
 require('dotenv').config();
-const { S3Client, PutObjectCommand }= require("@aws-sdk/client-s3");
+const { S3Client, PutObjectCommand, GetObjectCommand } = require("@aws-sdk/client-s3");
+const {
+  getSignedUrl,
+  S3RequestPresigner,
+} = ("@aws-sdk/s3-request-presigner");
 const crypto = require('crypto');
 const client = require('../classes/pgPoolClass');
 const queries = require('../queries/user.queries');
@@ -22,7 +26,8 @@ const getUsers = (async (req, res) => {
   try {
     const allUsers = await client.query(queries.getUsers);
     if (allUsers.rows.length) {
-      res.status(200).json(allUsers.rows);
+      console.log(allUsers.rows);
+      // res.status(200).json(allUsers.rows);
     }
   } catch (err) {
     return res.status(400).send(err);
