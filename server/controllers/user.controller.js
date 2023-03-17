@@ -25,18 +25,23 @@ const s3 = new S3Client({
 const getUsers = (async (req, res) => {
   try {
     const allUsers = await client.query(queries.getUsers);
+    console.log(allUsers.rows);
     if (allUsers.rows.length) {
-      for (const users of allUsers.rows) {
+      for (let x=0; x<allUsers.rows.length; x++) {
+        console.log('users', allUsers.rows[x]);
+        const userDetails = allUsers.rows[x];
         const getObjectParams = { 
           Bucket: bucketName,
-          Key: users.contact_img
+          Key: userDetails.contact_img
         };
         const command = new GetObjectCommand(getObjectParams);
-        const url = await getSignedUrl(s3, command, { expiresIn: 3600,  });
-        console.log('url', url);
-      }
-      // res.status(200).json(allUsers.rows);
-    }
+        const url = await getSignedUrl(s3, command, { expiresIn: 3600  });
+        userDetails.imageUrl = url;
+        console.log(url);
+        res.send(userDetails);
+      };
+      res.status(200).json(allUsers.rows);
+    };
   } catch (err) {
     return res.status(400).send(err);
   };
