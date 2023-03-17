@@ -32,10 +32,10 @@ const getUsers = (async (req, res) => {
         if (userDetails.contact_img !== null) {
           const getObjectParams = { 
             Bucket: bucketName,
-            Key: userDetails.contact_img
+            Key: `Stoddit-Profile-Images/${userDetails.contact_img}`
           };
           console.log('1', getObjectParams);
-          const command = new GetObjectCommand(getObjectParams);
+          const command = new GetObjectCommand(getObjectParams)
           const url = await getSignedUrl(s3, command, { expiresIn: 60  });
           console.log('here');
           userDetails.imageUrl = url;
