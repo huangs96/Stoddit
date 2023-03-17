@@ -93,7 +93,7 @@ const uploadImage = async (req, res) => {
   const randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
   const params = {
     Bucket: bucketName,
-    Key: '/Stoddit-Images/' + randomImageName(),
+    Key: 'Stoddit-Images/' + randomImageName(),
     Body: req.file.buffer,
     ContentType: req.file.mimetype
   };
