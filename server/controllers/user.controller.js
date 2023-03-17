@@ -22,38 +22,35 @@ const s3 = new S3Client({
   region: bucketRegion
 });
 
-const getUrl = (async (req, res) => {
-  const allUsers = await client.query(queries.getUsers);
-  console.log(allUsers.rows);
-});
 
 
 const getUsers = (async (req, res) => {
-  try {
-    const allUsers = await client.query(queries.getUsers);
-    console.log(allUsers.rows);
-    if (allUsers.rows.length) {
-      // console.log(allUsers.rows);
-      for (let x=0; x<allUsers.rows.length; x++) {
-        const userDetails = allUsers.rows[x];
-        if (userDetails.contact_img !== null) {
-          const getObjectParams = { 
-            Bucket: bucketName,
-            // Key: `Stoddit-Profile-Images/${userDetails.contact_img}`
-            Key: '9AB82A4D-F355-4A28-9E59-97CF961B4C58.heic'
-          };
-          const command = new GetObjectCommand(getObjectParams);
-          console.log('2', command);
-          console.log('here');
+  const allUsers = await client.query(queries.getUsers);
+  console.log(allUsers.rows);
+  if (allUsers.rows.length) {
+    // console.log(allUsers.rows);
+    for (let x=0; x<allUsers.rows.length; x++) {
+      const userDetails = allUsers.rows[x];
+      if (userDetails.contact_img !== null) {
+        const getObjectParams = { 
+          Bucket: bucketName,
+          // Key: `Stoddit-Profile-Images/${userDetails.contact_img}`
+          Key: '9AB82A4D-F355-4A28-9E59-97CF961B4C58.heic'
         };
-        // console.log(url);
-        // res.status(200).json(userDetails);
+        const command = new GetObjectCommand(getObjectParams);
+        console.log('2', command);
+        const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+        console.log('3', url);
       };
-      // res.status(200).json(allUsers.rows);
+      // console.log(url);
+      // res.status(200).json(userDetails);
     };
-  } catch (err) {
-    return res.status(400).send(err);
+    // res.status(200).json(allUsers.rows);
   };
+  // try {
+  // } catch (err) {
+  //   return res.status(400).send(err);
+  // };
 });
 
 const getUsersById = async (req, res) => {
@@ -137,6 +134,5 @@ module.exports = {
   getUserHomePage,
   deleteUser,
   updateUser,
-  uploadImage,
-  getUrl
+  uploadImage
 };
