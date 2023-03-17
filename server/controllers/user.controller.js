@@ -1,9 +1,6 @@
 require('dotenv').config();
 const { S3Client, PutObjectCommand, GetObjectCommand } = require("@aws-sdk/client-s3");
-const {
-  getSignedUrl,
-  S3RequestPresigner,
-} = ("@aws-sdk/s3-request-presigner");
+const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 const crypto = require('crypto');
 const client = require('../classes/pgPoolClass');
 const queries = require('../queries/user.queries');
@@ -21,8 +18,6 @@ const s3 = new S3Client({
   },
   region: bucketRegion
 });
-
-
 
 const getUsers = (async (req, res) => {
   const allUsers = await client.query(queries.getUsers);
