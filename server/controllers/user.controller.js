@@ -113,19 +113,20 @@ const updateUser = async (req, res) => {
 };
 
 const uploadImage = async (req, res) => {
-  console.log('res', req.file);
-  const randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
-  const params = {
-    Bucket: bucketName,
-    Key: 'Stoddit-Profile-Images/' + randomImageName(),
-    Body: req.file.buffer,
-    ContentType: req.file.mimetype
+  try {
+    const randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
+    const params = {
+      Bucket: bucketName,
+      Key: 'Stoddit-Profile-Images/' + randomImageName(),
+      Body: req.file.buffer,
+      ContentType: req.file.mimetype
+    };
+    const command = new PutObjectCommand(params);
+    await s3.send(command);
+    res.send({});
+  } catch (err) {
+    return res.status(400).send(err);
   };
-
-  const command = new PutObjectCommand(params);
-  await s3.send(command);
-
-  res.send({});
 };
 
 module.exports = {
