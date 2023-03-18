@@ -37,7 +37,6 @@ const getUsers = (async (req, res) => {
         userDetails.imgUrl = url;
       };
     };
-    console.log(allUsers.rows);
     res.status(200).json(allUsers.rows);
   };
   // try {
