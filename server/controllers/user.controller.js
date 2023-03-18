@@ -21,28 +21,28 @@ const s3 = new S3Client({
 
 
 const getUsers = (async (req, res) => {
-  const allUsers = await client.query(queries.getUsers);
-  console.log(allUsers.rows);
-  if (allUsers.rows.length) {
-    // console.log(allUsers.rows);
-    for (let x=0; x<allUsers.rows.length; x++) {
-      const userDetails = allUsers.rows[x];
-      if (userDetails.contact_img !== null) {
-        const getObjectParams = { 
-          Bucket: bucketName,
-          Key: `Stoddit-Profile-Images/${userDetails.contact_img}`
+  try {
+    const allUsers = await client.query(queries.getUsers);
+    console.log(allUsers.rows);
+    if (allUsers.rows.length) {
+      // console.log(allUsers.rows);
+      for (let x=0; x<allUsers.rows.length; x++) {
+        const userDetails = allUsers.rows[x];
+        if (userDetails.contact_img !== null) {
+          const getObjectParams = { 
+            Bucket: bucketName,
+            Key: `Stoddit-Profile-Images/${userDetails.contact_img}`
+          };
+          const command = new GetObjectCommand(getObjectParams);
+          const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+          userDetails.imgUrl = url;
         };
-        const command = new GetObjectCommand(getObjectParams);
-        const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
-        userDetails.imgUrl = url;
       };
+      res.status(200).json(allUsers.rows);
     };
-    res.status(200).json(allUsers.rows);
+  } catch (err) {
+    return res.status(400).send(err);
   };
-  // try {
-  // } catch (err) {
-  //   return res.status(400).send(err);
-  // };
 });
 
 const getUsersById = async (req, res) => {
