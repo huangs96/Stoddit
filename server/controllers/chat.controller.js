@@ -36,14 +36,14 @@ const getChatroomByUserID = (async (req, res) => {
         const conversationData = chatroomByUserID.rows[data];
         const participantsInChatroom = await client.query(queries.getParticipantFromChatroomID, [conversationData.chatroom_id]);
         const participantData = participantsInChatroom.rows;
-        for (let x=0; x<participantData.length; x++) {
-          const participantDetails = participantData[x];
-          console.log('participantDetails', participantDetails);
-          if (participantDetails.contact_img !== null) {
-            const url = await awsS3.getImgUrl(participantDetails.imgUrl);
-            participantDetails.imgUrl = url;
-          };
-        };
+        // for (let x=0; x<participantData.length; x++) {
+        //   const participantDetails = participantData[x];
+        //   console.log('participantDetails', participantDetails);
+        //   if (participantDetails.contact_img !== null) {
+        //     const url = await awsS3.getImgUrl(participantDetails.imgUrl);
+        //     participantDetails.imgUrl = url;
+        //   };
+        // };
         conversationData['participantData'] = participantData;
       };
       res.status(200).json(chatroomByUserID.rows);
