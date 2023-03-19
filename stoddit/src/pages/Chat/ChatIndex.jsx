@@ -148,6 +148,10 @@ function ChatIndex() {
     };
   }, []);
 
+  const allUserImages = (allUsers) => {
+
+  }
+
   const addUser = async (userID, username) => {
     const newFriendID = addFriendtoFriendList(userID, username);
     setFriendsList(friends => [...friends, {
