@@ -42,7 +42,6 @@ const getUsers = (async (req, res) => {
 
 const getUsersById = async (req, res) => {
   const id = parseInt(req.params.id);
-
   try {
     const userWithId = await client.query(queries.getUsersById, [id]);
     if (userWithId.rows.length) {
@@ -101,15 +100,7 @@ const updateUser = async (req, res) => {
 
 const uploadImage = async (req, res) => {
   try {
-    const randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
-    const params = {
-      Bucket: bucketName,
-      Key: 'Stoddit-Profile-Images/' + randomImageName(),
-      Body: req.file.buffer,
-      ContentType: req.file.mimetype
-    };
-    const command = new PutObjectCommand(params);
-    await s3.send(command);
+    awsS3.uploadImage(req);
     res.send({});
   } catch (err) {
     return res.status(400).send(err);
