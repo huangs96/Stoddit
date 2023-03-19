@@ -16,10 +16,9 @@ const s3 = new S3Client({
 
 class AwsS3 {
   constructor() {
-
   };
 
-  getImgUrl = (imgName) => {
+  getImgUrl = async (imgName) => {
     const getObjectParams = {
       Bucket: bucketName,
       Key: `Stoddit-Profile-Images/${imgName}`
@@ -30,3 +29,5 @@ class AwsS3 {
     return url;
   };
 };
+
+module.exports = new AwsS3();

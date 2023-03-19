@@ -1,7 +1,6 @@
 require('dotenv').config();
 const client = require('../classes/pgPoolClass');
 const queries = require('../queries/chat.queries');
-const socketHelper = require('../helpers/socketHelpers');
 
 /* ------ Chatroom ------ */
 const getChatroom = (async (req, res) => {

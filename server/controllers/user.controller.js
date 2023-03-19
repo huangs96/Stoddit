@@ -5,6 +5,7 @@ const crypto = require('crypto');
 const client = require('../classes/pgPoolClass');
 const queries = require('../queries/user.queries');
 const existQueries = require('../queries/register.queries');
+const awsS3 = require('../classes/awsClass');
 
 const bucketName = process.env.BUCKET_NAME;
 const bucketRegion = process.env.BUCKET_REGION;
@@ -29,6 +30,7 @@ const getUsers = (async (req, res) => {
       for (let x=0; x<allUsers.rows.length; x++) {
         const userDetails = allUsers.rows[x];
         if (userDetails.contact_img !== null) {
+          console.log('aws', awsS3.getImgUrl);
           const getObjectParams = { 
             Bucket: bucketName,
             Key: `Stoddit-Profile-Images/${userDetails.contact_img}`
