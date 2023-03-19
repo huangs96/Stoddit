@@ -64,8 +64,6 @@ function ChatIndex() {
   const navigate = useNavigate();
 
   /* ------ Socket Connection ------ */
-  //run socket connection once only
-
   useEffect(() => {
     socket.current = io('ws://localhost:5000', {
       withCredentials: true,
@@ -149,6 +147,10 @@ function ChatIndex() {
       isLoaded = false;
     };
   }, []);
+
+  const getFriendImages = () => {
+
+  };
 
   const addUser = async (userID, username) => {
     const newFriendID = addFriendtoFriendList(userID, username);
