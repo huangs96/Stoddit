@@ -1,6 +1,7 @@
 require('dotenv').config();
 const client = require('../classes/pgPoolClass');
 const queries = require('../queries/chat.queries');
+const awsS3 = require('../classes/awsClass');
 
 /* ------ Chatroom ------ */
 const getChatroom = (async (req, res) => {
@@ -242,7 +243,16 @@ const getFriendsListById = (async (req, res) => {
   const account_id = parseInt(req.params.id);
   try {
     const allFriendsById = await client.query(queries.getFriendsListByUser, [account_id]);
+    console.log(allFriendsById.rows);
     if (allFriendsById.rows.length) {
+      for (let x=0; x<allFriendsById.rows.length; x++) {
+        const friendDetails = allFriendsById[x];
+        console.log(friendDetails)
+        if (friendDetails.contact_img !== null) {
+          const url = await awsS3.getImgUrl(friendDetails.imgUrl);
+          friendDetails.imgUrl = url;
+        };
+      };
       res.status(200).json(allFriendsById.rows);
     };
   } catch (err) {
