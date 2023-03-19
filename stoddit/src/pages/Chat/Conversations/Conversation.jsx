@@ -39,7 +39,7 @@ function Conversation({conversation, conversationDeleted, participantData}) {
                   <span className='avatarList'>
                     <img
                       className="conversationImg" 
-                      src={data.contact_img}
+                      src={data.imgUrl}
                       alt="" 
                     />
                   </span>
