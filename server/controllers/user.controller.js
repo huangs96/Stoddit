@@ -31,8 +31,10 @@ const getUsers = (async (req, res) => {
         const userDetails = allUsers.rows[x];
         if (userDetails.contact_img !== null) {
           const s3Url = awsS3.getImgUrl(userDetails.contact_img)
-          .then(function(result) {
-            return result;
+          .then(result => {
+            console.log('11111---', userDetails);
+            userDetails.imgUrl = result;
+            console.log('11111---', userDetails);
           });
           // const getObjectParams = { 
           //   Bucket: bucketName,
@@ -41,7 +43,7 @@ const getUsers = (async (req, res) => {
           // const command = new GetObjectCommand(getObjectParams);
           // const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
           // userDetails.imgUrl = url;
-          console.log('userDetails', s3Url);
+          console.log('userDetailsS3', s3Url);
           console.log('userDetails', userDetails);
         };
       };
