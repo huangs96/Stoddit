@@ -1,24 +1,8 @@
 require('dotenv').config();
-const { S3Client, PutObjectCommand, GetObjectCommand } = require("@aws-sdk/client-s3");
-const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
-const crypto = require('crypto');
 const client = require('../classes/pgPoolClass');
 const queries = require('../queries/user.queries');
 const existQueries = require('../queries/register.queries');
 const awsS3 = require('../classes/awsClass');
-
-const bucketName = process.env.BUCKET_NAME;
-const bucketRegion = process.env.BUCKET_REGION;
-const accessKey = process.env.AWS_ACCESS_KEY_ID;
-const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
-
-const s3 = new S3Client({
-  credentials: {
-    accessKeyId: accessKey,
-    secretAccessKey: secretAccessKey
-  },
-  region: bucketRegion
-});
 
 
 const getUsers = (async (req, res) => {
