@@ -19,13 +19,14 @@ class AwsS3 {
 
   };
 
-  getImgUrl = () => {
+  getImgUrl = (imgName) => {
     const getObjectParams = {
       Bucket: bucketName,
-      Key: `Stoddit-Profile-Images/${userDetails.contact_img}`
+      Key: `Stoddit-Profile-Images/${imgName}`
     };
 
     const command = new GetObjectCommand(getObjectParams);
     const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+    return url;
   };
 };
