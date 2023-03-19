@@ -148,6 +148,14 @@ function ChatIndex() {
     };
   }, []);
 
+  const getImageUrls = () => {
+    const userDetailHashmap = {};
+
+    const mappedUsers = allUsers.map(user => {
+
+    })
+  };
+
   const addUser = async (userID, username) => {
     const newFriendID = addFriendtoFriendList(userID, username);
     setFriendsList(friends => [...friends, {
