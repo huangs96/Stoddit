@@ -29,14 +29,10 @@ const getUsers = (async (req, res) => {
       for (let x=0; x<allUsers.rows.length; x++) {
         const userDetails = allUsers.rows[x];
         if (userDetails.contact_img !== null) {
-          console.log(awsS3.getImgUrl(userDetails.contact_img));
-          await awsS3.getImgUrl(userDetails.contact_img)
-          .then(result => {
-            userDetails.imgUrl = result;
-          });
+          const url = await awsS3.getImgUrl(userDetails.contact_img)
+          userDetails.imgUrl = url;
         };
       };
-      console.log('allusers', allUsers.rows);
       res.status(200).json(allUsers.rows);
     };
   } catch (err) {
