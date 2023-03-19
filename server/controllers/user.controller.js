@@ -26,27 +26,17 @@ const getUsers = (async (req, res) => {
     const allUsers = await client.query(queries.getUsers);
     console.log(allUsers.rows);
     if (allUsers.rows.length) {
-      // console.log(allUsers.rows);
       for (let x=0; x<allUsers.rows.length; x++) {
         const userDetails = allUsers.rows[x];
         if (userDetails.contact_img !== null) {
-          const s3Url = awsS3.getImgUrl(userDetails.contact_img)
+          console.log(awsS3.getImgUrl(userDetails.contact_img));
+          await awsS3.getImgUrl(userDetails.contact_img)
           .then(result => {
-            console.log('11111---', userDetails);
             userDetails.imgUrl = result;
-            console.log('11111---', userDetails);
           });
-          // const getObjectParams = { 
-          //   Bucket: bucketName,
-          //   Key: `Stoddit-Profile-Images/${userDetails.contact_img}`
-          // };
-          // const command = new GetObjectCommand(getObjectParams);
-          // const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
-          // userDetails.imgUrl = url;
-          console.log('userDetailsS3', s3Url);
-          console.log('userDetails', userDetails);
         };
       };
+      console.log('allusers', allUsers.rows);
       res.status(200).json(allUsers.rows);
     };
   } catch (err) {
