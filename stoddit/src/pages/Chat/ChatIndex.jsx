@@ -160,7 +160,7 @@ function ChatIndex() {
       usernames.map(username => {
         if (username === friends.contact_name) {
           friends.imgUrl = imgData[username];
-        } else {
+        } else if (friends.contact_img === null) {
           friends.imgUrl = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
         };
       });
@@ -170,7 +170,7 @@ function ChatIndex() {
         usernames.map(username => {
           if (pData.username === username) {
             pData.imgUrl = imgData[username];
-          } else {
+          } else if (pData.contact_img === null) {
             pData.imgUrl = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
           };
         });
