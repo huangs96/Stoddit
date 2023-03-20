@@ -382,9 +382,10 @@ function ChatIndex() {
       });
 
       const realtimeImg = Object.keys(realTimeMsgImg).map(imgs => {
+        console.log('username22', realTimeMsgImg);
         if (username === imgs) {
-          console.log('username', username);
-        }
+          return realTimeMsgImg[username];
+        };
       });
 
       console.log('realtimemsgimg', realtimeImg);
