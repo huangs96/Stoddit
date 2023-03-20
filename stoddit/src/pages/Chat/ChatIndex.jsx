@@ -41,6 +41,7 @@ function ChatIndex() {
   const [messages, setMessages] = useState([]);
   const [messageImgLoad, setMessageImgLoad] = useState(false);
   const [messageText, setMessageText] = useState('');
+  const [realTimeMsgImg, setRealTimeMsgImg] = useState('');
   const [realtimeMessage, setRealtimeMessage] = useState(null);
   const timestamp = new Date();
   const bottomRef = useRef(null);
@@ -158,6 +159,7 @@ function ChatIndex() {
   //get all images once allUsers data is loaded
   useEffect(() => {
     const imgData = imgExtract(allUsers);
+    setRealTimeMsgImg(imgData);
     const usernames = Object.keys(imgData);
     conversations.map(convos => {
       convos.participantData.map(pData => {
@@ -379,7 +381,15 @@ function ChatIndex() {
         };
       });
 
-      addMessageToConversation(userParticipant, messageText, receiverID, chatroomKey);
+      const realtimeImg = Object.keys(realTimeMsgImg).map(imgs => {
+        if (username === imgs) {
+          console.log('username', username);
+        }
+      });
+
+      console.log('realtimemsgimg', realtimeImg);
+
+      // addMessageToConversation(userParticipant, messageText, receiverID, chatroomKey);
 
       setMessages(msgData => [...msgData, {
         account_id: userID,
