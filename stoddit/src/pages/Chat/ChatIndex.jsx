@@ -162,10 +162,14 @@ function ChatIndex() {
           friends.imgUrl = imgData[username];
         };
       });
-      console.log('friends', friends);
     });
     conversations.map(convos => {
-      console.log('convos', ...convos.participantData);
+      console.log('convos', convos.participantData);
+      convos.participantData.map(pData => {
+        usernames.map(username => {
+          if (pData.)
+        })
+      })
     });
   }, [allUsers, conversations, friendsList]);
 

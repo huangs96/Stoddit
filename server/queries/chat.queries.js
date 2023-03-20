@@ -8,7 +8,7 @@ const deleteChatroom = "UPDATE chatroom SET deleted_at = $1 WHERE id = $2;";
 
 /* ------ Participant ------ */
 const getParticipant = "SELECT * FROM participant;";
-const getParticipantFromChatroomID = "SELECT * FROM (SELECT participant.id, participant.left_datetime, participant.account_id, participant.chatroom_id, participant.deleted_at, participant.joined_datetime, account.contact_img FROM participant INNER JOIN account ON participant.account_id = account.id WHERE chatroom_id = $1) chatroom;";
+const getParticipantFromChatroomID = "SELECT * FROM (SELECT participant.id, participant.left_datetime, participant.account_id, participant.chatroom_id, participant.deleted_at, participant.joined_datetime, account.contact_img, account.username FROM participant INNER JOIN account ON participant.account_id = account.id WHERE chatroom_id = $1) chatroom;";
 const getParticipantFromAccountID = "SELECT * FROM participant WHERE account_id = $1;";
 const getUserParticipantInChatroom = "SELECT id FROM participant WHERE account_id = $1 AND chatroom_id = $2;";
 const createParticipantFromChatroom = "INSERT INTO participant (chatroom_id, account_id, left_datetime) VALUES ($1, $2, $3);";
