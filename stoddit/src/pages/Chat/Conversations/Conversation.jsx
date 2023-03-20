@@ -7,11 +7,11 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 function Conversation({conversation, conversationDeleted, participantData}) {
 
-  const [hovered, setHovered] = useState(false);
+  useEffect(() => {
+    console.log(participantData);
+  }, [participantData]);
 
-  if (participantData.contact_img === null) {
-    participantData.imgUrl = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
-  };
+  const [hovered, setHovered] = useState(false);
 
   const conversationHovered = async () => {
     setHovered(true);
@@ -28,13 +28,17 @@ function Conversation({conversation, conversationDeleted, participantData}) {
     console.log('user has left the chat');
     conversationDeleted();
   };
+  const test = () => {
+    console.log('works');
+  }
+  console.log(...participantData);
 
   return (
     <>
       <div className="conversationContainer">
         <div
           className="conversation"
-          onMouseOver={conversationHovered}
+          onMouseEnter={conversationHovered}
           onMouseLeave={conversationUnhovered}
         >
           <div className="contentContainer">
@@ -45,6 +49,7 @@ function Conversation({conversation, conversationDeleted, participantData}) {
                       className="conversationImg" 
                       src={data.imgUrl}
                       alt="" 
+                      onLoad={test}
                     />
                   </span>
                 ))
@@ -63,14 +68,14 @@ function Conversation({conversation, conversationDeleted, participantData}) {
               </h5>
             </div>
           </div>
-          {/* {hovered &&
+          {hovered &&
           <div className="deleteButtonContainer">
               <DeleteOutlinedIcon 
                 sx={{ "&:hover": { color: "red" } }} 
                 onClick={deleteConversation}
               />
           </div>
-          } */}
+          }
         </div>
       </div>
     </>

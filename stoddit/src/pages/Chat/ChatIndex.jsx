@@ -156,15 +156,6 @@ function ChatIndex() {
   useEffect(() => {
     const imgData = imgExtract(allUsers);
     const usernames = Object.keys(imgData);
-    friendsList.map(friends => {
-      usernames.map(username => {
-        if (username === friends.contact_name) {
-          friends.imgUrl = imgData[username];
-        } else if (friends.contact_img === null) {
-          friends.imgUrl = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
-        };
-      });
-    });
     conversations.map(convos => {
       convos.participantData.map(pData => {
         usernames.map(username => {
@@ -174,6 +165,15 @@ function ChatIndex() {
             pData.imgUrl = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
           };
         });
+      });
+    });
+    friendsList.map(friends => {
+      usernames.map(username => {
+        if (username === friends.contact_name) {
+          friends.imgUrl = imgData[username];
+        } else if (friends.contact_img === null) {
+          friends.imgUrl = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
+        };
       });
     });
   }, [allUsers, conversations, friendsList]);
