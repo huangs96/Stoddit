@@ -47,6 +47,7 @@ function ChatIndex() {
   const [chatroomKey, setChatroomKey] = useState(null);
   const [conversations, setConversations] = useState([]);
   const [conversationMembers, setConversationMembers] = useState([]);
+  const [convoImgLoad, setConvoImgLoad] = useState(false);
   const [searchConversationInput, setConversationSearchInput] = useState('');
   const [newConversation, setNewConversation] = useState(false);
   //deleting chatroom
@@ -55,6 +56,7 @@ function ChatIndex() {
   const [participantsInChatroom, setParticipantsInChatroom] = useState([]);
   //friendslist
   const [friendsList, setFriendsList] = useState([]);
+  const [friendsImgLoad, setFriendsImgLoad] = useState(false);
   const [onlineFriendsData, setOnlineFriendsData] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
   const [allUsersInput, setAllUsersInput] = useState('');
@@ -161,6 +163,7 @@ function ChatIndex() {
         usernames.map(username => {
           if (pData.username === username) {
             pData.imgUrl = imgData[username];
+            setConvoImgLoad(true);
           } else if (pData.contact_img === null) {
             pData.imgUrl = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
           };
@@ -171,6 +174,7 @@ function ChatIndex() {
       usernames.map(username => {
         if (username === friends.contact_name) {
           friends.imgUrl = imgData[username];
+          setFriendsImgLoad(true);
         } else if (friends.contact_img === null) {
           friends.imgUrl = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
         };

@@ -7,9 +7,9 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 function Conversation({conversation, conversationDeleted, participantData}) {
 
-  useEffect(() => {
-    console.log(participantData);
-  }, [participantData]);
+  // useEffect(() => {
+  //   console.log(participantData);
+  // }, [participantData]);
 
   const [hovered, setHovered] = useState(false);
 
@@ -28,10 +28,6 @@ function Conversation({conversation, conversationDeleted, participantData}) {
     console.log('user has left the chat');
     conversationDeleted();
   };
-  const test = () => {
-    console.log('works');
-  }
-  console.log(...participantData);
 
   return (
     <>
@@ -49,7 +45,6 @@ function Conversation({conversation, conversationDeleted, participantData}) {
                       className="conversationImg" 
                       src={data.imgUrl}
                       alt="" 
-                      onLoad={test}
                     />
                   </span>
                 ))
