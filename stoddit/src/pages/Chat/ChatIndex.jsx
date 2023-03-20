@@ -16,6 +16,7 @@ import Conversation from './Conversations/Conversation';
 import NewConversation from './Conversations/newConversation'
 import Message from './Messages/Message';
 import FriendsOnline from './ChatOnline/FriendsOnline';
+import { imgExtract } from '../../contexts/userContext';
 import { 
   addMessageToConversation, 
   addFriendtoFriendList
@@ -61,6 +62,7 @@ function ChatIndex() {
   //socket
   const socket = useRef();
   //misc
+  const [imgData, setImgData] = useState();
   const navigate = useNavigate();
 
   /* ------ Socket Connection ------ */
@@ -138,7 +140,10 @@ function ChatIndex() {
     if (isLoaded) {
       const loadAllUsers = async () => {
         const data = await getAllUsers();
-        setAllUsers(data);
+        if (data) {
+          setAllUsers(data);
+          setImgData(imgExtract(data));
+        };
       };
       loadAllUsers()
       .catch(console.error);      
@@ -147,10 +152,6 @@ function ChatIndex() {
       isLoaded = false;
     };
   }, []);
-
-  const allUserImages = (allUsers) => {
-
-  }
 
   const addUser = async (userID, username) => {
     const newFriendID = addFriendtoFriendList(userID, username);
@@ -211,6 +212,7 @@ function ChatIndex() {
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
   console.log('friendsList ChatIndex', friendsList);
   console.log('allUsers ChatIndex', allUsers);
+  console.log('userImg ChatIndex', imgData);
   // console.log('allUsersInput ChatIndex', allUsersInput);
 
   /* --------------------------------- */

@@ -5,11 +5,19 @@ const UserContext = createContext(null);
 
 //image extraction
 const imgExtract = (allUsers) => {
-  allUsers.map(user => {
-    
-  })
-}
+  const userImgData = {};
+
+  if (allUsers.length < 0) {
+    allUsers.map(user => {
+      if (user.contact_img !== null) {
+        userImgData[user.username] = user.imgUrl;
+      };
+    });
+  };
+  return userImgData;
+};
 
 export {
-  UserContext
+  UserContext,
+  imgExtract
 }
