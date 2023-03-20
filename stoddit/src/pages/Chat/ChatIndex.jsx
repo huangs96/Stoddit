@@ -186,6 +186,7 @@ function ChatIndex() {
       usernames.map(username => {
         if (message.username === username) {
           message.imgUrl = imgData[username];
+          setMessageImgLoad(true);
         } else if (message.username === null) {
           message.imgUrl = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
         };
