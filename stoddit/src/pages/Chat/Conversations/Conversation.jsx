@@ -63,14 +63,14 @@ function Conversation({conversation, conversationDeleted, participantData}) {
               </h5>
             </div>
           </div>
-          {hovered &&
+          {/* {hovered &&
           <div className="deleteButtonContainer">
               <DeleteOutlinedIcon 
                 sx={{ "&:hover": { color: "red" } }} 
                 onClick={deleteConversation}
               />
           </div>
-          }
+          } */}
         </div>
       </div>
     </>

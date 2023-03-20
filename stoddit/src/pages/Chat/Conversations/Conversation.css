@@ -31,7 +31,7 @@
 }
 
 .avatarList:not(:last-child) {
-  margin-left: -50px;
+  margin-left: -40px;
 }
 
 .avatarList img {

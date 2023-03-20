@@ -160,6 +160,8 @@ function ChatIndex() {
       usernames.map(username => {
         if (username === friends.contact_name) {
           friends.imgUrl = imgData[username];
+        } else {
+          friends.imgUrl = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
         };
       });
     });
@@ -168,6 +170,8 @@ function ChatIndex() {
         usernames.map(username => {
           if (pData.username === username) {
             pData.imgUrl = imgData[username];
+          } else {
+            pData.imgUrl = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
           };
         });
       });
@@ -227,7 +231,7 @@ function ChatIndex() {
   // console.log('userParticipantID', userParticipantID);
   // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);
-  // console.log('conversations---', conversations);
+  console.log('conversations---', conversations);
   // console.log('setNewConversation---', newConversation);
   // console.log('messages', messages);
   // console.log('realtimeMsg', realtimeMessage);
