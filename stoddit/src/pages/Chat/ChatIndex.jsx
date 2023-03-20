@@ -39,6 +39,7 @@ function ChatIndex() {
   //message state
   const [userParticipantID, setUserParticipantID] = useState('');
   const [messages, setMessages] = useState([]);
+  const [messageImgLoad, setMessageImgLoad] = useState(false);
   const [messageText, setMessageText] = useState('');
   const [realtimeMessage, setRealtimeMessage] = useState(null);
   const timestamp = new Date();
@@ -180,7 +181,17 @@ function ChatIndex() {
         };
       });
     });
-  }, [allUsers, conversations, friendsList]);
+
+    messages.map(message => {
+      usernames.map(username => {
+        if (message.username === username) {
+          message.imgUrl = imgData[username];
+        } else if (message.username === null) {
+          message.imgUrl = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
+        };
+      });
+    });
+  }, [allUsers, conversations, friendsList, messages]);
 
 
   const addUser = async (userID, username) => {
