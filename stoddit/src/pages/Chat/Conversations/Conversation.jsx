@@ -6,8 +6,6 @@ import {
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 function Conversation({conversation, conversationDeleted, participantData}) {
-
-  console.log('participantData', participantData);
   const [hovered, setHovered] = useState(false);
 
   const conversationHovered = async () => {
@@ -36,7 +34,7 @@ function Conversation({conversation, conversationDeleted, participantData}) {
         >
           <div className="contentContainer">
               <div className="avatarContainer">
-              {participantData.length < 0 ? 
+              {
                 participantData.map((data) => (
                   <span className='avatarList'>
                     <img
@@ -46,14 +44,14 @@ function Conversation({conversation, conversationDeleted, participantData}) {
                     />
                   </span>
                 ))
-                :
-                <span className='avatarList'>
-                    <img
-                      className="conversationImg" 
-                      src={participantData.imgUrl}
-                      alt="" 
-                    />
-                  </span>
+                // :
+                // <span className='avatarList'>
+                //     <img
+                //       className="conversationImg" 
+                //       src={participantData.imgUrl}
+                //       alt="" 
+                //     />
+                //   </span>
               }
             </div>
             <div className="conversationInfoContainer">

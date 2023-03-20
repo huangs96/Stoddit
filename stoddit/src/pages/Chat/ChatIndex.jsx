@@ -231,14 +231,15 @@ function ChatIndex() {
   const handleClose = () => {
     setOpen(false);
   };
-  const getNewConversation = (newChatroomID, convoName, convoDescription) => {
+  const getNewConversation = (newChatroomID, convoName, convoDescription, selectedFriends) => {
     let splitChatroomReturnStr = newChatroomID.split(':');
     let newGeneratedChatroomID = parseInt(splitChatroomReturnStr[splitChatroomReturnStr.length-1]);
     setConversations(convos => [...convos, {
       account_id: userID,
       name: convoName,
       chatroom_id: newGeneratedChatroomID,
-      description: convoDescription
+      description: convoDescription,
+      participantData: selectedFriends
     }]);
   };
   
