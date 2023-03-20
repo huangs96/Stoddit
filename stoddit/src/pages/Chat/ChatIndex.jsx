@@ -155,8 +155,9 @@ function ChatIndex() {
   //get all images once allUsers data is loaded
   useEffect(() => {
     const imgData = imgExtract(allUsers);
-    setUrlImg(imgData);
-  }, [allUsers]);
+    console.log('friendsList useEffect', friendsList);
+    console.log('conversation useEffect', conversations);
+  }, [allUsers, conversations, friendsList]);
 
 
   const addUser = async (userID, username) => {
@@ -218,7 +219,6 @@ function ChatIndex() {
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
   // console.log('friendsList ChatIndex', friendsList);
   console.log('allUsers ChatIndex', allUsers);
-  console.log('urlImg ChatIndex', urlImg);
   // console.log('allUsersInput ChatIndex', allUsersInput);
 
   /* --------------------------------- */
