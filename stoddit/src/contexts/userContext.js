@@ -4,16 +4,13 @@ import { createContext, useContext, useState } from 'react';
 const UserContext = createContext(null);
 
 //image extraction
-const imgExtract = async (allUsers) => {
+const imgExtract = (allUsers) => {
   const userImgData = {};
-
-  if (allUsers.length < 0) {
-    allUsers.map(user => {
-      if (user.contact_img !== null) {
-        userImgData[user.username] = user.imgUrl;
-      };
-    });
-  };
+  allUsers.map(user => {
+    if (user.contact_img !== null) {
+      userImgData[user.username] = user.imgUrl;
+    };
+  });
   return userImgData;
 };
 

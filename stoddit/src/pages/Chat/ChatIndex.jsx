@@ -62,8 +62,8 @@ function ChatIndex() {
   //socket
   const socket = useRef();
   //misc
-  const [imgData, setImgData] = useState();
   const navigate = useNavigate();
+  const [urlImg, setUrlImg] = useState();
 
   /* ------ Socket Connection ------ */
   useEffect(() => {
@@ -140,8 +140,6 @@ function ChatIndex() {
     if (isLoaded) {
       const loadAllUsers = async () => {
         const data = await getAllUsers();
-        const imgData = await imgExtract(data);
-        console.log('111111111', imgData);
         if (data) {
           setAllUsers(data);
         };
@@ -153,6 +151,12 @@ function ChatIndex() {
       isLoaded = false;
     };
   }, []);
+
+  //get all images once allUsers data is loaded
+  useEffect(() => {
+    const imgData = imgExtract(allUsers);
+    setUrlImg(imgData);
+  }, [allUsers]);
 
 
   const addUser = async (userID, username) => {
@@ -214,7 +218,7 @@ function ChatIndex() {
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
   // console.log('friendsList ChatIndex', friendsList);
   console.log('allUsers ChatIndex', allUsers);
-  console.log('userImg ChatIndex', imgData);
+  console.log('urlImg ChatIndex', urlImg);
   // console.log('allUsersInput ChatIndex', allUsersInput);
 
   /* --------------------------------- */
