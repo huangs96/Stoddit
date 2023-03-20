@@ -140,9 +140,10 @@ function ChatIndex() {
     if (isLoaded) {
       const loadAllUsers = async () => {
         const data = await getAllUsers();
+        const imgData = await imgExtract(data);
+        console.log('111111111', imgData);
         if (data) {
           setAllUsers(data);
-          setImgData(imgExtract(data));
         };
       };
       loadAllUsers()
@@ -152,6 +153,7 @@ function ChatIndex() {
       isLoaded = false;
     };
   }, []);
+
 
   const addUser = async (userID, username) => {
     const newFriendID = addFriendtoFriendList(userID, username);
@@ -203,14 +205,14 @@ function ChatIndex() {
 
   // console.log('userID', userID);
   // console.log('userParticipantID', userParticipantID);
-  console.log('participantsinChatroom', participantsInChatroom);
+  // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);
-  console.log('conversations---', conversations);
+  // console.log('conversations---', conversations);
   // console.log('setNewConversation---', newConversation);
   // console.log('messages', messages);
   // console.log('realtimeMsg', realtimeMessage);
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
-  console.log('friendsList ChatIndex', friendsList);
+  // console.log('friendsList ChatIndex', friendsList);
   console.log('allUsers ChatIndex', allUsers);
   console.log('userImg ChatIndex', imgData);
   // console.log('allUsersInput ChatIndex', allUsersInput);

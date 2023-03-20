@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from 'react';
 const UserContext = createContext(null);
 
 //image extraction
-const imgExtract = (allUsers) => {
+const imgExtract = async (allUsers) => {
   const userImgData = {};
 
   if (allUsers.length < 0) {
