@@ -155,8 +155,12 @@ function ChatIndex() {
   //get all images once allUsers data is loaded
   useEffect(() => {
     const imgData = imgExtract(allUsers);
-    console.log('friendsList useEffect', friendsList);
-    console.log('conversation useEffect', conversations);
+    friendsList.map(friends => {
+      console.log('friends', friends);
+    });
+    conversations.map(convos => {
+      console.log('convos', ...convos.participantData);
+    });
   }, [allUsers, conversations, friendsList]);
 
 
