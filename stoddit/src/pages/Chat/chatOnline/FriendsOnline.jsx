@@ -57,7 +57,6 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
     };
 
     if (onlineFriends.length > 1) {
-      console.log('it got here map1');
       onlineFriends.map(onlineFriend => {
         if (onlineFriend === friends.contact_name_id) {
           return <div className="friendsOnline"
@@ -83,7 +82,6 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
         };
       });
     } else if (friends.contact_name_id === onlineFriends) {
-        console.log('one friend online');
         return <div className="friendsOnline"
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
@@ -129,10 +127,6 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   });
 
   const displaySearchedUser = allUsers.map((user,i) => {
-    if (user.imgUrl === null) {
-      user.imgUrl = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
-    };
-
     if (!friendsListDictionary.has(user.username) && user.username != username) {
       user.alreadyFriend = false;
     } else {
@@ -147,7 +141,6 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
           src={user.imgUrl}
           alt=""
           />
-          <div className="chatOfflineBadge"></div>
         </div>
         <span className="offlineFriendName" key={i}>{user.username}</span>
       </div>
