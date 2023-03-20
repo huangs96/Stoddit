@@ -164,10 +164,9 @@ function ChatIndex() {
       });
     });
     conversations.map(convos => {
-      console.log('convos', convos.participantData);
       convos.participantData.map(pData => {
         usernames.map(username => {
-          if (pData.username = username) {
+          if (pData.username === username) {
             pData.imgUrl = imgData[username];
           };
         });
