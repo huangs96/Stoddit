@@ -92,6 +92,7 @@ function ChatIndex() {
     });
 
     socket.current.on('chatMessage', messageData => {
+      console.log('socket', messageData.receiverID[0].id);
       setRealtimeMessage({
         message_text: messageData.text,
         participantID: messageData.receiverID[0].id,
@@ -381,7 +382,7 @@ function ChatIndex() {
         };
       });
 
-      // addMessageToConversation(userParticipant, messageText, receiverID, chatroomKey);
+      addMessageToConversation(userParticipant, messageText, receiverID, chatroomKey);
 
       setMessages(msgData => [...msgData, {
         account_id: userID,
