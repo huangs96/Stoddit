@@ -167,9 +167,11 @@ function ChatIndex() {
       console.log('convos', convos.participantData);
       convos.participantData.map(pData => {
         usernames.map(username => {
-          if (pData.)
-        })
-      })
+          if (pData.username = username) {
+            pData.imgUrl = imgData[username];
+          };
+        });
+      });
     });
   }, [allUsers, conversations, friendsList]);
 
