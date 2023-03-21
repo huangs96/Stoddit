@@ -53,36 +53,39 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
     return parseInt(IDs);
   });
 
-  console.log(onlineFriendsIDs);
-
   const displayFriendsList = friendsList.map((friends, i) => {
-    if (friends.contact_name_id === 51) {
-      return (
-        <div className="friendsOnline"
-          aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
-          onContextMenu={(e) => {
-            handleToggle(e);
-            selectFriend(friends);
-          }}
-          >
-          <div className="chatOnlineFriend">
-            <div className="friendOnlineImgContainer">
-              <img
-              className="friendsOnlineImg"
-              src={friends.imgUrl}
-              alt=""
-              />
-              <div className="chatOnlineBadge"></div>
-            </div>
-            <span className="onlineFriendName" key={i}>{friends.contact_name}</span>
-          </div>
-        </div>
-      );
-    };
+    onlineFriendsIDs.map(onlineIDs => {
+      if (friends.contact_name_id === onlineIDs) {
+        friends.online = true;
+        // return (
+        //   <div className="friendsOnline"
+        //     aria-haspopup="true"
+        //     aria-expanded={open ? 'true' : undefined}
+        //     onContextMenu={(e) => {
+        //       handleToggle(e);
+        //       selectFriend(friends);
+        //     }}
+        //     >
+        //     <div className="chatOnlineFriend">
+        //       <div className="friendOnlineImgContainer">
+        //         <img
+        //         className="friendsOnlineImg"
+        //         src={friends.imgUrl}
+        //         alt=""
+        //         />
+        //         <div className="chatOnlineBadge"></div>
+        //       </div>
+        //       <span className="onlineFriendName" key={i}>{friends.contact_name}</span>
+        //     </div>
+        //   </div>
+        // );
+      } else {
+        friends.online = false;
+      };
+    });
 
     return (
-      <div className="friendsOffline"
+      <div className={"friendsOffline"}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           onContextMenu={(e) => {
