@@ -49,14 +49,38 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   }, []);
   /* ------------------------- */
 
-  const onlineFriendsIDs = Object.keys(onlineFriends).map(ids => {
-    return parseInt(ids);
+  const onlineFriendsIDs = Object.keys(onlineFriends).map(IDs => {
+    return parseInt(IDs);
   });
 
   console.log(onlineFriendsIDs);
-  console.log(friendsList);
 
   const displayFriendsList = friendsList.map((friends, i) => {
+    if (friends.contact_name_id === 50) {
+      return (
+        <div className="friendsOnline"
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          onContextMenu={(e) => {
+            handleToggle(e);
+            selectFriend(friends);
+          }}
+          >
+          <div className="chatOnlineFriend">
+            <div className="friendOnlineImgContainer">
+              <img
+              className="friendsOnlineImg"
+              src={friends.imgUrl}
+              alt=""
+              />
+              <div className="chatOnlineBadge"></div>
+            </div>
+            <span className="onlineFriendName" key={i}>{friends.contact_name}</span>
+          </div>
+        </div>
+      );
+    };
+
     return (
       <div className="friendsOffline"
           aria-haspopup="true"
