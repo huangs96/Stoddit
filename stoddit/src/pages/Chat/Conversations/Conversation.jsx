@@ -29,8 +29,6 @@ function Conversation({conversation, conversationDeleted, participantData, usern
       participantData.splice(x, 1);
     };
   };
-  console.log(participantData);
-  console.log(participantData.length);
 
   return (
     <>

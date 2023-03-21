@@ -286,6 +286,7 @@ const getUserIDfromName = (async (req, res) => {
         const idsFromNames = await client.query(queries.getUserIDfromFriendListName, [nameFromFriendList[x]]);
         if (idsFromNames) {
           userIDs.push(idsFromNames.rows[0].id);
+          console.log('here3', userIDs);
         };
       };
       return res.status(200).json(userIDs);

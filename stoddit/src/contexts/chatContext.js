@@ -4,7 +4,6 @@ import {sendMessage, createNewChatroom, addFriend, deleteFriend} from '../servic
 const createNewChatroomWithParticipants = async (data) => {
   let chatroomBody = {
     name: data.chatroomName,
-    title: data.chatroomTitle,
     description: data.chatroomDescription,
     userIDs: data.userIDs,
     lDate: data.lDate
