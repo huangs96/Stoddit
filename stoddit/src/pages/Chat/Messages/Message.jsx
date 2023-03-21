@@ -3,8 +3,6 @@ import React, { useRef } from 'react';
 import {format} from 'timeago.js';
 
 function Message({userID, messages}) {
-  const prevMessage = useRef('');
-  const bottomRef = useRef(null);
 
   return (
     <>

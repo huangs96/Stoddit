@@ -185,7 +185,6 @@ function ChatIndex() {
         };
       });
     });
-
     messages.map(message => {
       usernames.map(username => {
         if (message.username === username) {
@@ -195,6 +194,9 @@ function ChatIndex() {
           message.imgUrl = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
         };
       });
+    });
+    scrollRef.current?.scrollIntoView({
+      behavior: 'smooth'
     });
   }, [allUsers, conversations, friendsList, messages]);
 
@@ -305,11 +307,9 @@ function ChatIndex() {
     };
     getChatroomData()
     .catch(console.error);
-
     return () => {
       isLoaded = false;
     };
-
   }, [userHasLeftConversation]);
 
   useEffect(() => {
@@ -323,19 +323,15 @@ function ChatIndex() {
         };
       });
     };
-
     if (isLoaded && chatroomKey) {
       getChatroomDataByChatroomID();
     } else {
       console.log('click conversation');
     };
-
     return () => {
       isLoaded = false;
       console.log('getMessagesFromChatroom returned');
     };
-
-
   }, [chatroomKey, newConversation]);
 
   useEffect(() => {
@@ -519,12 +515,12 @@ function ChatIndex() {
       <div className="chatBox">
         <div className="chatBoxWrapper">
           <div className="chatBoxTop">
-            <div>
               <Message 
                 userID={userID} 
                 messages={messages}
                 userHasLeft={userHasLeftConversation}
               />
+            <div ref={scrollRef}>
             </div>
           </div>
           <form onSubmit={handleSubmit}>
