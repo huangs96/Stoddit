@@ -24,7 +24,6 @@ function NewConversation(props) {
   const [selectedFriends, setSelectedFriends] = useState([]);
   const [conversationData, setConversationData] = useState({
     chatroomName: '',
-    chatroomTitle: '',
     chatroomDescription: '',
     userIDs: [],
     sDate: todaysDate,
@@ -65,7 +64,6 @@ function NewConversation(props) {
   const resetConversationData = () => {
     setConversationData({
       chatroomName: '',
-      chatroomTitle: '',
       chatroomDescription: '',
       userIDs: [],
       sDate: todaysDate,
@@ -92,7 +90,6 @@ function NewConversation(props) {
     };
 
     conversationData.chatroomName = conversationName;
-    conversationData.chatroomTitle = conversationTitle;
     conversationData.chatroomDescription = conversationDescription;
 
     console.log('convodata', conversationData);
