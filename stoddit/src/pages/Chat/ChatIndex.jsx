@@ -102,9 +102,11 @@ function ChatIndex() {
     //need to get live updates of when friends are offline and online
     socket.current.on('getUsers', users => {
       console.log('users socket', users);
+      const onlineUserIDs = Object.keys(users.users);
+      console.log('users socket length', onlineUserIDs.length);
       setOnlineFriendsData(users.users);
     });
-  }, [onlineFriendsData]);
+  }, []);
 
   //emit to backend which users are live
   useEffect(() => {
