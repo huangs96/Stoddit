@@ -28,6 +28,7 @@ function Header() {
     localStorage.clear();
     console.log('localstorage should be cleared', localStorage);
     setValue('Home');
+    setShowContextMenu(false);
     return navigate('/login');
   };
 
