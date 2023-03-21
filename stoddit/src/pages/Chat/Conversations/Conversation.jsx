@@ -25,12 +25,12 @@ function Conversation({conversation, conversationDeleted, participantData, usern
   };
 
   for (let x=0; x<participantData.length; x++) {
-    console.log(participantData[x]);
     if (participantData[x].username === username) {
-      participantData.splice(x, 1, participantData[x]);
+      participantData.splice(x, 1);
     };
   };
   console.log(participantData);
+  console.log(participantData.length);
 
   return (
     <>
