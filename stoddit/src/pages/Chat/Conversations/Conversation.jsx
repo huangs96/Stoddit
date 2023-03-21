@@ -24,11 +24,9 @@ function Conversation({conversation, conversationDeleted, participantData, usern
     conversationDeleted();
   };
 
-  for (let x=0; x<participantData.length; x++) {
-    if (participantData[x].username === username) {
-      participantData.splice(x, 1);
-    };
-  };
+  participantData.map((data) => {
+
+  });
 
   return (
     <>
