@@ -58,6 +58,7 @@ function NewConversation(props) {
       setSelectedFriends(friends => friends.filter((friend) => friend !== value));
     } else {
       setSelectedFriends(friends => [...friends, value])
+      console.log('selectedFriends', selectedFriends);
     };
   };
 

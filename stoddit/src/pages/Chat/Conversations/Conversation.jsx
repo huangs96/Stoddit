@@ -6,6 +6,7 @@ import {
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 function Conversation({conversation, conversationDeleted, participantData}) {
+  console.log('participantData', participantData);
   const [hovered, setHovered] = useState(false);
 
   const conversationHovered = async () => {
