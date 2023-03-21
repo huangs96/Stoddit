@@ -55,10 +55,14 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
 
   const displayFriendsList = friendsList.map((friends, i) => {
     onlineFriendsIDs.map(onlineIDs => {
+      // console.log('onlineIDs', onlineIDs);
+      // console.log('onlineIDs', friends.contact_name_id);
       if (friends.contact_name_id === onlineIDs) {
         friends.online = true;
-      } else {
+        console.log('friends', friends);
+      } else if (friends.contact_name_id !== onlineIDs && onlineIDs !== userID) {
         friends.online = false;
+        // console.log('friends', friends);
       };
     });
 
