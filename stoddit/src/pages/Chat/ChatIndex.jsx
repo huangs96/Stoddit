@@ -76,6 +76,20 @@ function ChatIndex() {
       withCredentials: true,
     });
 
+    socket.current.on('getUsers', users => {
+      let liveUsersID = Object.keys(users.users);
+      if (liveUsersID.length > 1) {
+        for (let liveUser of liveUsersID) {
+          let liveUserInt = parseInt(liveUser);
+          if (liveUserInt !== userID) {
+            setOnlineFriendsData(liveUserInt);
+          };
+        }  
+      } else {
+        setOnlineFriendsData([]);
+      };
+    });
+
     socket.current.on('chatMessage', messageData => {
       console.log('socket', messageData.receiverID[0].id);
       setRealtimeMessage({
@@ -96,16 +110,6 @@ function ChatIndex() {
       socket.current.off('getUserMessage');
       console.log('sockets returned');
     };
-  }, []);
-
-  useEffect(() => {
-    //need to get live updates of when friends are offline and online
-    socket.current.on('getUsers', users => {
-      console.log('users socket', users);
-      const onlineUserIDs = Object.keys(users.users);
-      console.log('users socket length', onlineUserIDs.length);
-      setOnlineFriendsData(users.users);
-    });
   }, []);
 
   //emit to backend which users are live
@@ -285,7 +289,7 @@ function ChatIndex() {
   // console.log('setNewConversation---', newConversation);
   // console.log('messages', messages);
   // console.log('realtimeMsg', realtimeMessage);
-  console.log('friendsOnline ChatIndex', onlineFriendsData);
+  // console.log('friendsOnline ChatIndex', onlineFriendsData);
   // console.log('friendsList ChatIndex', friendsList);
   // console.log('allUsers ChatIndex', allUsers);
   // console.log('allUsersInput ChatIndex', allUsersInput);

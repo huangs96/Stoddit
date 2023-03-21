@@ -49,25 +49,38 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   }, []);
   /* ------------------------- */
 
-  const onlineFriendsIDs = Object.keys(onlineFriends).map(IDs => {
-    return parseInt(IDs);
-  });
-
-  console.log('onlineFriendsIDs', onlineFriendsIDs);
+  console.log('onlineFriendsIDs', onlineFriends);
 
   const displayFriendsList = friendsList.map((friends, i) => {
-    onlineFriendsIDs.map(onlineIDs => {
-      if (friends.contact_name_id === onlineIDs) {
-        friends.online = true;
-        console.log('friends true', friends);
-      } else if (friends.contact_name_id !== onlineIDs && onlineIDs !== userID) {
-        friends.online = false;
-        console.log('friends false', friends);
-      };
-    });
+    friendsListDictionary.set(friends.contact_name, i);
 
-    return (
-      <div className={friends.online ? "friendsOnline" : "friendsOffline"}
+    if (onlineFriends.length > 1) {
+      onlineFriends.map(onlineFriend => {
+        if (onlineFriend === friends.contact_name_id) {
+          return <div className="friendsOnline"
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onContextMenu={(e) => {
+              handleToggle(e);
+              selectFriend(friends);
+            }}
+          >
+            <div className="chatOnlineFriend">
+              <div className="friendOnlineImgContainer">
+                <img
+                className="friendsOnlineImg"
+                src={friends.imgUrl}
+                alt=""
+                />
+                <div className="chatOnlineBadge"></div>
+              </div>
+              <span className="onlineFriendName" key={i}>{friends.contact_name}</span>
+            </div>
+          </div>
+        };
+      });
+    } else if (friends.contact_name_id === onlineFriends) {
+        return <div className="friendsOnline"
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           onContextMenu={(e) => {
@@ -75,19 +88,40 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
             selectFriend(friends);
           }}
         >
-        <div className={friends.online ? "chatOnlineFriend" : "chatOfflineFriend"}>
-          <div className={friends.online ?"friendOnlineImgContainer" : "friendOfflineImgContainer"}>
-            <img
-            className={friends.online ? "friendsOnlineImg" : "friendsOfflineImg"}
-            src={friends.imgUrl}
-            alt=""
-            />
-            <div className={friends.online ? "chatOnlineBadge" : "chatOfflineBadge"}></div>
+          <div className="chatOnlineFriend">
+            <div className="friendOnlineImgContainer">
+              <img
+              className="friendsOnlineImg"
+              src={friends.imgUrl}
+              alt=""
+              />
+              <div className="chatOnlineBadge"></div>
+            </div>
+            <span className="onlineFriendName" key={i}>{friends.contact_name}</span>
           </div>
-          <span className={friends.online ? "onlineFriendName" :  "offlineFriendName"} key={i}>{friends.contact_name}</span>
         </div>
+    } else {
+      return <div className="friendsOffline"
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onContextMenu={(e) => {
+          handleToggle(e);
+          selectFriend(friends);
+        }}
+      >
+      <div className="chatOfflineFriend">
+        <div className="friendOfflineImgContainer">
+          <img
+          className="friendsOfflineImg"
+          src={friends.imgUrl}
+          alt=""
+          />
+          <div className="chatOfflineBadge"></div>
+        </div>
+        <span className="offlineFriendName" key={i}>{friends.contact_name}</span>
       </div>
-    );
+    </div>
+    };
   });
 
   const displaySearchedUser = allUsers.map((user,i) => {
