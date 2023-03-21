@@ -52,10 +52,6 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   const displayFriendsList = friendsList.map((friends, i) => {
     friendsListDictionary.set(friends.contact_name, i);
 
-    if (!friends.imgUrl) {
-      friends.imgUrl= 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
-    };
-
     if (onlineFriends.length > 1) {
       onlineFriends.map(onlineFriend => {
         if (onlineFriend === friends.contact_name_id) {
