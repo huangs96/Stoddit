@@ -59,10 +59,7 @@ const createChatroom = (async (req, res) => {
   const description = req.body.description;
   const id = req.body.userIDs;
   const lDate = req.body.lDate;
-  // console.log('reqbody', req.body);
   let dataSubmit = false;
-
-  // console.log('id---', id);
 
   try {
     //create chatroom
