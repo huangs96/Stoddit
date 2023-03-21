@@ -24,8 +24,18 @@ function Conversation({conversation, conversationDeleted, participantData, usern
     conversationDeleted();
   };
 
-  participantData.map((data) => {
-
+  const displayImg = participantData.map((data) => {
+    if (data.username !== username) {
+      return (
+        <span className='avatarList'>
+          <img
+            className="conversationImg" 
+            src={data.imgUrl}
+            alt="" 
+          />
+        </span>
+      );
+    };
   });
 
   return (
@@ -38,17 +48,7 @@ function Conversation({conversation, conversationDeleted, participantData, usern
         >
           <div className="contentContainer">
               <div className="avatarContainer">
-              {
-                participantData.map((data) => (
-                  <span className='avatarList'>
-                    <img
-                      className="conversationImg" 
-                      src={data.imgUrl}
-                      alt="" 
-                    />
-                  </span>
-                ))
-              }
+              {displayImg}
             </div>
             <div className="conversationInfoContainer">
               <span 
