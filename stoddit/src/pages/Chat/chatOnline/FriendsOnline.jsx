@@ -56,7 +56,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   console.log(onlineFriendsIDs);
 
   const displayFriendsList = friendsList.map((friends, i) => {
-    if (friends.contact_name_id === 50) {
+    if (friends.contact_name_id === 51) {
       return (
         <div className="friendsOnline"
           aria-haspopup="true"
