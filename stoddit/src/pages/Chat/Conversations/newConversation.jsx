@@ -129,16 +129,6 @@ function NewConversation(props) {
           onChange={onChangeConversationName}
           value={conversationName}
         />
-        <TextField
-          name="conversationTitle"
-          className="conversationTitle"
-          label="Conversation Title" 
-          variant="filled" 
-          size="small" 
-          onChange={onChangeConversationTitle}
-          value={conversationTitle}
-          
-        />
         <TextField 
           name="conversationDescription"
           className="conversationDescription"

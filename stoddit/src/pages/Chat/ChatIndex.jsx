@@ -482,6 +482,7 @@ function ChatIndex() {
                 <Conversation 
                   conversation={convo}
                   userParticipantID={userParticipantID}
+                  username={username}
                   conversationDeleted={conversationDeleted}
                   participantData={convo.participantData}
                 />
