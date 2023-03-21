@@ -37,6 +37,7 @@ function ChatIndex() {
   const userID = JSON.parse(localStorage.getItem('UserID'));
   const username = JSON.parse(localStorage.getItem('Username'));
   //message state
+  const scrollRef = useRef();
   const [userParticipantID, setUserParticipantID] = useState('');
   const [messages, setMessages] = useState([]);
   const [messageImgLoad, setMessageImgLoad] = useState(false);
@@ -518,11 +519,13 @@ function ChatIndex() {
       <div className="chatBox">
         <div className="chatBoxWrapper">
           <div className="chatBoxTop">
-            <Message 
-              userID={userID} 
-              messages={messages}
-              userHasLeft={userHasLeftConversation}
-            />
+            <div>
+              <Message 
+                userID={userID} 
+                messages={messages}
+                userHasLeft={userHasLeftConversation}
+              />
+            </div>
           </div>
           <form onSubmit={handleSubmit}>
             <div className="chatBoxBottom">
