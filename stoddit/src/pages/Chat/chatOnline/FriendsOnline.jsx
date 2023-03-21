@@ -49,11 +49,19 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   }, []);
   /* ------------------------- */
 
+  const onlineFriendsIDs = Object.keys(onlineFriends).map(ids => {
+    return parseInt(ids);
+  });
+
+  console.log(onlineFriendsIDs);
+
   const displayFriendsList = friendsList.map((friends, i) => {
     friendsListDictionary.set(friends.contact_name, i);
 
     if (onlineFriends.length > 1) {
       onlineFriends.map(onlineFriend => {
+        console.log('onlineFriend', onlineFriend)
+        console.log('onlineFriend', friends.contact_name_id)
         if (onlineFriend === friends.contact_name_id) {
           return <div className="friendsOnline"
             aria-haspopup="true"
