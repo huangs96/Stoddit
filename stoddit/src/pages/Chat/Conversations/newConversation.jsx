@@ -175,7 +175,7 @@ function NewConversation(props) {
               } */}
             </ListItem>
           ))}
-          <ListItem autoFocus button onClick={createConversation}>
+          <ListItem>
             <Button startIcon={<AddIcon />} variant="contained" color="success" autoFocus onClick={createConversation}>
                 Create Conversation
             </Button>
