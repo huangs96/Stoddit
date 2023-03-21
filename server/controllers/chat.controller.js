@@ -62,7 +62,7 @@ const createChatroom = (async (req, res) => {
 
   try {
     //create chatroom
-    const newChatroom = await client.query(queries.createChatroom, [name, title, description]);
+    const newChatroom = await client.query(queries.createChatroom, [name, description]);
     //chatroom query returns id of chatroom
     let chatroom_id = newChatroom.rows[0].id;
     //create participants of chatroom, if more than one id, loop through array of ids
