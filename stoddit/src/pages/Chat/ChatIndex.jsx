@@ -234,23 +234,45 @@ function ChatIndex() {
   const getNewConversation = (newChatroomID, convoName, convoDescription, selectedFriends) => {
     let splitChatroomReturnStr = newChatroomID.split(':');
     let newGeneratedChatroomID = parseInt(splitChatroomReturnStr[splitChatroomReturnStr.length-1]);
-    const participantData = [
-      {
-        username: username,
-        imgUrl: realTimeMsgImgObj[username]
-      },
-      {
-        username: selectedFriends,
-        imgUrl: realTimeMsgImgObj[selectedFriends]
-      }
-    ]
-    setConversations(convos => [...convos, {
-      account_id: userID,
-      name: convoName,
-      chatroom_id: newGeneratedChatroomID,
-      description: convoDescription,
-      participantData: participantData
-    }]);
+    if (selectedFriends.length < 2) {
+      const participantData = [
+        {
+          username: username,
+          imgUrl: realTimeMsgImgObj[username]
+        },
+        {
+          username: selectedFriends,
+          imgUrl: realTimeMsgImgObj[selectedFriends]
+        }
+      ]
+      setConversations(convos => [...convos, {
+        account_id: userID,
+        name: convoName,
+        chatroom_id: newGeneratedChatroomID,
+        description: convoDescription,
+        participantData: participantData
+      }]);
+    } else if (selectedFriends.length > 2) {
+      const participantData = [
+        {
+          username: username,
+          imgUrl: realTimeMsgImgObj[username]
+        }
+      ];
+      selectedFriends.map(sFriends => {
+        participantData.push({
+          username: sFriends,
+          imgUrl: realTimeMsgImgObj[sFriends]
+        })
+      });
+      setConversations(convos => [...convos, {
+        account_id: userID,
+        name: convoName,
+        chatroom_id: newGeneratedChatroomID,
+        description: convoDescription,
+        participantData: participantData
+      }]);
+    };
   };
   
   const conversationDeleted = () => {
