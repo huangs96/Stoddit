@@ -278,7 +278,7 @@ function ChatIndex() {
   // console.log('userParticipantID', userParticipantID);
   // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);
-  console.log('conversations---', conversations);
+  // console.log('conversations---', conversations);
   // console.log('username chatIndex', username);
   // console.log('setNewConversation---', newConversation);
   // console.log('messages', messages);
@@ -465,7 +465,7 @@ function ChatIndex() {
           <Tab label="Live Chatrooms" />
           </Tabs>
           {value == 0 ?
-            filteredConversations.map((convo, i) => (
+            filteredConversations.map((convo) => (
               <div 
                 onClick={() => {
                   selectConversation(convo.chatroom_id);
@@ -478,7 +478,6 @@ function ChatIndex() {
                   username={username}
                   conversationDeleted={conversationDeleted}
                   participantData={convo.participantData}
-                  index={i}
                 />
               </div>
             ))

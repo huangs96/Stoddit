@@ -5,9 +5,12 @@ import {
 } from '../../../services/chat.service';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-function Conversation({conversation, conversationDeleted, participantData, username, index}) {
+function Conversation({conversation, conversationDeleted, participantData, username}) {
   const [hovered, setHovered] = useState(false);
-  const [selectedConversation, setSelectedConversation] = useState(false);
+  const [selectedConversation, setSelectedConversation] = useState('');
+  const selectConversation = async () => {
+    setSelectedConversation(conversation.chatroom_id);
+  };
   const conversationHovered = async () => {
     setHovered(true);
   };
@@ -23,6 +26,8 @@ function Conversation({conversation, conversationDeleted, participantData, usern
     console.log('user has left the chat');
     conversationDeleted();
   };
+
+  console.log('123', selectedConversation === conversation.chatroom_id);
 
   const displayImg = participantData.map((data) => {
     if (data.username !== username) {
@@ -42,9 +47,9 @@ function Conversation({conversation, conversationDeleted, participantData, usern
     <>
       <div className="conversationContainer">
         <div
-          className={selectedConversation === index ? "selectedConversation" : "conversation"}
+          className={selectedConversation === conversation.chatroom_id ? "selectedConversation" : "conversation"}
           onClick={() => {
-            setSelectedConversation(index);
+            selectConversation();
           }}
           onMouseEnter={conversationHovered}
           onMouseLeave={conversationUnhovered}
