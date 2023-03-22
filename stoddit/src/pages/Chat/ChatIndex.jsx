@@ -47,6 +47,7 @@ function ChatIndex() {
   //chatroom state
   const [chatroomKey, setChatroomKey] = useState(null);
   const [conversations, setConversations] = useState([]);
+  const [selectedConversation, setSelectedConversation] = useState(undefined);
   const [conversationMembers, setConversationMembers] = useState([]);
   const [convoImgLoad, setConvoImgLoad] = useState(false);
   const [searchConversationInput, setConversationSearchInput] = useState('');
@@ -383,6 +384,7 @@ function ChatIndex() {
   const selectConversation = (key) => {
     if (key) {
       setChatroomKey(key);
+      setSelectedConversation(key);
     };
   };
   
@@ -478,6 +480,7 @@ function ChatIndex() {
                   username={username}
                   conversationDeleted={conversationDeleted}
                   participantData={convo.participantData}
+                  selectedConversation={selectedConversation}
                 />
               </div>
             ))
