@@ -63,7 +63,9 @@ io.on("connection", (socket) => {
 
   console.log(`newsocketconnection: ${socket.id}`);
   socket.on('liveUsers', (userID) => {
+    // console.log('login1', users);
     users.addUser(userID, socket.id);
+    // console.log('login2', users);
     io.emit('getUsers', users);
     // io.emit('getUserMessage', `${userID} has joined!`);
   });
@@ -76,8 +78,11 @@ io.on("connection", (socket) => {
     io.emit(conversationData);
   });
   socket.on('logout', () => {
-    console.log('logout1', socket);
-    // users.removeUser(socket.id);
+    // console.log('logout1', socket);
+    // console.log('logout2', users);
+    users.removeUser(socket.id);
+    io.emit('getUsers', users);
+    console.log('logout1', users);
   });
   //runs when client disconnects
   socket.on("disconnect", () => {
