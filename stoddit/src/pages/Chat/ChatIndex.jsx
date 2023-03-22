@@ -64,20 +64,14 @@ function ChatIndex() {
   const [allUsersInput, setAllUsersInput] = useState('');
   let searched = false;
   //socket
-  const socket = useRef();
-  const socket1 = useContext(SocketContext);
+  // const socket = useRef();
+  const socket = useContext(SocketContext);
   //misc
   const navigate = useNavigate();
 
   /* ------ Socket Connection ------ */
   useEffect(() => {
-    socket.current = io('ws://localhost:5000', {
-      withCredentials: true,
-    });
-
-    console.log('socket1', socket1);
-
-    socket.current.on('getUsers', users => {
+    socket.on('getUsers', users => {
       let liveUsersID = Object.keys(users.users);
       if (liveUsersID.length > 1) {
         for (let liveUser of liveUsersID) {
@@ -91,7 +85,7 @@ function ChatIndex() {
       };
     });
 
-    socket.current.on('chatMessage', messageData => {
+    socket.on('chatMessage', messageData => {
       console.log('socket', messageData.receiverID[0].id);
       setRealtimeMessage({
         message_text: messageData.text,
@@ -106,19 +100,19 @@ function ChatIndex() {
     });
 
     return () => {
-      socket.current.off('chatMessage');
-      socket.current.off('getUsers');
-      socket.current.off('getUserMessage');
+      socket.off('chatMessage');
+      socket.off('getUsers');
+      socket.off('getUserMessage');
       console.log('sockets returned');
     };
   }, []);
 
   //emit to backend which users are live
   useEffect(() => {
-    socket.current.emit('liveUsers', userID);
+    socket.emit('liveUsers', userID);
 
     return () => {
-      socket.current.off('liveUsers');
+      socket.off('liveUsers');
     };
   }, [userID]);
 

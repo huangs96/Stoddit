@@ -17,9 +17,6 @@ function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const socket = useRef();
-  socket.current = io('ws://localhost:5000', {
-    withCredentials: true,
-  });
 
   const navigate = useNavigate();
 
@@ -29,7 +26,6 @@ function Header() {
       console.log(deleteDetails.error);
       return;
     };
-    socket.current.disconnect();
     console.log(deleteDetails.message);
     localStorage.clear();
     console.log('localstorage should be cleared', localStorage);
