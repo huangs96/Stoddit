@@ -24,6 +24,26 @@
   border-radius: 10px;
 }
 
+.conversationDirectMsg {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 10px 32px 10px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.selectedConversationDirectMsg {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 10px 25px 10px;
+  cursor: pointer;
+  width: 100%;
+  background-color: rgb(209, 214, 221);
+  border-radius: 10px;
+}
+
 .conversationInfoContainer {
   display: flex;
   flex-direction: column;
@@ -50,6 +70,11 @@
 }
 
 .conversation:hover {
+  background-color: rgb(209, 214, 221);
+  border-radius: 10px;
+}
+
+.conversationDirectMsg:hover {
   background-color: rgb(209, 214, 221);
   border-radius: 10px;
 }

@@ -75,9 +75,6 @@ function Conversation({conversation, conversationDeleted, participantData, usern
                   >
                     {conversation.description}
                   </h5>
-                  <h5>
-
-                  </h5>
               </div>
             </div>
           {hovered &&
@@ -93,7 +90,7 @@ function Conversation({conversation, conversationDeleted, participantData, usern
           :
           <div className="conversationContainer">
           <div
-          className={selectedConversation === conversation.chatroom_id ? 'selectedConversation' : 'conversation'}
+          className={selectedConversation === conversation.chatroom_id ? 'selectedConversationDirectMsg' : 'conversationDirectMsg'}
           onMouseEnter={conversationHovered}
           onMouseLeave={conversationUnhovered}
         >
