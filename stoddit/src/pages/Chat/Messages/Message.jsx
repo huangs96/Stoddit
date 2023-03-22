@@ -23,7 +23,7 @@ function Message({userID, messages}) {
                 <span STYLE="margin-right: 10px">
                   {data.username}
                 </span>
-                <span>
+                <span STYLE="color:gray">
                   {format(data.sent_at)}
                 </span>
               </div>

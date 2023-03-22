@@ -28,8 +28,8 @@
 .messageText {
   padding: 10px;
   border-radius: 20px;
-  background-color: rgb(71, 71, 71);
-  color: white;
+  background-color: rgb(95, 95, 95);
+  color: rgb(255, 255, 255);
   max-width: 300px;
 }
 
@@ -45,7 +45,7 @@
 }
 
 .message.own .messageText {
-  background-color: rgb(36, 146, 219);
+  background-color: rgb(23, 177, 238);
   color: rgb(255, 255, 255);
 }
 
