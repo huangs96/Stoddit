@@ -273,12 +273,12 @@ function ChatIndex() {
     setUserHasLeftConversation(boolean => !boolean);
   };
 
-  console.log('userID', userID);
-  console.log('socket chatIndex', socket);
+  // console.log('userID', userID);
+  // console.log('socket chatIndex', socket);
   // console.log('userParticipantID', userParticipantID);
   // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);
-  // console.log('conversations---', conversations);
+  console.log('conversations---', ...conversations);
   // console.log('username chatIndex', username);
   // console.log('setNewConversation---', newConversation);
   // console.log('messages', messages);
@@ -295,6 +295,9 @@ function ChatIndex() {
       const chatroomData = await getChatroomByUserID(userID);
       if (isLoaded && chatroomData) {
         setConversations(chatroomData);
+        chatroomData.map(chatroom => {
+          setChatroomKey(chatroom.chatroom_id);
+        });
       };
     };
     getChatroomData()
