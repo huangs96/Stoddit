@@ -20,6 +20,10 @@ function AppRoutes() {
         element={<RegisterPage />}
       />
       <Route element={<PrivateRoutes />}>
+      <Route
+        path="/"
+        element={<HomePage />}
+        />
         <Route
         path="home"
         element={<HomePage />}

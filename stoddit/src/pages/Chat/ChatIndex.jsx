@@ -68,7 +68,6 @@ function ChatIndex() {
   const socket = useRef();
   //misc
   const navigate = useNavigate();
-  const [urlImg, setUrlImg] = useState();
 
   /* ------ Socket Connection ------ */
   useEffect(() => {

@@ -62,24 +62,20 @@ let users = new LiveUserContainer;
 io.on("connection", (socket) => {
 
   console.log(`newsocketconnection: ${socket.id}`);
-  
   socket.on('liveUsers', (userID) => {
     users.addUser(userID, socket.id);
     io.emit('getUsers', users);
     // io.emit('getUserMessage', `${userID} has joined!`);
   });
-
   socket.on('chatMessage', messageData => {
     io.emit(messageData);
   });
-
   socket.on('conversationSocket', conversationData => {
     console.log('convodata', conversationData);
     // socket.join(conversationData);
     chatroom = conversationData;
     io.emit(conversationData);
   });
-
   //runs when client disconnects
   socket.on("disconnect", () => {
     users.removeUser(socket.id);

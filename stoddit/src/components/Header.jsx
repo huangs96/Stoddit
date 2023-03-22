@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useHistory } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { io } from 'socket.io-client';
 import ContextMenu from './ContextMenu';
 import viewProfile from '../Helpers/menuHelpers'
 import { AppBar, Box, Typography, Toolbar, Tabs, Tab, Button, IconButton } from '@mui/material';
