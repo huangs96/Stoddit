@@ -2,7 +2,8 @@ import './ChatIndex.css';
 import React, { 
   useState, 
   useEffect, 
-  useRef
+  useRef,
+  useContext
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
@@ -21,9 +22,9 @@ import {
   addMessageToConversation, 
   addFriendtoFriendList
  } from '../../contexts/chatContext';
+ import { SocketContext } from '../../contexts/socketProvider';
 import { 
   getChatroomByUserID,
-  getParticipantIDFromChatroomID,
   getMessagesByChatroomID,
   getFriendsListById,
   deleteFriend
@@ -44,8 +45,6 @@ function ChatIndex() {
   const [messageText, setMessageText] = useState('');
   const [realTimeMsgImgObj, setRealTimeMsgImgObj] = useState('');
   const [realtimeMessage, setRealtimeMessage] = useState(null);
-  const timestamp = new Date();
-  const bottomRef = useRef(null);
   //chatroom state
   const [chatroomKey, setChatroomKey] = useState(null);
   const [conversations, setConversations] = useState([]);
@@ -66,6 +65,7 @@ function ChatIndex() {
   let searched = false;
   //socket
   const socket = useRef();
+  const socket1 = useContext(SocketContext);
   //misc
   const navigate = useNavigate();
 
@@ -74,6 +74,8 @@ function ChatIndex() {
     socket.current = io('ws://localhost:5000', {
       withCredentials: true,
     });
+
+    console.log('socket1', socket1);
 
     socket.current.on('getUsers', users => {
       let liveUsersID = Object.keys(users.users);
@@ -279,7 +281,7 @@ function ChatIndex() {
     setUserHasLeftConversation(boolean => !boolean);
   };
 
-  // console.log('userID', userID);
+  console.log('userID', userID);
   // console.log('userParticipantID', userParticipantID);
   // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);

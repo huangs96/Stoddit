@@ -49,8 +49,6 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   }, []);
   /* ------------------------- */
 
-  console.log('onlineFriendsIDs', onlineFriends);
-
   const displayFriendsList = friendsList.map((friends, i) => {
     friendsListDictionary.set(friends.contact_name, i);
 

@@ -1,12 +1,15 @@
 import './App.css';
 import Header from './components/Header';
 import AppRoutes from './routes/Routes';
+import { SocketContext, socket } from './contexts/socketProvider';
 
 function App() {
   return (
     <>
-      <Header />
-      <AppRoutes />
+      <SocketContext.Provider value={socket}>
+        <Header />
+        <AppRoutes />
+      </SocketContext.Provider>
     </>
   );
 }

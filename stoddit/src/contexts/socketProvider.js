@@ -1,46 +1,41 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 
-const socketContext = React.createContext();
+const SocketContext = React.createContext();
+const socket = io(process.env.REACT_APP_SOCKET_URL, {
+  withCredentials: true
+});
 
-export const useSocket = () => {
-  return useContext(socketContext);
+const useSocket = () => {
+  return useContext(SocketContext);
 };
 
-export const SocketProvider = ({chatroom_id, children}) => {
-  const [socket, setSocket] = useState();
+// const SocketProvider = ({children}) => {
+//   const [socket, setSocket] = useState();
 
-  useEffect(() => {
-    const newSocket = io('http://localhost:5000', {
-      withCredentials: true,
-    });
-    console.log('socketID', chatroom_id);
-    console.log('newSocket', newSocket.connected);
-    setSocket(newSocket);
-    //close socket everytime session closes
-    // return () => newSocket.close();
-  }, [chatroom_id]);
+//   useEffect(() => {
+//     const newSocket = io(process.env.REACT_APP_SOCKET_URL, {
+//       withCredentials: true,
+//     });
+//     console.log('newSocket', newSocket);
+//     setSocket(newSocket);
+//     //close socket everytime session closes
+//     // return () => newSocket.close();
+//   }, []);
 
-  console.log('socketProvider', socket);
-  // on socket connection
-  // socket.on('connection', () => {
-  //   console.log('working');
-  // });
-  // console message from socket
-  // socket.on('message', message => {
-  //   console.log("ChatIndex: socket", message);
-  // });
+//   console.log('socketProvider', socket);
 
-  // socket.on('chatMessage', chatMessage => {
-  //   console.log('chatMessage', chatMessage);
-  // });
+//   return (
+//     <SocketContext.Provider value={socket}>
+//       {children}
+//     </SocketContext.Provider>
+//   )
+// };
 
-  return (
-    <socketContext.Provider value={socket}>
-      {children}
-    </socketContext.Provider>
-  )
-};
-
-
+export {
+  SocketContext,
+  socket,
+  useSocket,
+  // SocketProvider,
+}
 

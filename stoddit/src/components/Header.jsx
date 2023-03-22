@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useHistory } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import ContextMenu from './ContextMenu';
-import viewProfile from '../Helpers/menuHelpers'
+import viewProfile from '../helpers/menuHelpers'
 import { AppBar, Box, Typography, Toolbar, Tabs, Tab, Button, IconButton } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import ChatIcon from '@mui/icons-material/Chat';
@@ -16,6 +16,10 @@ function Header() {
   const [showContextMenu, setShowContextMenu] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const socket = useRef();
+  socket.current = io('ws://localhost:5000', {
+    withCredentials: true,
+  });
 
   const navigate = useNavigate();
 
@@ -25,6 +29,7 @@ function Header() {
       console.log(deleteDetails.error);
       return;
     };
+    socket.current.disconnect();
     console.log(deleteDetails.message);
     localStorage.clear();
     console.log('localstorage should be cleared', localStorage);
