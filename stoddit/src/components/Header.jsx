@@ -31,7 +31,7 @@ function Header() {
     console.log(deleteDetails.message);
     localStorage.clear();
     console.log('localstorage should be cleared', localStorage);
-    socket.disconnect();
+    socket.emit('logout');
     setValue('Home');
     setShowContextMenu(false);
     return navigate('/login');

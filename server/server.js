@@ -72,9 +72,12 @@ io.on("connection", (socket) => {
   });
   socket.on('conversationSocket', conversationData => {
     console.log('convodata', conversationData);
-    // socket.join(conversationData);
     chatroom = conversationData;
     io.emit(conversationData);
+  });
+  socket.on('logout', () => {
+    console.log('logout1', socket);
+    // users.removeUser(socket.id);
   });
   //runs when client disconnects
   socket.on("disconnect", () => {
