@@ -464,22 +464,24 @@ function ChatIndex() {
       <div className="chatMenu">
         <div className="chatMenuWrapper">
           <div className="conversationWrapper">
-            <TextField 
-              className="chatMenuInput" 
-              label="Search Chats and Direct Messages"
-              onChange={getConversationSearchInput}
-              value={searchConversationInput}
-              InputProps={{
-                endAdornment: <InputAdornment>
-                  <ClearIcon
-                    sx={{ "&:hover": { color: "red" } }}
-                    onClick={onClearConversationSearch}
-                  >             
-                  </ClearIcon>
-                </InputAdornment>,
-              }}
-            >
-            </TextField>
+            <div className="searchConversations">
+              <TextField 
+                className="chatMenuInput" 
+                label="Search Chats and Direct Messages"
+                onChange={getConversationSearchInput}
+                value={searchConversationInput}
+                InputProps={{
+                  endAdornment: <InputAdornment>
+                    <ClearIcon
+                      sx={{ "&:hover": { color: "red" } }}
+                      onClick={onClearConversationSearch}
+                    >             
+                    </ClearIcon>
+                  </InputAdornment>,
+                }}
+              >
+              </TextField>
+            </div>
             <Tabs 
               value={value} 
               onChange={handleChange} 
@@ -553,22 +555,24 @@ function ChatIndex() {
       </div>
         <div className="chatOnline">
           <div className="chatOnlineWrapper">
-            <TextField 
-              className="chatMenuInput" 
-              label="Search Friends or Users"
-              onChange={getFriendSearchInput}
-              value={allUsersInput}
-              InputProps={{
-                endAdornment: <InputAdornment>
-                  <ClearIcon
-                    sx={{ "&:hover": { color: "red" } }}
-                    onClick={onClearUserSearch}
-                  >             
-                  </ClearIcon>
-                </InputAdornment>,
-              }}
-            >
-            </TextField>
+            <div className="searchFriends">
+              <TextField 
+                className="chatMenuInput" 
+                label="Search Friends or Users"
+                onChange={getFriendSearchInput}
+                value={allUsersInput}
+                InputProps={{
+                  endAdornment: <InputAdornment>
+                    <ClearIcon
+                      sx={{ "&:hover": { color: "red" } }}
+                      onClick={onClearUserSearch}
+                    >             
+                    </ClearIcon>
+                  </InputAdornment>,
+                }}
+              >
+              </TextField>
+            </div>
             <h4>
               Friends
             </h4>

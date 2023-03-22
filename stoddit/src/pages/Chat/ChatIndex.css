@@ -27,6 +27,16 @@
   justify-content: space-between;
 }
 
+.searchConversations {
+  display: flex;
+  justify-content: center;
+}
+
+.searchFriends {
+  display: flex;
+  justify-content: center;
+}
+
 .chatMenuWrapper, .chatBoxWrapper, .chatOnlineWrapper {
   padding: 10px;
   height: 900px;
