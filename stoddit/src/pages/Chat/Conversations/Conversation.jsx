@@ -37,8 +37,6 @@ function Conversation({conversation, conversationDeleted, participantData, usern
     };
   });
 
-  console.log('selected', selectedConversation);
-
   return (
     <>
       <div className="conversationContainer">
