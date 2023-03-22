@@ -465,7 +465,7 @@ function ChatIndex() {
           <Tab label="Live Chatrooms" />
           </Tabs>
           {value == 0 ?
-            filteredConversations.map((convo) => (
+            filteredConversations.map((convo, i) => (
               <div 
                 onClick={() => {
                   selectConversation(convo.chatroom_id);
@@ -478,6 +478,7 @@ function ChatIndex() {
                   username={username}
                   conversationDeleted={conversationDeleted}
                   participantData={convo.participantData}
+                  index={i}
                 />
               </div>
             ))

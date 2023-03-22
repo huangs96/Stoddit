@@ -7,7 +7,11 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 function Conversation({conversation, conversationDeleted, participantData, username}) {
   const [hovered, setHovered] = useState(false);
+  const [selectedConversation, setSelectedConversation] = useState(false);
 
+  const conversationSelected = async () => {
+    setSelectedConversation(true);
+  };
   const conversationHovered = async () => {
     setHovered(true);
   };
@@ -42,7 +46,8 @@ function Conversation({conversation, conversationDeleted, participantData, usern
     <>
       <div className="conversationContainer">
         <div
-          className="conversation"
+          className={selectedConversation ? "selectedConversation" : "conversation"}
+          onClick={conversationSelected}
           onMouseEnter={conversationHovered}
           onMouseLeave={conversationUnhovered}
         >
