@@ -1,25 +1,27 @@
 import './FriendsOnline.css';
 import { useEffect, useState } from 'react';
 import ContextMenu from '../../../components/ContextMenu';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
 
 
 function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, addUser, deleteUser, searched}) {
   const friendsListDictionary = new Map();
-  const [selectedFriend, setSelectedFriend] = useState(null);
+  const [selectedFriendID, setSelectedFriendID] = useState(null);
   const [showContextMenu, setShowContextMenu] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   /* -------- Context Menu ---------*/
   const messageUser = () => {
-    console.log('message function');
+    friendsList.map((friend) => {
+      if (friend.id === selectedFriendID) {
+        console.log(friend);
+      };
+    });
   };
   const deleteFriend = () => {
-    deleteUser(selectedFriend);
+    deleteUser(selectedFriendID);
   };
   const viewProfile = () => {
     console.log('view profile function')
@@ -38,7 +40,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   };
 
   const selectFriend = async (friend) => {
-    setSelectedFriend(friend.id);
+    setSelectedFriendID(friend.id);
   };
 
   useEffect(() => {
