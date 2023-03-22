@@ -37,6 +37,8 @@ function Conversation({conversation, conversationDeleted, participantData, usern
     };
   });
 
+  console.log('conversations', conversation.participantData.length);
+
   return (
     <>
       <div className="conversationContainer">
@@ -55,11 +57,13 @@ function Conversation({conversation, conversationDeleted, participantData, usern
               >
                 {conversation.name}
               </span>
-              <h5
-                STYLE="font-size: 10pt; color: gray"
-              >
-                {conversation.description}
-              </h5>
+              {conversation.participantData.length > 2 &&
+                <h5
+                  STYLE="font-size: 10pt; color: gray"
+                >
+                  {conversation.description}
+                </h5>
+              }
             </div>
           </div>
           {hovered &&
