@@ -57,11 +57,15 @@ function Conversation({conversation, conversationDeleted, participantData, usern
               >
                 {conversation.name}
               </span>
-              {conversation.participantData.length > 2 &&
+              {conversation.participantData.length > 2 ?
                 <h5
                   STYLE="font-size: 10pt; color: gray"
                 >
                   {conversation.description}
+                </h5>
+                :
+                <h5>
+                  
                 </h5>
               }
             </div>

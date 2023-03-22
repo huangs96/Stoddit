@@ -269,7 +269,7 @@ function ChatIndex() {
       }]);
     };
   };
-  
+
   const conversationDeleted = () => {
     setUserHasLeftConversation(boolean => !boolean);
   };
@@ -282,7 +282,7 @@ function ChatIndex() {
   // console.log('conversations---', conversations);
   // console.log('username chatIndex', username);
   // console.log('setNewConversation---', newConversation);
-  // console.log('messages', messages);
+  console.log('messages', messages);
   // console.log('realtimeMsg', realtimeMessage);
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
   // console.log('friendsList ChatIndex', friendsList);
@@ -354,6 +354,32 @@ function ChatIndex() {
     } else {
       return convos.name.toLowerCase().includes((searchConversationInput));
     };
+  });
+
+  const displayConversations = filteredConversations.map((convo) => {
+    const displayMessages = messages.map((message) => {
+      if (message.chatroom_id === convo.chatroom_id) {
+        return message;
+      };
+    });
+    console.log('displaymesage', displayMessages)
+    return (
+      <div 
+        onClick={() => {
+          selectConversation(convo.chatroom_id);
+          socket.emit('conversationSocket', convo.chatroom_id);
+        }}
+      >
+        <Conversation 
+          conversation={convo}
+          userParticipantID={userParticipantID}
+          username={username}
+          conversationDeleted={conversationDeleted}
+          participantData={convo.participantData}
+          selectedConversation={selectedConversation}
+        />
+      </div>
+    );
   });
 
   const onClearConversationSearch = async () => {
@@ -434,6 +460,8 @@ function ChatIndex() {
     setMessageText('');
   };
 
+  console.log('displayConversations chatIndex', displayConversations);
+
   return (
     <>
       <div
@@ -467,23 +495,7 @@ function ChatIndex() {
           <Tab label="Live Chatrooms" />
           </Tabs>
           {value == 0 ?
-            filteredConversations.map((convo) => (
-              <div 
-                onClick={() => {
-                  selectConversation(convo.chatroom_id);
-                  socket.emit('conversationSocket', convo.chatroom_id);
-                }}
-              >
-                <Conversation 
-                  conversation={convo}
-                  userParticipantID={userParticipantID}
-                  username={username}
-                  conversationDeleted={conversationDeleted}
-                  participantData={convo.participantData}
-                  selectedConversation={selectedConversation}
-                />
-              </div>
-            ))
+            displayConversations
             :
             <>
             <LiveChatrooms>
