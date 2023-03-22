@@ -37,49 +37,89 @@ function Conversation({conversation, conversationDeleted, participantData, usern
     };
   });
 
-  console.log('conversations', conversation.participantData.length);
+  const displayDirectMessage = participantData.map((data) => {
+    if (data.username !== username) {
+      return (
+        <span 
+          className="conversationName" 
+        >
+          {data.username}
+        </span>
+      )
+    };
+  });
+
+  console.log('displaDirect', displayDirectMessage);
 
   return (
     <>
+      {conversation.participantData.length > 2 ?
       <div className="conversationContainer">
         <div
           className={selectedConversation === conversation.chatroom_id ? 'selectedConversation' : 'conversation'}
           onMouseEnter={conversationHovered}
           onMouseLeave={conversationUnhovered}
         >
-          <div className="contentContainer">
-              <div className="avatarContainer">
-              {displayImg}
-            </div>
-            <div className="conversationInfoContainer">
-              <span 
-                className="conversationName" 
-              >
-                {conversation.name}
-              </span>
-              {conversation.participantData.length > 2 ?
-                <h5
-                  STYLE="font-size: 10pt; color: gray"
+            <div className="contentContainer">
+                <div className="avatarContainer">
+                {displayImg}
+              </div>
+              <div className="conversationInfoContainer">
+                <span 
+                  className="conversationName" 
                 >
-                  {conversation.description}
-                </h5>
-                :
-                <h5>
-                  
-                </h5>
-              }
+                  {conversation.name}
+                </span>
+                  <h5
+                    STYLE="font-size: 10pt; color: gray"
+                  >
+                    {conversation.description}
+                  </h5>
+                  <h5>
+
+                  </h5>
+              </div>
             </div>
-          </div>
           {hovered &&
-          <div className="deleteButtonContainer">
-              <DeleteOutlinedIcon 
-                sx={{ "&:hover": { color: "red" } }} 
-                onClick={deleteConversation}
-              />
-          </div>
+            <div className="deleteButtonContainer">
+            <DeleteOutlinedIcon 
+            sx={{ "&:hover": { color: "red" } }} 
+            onClick={deleteConversation}
+            />
+            </div>
           }
-        </div>
-      </div>
+          </div>
+          </div>
+          :
+          <div className="conversationContainer">
+          <div
+          className={selectedConversation === conversation.chatroom_id ? 'selectedConversation' : 'conversation'}
+          onMouseEnter={conversationHovered}
+          onMouseLeave={conversationUnhovered}
+        >
+            <div className="contentContainer">
+                <div className="avatarContainer">
+                {displayImg}
+              </div>
+              <div className="conversationInfoContainer">
+                <span 
+                  className="conversationName" 
+                >
+                  {displayDirectMessage}
+                </span>
+              </div>
+            </div>
+          {hovered &&
+            <div className="deleteButtonContainer">
+            <DeleteOutlinedIcon 
+            sx={{ "&:hover": { color: "red" } }} 
+            onClick={deleteConversation}
+            />
+            </div>
+          }
+          </div>
+          </div>
+        }
     </>
   )
 }

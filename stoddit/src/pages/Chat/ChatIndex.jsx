@@ -357,12 +357,6 @@ function ChatIndex() {
   });
 
   const displayConversations = filteredConversations.map((convo) => {
-    const displayMessages = messages.map((message) => {
-      if (message.chatroom_id === convo.chatroom_id) {
-        return message;
-      };
-    });
-    console.log('displaymesage', displayMessages)
     return (
       <div 
         onClick={() => {
