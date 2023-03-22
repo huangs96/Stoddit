@@ -22,8 +22,9 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
       lDate: null
     };
     const selectedFriendUsername = friendsList.map((friend) => {
+      console.log('friend', friend);
       if (friend.id === selectedFriendID) {
-        conversationData['userIDs'] = [userID, selectedFriendID];
+        conversationData['userIDs'] = [userID, friend.contact_name_id];
         return friend.username;
       };
     });
