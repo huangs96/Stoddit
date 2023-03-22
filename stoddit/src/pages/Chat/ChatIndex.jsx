@@ -227,6 +227,7 @@ function ChatIndex() {
     setOpen(false);
   };
   const getNewConversation = (newChatroomID, convoName, convoDescription, selectedFriends) => {
+    console.log('new chatroom ID');
     let splitChatroomReturnStr = newChatroomID.split(':');
     let newGeneratedChatroomID = parseInt(splitChatroomReturnStr[splitChatroomReturnStr.length-1]);
     if (selectedFriends.length < 2) {
@@ -584,6 +585,7 @@ function ChatIndex() {
               onlineFriends={onlineFriendsData}
               allUsers={filteredUsers}
               searched={searched}
+              getNewConversation={getNewConversation}
               addUser={addUser}
               deleteUser={deleteUser}
             />

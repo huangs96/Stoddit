@@ -1,11 +1,12 @@
 import './FriendsOnline.css';
 import { useEffect, useState } from 'react';
 import ContextMenu from '../../../components/ContextMenu';
+import { createNewChatroomWithParticipants } from '../../../contexts/chatContext';
 import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
 
 
-function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, addUser, deleteUser, searched}) {
+function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, addUser, deleteUser, searched, getNewConversation}) {
   const friendsListDictionary = new Map();
   const [selectedFriendID, setSelectedFriendID] = useState(null);
   const [showContextMenu, setShowContextMenu] = useState(false);
@@ -16,7 +17,15 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   const messageUser = () => {
     friendsList.map((friend) => {
       if (friend.id === selectedFriendID) {
-        console.log(friend);
+        const conversationData = {
+          name: '',
+          description: '',
+          userIDs: [userID, selectedFriendID],
+          lDate: null
+        };
+        let newGeneratedChatroomID = createNewChatroomWithParticipants(conversationData);
+        console.log('newGeneratedCID friendsOline', newGeneratedChatroomID);
+        getNewConversation(newGeneratedChatroomID, conversationData.name, conversationData.description, friend.username);
       };
     });
   };
