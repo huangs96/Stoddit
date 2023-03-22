@@ -274,21 +274,6 @@ function ChatIndex() {
     setUserHasLeftConversation(boolean => !boolean);
   };
 
-  // console.log('userID', userID);
-  // console.log('socket chatIndex', socket);
-  // console.log('userParticipantID', userParticipantID);
-  // console.log('participantsinChatroom', participantsInChatroom);
-  // console.log('chatroomKey', chatroomKey);
-  // console.log('conversations---', conversations);
-  // console.log('username chatIndex', username);
-  // console.log('setNewConversation---', newConversation);
-  console.log('messages', messages);
-  // console.log('realtimeMsg', realtimeMessage);
-  // console.log('friendsOnline ChatIndex', onlineFriendsData);
-  // console.log('friendsList ChatIndex', friendsList);
-  // console.log('allUsers ChatIndex', allUsers);
-  // console.log('allUsersInput ChatIndex', allUsersInput);
-
   /* --------------------------------- */
   useEffect(() => {
     let isLoaded = true;
@@ -381,7 +366,6 @@ function ChatIndex() {
   };
 
   //Friends Searchbar
-
   const getFriendSearchInput = async (e) => {
     const searchUserInput = e.target.value;
     setAllUsersInput(searchUserInput);
@@ -454,6 +438,21 @@ function ChatIndex() {
     setMessageText('');
   };
 
+
+  // console.log('userID', userID);
+  // console.log('socket chatIndex', socket);
+  // console.log('userParticipantID', userParticipantID);
+  // console.log('participantsinChatroom', participantsInChatroom);
+  // console.log('chatroomKey', chatroomKey);
+  // console.log('conversations---', conversations);
+  // console.log('username chatIndex', username);
+  // console.log('setNewConversation---', newConversation);
+  // console.log('messages', messages);
+  // console.log('realtimeMsg', realtimeMessage);
+  // console.log('friendsOnline ChatIndex', onlineFriendsData);
+  // console.log('friendsList ChatIndex', friendsList);
+  // console.log('allUsers ChatIndex', allUsers);
+  // console.log('allUsersInput ChatIndex', allUsersInput);
   console.log('displayConversations chatIndex', displayConversations);
 
   return (
