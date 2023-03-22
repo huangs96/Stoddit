@@ -60,40 +60,40 @@ function Conversation({conversation, conversationDeleted, participantData, usern
           onMouseEnter={conversationHovered}
           onMouseLeave={conversationUnhovered}
         >
-            <div className="contentContainer">
-                <div className="avatarContainer">
-                {displayImg}
-              </div>
-              <div className="conversationInfoContainer">
-                <span 
-                  className="conversationName" 
-                >
-                  {conversation.name}
-                </span>
-                  <h5
-                    STYLE="font-size: 10pt; color: gray"
-                  >
-                    {conversation.description}
-                  </h5>
-              </div>
+          <div className="contentContainer">
+              <div className="avatarContainer">
+              {displayImg}
             </div>
+            <div className="conversationInfoContainer">
+              <span 
+                className="conversationName" 
+              >
+                {conversation.name}
+              </span>
+                <h5
+                  STYLE="font-size: 10pt; color: gray"
+                >
+                  {conversation.description}
+                </h5>
+            </div>
+          </div>
           {hovered &&
             <div className="deleteButtonContainer">
-            <DeleteOutlinedIcon 
-            sx={{ "&:hover": { color: "red" } }} 
-            onClick={deleteConversation}
-            />
+              <DeleteOutlinedIcon 
+                sx={{ "&:hover": { color: "red" } }} 
+                onClick={deleteConversation}
+              />
             </div>
           }
           </div>
-          </div>
-          :
-          <div className="conversationContainer">
+        </div>
+        :
+        <div className="conversationContainer">
           <div
-          className={selectedConversation === conversation.chatroom_id ? 'selectedConversationDirectMsg' : 'conversationDirectMsg'}
-          onMouseEnter={conversationHovered}
-          onMouseLeave={conversationUnhovered}
-        >
+            className={selectedConversation === conversation.chatroom_id ? 'selectedConversationDirectMsg' : 'conversationDirectMsg'}
+            onMouseEnter={conversationHovered}
+            onMouseLeave={conversationUnhovered}
+          >
             <div className="contentContainer">
                 <div className="avatarContainer">
                 {displayImg}
@@ -106,15 +106,15 @@ function Conversation({conversation, conversationDeleted, participantData, usern
                 </span>
               </div>
             </div>
-          {hovered &&
+            {hovered &&
             <div className="deleteButtonContainer">
-            <DeleteOutlinedIcon 
-            sx={{ "&:hover": { color: "red" } }} 
-            onClick={deleteConversation}
-            />
+              <DeleteOutlinedIcon 
+              sx={{ "&:hover": { color: "red" } }} 
+              onClick={deleteConversation}
+              />
             </div>
-          }
-          </div>
+            }
+            </div>
           </div>
         }
     </>
