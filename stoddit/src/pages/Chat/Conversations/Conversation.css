@@ -39,7 +39,8 @@
 }
 
 .conversation:hover {
-  background-color: rgb(168, 179, 197);
+  background-color: rgb(209, 214, 221);
+  border-radius: 10px;
 }
 
 .conversationImg {

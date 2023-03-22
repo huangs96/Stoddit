@@ -5,9 +5,10 @@
   padding-left: 10px;
 }
 
-/* .friendsOnline:hover {
-  background-color: rgb(124, 174, 248);
-} */
+.friendsOnline:hover {
+  background-color: rgb(209, 214, 221);
+  border-radius: 10px;
+}
 
 .friendsOnlineImg {
   width: 35px;
@@ -42,7 +43,8 @@
 }
 
 .friendsOffline:hover {
-  background-color: rgb(124, 174, 248);
+  background-color: rgb(209, 214, 221);
+  border-radius: 10px;
 }
 
 .friendsOfflineImg {
