@@ -30,7 +30,6 @@ import {
   deleteFriend
 } from '../../services/chat.service';
 import { getAllUsers } from '../../services/user.service';
-import { io } from 'socket.io-client';
 import LiveChatrooms from './LiveChatrooms/LiveChatrooms';
 
 function ChatIndex() {
@@ -64,7 +63,6 @@ function ChatIndex() {
   const [allUsersInput, setAllUsersInput] = useState('');
   let searched = false;
   //socket
-  // const socket = useRef();
   const socket = useContext(SocketContext);
   //misc
   const navigate = useNavigate();
@@ -276,6 +274,7 @@ function ChatIndex() {
   };
 
   console.log('userID', userID);
+  console.log('socket chatIndex', socket);
   // console.log('userParticipantID', userParticipantID);
   // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);

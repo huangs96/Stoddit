@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { io } from 'socket.io-client';
+import { SocketContext } from '../contexts/socketProvider';
 import ContextMenu from './ContextMenu';
 import viewProfile from '../helpers/menuHelpers'
 import { AppBar, Box, Typography, Toolbar, Tabs, Tab, Button, IconButton } from '@mui/material';
@@ -16,9 +16,11 @@ function Header() {
   const [showContextMenu, setShowContextMenu] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const socket = useRef();
+  const socket = useContext(SocketContext);
 
   const navigate = useNavigate();
+
+  console.log('socket', socket);
 
   const logout = async () => {
     const deleteDetails = await logoutUser();
@@ -29,6 +31,7 @@ function Header() {
     console.log(deleteDetails.message);
     localStorage.clear();
     console.log('localstorage should be cleared', localStorage);
+    socket.disconnect();
     setValue('Home');
     setShowContextMenu(false);
     return navigate('/login');
