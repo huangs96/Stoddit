@@ -463,40 +463,42 @@ function ChatIndex() {
       >
       <div className="chatMenu">
         <div className="chatMenuWrapper">
-          <TextField 
-            className="chatMenuInput" 
-            label="Search Chats and Direct Messages"
-            onChange={getConversationSearchInput}
-            value={searchConversationInput}
-            InputProps={{
-              endAdornment: <InputAdornment>
-                <ClearIcon
-                  sx={{ "&:hover": { color: "red" } }}
-                  onClick={onClearConversationSearch}
-                >             
-                </ClearIcon>
-              </InputAdornment>,
-            }}
-          >
-          </TextField>
-          <Tabs 
-            value={value} 
-            onChange={handleChange} 
-            aria-label="conversationTabs"
-            centered
-          >
-          <Tab label="Direct Messages" />
-          <Tab label="Live Chatrooms" />
-          </Tabs>
-          {value == 0 ?
-            displayConversations
-            :
-            <>
-            <LiveChatrooms>
+          <div className="conversationWrapper">
+            <TextField 
+              className="chatMenuInput" 
+              label="Search Chats and Direct Messages"
+              onChange={getConversationSearchInput}
+              value={searchConversationInput}
+              InputProps={{
+                endAdornment: <InputAdornment>
+                  <ClearIcon
+                    sx={{ "&:hover": { color: "red" } }}
+                    onClick={onClearConversationSearch}
+                  >             
+                  </ClearIcon>
+                </InputAdornment>,
+              }}
+            >
+            </TextField>
+            <Tabs 
+              value={value} 
+              onChange={handleChange} 
+              aria-label="conversationTabs"
+              centered
+            >
+            <Tab label="Direct Messages" />
+            <Tab label="Live Chatrooms" />
+            </Tabs>
+            {value == 0 ?
+              displayConversations
+              :
+              <>
+              <LiveChatrooms>
 
-            </LiveChatrooms>
-            </>
-          }
+              </LiveChatrooms>
+              </>
+            }
+          </div>
           <div className='newConversationContainer'>
             <Button
               sx={{width: 320}}

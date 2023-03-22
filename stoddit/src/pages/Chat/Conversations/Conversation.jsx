@@ -1,5 +1,5 @@
 import './Conversation.css';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { 
   deleteParticipantFromChatroom
 } from '../../../services/chat.service';
@@ -22,7 +22,6 @@ function Conversation({conversation, conversationDeleted, participantData, usern
     console.log('user has left the chat');
     conversationDeleted();
   };
-
   const displayImg = participantData.map((data) => {
     if (data.username !== username) {
       return (
@@ -36,7 +35,6 @@ function Conversation({conversation, conversationDeleted, participantData, usern
       );
     };
   });
-
   const displayDirectMessage = participantData.map((data) => {
     if (data.username !== username) {
       return (
@@ -48,9 +46,6 @@ function Conversation({conversation, conversationDeleted, participantData, usern
       )
     };
   });
-
-  console.log('displaDirect', displayDirectMessage);
-
   return (
     <>
       {conversation.participantData.length > 2 ?
