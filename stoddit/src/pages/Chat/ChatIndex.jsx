@@ -468,6 +468,7 @@ function ChatIndex() {
               <TextField 
                 className="chatMenuInput" 
                 label="Search Chats and Direct Messages"
+                variant="standard"
                 onChange={getConversationSearchInput}
                 value={searchConversationInput}
                 InputProps={{
@@ -559,6 +560,7 @@ function ChatIndex() {
               <TextField 
                 className="chatMenuInput" 
                 label="Search Friends or Users"
+                variant="standard"
                 onChange={getFriendSearchInput}
                 value={allUsersInput}
                 InputProps={{
