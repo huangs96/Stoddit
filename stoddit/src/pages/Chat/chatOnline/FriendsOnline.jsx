@@ -22,16 +22,13 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
       lDate: null
     };
     const selectedFriendUsername = friendsList.filter((friend) => {
-      console.log('friend', friend);
       if (friend.id === selectedFriendID) {
         conversationData['chatroomName'] = friend.contact_name;
         conversationData['userIDs'] = [userID, friend.contact_name_id];
         return friend;
       };
     });
-    console.log('selectedFriendUsername', conversationData);
     let newGeneratedChatroomID = await createNewChatroomWithParticipants(conversationData);
-    console.log('newGeneratedCID friendsOline', newGeneratedChatroomID);
     getNewConversation(newGeneratedChatroomID, conversationData.chatroomName, conversationData.chatroomDescription, [selectedFriendUsername[0].contact_name]);
   };
   const deleteFriend = () => {

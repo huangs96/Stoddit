@@ -227,10 +227,6 @@ function ChatIndex() {
     setOpen(false);
   };
   const getNewConversation = (newChatroomID, convoName, convoDescription, selectedFriendsUsername) => {
-    console.log('new chatroom ID', newChatroomID);
-    console.log('new chatroom ID2222', convoName);
-    console.log('new chatroom ID3333', convoDescription);
-    console.log('new chatroom ID4444', selectedFriendsUsername);
     let splitChatroomReturnStr = newChatroomID.split(':');
     let newGeneratedChatroomID = parseInt(splitChatroomReturnStr[splitChatroomReturnStr.length-1]);
     if (selectedFriendsUsername.length < 2) {
