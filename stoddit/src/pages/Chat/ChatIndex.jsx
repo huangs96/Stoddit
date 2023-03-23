@@ -542,7 +542,7 @@ function ChatIndex() {
             </div>
           </div>
           <form onSubmit={handleSubmit}>
-            <div className="chatBoxBottom">
+            <div className="chatBoxBottom">          
               <TextField 
                 name="message"
                 className="chatMessageInput" 
