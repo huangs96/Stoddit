@@ -81,6 +81,9 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
         if (onlineFriend === friends.contact_name_id) {
           return (
             <>
+            <h4>
+              test1
+            </h4>
               <div className="friendsOnline"
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
@@ -108,6 +111,9 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
     } else if (friends.contact_name_id === onlineFriends) {
         return (
           <>
+           <h4>
+              test2
+            </h4>
             <div className="friendsOnline"
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
@@ -133,6 +139,9 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
     } else {
       return (
         <>
+         <h4>
+              test3
+            </h4>
           <div className="friendsOffline"
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
@@ -161,6 +170,9 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   const originalOrderFriendsList = shallowCopyFriendsList.map((friends, i) => {
     return (
       <>
+       <h4>
+              test4
+            </h4>
         <div className="friendsOffline"
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
