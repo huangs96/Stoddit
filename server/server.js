@@ -103,10 +103,14 @@ app.use("/login", authRoutes);
 app.use("/chat", chatRoutes(io, users));
 /* --------------------------------- */
 
+
+/* ------ Ticker Routes ------ */
+app.use("/tickers", tickerRoutes);
+/* --------------------------------- */
+
 /* ------ Setting Routes ------ */
 app.use("/users", userRoutes);
 /* --------------------------------- */
-
 const port = process.env.PORT || 5000;
 
 server.listen(port, () => console.log(`Server running on port ${port}`));
