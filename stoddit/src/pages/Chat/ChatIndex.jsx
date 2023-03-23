@@ -460,23 +460,43 @@ function ChatIndex() {
           <div className="chatMenuWrapper">
             <div className="conversationWrapper">
               <div className="searchConversations">
-                <TextField 
-                  className="chatMenuInput" 
-                  label="Search Chats and Direct Messages"
-                  variant="standard"
-                  onChange={getConversationSearchInput}
-                  value={searchConversationInput}
-                  InputProps={{
-                    endAdornment: <InputAdornment>
-                      <ClearIcon
-                        sx={{ "&:hover": { color: "red" } }}
-                        onClick={onClearConversationSearch}
-                      >             
-                      </ClearIcon>
-                    </InputAdornment>,
-                  }}
-                >
-                </TextField>
+                {value == 0 ? 
+                  <TextField 
+                    className="chatMenuInput" 
+                    label="Search Chats and Direct Messages"
+                    variant="standard"
+                    onChange={getConversationSearchInput}
+                    value={searchConversationInput}
+                    InputProps={{
+                      endAdornment: <InputAdornment>
+                        <ClearIcon
+                          sx={{ "&:hover": { color: "red" } }}
+                          onClick={onClearConversationSearch}
+                        >             
+                        </ClearIcon>
+                      </InputAdornment>,
+                    }}
+                  >
+                  </TextField>
+                :
+                  <TextField 
+                    className="chatMenuInput" 
+                    label="Search Live Chatrooms"
+                    variant="standard"
+                    onChange={getConversationSearchInput}
+                    value={searchConversationInput}
+                    InputProps={{
+                      endAdornment: <InputAdornment>
+                        <ClearIcon
+                          sx={{ "&:hover": { color: "red" } }}
+                          onClick={onClearConversationSearch}
+                        >             
+                        </ClearIcon>
+                      </InputAdornment>,
+                    }}
+                  >
+                  </TextField>
+                }
               </div>
               <div className="tabsContainer">
                 <Tabs 
@@ -518,36 +538,49 @@ function ChatIndex() {
                 />
               </div>
             :
-            <div className='newConversationContainer'>
-              <Button
-                sx={{width: 320}}
-                size="medium"
-                onClick={handleOpen} 
-                variant="contained"
-              >
-                New Live Chatroom
-              </Button>
-              <NewConversation
-                userID={userID}
-                open={open}
-                friendsList={friendsList}
-                onClose={handleClose}
-                getNewConversation={getNewConversation}
-              />
-             </div>
+              <div className='newConversationContainer'>
+                <Button
+                  sx={{width: 320}}
+                  size="medium"
+                  onClick={handleOpen} 
+                  variant="contained"
+                >
+                  New Live Chatroom
+                </Button>
+                <NewConversation
+                  userID={userID}
+                  open={open}
+                  friendsList={friendsList}
+                  onClose={handleClose}
+                  getNewConversation={getNewConversation}
+                />
+              </div>
             }
           </div>
         </div>
         <div className="chatBox">
           <div className="chatBoxWrapper">
             <div className="chatBoxTop">
-                <Message 
-                  userID={userID} 
-                  messages={messages}
-                  userHasLeft={userHasLeftConversation}
-                />
-              <div ref={scrollRef}>
-              </div>
+              {value == 0 ?
+                <>
+                  <Message 
+                    userID={userID} 
+                    messages={messages}
+                    userHasLeft={userHasLeftConversation}
+                  />
+                  <div ref={scrollRef}></div>
+                </>
+              :
+                <>
+                  <h5>Live Chat Messages</h5>
+                  <Message 
+                    userID={userID} 
+                    messages={messages}
+                    userHasLeft={userHasLeftConversation}
+                  />
+                  <div ref={scrollRef}></div>
+                </>
+              }
             </div>
             <form onSubmit={handleSubmit}>
               <div className="chatBoxBottom">          
@@ -575,6 +608,9 @@ function ChatIndex() {
         </div>
           <div className="chatOnline">
             <div className="chatOnlineWrapper">
+              {
+                
+              }
               <div className="searchFriends">
                 <TextField 
                   className="chatMenuInput" 
