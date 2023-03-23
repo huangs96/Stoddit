@@ -209,7 +209,6 @@ function ChatIndex() {
   /* --------------------------------- */
 
   /* ------ Conversation Modal ------ */
-  //opening and closing new conversation modal
   const [value, setValue] = React.useState(0);
   const [open, setOpen] = useState(false);
   const handleChange = (event, newValue) => {
@@ -388,6 +387,7 @@ function ChatIndex() {
   });
   /* --------------------------------- */
   
+  /* ------ Sending Messages ------ */
   const onChangeMessage = (e) => {
     const message = e.target.value;
     setMessageText(message);
@@ -433,6 +433,7 @@ function ChatIndex() {
     //empty textbox
     setMessageText('');
   };
+  /* --------------------------------- */
 
 
   // console.log('userID', userID);
@@ -454,6 +455,17 @@ function ChatIndex() {
 
   return (
     <>
+      {/* <div className="chatTabsContainer">
+        <Tabs 
+          value={value} 
+          onChange={handleChange} 
+          aria-label="conversationTabs"
+          centered
+        >
+        <Tab label="Direct Messages" />
+        <Tab label="Live Chatrooms" />
+        </Tabs>
+      </div> */}
       <div
       className="chat"
       >
@@ -479,15 +491,6 @@ function ChatIndex() {
               >
               </TextField>
             </div>
-            <Tabs 
-              value={value} 
-              onChange={handleChange} 
-              aria-label="conversationTabs"
-              centered
-            >
-            <Tab label="Direct Messages" />
-            <Tab label="Live Chatrooms" />
-            </Tabs>
             {value == 0 ?
               displayConversations
               :
