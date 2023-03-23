@@ -69,7 +69,6 @@ function ChatIndex() {
   const navigate = useNavigate();
 
   /* ------ Socket Connection ------ */
-  
   useEffect(() => {
     socket.on('getUsers', users => {
       let liveUsersID = Object.keys(users.users);
@@ -84,7 +83,7 @@ function ChatIndex() {
         setOnlineFriendsData([]);
       };
     });
-
+    //updating realtime messages
     socket.on('chatMessage', messageData => {
       console.log('socket', messageData.receiverID[0].id);
       setRealtimeMessage({
@@ -98,7 +97,6 @@ function ChatIndex() {
         chatroomID: messageData.chatroomID
       });
     });
-
     return () => {
       socket.off('chatMessage');
       socket.off('getUsers');
@@ -106,7 +104,6 @@ function ChatIndex() {
       console.log('sockets returned');
     };
   }, []);
-
   //emit to backend which users are live
   useEffect(() => {
     socket.emit('liveUsers', userID);
@@ -115,7 +112,6 @@ function ChatIndex() {
       socket.off('liveUsers');
     };
   }, [userID, onlineFriendsData.length]);
-
   /* ------ Socket End ------ */
 
   /* ------ Friends List ------ */
@@ -150,7 +146,6 @@ function ChatIndex() {
       isLoaded = false;
     };
   }, []);
-
   //get all images once allUsers data is loaded
   useEffect(() => {
     const imgData = imgExtract(allUsers);
@@ -211,7 +206,6 @@ function ChatIndex() {
       friend.id != friendID
     ));
   };
-
   /* --------------------------------- */
 
   /* ------ Conversation Modal ------ */
@@ -274,8 +268,9 @@ function ChatIndex() {
   const conversationDeleted = () => {
     setUserHasLeftConversation(boolean => !boolean);
   };
-
   /* --------------------------------- */
+
+  /* ------ Loading Conversations and Messages ------ */
   useEffect(() => {
     let isLoaded = true;
     const getChatroomData = async () => {
@@ -327,15 +322,13 @@ function ChatIndex() {
     };
   }, [realtimeMessage]);
 
-
-  //Conversation Searchbar
+    /* ------ Search Inputs for Conversations, Friends, and AllUsers ------ */
   const getConversationSearchInput = async (e) => {
     const searchConversationInput = e.target.value;
     setConversationSearchInput(searchConversationInput.toLowerCase());
   };
 
   const filteredConversations = conversations.filter((convos) => {
-    // console.log('convos', convos);
     if (searchConversationInput == '') {
       return convos;
     } else {
@@ -367,7 +360,6 @@ function ChatIndex() {
     setConversationSearchInput('');
   };
 
-  //Friends Searchbar
   const getFriendSearchInput = async (e) => {
     const searchUserInput = e.target.value;
     setAllUsersInput(searchUserInput);
@@ -386,6 +378,7 @@ function ChatIndex() {
       return users.username.toLowerCase().includes((allUsersInput));
     };
   });
+  /* --------------------------------- */
   
   const selectConversation = (key) => {
     if (key) {
