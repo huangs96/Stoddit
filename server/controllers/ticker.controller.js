@@ -17,7 +17,8 @@ const getTickersByChatroomID = (async (req, res) => {
   const chatroom_id = parseInt(req.params.id);
   console.log('id', chatroom_id);
   try {
-    const allTickers = await client.query(queries.getAllTickersByChatroomID, [chatroom_id]);
+    const allTickers = await client.query(queries.getTickersByChatroomID, [chatroom_id]);
+    console.log('allTickers', allTickers);
     if (allTickers) {
       res.status(200).json(allTickers.rows);
     };
