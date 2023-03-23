@@ -18,6 +18,18 @@ function LiveChatrooms() {
             >
               chatroom
             </span>
+            <div className="contentContainer">
+              <div className="avatarContainer">
+              {/* {displayImg} */}
+            </div>
+            <div className="conversationInfoContainer">
+                <h5
+                  STYLE="font-size: 10pt; color: gray"
+                >
+                  S&P 500
+                </h5>
+            </div>
+          </div>
         </div>
       </div>
     </>
