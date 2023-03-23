@@ -88,14 +88,18 @@ function NewConversation(props) {
     } else {
       conversationData.userIDs.push(idFromUsername, props.userID);
     };
-    // if (conversationName === null) {
+    if (conversationData.userIDs.length === 2 && conversationData.userIDs.includes(props.userID)) {
+      console.log('selectedFriends', selectedFriends);
+      conversationData.chatroomName = selectedFriends[0];
+      conversationData.chatroomDescription = '';
+    } else {
+      conversationData.chatroomName = conversationName;
+      conversationData.chatroomDescription = conversationDescription;
+    };
+    console.log('conversationData', conversationData);
+    let newGeneratedChatroomID = await createNewChatroomWithParticipants(conversationData);
 
-    // }
-    conversationData.chatroomName = conversationName;
-    conversationData.chatroomDescription = conversationDescription;
-    // let newGeneratedChatroomID = await createNewChatroomWithParticipants(conversationData);
-
-    // props.getNewConversation(newGeneratedChatroomID, conversationName, conversationDescription, selectedFriends);
+    props.getNewConversation(newGeneratedChatroomID, conversationName, conversationDescription, selectedFriends);
 
     resetConversationData();
     handleClose();

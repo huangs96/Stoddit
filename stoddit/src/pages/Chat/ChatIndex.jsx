@@ -334,27 +334,16 @@ function ChatIndex() {
   //Conversation Searchbar
   const getConversationSearchInput = async (e) => {
     const searchConversationInput = e.target.value;
-    setConversationSearchInput(searchConversationInput);
+    setConversationSearchInput(searchConversationInput.toLowerCase());
   };
 
   const filteredConversations = conversations.filter((convos) => {
-    console.log('convos', convos);
+    // console.log('convos', convos);
     if (searchConversationInput == '') {
       return convos;
-    } else if (convos.name) {
-      return convos.name.toLowerCase().includes((searchConversationInput));
     } else {
-      if (convos.participantData.length < 3) {
-        convos.participantData.map(participant => {
-          if (participant.username !== username && participant.username.toLowerCase().includes(searchConversationInput)) {
-            return participant.username;
-          };
-          // if (participant.username.toLowerCase().includes(searchConversationInput)) {
-          //   console.log('convo', convos);
-          // };
-        });
-      };
-    }
+      return convos.name.toLowerCase().includes((searchConversationInput));
+    };
   });
 
   const displayConversations = filteredConversations.map((convo) => {
