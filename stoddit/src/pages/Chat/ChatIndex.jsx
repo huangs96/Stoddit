@@ -346,8 +346,8 @@ function ChatIndex() {
     } else {
       if (convos.participantData.length < 3) {
         convos.participantData.map(participant => {
-          if (participant.username !== username) {
-            console.log('participants', participant);
+          if (participant.username !== username && participant.username.toLowerCase().includes(searchConversationInput)) {
+            return participant.username;
           };
           // if (participant.username.toLowerCase().includes(searchConversationInput)) {
           //   console.log('convo', convos);

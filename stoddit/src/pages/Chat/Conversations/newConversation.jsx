@@ -88,12 +88,14 @@ function NewConversation(props) {
     } else {
       conversationData.userIDs.push(idFromUsername, props.userID);
     };
+    // if (conversationName === null) {
 
+    // }
     conversationData.chatroomName = conversationName;
     conversationData.chatroomDescription = conversationDescription;
-    let newGeneratedChatroomID = await createNewChatroomWithParticipants(conversationData);
+    // let newGeneratedChatroomID = await createNewChatroomWithParticipants(conversationData);
 
-    props.getNewConversation(newGeneratedChatroomID, conversationName, conversationDescription, selectedFriends);
+    // props.getNewConversation(newGeneratedChatroomID, conversationName, conversationDescription, selectedFriends);
 
     resetConversationData();
     handleClose();
