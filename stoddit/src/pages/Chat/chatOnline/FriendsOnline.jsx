@@ -61,9 +61,16 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
     return () => window.removeEventListener('click', handleClick);
   }, []);
   /* ------------------------- */
+  console.log('onlinefriend', onlineFriends);
+  console.log('onlinefriend', friendsList);
 
   const displayFriendsList = friendsList.map((friends, i) => {
     friendsListDictionary.set(friends.contact_name, i);
+    if (friends.contact_name_id === onlineFriends) {
+      const onlineIndex = friendsList.indexOf(friends);
+      const sortFriendsList = friendsList.splice(onlineIndex, 1);
+      friendsList.unshift(sortFriendsList[0]);
+    };
 
     if (onlineFriends.length > 1) {
       onlineFriends.map(onlineFriend => {
