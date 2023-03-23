@@ -226,19 +226,22 @@ function ChatIndex() {
   const handleClose = () => {
     setOpen(false);
   };
-  const getNewConversation = (newChatroomID, convoName, convoDescription, selectedFriends) => {
-    console.log('new chatroom ID');
+  const getNewConversation = (newChatroomID, convoName, convoDescription, selectedFriendsUsername) => {
+    console.log('new chatroom ID', newChatroomID);
+    console.log('new chatroom ID2222', convoName);
+    console.log('new chatroom ID3333', convoDescription);
+    console.log('new chatroom ID4444', selectedFriendsUsername);
     let splitChatroomReturnStr = newChatroomID.split(':');
     let newGeneratedChatroomID = parseInt(splitChatroomReturnStr[splitChatroomReturnStr.length-1]);
-    if (selectedFriends.length < 2) {
+    if (selectedFriendsUsername.length < 2) {
       const participantData = [
         {
           username: username,
           imgUrl: realTimeMsgImgObj[username]
         },
         {
-          username: selectedFriends,
-          imgUrl: realTimeMsgImgObj[selectedFriends]
+          username: selectedFriendsUsername,
+          imgUrl: realTimeMsgImgObj[selectedFriendsUsername]
         }
       ]
       setConversations(convos => [...convos, {
@@ -248,14 +251,14 @@ function ChatIndex() {
         description: convoDescription,
         participantData: participantData
       }]);
-    } else if (selectedFriends.length > 2) {
+    } else if (selectedFriendsUsername.length > 2) {
       const participantData = [
         {
           username: username,
           imgUrl: realTimeMsgImgObj[username]
         }
       ];
-      selectedFriends.map(sFriends => {
+      selectedFriendsUsername.map(sFriends => {
         participantData.push({
           username: sFriends,
           imgUrl: realTimeMsgImgObj[sFriends]
