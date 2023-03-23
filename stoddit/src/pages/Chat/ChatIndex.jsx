@@ -338,16 +338,23 @@ function ChatIndex() {
   };
 
   const filteredConversations = conversations.filter((convos) => {
+    console.log('convos', convos);
     if (searchConversationInput == '') {
       return convos;
     } else if (convos.name) {
-      // if (convos.participantData.length < 3) {
-      //   convos.participantData.map(participant => {
-      //     return convos.name.toLowerCase().includes((participant.username));
-      //   });
-      // };
       return convos.name.toLowerCase().includes((searchConversationInput));
-    };
+    } else {
+      if (convos.participantData.length < 3) {
+        convos.participantData.map(participant => {
+          if (participant.username !== username) {
+            console.log('participants', participant);
+          };
+          // if (participant.username.toLowerCase().includes(searchConversationInput)) {
+          //   console.log('convo', convos);
+          // };
+        });
+      };
+    }
   });
 
   const displayConversations = filteredConversations.map((convo) => {
@@ -462,8 +469,8 @@ function ChatIndex() {
   // console.log('friendsList ChatIndex', friendsList);
   // console.log('allUsers ChatIndex', allUsers);
   // console.log('allUsersInput ChatIndex', allUsersInput);
-  console.log('displayConversations chatIndex', displayConversations);
-  console.log('filteredConversations chatIndex', filteredConversations);
+  // console.log('displayConversations chatIndex', displayConversations);
+  // console.log('filteredConversations chatIndex', filteredConversations);
 
   return (
     <>
