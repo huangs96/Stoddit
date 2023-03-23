@@ -385,12 +385,6 @@ function ChatIndex() {
       return users.username.toLowerCase().includes((allUsersInput));
     };
   });
-
-  if (onlineFriends.length > 1) {
-    setFriendsAreOnline(true);
-  } else {
-    setFriendsAreOnline(false);
-  };
   
   const selectConversation = (key) => {
     if (key) {

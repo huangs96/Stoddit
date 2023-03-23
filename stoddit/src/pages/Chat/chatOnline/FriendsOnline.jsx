@@ -232,7 +232,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
       <div>
         {!searched ?
         <>
-          {!friendsAreOnline ? 
+          {onlineFriends.length > 1 ? 
           originalOrderFriendsList
           :
           displayFriendsList
