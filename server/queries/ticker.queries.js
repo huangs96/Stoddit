@@ -3,5 +3,5 @@ const getTickersByChatroomID = 'SELECT * FROM tickers WHERE id = $1;';
 
 module.exports = {
   getAllTickers,
-  getTickersChatroomByID
-}
+  getTickersByChatroomByID
+};
