@@ -6,7 +6,7 @@ const getTickers = (async (req, res) => {
   try {
     const allTickers = await client.query(queries.getAllTickers);
     if (allTickers.rows.length) {
-      res.status(200).json(allChatrooms.rows);
+      res.status(200).json(allTickers.rows);
     };
   } catch (err) {
     return res.status(400).send(err);
