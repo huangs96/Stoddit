@@ -69,6 +69,7 @@ function ChatIndex() {
   const navigate = useNavigate();
 
   /* ------ Socket Connection ------ */
+  
   useEffect(() => {
     socket.on('getUsers', users => {
       let liveUsersID = Object.keys(users.users);
@@ -113,7 +114,7 @@ function ChatIndex() {
     return () => {
       socket.off('liveUsers');
     };
-  }, [userID]);
+  }, [userID, onlineFriendsData.length]);
 
   /* ------ Socket End ------ */
 

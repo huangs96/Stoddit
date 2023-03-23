@@ -61,12 +61,12 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
     return () => window.removeEventListener('click', handleClick);
   }, []);
   /* ------------------------- */
-  // console.log('onlinefriend2222', onlineFriends);
+  console.log('onlinefriend2222', onlineFriends);
   // console.log('onlinefriend3333', friendsList);
   
   const shallowCopyFriendsList = [...friendsList];
-  console.log('real', friendsList);
-  console.log('shallow', shallowCopyFriendsList)
+  // console.log('real', friendsList);
+  // console.log('shallow', shallowCopyFriendsList)
 
   const displayFriendsList = friendsList.map((friends, i) => {
     friendsListDictionary.set(friends.contact_name, i);
@@ -244,7 +244,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
       <div>
         {!searched ?
         <>
-          {onlineFriends.length > 1 ? 
+          {onlineFriends.length < 1 ? 
           originalOrderFriendsList
           :
           displayFriendsList
