@@ -451,7 +451,7 @@ function ChatIndex() {
   // console.log('allUsers ChatIndex', allUsers);
   // console.log('allUsersInput ChatIndex', allUsersInput);
   // console.log('displayConversations chatIndex', displayConversations);
-  // console.log('filteredConversations chatIndex', filteredConversations);
+  console.log('filteredConversations chatIndex', filteredConversations);
 
   return (
     <>

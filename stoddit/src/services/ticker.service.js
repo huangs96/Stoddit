@@ -1,9 +1,3 @@
-import React from 'react'
+const getTickers = () => {
 
-function ticker.service() {
-  return (
-    <div>ticker.service</div>
-  )
-}
-
-export default ticker.service
+};
