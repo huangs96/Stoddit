@@ -14,9 +14,11 @@ const getTickers = (async (req, res) => {
 });
 
 const getTickersByChatroomID = (async (req, res) => {
+  const chatroom_id = parseInt(req.params.id);
+  console.log('id', chatroom_id);
   try {
-    const allTickers = await client.query(queries.getAllTickers);
-    if (allTickers.rows.length) {
+    const allTickers = await client.query(queries.getAllTickersByChatroomID, [chatroom_id]);
+    if (allTickers) {
       res.status(200).json(allTickers.rows);
     };
   } catch (err) {
@@ -25,5 +27,6 @@ const getTickersByChatroomID = (async (req, res) => {
 });
 
 module.exports = {
-  getTickers
+  getTickers,
+  getTickersByChatroomID
 };
