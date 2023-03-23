@@ -8,7 +8,6 @@ import Box from '@mui/material/Box';
 
 function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, addUser, deleteUser, searched, getNewConversation}) {
   const friendsListDictionary = new Map();
-  const [friendsAreOnline, setFriendsAreOnline] = useState(false);
   const [selectedFriendID, setSelectedFriendID] = useState(null);
   const [showContextMenu, setShowContextMenu] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -82,9 +81,6 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
         if (onlineFriend === friends.contact_name_id) {
           return (
             <>
-              <h5>
-                Last Online1
-              </h5>
               <div className="friendsOnline"
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
@@ -112,9 +108,6 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
     } else if (friends.contact_name_id === onlineFriends) {
         return (
           <>
-            <h5>
-              Last Online2
-            </h5>
             <div className="friendsOnline"
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
@@ -140,9 +133,6 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
     } else {
       return (
         <>
-          <h5>
-            Last Online 3
-          </h5>
           <div className="friendsOffline"
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
@@ -167,6 +157,33 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
       )
     };
   });
+
+  const originalOrderFriendsList = shallowCopyFriendsList.map((friends, i) => {
+    return (
+      <>
+        <div className="friendsOffline"
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onContextMenu={(e) => {
+          handleToggle(e);
+          selectFriend(friends);
+        }}
+      >
+          <div className="chatOfflineFriend">
+            <div className="friendOfflineImgContainer">
+              <img
+              className="friendsOfflineImg"
+              src={friends.imgUrl}
+              alt=""
+              />
+              <div className="chatOfflineBadge"></div>
+            </div>
+            <span className="offlineFriendName" key={i}>{friends.contact_name}</span>
+          </div>
+        </div>
+      </>
+    )
+  }) 
 
   const displaySearchedUser = allUsers.map((user,i) => {
     if (!friendsListDictionary.has(user.username) && user.username != username) {
@@ -214,7 +231,13 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
       }
       <div>
         {!searched ?
+        <>
+          {!friendsAreOnline ? 
+          originalOrderFriendsList
+          :
           displayFriendsList
+          }
+        </>
           :
           displaySearchedUser
         }
