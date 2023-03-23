@@ -24,10 +24,12 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
     const selectedFriendUsername = friendsList.filter((friend) => {
       console.log('friend', friend);
       if (friend.id === selectedFriendID) {
-        conversationData['userIDs'] = [userID, friend.contact_name_id];
+        conversationData['name'] = friend.contact_name_id;
+        conversationData['userIDs'] = [userID, friend.contact_name];
         return friend;
       };
     });
+    // console.log('selectedFriendUsername', conversationData);
     let newGeneratedChatroomID = await createNewChatroomWithParticipants(conversationData);
     console.log('newGeneratedCID friendsOline', newGeneratedChatroomID);
     getNewConversation(newGeneratedChatroomID, conversationData.name, conversationData.description, [selectedFriendUsername[0].contact_name]);
