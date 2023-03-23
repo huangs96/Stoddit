@@ -16,7 +16,7 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   /* -------- Context Menu ---------*/
   const messageUser = async () => {
     const conversationData = {
-      name: '',
+      chatroomName: '',
       chatroomDescription: '',
       userIDs: [],
       lDate: null
@@ -24,15 +24,15 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
     const selectedFriendUsername = friendsList.filter((friend) => {
       console.log('friend', friend);
       if (friend.id === selectedFriendID) {
-        conversationData['name'] = friend.contact_name_id;
-        conversationData['userIDs'] = [userID, friend.contact_name];
+        conversationData['chatroomName'] = friend.contact_name;
+        conversationData['userIDs'] = [userID, friend.contact_name_id];
         return friend;
       };
     });
-    // console.log('selectedFriendUsername', conversationData);
+    console.log('selectedFriendUsername', conversationData);
     let newGeneratedChatroomID = await createNewChatroomWithParticipants(conversationData);
     console.log('newGeneratedCID friendsOline', newGeneratedChatroomID);
-    getNewConversation(newGeneratedChatroomID, conversationData.name, conversationData.description, [selectedFriendUsername[0].contact_name]);
+    getNewConversation(newGeneratedChatroomID, conversationData.chatroomName, conversationData.chatroomDescription, [selectedFriendUsername[0].contact_name]);
   };
   const deleteFriend = () => {
     deleteUser(selectedFriendID);
