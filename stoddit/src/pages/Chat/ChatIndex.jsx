@@ -322,7 +322,15 @@ function ChatIndex() {
     };
   }, [realtimeMessage]);
 
-    /* ------ Search Inputs for Conversations, Friends, and AllUsers ------ */
+  const selectConversation = (key) => {
+    if (key) {
+      setChatroomKey(key);
+      setSelectedConversation(key);
+    };
+  };
+  /* --------------------------------- */
+
+  /* ------ Search Inputs for Conversations, Friends, and AllUsers ------ */
   const getConversationSearchInput = async (e) => {
     const searchConversationInput = e.target.value;
     setConversationSearchInput(searchConversationInput.toLowerCase());
@@ -379,13 +387,6 @@ function ChatIndex() {
     };
   });
   /* --------------------------------- */
-  
-  const selectConversation = (key) => {
-    if (key) {
-      setChatroomKey(key);
-      setSelectedConversation(key);
-    };
-  };
   
   const onChangeMessage = (e) => {
     const message = e.target.value;
