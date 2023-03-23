@@ -455,123 +455,143 @@ function ChatIndex() {
 
   return (
     <>
-      {/* <div className="chatTabsContainer">
-        <Tabs 
-          value={value} 
-          onChange={handleChange} 
-          aria-label="conversationTabs"
-          centered
-        >
-        <Tab label="Direct Messages" />
-        <Tab label="Live Chatrooms" />
-        </Tabs>
-      </div> */}
-      <div
-      className="chat"
-      >
-      <div className="chatMenu">
-        <div className="chatMenuWrapper">
-          <div className="conversationWrapper">
-            <div className="searchConversations">
-              <TextField 
-                className="chatMenuInput" 
-                label="Search Chats and Direct Messages"
-                variant="standard"
-                onChange={getConversationSearchInput}
-                value={searchConversationInput}
-                InputProps={{
-                  endAdornment: <InputAdornment>
-                    <ClearIcon
-                      sx={{ "&:hover": { color: "red" } }}
-                      onClick={onClearConversationSearch}
-                    >             
-                    </ClearIcon>
-                  </InputAdornment>,
-                }}
-              >
-              </TextField>
-            </div>
-            {value == 0 ?
-              displayConversations
-              :
-              <>
-              <LiveChatrooms>
+      <div className="chat">
+        <div className="chatMenu">
+          <div className="chatMenuWrapper">
+            <div className="conversationWrapper">
+              <div className="searchConversations">
+                <TextField 
+                  className="chatMenuInput" 
+                  label="Search Chats and Direct Messages"
+                  variant="standard"
+                  onChange={getConversationSearchInput}
+                  value={searchConversationInput}
+                  InputProps={{
+                    endAdornment: <InputAdornment>
+                      <ClearIcon
+                        sx={{ "&:hover": { color: "red" } }}
+                        onClick={onClearConversationSearch}
+                      >             
+                      </ClearIcon>
+                    </InputAdornment>,
+                  }}
+                >
+                </TextField>
+              </div>
+              <div className="tabsContainer">
+                <Tabs 
+                  value={value} 
+                  onChange={handleChange} 
+                  aria-label="conversationTabs"
+                  centered
+                >
+                  <Tab label="Direct Messages" />
+                  <Tab label="Live Chatrooms" />
+                </Tabs>
+              </div>
+              {value == 0 ?
+                displayConversations
+                :
+                <>
+                <LiveChatrooms>
 
-              </LiveChatrooms>
-              </>
+                </LiveChatrooms>
+                </>
+              }
+            </div>
+            {value == 0 ? 
+              <div className='newConversationContainer'>
+                <Button
+                  sx={{width: 320}}
+                  size="medium"
+                  onClick={handleOpen} 
+                  variant="contained"
+                >
+                  New Conversation
+                </Button>
+                <NewConversation
+                  userID={userID}
+                  open={open}
+                  friendsList={friendsList}
+                  onClose={handleClose}
+                  getNewConversation={getNewConversation}
+                />
+              </div>
+            :
+            <div className='newConversationContainer'>
+              <Button
+                sx={{width: 320}}
+                size="medium"
+                onClick={handleOpen} 
+                variant="contained"
+              >
+                New Live Chatroom
+              </Button>
+              <NewConversation
+                userID={userID}
+                open={open}
+                friendsList={friendsList}
+                onClose={handleClose}
+                getNewConversation={getNewConversation}
+              />
+             </div>
             }
           </div>
-          <div className='newConversationContainer'>
-            <Button
-              sx={{width: 320}}
-              size="medium"
-              onClick={handleOpen} 
-              variant="contained"
-            >
-              New Conversation
-            </Button>
-            <NewConversation
-              userID={userID}
-              open={open}
-              friendsList={friendsList}
-              onClose={handleClose}
-              getNewConversation={getNewConversation}
-            />
+        </div>
+        <div className="chatBox">
+          <div className="chatBoxWrapper">
+            <div className="chatBoxTop">
+                <Message 
+                  userID={userID} 
+                  messages={messages}
+                  userHasLeft={userHasLeftConversation}
+                />
+              <div ref={scrollRef}>
+              </div>
+            </div>
+            <form onSubmit={handleSubmit}>
+              <div className="chatBoxBottom">          
+                <TextField 
+                  name="message"
+                  className="chatMessageInput" 
+                  size="large" 
+                  placeholder="Send a message.."
+                  onChange={onChangeMessage}
+                  value={messageText}
+                />
+                <Button 
+                  type="submit" 
+                  style={{ maxWidth: "40px", minWidth: "80px" }}
+                  variant="contained" 
+                  className="chatSubmitButton" 
+                  // startIcon={<SendIcon />}
+                  endIcon={<SendIcon />}
+                >
+                  Send
+                </Button>
+              </div>
+            </form>
           </div>
         </div>
-      </div>
-      <div className="chatBox">
-        <div className="chatBoxWrapper">
-          <div className="chatBoxTop">
-              <Message 
-                userID={userID} 
-                messages={messages}
-                userHasLeft={userHasLeftConversation}
-              />
-            <div ref={scrollRef}>
-            </div>
-          </div>
-          <form onSubmit={handleSubmit}>
-            <div className="chatBoxBottom">          
-              <TextField 
-                name="message"
-                className="chatMessageInput" 
-                size="large" 
-                placeholder="Send a message.."
-                onChange={onChangeMessage}
-                value={messageText}
-              />
-              <Button 
-                type="submit" 
-                variant="contained" 
-                className="chatSubmitButton" 
-                endIcon={<SendIcon />}
-              >
-                Send
-              </Button>
-            </div>
-          </form>
-        </div>
-      </div>
-        <div className="chatOnline">
-          <div className="chatOnlineWrapper">
-            <div className="searchFriends">
-              <TextField 
-                className="chatMenuInput" 
-                label="Search Friends or Users"
-                variant="standard"
-                onChange={getFriendSearchInput}
-                value={allUsersInput}
-                InputProps={{
-                  endAdornment: <InputAdornment>
-                    <ClearIcon
-                      sx={{ "&:hover": { color: "red" } }}
-                      onClick={onClearUserSearch}
-                    >             
-                    </ClearIcon>
-                  </InputAdornment>,
-                }}
-              >
+          <div className="chatOnline">
+            <div className="chatOnlineWrapper">
+              <div className="searchFriends">
+                <TextField 
+                  className="chatMenuInput" 
+                  label="Search Friends or Users"
+                  variant="standard"
+                  onChange={getFriendSearchInput}
+                  value={allUsersInput}
+                  InputProps={{
+                    endAdornment: <InputAdornment>
+                      <ClearIcon
+                        sx={{ "&:hover": { color: "red" } }}
+                        onClick={onClearUserSearch}
+                      >             
+                      </ClearIcon>
+                    </InputAdornment>,
+                  }}
+                >
               </TextField>
             </div>
             <h4>
