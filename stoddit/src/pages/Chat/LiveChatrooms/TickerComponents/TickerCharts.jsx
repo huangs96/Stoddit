@@ -22,7 +22,7 @@ ChartJS.register(
 const data = {
   labels: ['8:00am', '8:30am', '9:00am'],
   datasets: [{
-    labels: 'Hello',
+    // labels: 'Hello',
     data: [3, 6, 9],
   }]
 };
@@ -33,8 +33,8 @@ const options = {
   },
   scales: {
     y: {
-      min: 3,
-      max: 6
+      min: 120,
+      max: 180
     },
   },
 };
