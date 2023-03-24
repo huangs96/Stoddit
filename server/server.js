@@ -100,10 +100,6 @@ app.use("/login", authRoutes);
 
 /* ------ Chat Routes ------ */
 app.use("/chat", chatRoutes(io, users));
-/* --------------------------------- */
-
-
-/* ------ Ticker Routes ------ */
 app.use("/tickers", tickerRoutes);
 /* --------------------------------- */
 
