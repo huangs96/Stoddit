@@ -161,14 +161,15 @@ function FriendsOnline({userID, username, friendsList, onlineFriends, allUsers, 
   const originalOrderFriendsList = shallowCopyFriendsList.map((friends, i) => {
     return (
       <>
-        <div className="friendsOffline"
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onContextMenu={(e) => {
-          handleToggle(e);
-          selectFriend(friends);
-        }}
-      >
+        <div 
+          className="friendsOffline"
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          onContextMenu={(e) => {
+            handleToggle(e);
+            selectFriend(friends);
+          }}
+        >
           <div className="chatOfflineFriend">
             <div className="friendOfflineImgContainer">
               <img
