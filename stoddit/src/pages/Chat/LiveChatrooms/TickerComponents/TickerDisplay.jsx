@@ -1,18 +1,11 @@
 import React from 'react';
+import TickerCharts from './TickerCharts';
 
 function TickerDisplay({chatroomTickers}) {
   console.log('console', chatroomTickers);
   const displayTickers = chatroomTickers.map(ticker => {
     return (
-      <div 
-      className="friendsOffline"
-      >
-      <div className="chatOfflineFriend">
-        <div className="friendOfflineImgContainer">
-        </div>
-        <span className="offlineFriendName">{ticker.name}</span>
-      </div>
-    </div>
+      <TickerCharts ticker={ticker} />
     )
   })
   return (
