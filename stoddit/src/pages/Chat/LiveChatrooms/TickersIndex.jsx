@@ -1,8 +1,10 @@
 import {React, useState, useEffect} from 'react';
-import { getTickers } from '../../../services/ticker.service';
+import { getTickers, getTickersByChatroomID } from '../../../services/ticker.service';
 
 function TickersIndex() {
-  const [tickers, setTickers] = useState([]);
+  const [chatroomKey, setChatroomKey] = useState([]);
+  const [chatroomTickers, setAllChatroomTickers] = useState([]);
+  const [allTickers, setAllTickers] = useState([]);
 
   useEffect(() => {
     let isLoaded = true;
@@ -11,7 +13,7 @@ function TickersIndex() {
         const data = await getTickers();
         console.log('data', data);
         if (data) {
-          setTickers(data);
+          setAllTickers(data);
         };
       };
     };
@@ -21,6 +23,15 @@ function TickersIndex() {
       isLoaded = false;
     };
   }, []);
+
+  useEffect(() => {
+    let isLoaded = true;
+    const getTickersByChatroomID = async () => {
+      const data = await getTickersByChatroomID(chatroomKey);
+    }
+  })
+
+
 
 
   return (
