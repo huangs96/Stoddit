@@ -31,6 +31,7 @@ import {
 } from '../../services/chat.service';
 import { getAllUsers } from '../../services/user.service';
 import LiveChatrooms from './LiveChatrooms/LiveChatrooms';
+import TickersIndex from './LiveChatrooms/TickersIndex';
 
 function ChatIndex() {
   //user data
@@ -679,7 +680,7 @@ function ChatIndex() {
                     addUser={addUser}
                     deleteUser={deleteUser}
                   /> */}
-                  <h5>Ticker</h5>
+                  <TickersIndex />
                 </>
 
               }

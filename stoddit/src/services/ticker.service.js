@@ -1,5 +1,5 @@
 const getTickers = () => {
-  return fetch('http://localhost:5000/users', {
+  return fetch('http://localhost:5000/tickers', {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -15,7 +15,7 @@ const getTickers = () => {
 };
 
 const getTickersByChatroomID = async (chatroomID) => {
-  return fetch(`http://localhost:5000/chat/chatroom/user/${chatroomID}`, {
+  return fetch(`http://localhost:5000/tickers/${chatroomID}`, {
     headers: {
       'Content-Type': 'application/json'
     },
