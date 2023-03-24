@@ -10,16 +10,36 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import config from './chartConfig';
 
-const chart = new Chart({
-  type: 'line',
-  data: data,
-  options: {
-  }
-});
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+);
+
+const data = {
+  labels: ['8:00am', '8:30am', '9:00am'],
+  datasets: [{
+    labels: 'Hello',
+    data: [3, 6, 9],
+  }]
+};
+
+const options = {
+  plugins: {
+    legend: true
+  },
+  scales: {
+    y: {
+      min: 3,
+      max: 6
+    },
+  },
+};
 
 function TickerCharts({ticker}) {
-  // console.log('chart', LineController, LineElement, PointElement);
   return (
     // <div 
     //   className="friendsOffline"
@@ -30,7 +50,13 @@ function TickerCharts({ticker}) {
     //     <span className="offlineFriendName">{ticker.name}</span>
     //   </div>
     // </div>
-    {chart}
+    <Line
+      data={data}
+      options={options}
+
+    >
+
+    </Line>
   )
 }
 
