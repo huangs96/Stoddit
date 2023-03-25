@@ -12,7 +12,7 @@ function TickerDisplay({chatroomTickers}) {
 
   const displayTickersTab = chatroomTickers.map(ticker => {
     return (
-
+      <TickerTabs ticker={ticker}/>
     )
   })
   return (
