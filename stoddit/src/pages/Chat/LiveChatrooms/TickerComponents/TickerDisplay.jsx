@@ -1,16 +1,24 @@
 import React from 'react';
 import TickerCharts from './TickerCharts';
+import TickerTabs from './TickerTabs';
 
 function TickerDisplay({chatroomTickers}) {
   console.log('console', chatroomTickers);
-  const displayTickers = chatroomTickers.map(ticker => {
+  const displayTickersChart = chatroomTickers.map(ticker => {
     return (
       <TickerCharts ticker={ticker} />
+    )
+  });
+
+  const displayTickersTab = chatroomTickers.map(ticker => {
+    return (
+
     )
   })
   return (
     <div>
-      {displayTickers}
+      {displayTickersChart}
+
     </div>
   )
 }
