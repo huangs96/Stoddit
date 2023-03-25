@@ -12,6 +12,10 @@ function TickerTabs({ticker}) {
         <div className="tickerSymbol">{ticker.symbol}</div>
         <div className="tickerCPrice">{ticker.current_price}</div>
         <div className="tickerHPrice">{ticker.high_price}</div>
+        <img
+          src={chevronUp}
+        >
+        </img>
         <div className="tickerLPrice">{ticker.low_price}</div>
         <div className="tickerRecommendation">{ticker.recommendation}</div>
         <div className="tickerVolume">{ticker.volume}</div>
