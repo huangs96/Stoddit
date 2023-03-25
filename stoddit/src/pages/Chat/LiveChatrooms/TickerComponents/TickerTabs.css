@@ -25,6 +25,16 @@
   margin-left: 0.2rem;
 }
 
+.tickerNameSymbolContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.priceContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 .tickerCPrice {
   font-size: 12px;
