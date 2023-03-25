@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {setState} from 'react';
 import './TickerTabs.css';
 import chevronDown from '../../../../images/chevron-down.svg'
 import chevronUp from '../../../../images/chevron-up.svg';
 
 function TickerTabs({ticker}) {
+  const [tickerChange, setTickerChange] = setState(null);
   console.log('tickertab', ticker);
   return (
     <div className="tickerContainer">
@@ -13,7 +14,11 @@ function TickerTabs({ticker}) {
         <div className="tickerCPrice">{ticker.current_price}</div>
         <div className="tickerHPrice">{ticker.high_price}</div>
         <img
-          src={chevronUp}
+          src={tickerChange ?
+            chevronUp
+            :
+            chevronDown
+          }
         >
         </img>
         <div className="tickerLPrice">{ticker.low_price}</div>
