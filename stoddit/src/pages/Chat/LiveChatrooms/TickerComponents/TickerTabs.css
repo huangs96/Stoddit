@@ -1,10 +1,10 @@
-.tickerItemFinancial {
+.stockContainer {
   padding: 10px 15px;
-  height: 50px;
-  width: 180px;
+  /* height: 50px; */
+  /* width: 180px; */
 }
 
-.tickerTopLevel {
+.stockList {
   display: flex;
   text-transform: uppercase;
   font-size: 12px;
@@ -30,7 +30,7 @@
   line-height: 26px;
 }
 
-.tickerCurrentPrice {
+.stockCPrice {
   font-size: 12px;
   margin: 0 0 0 8px;
 }
