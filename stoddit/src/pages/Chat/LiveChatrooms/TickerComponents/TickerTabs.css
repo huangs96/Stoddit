@@ -1,16 +1,16 @@
 .tickerContainer {
-  padding: 10px 15px;
+  padding: 10px 15px 10px;
   /* height: 50px; */
   /* width: 180px; */
 }
 
 .tickerList {
   display: flex;
+  flex-direction: column;
   text-transform: uppercase;
   font-size: 12px;
   height: 20px;
   width: 100%;
-  flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
 }
@@ -38,24 +38,32 @@
 
 .tickerCPrice {
   font-size: 12px;
-  margin: 0 0 0 8px;
+  margin: 5px 0 0 8px;
 }
 
 .tickerHPrice {
   font-size: 12px;
+  margin: 5px 0 0 8px;
 }
 
 .tickerLPrice {
   font-size: 12px;
+  margin: 5px 0 0 8px;
 }
 
 .tickerRecommendation {
   font-size: 12px;
+  margin: 5px 0 0 8px;
+}
+
+.tickerVolume {
+  margin: 5px 0 0 8px;
 }
 
 .tickerChangePercentage {
   font-size: 22px;
   line-height: 26px;
+  margin: 5px 0 0 8px;
 }
 
 .tickerChangeNegative {
