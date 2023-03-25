@@ -17,8 +17,8 @@ function TickerDisplay({chatroomTickers}) {
   })
   return (
     <div>
-      {displayTickersChart}
-
+      {/* {displayTickersChart} */}
+      {displayTickersTab}
     </div>
   )
 }
