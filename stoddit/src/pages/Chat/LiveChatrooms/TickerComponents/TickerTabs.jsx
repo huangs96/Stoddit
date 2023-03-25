@@ -19,6 +19,11 @@ function TickerTabs({ticker}) {
             :
             chevronDown
           }
+          alt={tickerChange ?
+            chevronUp
+            :
+            chevronDown
+          }
         >
         </img>
         <div className="tickerLPrice">{ticker.low_price}</div>
