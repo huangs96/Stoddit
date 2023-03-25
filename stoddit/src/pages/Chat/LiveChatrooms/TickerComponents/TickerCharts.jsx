@@ -41,22 +41,22 @@ const options = {
 
 function TickerCharts({ticker}) {
   return (
-    // <div 
-    //   className="friendsOffline"
-    //   >
-    //   <div className="chatOfflineFriend">
-    //     <div className="friendOfflineImgContainer">
-    //     </div>
-    //     <span className="offlineFriendName">{ticker.name}</span>
-    //   </div>
-    // </div>
-    <Line
-      data={data}
-      options={options}
+    <div 
+      className="friendsOffline"
+      >
+      <div className="chatOfflineFriend">
+        <div className="friendOfflineImgContainer">
+        </div>
+        <span className="offlineFriendName">{ticker.name}</span>
+      </div>
+    </div>
+    // <Line
+    //   data={data}
+    //   options={options}
 
-    >
+    // >
 
-    </Line>
+    // </Line>
   )
 }
 
