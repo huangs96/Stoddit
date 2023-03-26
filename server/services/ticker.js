@@ -11,7 +11,9 @@ const tickerChange = (tickerData) => {
   for (let ticker = 0; ticker<tickerData.length; ticker++) {
     let eachTickerInfo = tickerData[ticker];
     if (!mostRecentTickers[eachTickerInfo.name]) {
-      mostRecentTickers[eachTickerInfo.name] = eachTickerInfo;
+      mostRecentTickers[eachTickerInfo.name] = [eachTickerInfo];
+    } else if (mostRecentTickers[eachTickerInfo.name] && mostRecentTickers[eachTickerInfo.name].length < 2) {
+      mostRecentTickers[eachTickerInfo.name].push(eachTickerInfo);
     };
   };
   console.log('mostRecentTickers', mostRecentTickers);
