@@ -17,9 +17,20 @@ const tickerChange = (tickerData) => {
     };
   };
   // return mostRecentTickers;
-  console.log('mostRecentTickers', mostRecentTickers);
+  // console.log('mostRecentTickers', mostRecentTickers);
   console.log('ticker values', Object.values(mostRecentTickers));
   let mostRecentTickerData = Object.values(mostRecentTickers);
+  for (let recentTicker = 0; recentTicker<mostRecentTickerData.length; recentTicker++) {
+    let firstRecentTicker = mostRecentTickerData[recentTicker][0];
+    let secondRecentTicker = mostRecentTickerData[recentTicker][1];
+    // console.log('1RecentTicker', firstRecentTicker);
+    // console.log('2RecentTicker', secondRecentTicker);
+    if (firstRecentTicker.date_time > secondRecentTicker.date_time) {
+      console.log('here1', firstRecentTicker, secondRecentTicker);
+    } else {
+      console.log('here2', firstRecentTicker, secondRecentTicker);
+    }
+  };
 };
 
 module.exports = {
