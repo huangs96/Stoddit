@@ -7,6 +7,7 @@ const tickerAdd = () => {
 
 const tickerChange = (tickerData) => {
   const mostRecentTickers = {};
+  const calculations = {};
   // console.log('tickerData in bizz logic', tickerData);
   for (let ticker = 0; ticker<tickerData.length; ticker++) {
     let eachTickerInfo = tickerData[ticker];
@@ -18,13 +19,12 @@ const tickerChange = (tickerData) => {
   };
   // return mostRecentTickers;
   // console.log('mostRecentTickers', mostRecentTickers);
-  console.log('ticker values', Object.values(mostRecentTickers));
   let mostRecentTickerData = Object.values(mostRecentTickers);
   for (let recentTicker = 0; recentTicker<mostRecentTickerData.length; recentTicker++) {
     let firstRecentTicker = mostRecentTickerData[recentTicker][0];
     let secondRecentTicker = mostRecentTickerData[recentTicker][1];
-    // console.log('1RecentTicker', firstRecentTicker);
-    // console.log('2RecentTicker', secondRecentTicker);
+    const currentPriceChange = ((firstRecentTicker.current_price - secondRecentTicker.current_price) / secondRecentTicker.current_price) * 100;
+    console.log('currentPriceChange', currentPriceChange)
   };
 };
 
