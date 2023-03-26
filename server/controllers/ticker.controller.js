@@ -19,7 +19,7 @@ const getTickersByChatroomID = (async (req, res) => {
   console.log('id', chatroom_id);
   try {
     const allTickers = await client.query(queries.getTickersByChatroomID, [chatroom_id]);
-    // tickerLogic.tickerChange(allTickers.rows);
+    tickerLogic.tickerChange(allTickers.rows);
     if (allTickers) {
       res.status(200).json(allTickers.rows);
     };

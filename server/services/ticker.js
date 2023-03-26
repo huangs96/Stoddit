@@ -17,18 +17,19 @@ const tickerChange = (tickerData) => {
     };
   };
   // return mostRecentTickers;
-  // console.log('mostRecentTickers', mostRecentTickers);
+  // console.log('mostRecentTickers11111', mostRecentTickers);
   let mostRecentTickerData = Object.values(mostRecentTickers);
   for (let recentTicker = 0; recentTicker<mostRecentTickerData.length; recentTicker++) {
     let firstRecentTicker = mostRecentTickerData[recentTicker][0];
     let secondRecentTicker = mostRecentTickerData[recentTicker][1];
     const currentPriceChange = firstRecentTicker.current_price - secondRecentTicker.current_price;
-    const currentPriceChangePercentage = ParseInt(Math.round(((firstRecentTicker.current_price - secondRecentTicker.current_price) / secondRecentTicker.current_price) * 100).toFixed(0));
-    console.log(Object.keys(mostRecentTickers));
-    // mostRecentTickers['priceChange'] = currentPriceChange;
-    // mostRecentTickers['priceChangePercentage'] = currentPriceChangePercentage;
+    const currentPriceChangePercentage = Math.round(((firstRecentTicker.current_price - secondRecentTicker.current_price) / secondRecentTicker.current_price) * 100).toFixed(0);
+    if (mostRecentTickers.hasOwnProperty(firstRecentTicker.name)) {
+      mostRecentTickers[firstRecentTicker.name].push(currentPriceChange);
+      mostRecentTickers[firstRecentTicker.name].push(currentPriceChangePercentage);
+    };
   };
-  console.log('ticker', mostRecentTickers);
+  // console.log('ticker222222', mostRecentTickers);
 };
 
 module.exports = {
