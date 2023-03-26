@@ -23,8 +23,10 @@ const tickerChange = (tickerData) => {
   for (let recentTicker = 0; recentTicker<mostRecentTickerData.length; recentTicker++) {
     let firstRecentTicker = mostRecentTickerData[recentTicker][0];
     let secondRecentTicker = mostRecentTickerData[recentTicker][1];
-    const currentPriceChange = ((firstRecentTicker.current_price - secondRecentTicker.current_price) / secondRecentTicker.current_price) * 100;
-    console.log('currentPriceChange', currentPriceChange)
+    const currentPriceChangePercentage = Math.round(((firstRecentTicker.current_price - secondRecentTicker.current_price) / secondRecentTicker.current_price) * 100).toFixed(0);
+    console.log('currentPriceChange', currentPriceChangePercentage);
+
+
   };
 };
 
