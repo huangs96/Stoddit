@@ -24,7 +24,7 @@ const tickerChange = (tickerData) => {
     if (mostRecentTickers.hasOwnProperty(firstRecentTicker.name)) {
       const openTickerObj = mostRecentTickers[firstRecentTicker.name][0];
       openTickerObj['changeInt'] = currentPriceChange;
-      openTickerObj['changePercentage'] = currentPriceChangePercentage;
+      openTickerObj['changePercentage'] = parseInt(currentPriceChangePercentage);
       // mostRecentTickers[firstRecentTicker.name].push(
       //   {
       //     'changeInt': currentPriceChange
