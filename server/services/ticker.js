@@ -16,10 +16,10 @@ const tickerChange = (tickerData) => {
       mostRecentTickers[eachTickerInfo.name].push(eachTickerInfo);
     };
   };
+  // return mostRecentTickers;
   console.log('mostRecentTickers', mostRecentTickers);
   console.log('ticker values', Object.values(mostRecentTickers));
   let mostRecentTickerData = Object.values(mostRecentTickers);
-  // return mostRecentTickers;
 };
 
 module.exports = {
