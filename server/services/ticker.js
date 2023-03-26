@@ -7,8 +7,9 @@ const tickerAdd = () => {
 
 const tickerChange = (tickerData) => {
   console.log('tickerData in bizz logic', tickerData);
-  const recentTickerData = [tickerData[0], tickerData[1]];
-  console.log('recentTickerData', recentTickerData);
+  for (let ticker = 0; ticker<tickerData.length; ticker++) {
+    
+  }
 };
 
 module.exports = {
