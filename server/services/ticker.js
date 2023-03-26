@@ -25,11 +25,6 @@ const tickerChange = (tickerData) => {
     let secondRecentTicker = mostRecentTickerData[recentTicker][1];
     // console.log('1RecentTicker', firstRecentTicker);
     // console.log('2RecentTicker', secondRecentTicker);
-    if (firstRecentTicker.date_time > secondRecentTicker.date_time) {
-      console.log('here1', firstRecentTicker, secondRecentTicker);
-    } else {
-      console.log('here2', firstRecentTicker, secondRecentTicker);
-    }
   };
 };
 
