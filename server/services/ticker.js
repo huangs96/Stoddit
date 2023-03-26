@@ -22,16 +22,19 @@ const tickerChange = (tickerData) => {
     const currentPriceChange = firstRecentTicker.current_price - secondRecentTicker.current_price;
     const currentPriceChangePercentage = Math.round(((firstRecentTicker.current_price - secondRecentTicker.current_price) / secondRecentTicker.current_price) * 100).toFixed(0);
     if (mostRecentTickers.hasOwnProperty(firstRecentTicker.name)) {
-      mostRecentTickers[firstRecentTicker.name].push(
-        {
-          'changeInt': currentPriceChange
-        }
-      );
-      mostRecentTickers[firstRecentTicker.name].push(
-        {
-          'percentage': parseInt(currentPriceChangePercentage)
-        }
-      );
+      const openTickerObj = mostRecentTickers[firstRecentTicker.name][0];
+      openTickerObj['changeInt'] = currentPriceChange;
+      openTickerObj['changePercentage'] = currentPriceChangePercentage;
+      // mostRecentTickers[firstRecentTicker.name].push(
+      //   {
+      //     'changeInt': currentPriceChange
+      //   }
+      // );
+      // mostRecentTickers[firstRecentTicker.name].push(
+      //   {
+      //     'percentage': parseInt(currentPriceChangePercentage)
+      //   }
+      // );
     };
   };
   return mostRecentTickers;
