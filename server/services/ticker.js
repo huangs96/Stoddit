@@ -25,16 +25,6 @@ const tickerChange = (tickerData) => {
       const openTickerObj = mostRecentTickers[firstRecentTicker.name][0];
       openTickerObj['changeInt'] = currentPriceChange;
       openTickerObj['changePercentage'] = parseInt(currentPriceChangePercentage);
-      // mostRecentTickers[firstRecentTicker.name].push(
-      //   {
-      //     'changeInt': currentPriceChange
-      //   }
-      // );
-      // mostRecentTickers[firstRecentTicker.name].push(
-      //   {
-      //     'percentage': parseInt(currentPriceChangePercentage)
-      //   }
-      // );
     };
   };
   return mostRecentTickers;
