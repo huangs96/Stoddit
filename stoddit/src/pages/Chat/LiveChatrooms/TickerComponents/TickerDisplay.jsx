@@ -4,15 +4,12 @@ import TickerTabs from './TickerTabs';
 
 function TickerDisplay({chatroomTickers}) {
   console.log('console', chatroomTickers);
-  const displayTickersChart = chatroomTickers.map(ticker => {
-    return (
-      <TickerCharts ticker={ticker} />
-    )
-  });
 
-  const displayTickersTab = chatroomTickers.map(ticker => {
+  const tickerNames = Object.keys(chatroomTickers);
+  const displayTickersTab = tickerNames.map(names => {
+    const tickerData = chatroomTickers[names];
     return (
-      <TickerTabs ticker={ticker}/>
+      <TickerTabs ticker={tickerData}/>
     )
   })
   return (

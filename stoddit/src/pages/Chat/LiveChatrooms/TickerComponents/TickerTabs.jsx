@@ -6,6 +6,11 @@ import chevronUp from '../../../../images/chevron-up.svg';
 function TickerTabs({ticker}) {
   const [tickerChange, setTickerChange] = useState('positive');
   console.log('tickertab', ticker);
+  const displayTickerTab = ticker.map(data => {
+    return (
+      
+    )
+  })
   const changePercentage = 30;
   return (
     <div className="tickerContainer">
