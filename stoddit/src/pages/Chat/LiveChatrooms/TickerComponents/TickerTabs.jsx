@@ -17,7 +17,6 @@ function TickerTabs({ticker}) {
         </div>
         <div className="priceContainer">
           <div className="changePercentage">{ticker[0].changePercentage}%
-          {/* <div className="tickerHPrice">{ticker.high_price}</div> */}
           <img
             src={tickerChange === 'positive' ?
             chevronUp
@@ -32,10 +31,8 @@ function TickerTabs({ticker}) {
           >
           </img>
           </div>
-          {/* <div className="tickerCPrice">{ticker.current_price}</div> */}
-          {/* <div className="tickerLPrice">{ticker.low_price}</div> */}
-          {/* <div className="tickerRecommendation">{ticker.recommendation}</div> */}
-          {/* <div className="tickerVolume">{ticker.volume}</div> */}
+          <div className="tickerCPrice">{ticker[0].current_price}</div>
+          <div className="tickerVolume">{ticker[0].volume}</div>
         </div>
         </div>
       </div>
