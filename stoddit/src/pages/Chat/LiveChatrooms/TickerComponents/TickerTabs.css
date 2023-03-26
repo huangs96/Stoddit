@@ -1,5 +1,6 @@
 .tickerContainer {
   padding: 10px 15px 10px;
+  margin: 10px;
   /* height: 50px; */
   /* width: 180px; */
 }
@@ -34,6 +35,14 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.changePercentage {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  color: rgb(1, 134, 1);
+  /* margin: 5px 0 0 8px; */
 }
 
 .tickerCPrice {
