@@ -31,11 +31,6 @@
   margin-left: 0.2rem;
 }
 
-.tickerNameSymbolContainer {
-  /* display: flex; */
-  /* justify-content: space-between; */
-}
-
 .tickerName {
   color: rgb(150, 150, 150);
 }
@@ -46,7 +41,7 @@
   justify-content: space-between;
 }
 
-.changePercentage {
+.changePercentageP {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
@@ -54,20 +49,13 @@
   /* margin: 5px 0 0 8px; */
 }
 
-/* .tickerCPrice { */
-  /* font-size: 14px; */
+.changePercentageN {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  color: rgb(218, 3, 85);
   /* margin: 5px 0 0 8px; */
-/* } */
-
-/* .tickerHPrice {
-  font-size: 12px;
-  margin: 5px 0 0 8px;
 }
-
-.tickerLPrice {
-  font-size: 12px;
-  margin: 5px 0 0 8px;
-} */
 
 .tickerRecommendation {
   font-size: 12px;
