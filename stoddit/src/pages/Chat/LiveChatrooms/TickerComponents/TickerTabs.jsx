@@ -11,8 +11,8 @@ function TickerTabs({ticker}) {
     <div className="tickerContainer">
       <div className="tickerList">
         <div className="tickerNameSymbolContainer">
-          <div className="tickerName">{ticker.name}</div>
           <div className="tickerSymbol">{ticker.symbol}</div>
+          <div className="tickerName">{ticker.name}</div>
         </div>
         <div className="priceContainer">
           <div className="changePercentage">{changePercentage}%

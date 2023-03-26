@@ -5,6 +5,10 @@
   /* width: 180px; */
 }
 
+.tickerContainer:hover{
+  background-color: rgb(170, 170, 170);
+}
+
 .tickerList {
   display: flex;
   flex-direction: column;
@@ -13,7 +17,8 @@
   height: 20px;
   width: 100%;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: stretch;;
+  margin: 10px;
 }
 
 .tickerStats {
@@ -27,8 +32,12 @@
 }
 
 .tickerNameSymbolContainer {
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
+}
+
+.tickerName {
+  color: rgb(150, 150, 150);
 }
 
 .priceContainer{
@@ -46,11 +55,11 @@
 }
 
 .tickerCPrice {
-  font-size: 12px;
-  margin: 5px 0 0 8px;
+  font-size: 14px;
+  /* margin: 5px 0 0 8px; */
 }
 
-.tickerHPrice {
+/* .tickerHPrice {
   font-size: 12px;
   margin: 5px 0 0 8px;
 }
@@ -58,21 +67,15 @@
 .tickerLPrice {
   font-size: 12px;
   margin: 5px 0 0 8px;
-}
+} */
 
 .tickerRecommendation {
   font-size: 12px;
-  margin: 5px 0 0 8px;
+  /* margin: 5px 0 0 8px; */
 }
 
 .tickerVolume {
-  margin: 5px 0 0 8px;
-}
-
-.tickerChangePercentage {
-  font-size: 22px;
-  line-height: 26px;
-  margin: 5px 0 0 8px;
+  /* margin: 5px 0 0 8px; */
 }
 
 .tickerChangeNegative {
