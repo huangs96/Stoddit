@@ -68,6 +68,12 @@
   color: rgb(1, 134, 1);
 }
 
+.currentCPriceN {
+  font-size: 20px;
+  padding-bottom: 10px;
+  color: rgb(218, 3, 85);
+}
+
 .tickerVolume {
   /* margin: 5px 0 0 8px; */
 }
