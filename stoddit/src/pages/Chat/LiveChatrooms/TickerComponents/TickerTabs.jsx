@@ -8,41 +8,43 @@ function TickerTabs({ticker}) {
   console.log('tickertab', ticker);
   const displayTickerTab = ticker.map(data => {
     return (
-      
-    )
-  })
-  const changePercentage = 30;
-  return (
-    <div className="tickerContainer">
-      <div className="tickerList">
-        <div className="tickerNameSymbolContainer">
-          <div className="tickerSymbol">{ticker.symbol}</div>
-          <div className="tickerName">{ticker.name}</div>
-        </div>
-        <div className="priceContainer">
-          <div className="changePercentage">{changePercentage}%
-          {/* <div className="tickerHPrice">{ticker.high_price}</div> */}
-          <img
-            src={tickerChange === 'positive' ?
-            chevronUp
-            :
-            chevronDown
-          }
-            alt={tickerChange === 'negative' ?
-            chevronUp
-            :
-            chevronDown
-          }
-          >
-          </img>
+      <div className="tickerContainer">
+        <div className="tickerList">
+          <div className="tickerNameSymbolContainer">
+            <div className="tickerSymbol">{ticker.symbol}</div>
+            <div className="tickerName">{ticker.name}</div>
           </div>
-          <div className="tickerCPrice">{ticker.current_price}</div>
-          {/* <div className="tickerLPrice">{ticker.low_price}</div> */}
-          {/* <div className="tickerRecommendation">{ticker.recommendation}</div> */}
-          <div className="tickerVolume">{ticker.volume}</div>
+          <div className="priceContainer">
+            <div className="changePercentage">{changePercentage}%
+            {/* <div className="tickerHPrice">{ticker.high_price}</div> */}
+            <img
+              src={tickerChange === 'positive' ?
+              chevronUp
+              :
+              chevronDown
+            }
+              alt={tickerChange === 'negative' ?
+              chevronUp
+              :
+              chevronDown
+            }
+            >
+            </img>
+            </div>
+            <div className="tickerCPrice">{ticker.current_price}</div>
+            {/* <div className="tickerLPrice">{ticker.low_price}</div> */}
+            {/* <div className="tickerRecommendation">{ticker.recommendation}</div> */}
+            <div className="tickerVolume">{ticker.volume}</div>
+          </div>
         </div>
       </div>
-    </div>
+    )
+  })
+
+  return (
+    <>
+    {displayTickerTab}
+    </>
   )
 }
 
