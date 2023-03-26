@@ -17,6 +17,9 @@ const tickerChange = (tickerData) => {
     };
   };
   console.log('mostRecentTickers', mostRecentTickers);
+  console.log('ticker values', Object.values(mostRecentTickers));
+  let mostRecentTickerData = Object.values(mostRecentTickers);
+  // return mostRecentTickers;
 };
 
 module.exports = {
