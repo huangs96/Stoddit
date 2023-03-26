@@ -17,7 +17,7 @@ function TickerTabs({ticker}) {
             <div className="tickerName">{data.name}</div>
           </div>
           <div className="priceContainer">
-            <div className="changePercentage">{data[3]}%
+            <div className="changePercentage">{data.percentage}%
             {/* <div className="tickerHPrice">{ticker.high_price}</div> */}
             <img
               src={tickerChange === 'positive' ?
