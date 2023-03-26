@@ -1,3 +1,3 @@
-const businessLogic = () => {
-
+const tickerChange = (tickerData) => {
+  
 };
