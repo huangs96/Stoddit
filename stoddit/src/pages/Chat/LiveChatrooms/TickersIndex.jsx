@@ -34,6 +34,7 @@ function TickersIndex() {
         const data = await getTickersByChatroomID(chatroomKey);
         if (data) {
           setAllChatroomTickers(data);
+          console.log('allChatroomTickers', data);
         };
       };
       getChatroomTickers()
