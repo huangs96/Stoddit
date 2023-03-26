@@ -6,10 +6,15 @@ const tickerAdd = () => {
 };
 
 const tickerChange = (tickerData) => {
-  console.log('tickerData in bizz logic', tickerData);
+  const mostRecentTickers = {};
+  // console.log('tickerData in bizz logic', tickerData);
   for (let ticker = 0; ticker<tickerData.length; ticker++) {
-    
-  }
+    let eachTickerInfo = tickerData[ticker];
+    if (!mostRecentTickers[eachTickerInfo.name]) {
+      mostRecentTickers[eachTickerInfo.name] = eachTickerInfo;
+    };
+  };
+  console.log('mostRecentTickers', mostRecentTickers);
 };
 
 module.exports = {
