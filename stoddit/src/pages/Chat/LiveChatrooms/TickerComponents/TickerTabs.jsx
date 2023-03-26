@@ -5,7 +5,12 @@ import chevronUp from '../../../../images/chevron-up.svg';
 
 function TickerTabs({ticker}) {
   const [tickerChange, setTickerChange] = useState('positive');
-  console.log('tickertab', ticker);
+  if (ticker[0].changePercentage < 0) {
+    console.log('positive', ticker[0].changePercentage)
+  } else {
+    console.log('negative', ticker[0].changePercentage)
+  };
+
   const displayTickerTab = 
     (
      <>
