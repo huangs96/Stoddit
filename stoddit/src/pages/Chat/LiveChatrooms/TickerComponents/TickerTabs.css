@@ -41,6 +41,11 @@
   justify-content: space-between;
 }
 
+.tickerRecommendation {
+  font-size: 12px;
+  /* margin: 5px 0 0 8px; */
+}
+
 .changePercentageP {
   display: flex;
   flex-direction: row-reverse;
@@ -57,9 +62,10 @@
   /* margin: 5px 0 0 8px; */
 }
 
-.tickerRecommendation {
-  font-size: 12px;
-  /* margin: 5px 0 0 8px; */
+.currentCPriceP {
+  font-size: 20px;
+  padding-bottom: 10px;
+  color: rgb(1, 134, 1);
 }
 
 .tickerVolume {

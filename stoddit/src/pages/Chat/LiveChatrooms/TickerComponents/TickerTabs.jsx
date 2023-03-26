@@ -40,7 +40,7 @@ function TickerTabs({ticker}) {
           <div className={ticker[0].changePercentage < 0 ?"changePercentageN" : "changePercentageP"}>{ticker[0].changePercentage}%
           {arrowDisplay}
           </div>
-          <div className="tickerCPrice">{ticker[0].current_price}</div>
+          <div className={ticker[0].changePercentage < 0 ?"currentCPriceN" : "currentCPriceP"}>{ticker[0].current_price}</div>
           <div className="tickerVolume">{ticker[0].volume}</div>
         </div>
         </div>
