@@ -29,15 +29,32 @@ const tickerDataRandomizer = (tickerData) => {
       case true:
         if (tickerData.current_price > 1000) {
           const newCurrentPrice = tickerData.current_price + randomNumber100th;
+          console.log('100th true', newCurrentPrice)
         } else if (tickerData.current_price > 100) {
           const newCurrentPrice = tickerData.current_price + randomNumber10th;
+          console.log('10th true', newCurrentPrice)
+        } else {
+          const newCurrentPrice = tickerData.current_price + randomNumber;
+          console.log('1th true', newCurrentPrice)
         }
-
-    }
-    console.log('newCurrentPrice', randomNumber);
-    console.log('newCurrentPrice', randomNumber10th);
-    console.log('newCurrentPrice', randomNumber100th);
-    console.log('newCurrentPrice', priceChangeRandomizer);
+        break;
+      case false:
+        if (tickerData.current_price > 1000) {
+          const newCurrentPrice = tickerData.current_price - randomNumber100th;
+          console.log('100th false', newCurrentPrice)
+        } else if (tickerData.current_price > 100) {
+          const newCurrentPrice = tickerData.current_price - randomNumber10th;
+          console.log('10th false', newCurrentPrice)
+        } else {
+          const newCurrentPrice = tickerData.current_price - randomNumber;
+          console.log('1th false', newCurrentPrice)
+        }
+        break;
+    };
+    // console.log('newCurrentPrice', randomNumber);
+    // console.log('newCurrentPrice', randomNumber10th);
+    // console.log('newCurrentPrice', randomNumber100th);
+    // console.log('newCurrentPrice', priceChangeRandomizer);
   };
 
 };
