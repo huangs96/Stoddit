@@ -2,6 +2,10 @@ const client = require('../classes/pgPoolClass');
 const queries = require('../queries/ticker.queries');
 
 const tickerDataRandomizer = (tickerData) => {
+  const randomNumber = Math.random().toFixed(2);
+  const randomNumber10th = Math.floor(Math.random() * 10);
+  const randomNumber100th = Math.floor(Math.random() * 100);
+  const priceChangeRandomizer = Math.random() < 0.5;
   tickerData = {
     "tickerName": "Picrosoft",
     "tickerSymbol": "$psft",
@@ -19,10 +23,6 @@ const tickerDataRandomizer = (tickerData) => {
   };
 
   if (tickerData) {
-    const randomNumber = Math.random().toFixed(2);
-    const randomNumber10th = Math.floor(Math.random() * 10);
-    const randomNumber100th = Math.floor(Math.random() * 100);
-    const priceChangeRandomizer = Math.random() < 0.5;
 
     switch (priceChangeRandomizer) {
       case true:
@@ -32,7 +32,10 @@ const tickerDataRandomizer = (tickerData) => {
           const newVolume = tickerData.volume + randomNumber100th;
           if (newCurrentPrice > tickerData.high_price) {
             const newHighPrice = newCurrentPrice;
+            newTickerIntervalData['high_price'] = newHighPrice;
           };
+          newTickerIntervalData["current_price"] = newCurrentPrice;
+          newTickerIntervalData["volume"] = newVolume;
           console.log('100th true', newCurrentPrice);
           console.log('100th true', newVolume);
         } else if (tickerData.current_price > 100) {
@@ -40,14 +43,20 @@ const tickerDataRandomizer = (tickerData) => {
           const newVolume = tickerData.volume + randomNumber100th;
           if (newCurrentPrice > tickerData.high_price) {
             const newHighPrice = newCurrentPrice;
+            newTickerIntervalData['high_price'] = newHighPrice;
           };
+          newTickerIntervalData["current_price"] = newCurrentPrice;
+          newTickerIntervalData["volume"] = newVolume;
           console.log('10th true', newCurrentPrice);
           console.log('10th true', newVolume);
         } else {
           const newCurrentPrice = tickerData.current_price + randomNumber;
           if (newCurrentPrice > tickerData.high_price) {
             const newHighPrice = newCurrentPrice;
+            newTickerIntervalData['high_price'] = newHighPrice;
           };
+          newTickerIntervalData["current_price"] = newCurrentPrice;
+          newTickerIntervalData["volume"] = newVolume;
           console.log('1th true', newCurrentPrice);
           console.log('1th true', newVolume);
         }
@@ -58,7 +67,10 @@ const tickerDataRandomizer = (tickerData) => {
           const newVolume = tickerData.volume - randomNumber100th;
           if (newCurrentPrice < tickerData.low_price) {
             const newLowPrice = newCurrentPrice;
+            newTickerIntervalData['low_price'] = newLowPrice;
           };
+          newTickerIntervalData["current_price"] = newCurrentPrice;
+          newTickerIntervalData["volume"] = newVolume;
           console.log('100th false', newCurrentPrice);
           console.log('100th false', newVolume);
         } else if (tickerData.current_price > 100) {
@@ -66,7 +78,10 @@ const tickerDataRandomizer = (tickerData) => {
           const newVolume = tickerData.volume - randomNumber10th;
           if (newCurrentPrice < tickerData.low_price) {
             const newLowPrice = newCurrentPrice;
+            newTickerIntervalData['low_price'] = newLowPrice;
           };
+          newTickerIntervalData["current_price"] = newCurrentPrice;
+          newTickerIntervalData["volume"] = newVolume;
           console.log('10th false', newCurrentPrice);
           console.log('10th false', newVolume);
         } else {
@@ -74,7 +89,10 @@ const tickerDataRandomizer = (tickerData) => {
           const newVolume = tickerData.volume + randomNumber;
           if (newCurrentPrice < tickerData.low_price) {
             const newLowPrice = newCurrentPrice;
+            newTickerIntervalData['low_price'] = newLowPrice;
           };
+          newTickerIntervalData["current_price"] = newCurrentPrice;
+          newTickerIntervalData["volume"] = newVolume;
           console.log('1th false', newCurrentPrice);
           console.log('1th false', newVolume);
         }
