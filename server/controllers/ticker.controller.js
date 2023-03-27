@@ -30,7 +30,22 @@ const getTickersByChatroomID = (async (req, res) => {
 
 //INSERT
 const insertTickerByTimeInterval = (async (req, res) => {
-  
+  const chatroom_id = req.body.chatroomID;
+  const name = req.body.tickerName;
+  const symbol = req.body.tickerSymbol;
+  const ticker_id = req.body.ticker_id;
+  const current_price = req.body.current_price;
+  const high_price = req.body.high_price;
+  const low_price = req.body.low_price;
+  const recommendation = req.body.recommendation;
+  const volume = req.body.volume;
+
+  try {
+    const newTicker = await client.query(queries.insertTickerByTimeInterval, [chatroom_id, name, symbol, ticker_id, current_price, high_price, low_price, recommendation, volume]);
+  } else (err) {
+    return res.status(400).send(err);
+  }
+
 });
 
 module.exports = {
