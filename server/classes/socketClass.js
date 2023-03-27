@@ -7,9 +7,7 @@ class Socket {
 
   onLiveUsers(cb) {
     this.socket.on('liveUsers', (userID) => {
-      console.log('users1', users);
       socketHelper.addUser(users, userID, socket.id);
-      console.log('users2', users);
       io.emit('getUsers', users);
       // io.emit('getUserMessage', `${userID} has joined!`);
     });

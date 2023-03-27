@@ -36,7 +36,6 @@ const insertTickerByTimeInterval = (async (req, res) => {
   const low_price = req.body.low_price;
   const recommendation = req.body.recommendation;
   const volume = req.body.volume;
-  console.log('req', req.body);
 
   try {
     const newTicker = await client.query(queries.insertTimeIntervalToTicker, [ticker_id, current_price, high_price, low_price, recommendation, volume]);
