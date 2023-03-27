@@ -12,6 +12,11 @@ const tickerDataRandomizer = (tickerData) => {
     "recommendation": "SELL",
     "volume": 1000000
   };
+  const newTickerIntervalData = {
+    "tickerName": tickerData.tickerName,
+    "tickerSymbol": tickerData.tickerSymbol,
+    "ticker_id": tickerData.ticker_id,
+  };
 
   if (tickerData) {
     const randomNumber = Math.random().toFixed(2);
@@ -21,14 +26,21 @@ const tickerDataRandomizer = (tickerData) => {
 
     switch (priceChangeRandomizer) {
       case true:
-        if (tickerData.current_price > 1000) {
-          const newCurrentPrice = tickerData.current_price + randomNumber100th;
-          if (newCurrentPrice > tickerData.high_price) {
-            const newHighPrice = newCurrentPrice;
-          };
-          console.log('100th true', newCurrentPrice)
-        } else if (tickerData.current_price > 100) {
+      case tickerData.current_price > 1000:
+      case tickerData.volume > 999999:
+        const newCurrentPrice = tickerData.current_price + randomNumber100th;
+        const newVolume = tickerData.volume + randomNumber100th;
+        if (newCurrentPrice > tickerData.high_price) {
+          const newHighPrice = newCurrentPrice;
+        };
+          console.log('100th true', newCurrentPrice);
+          break;
+      case true:
+      case tickerData.current_price > 1000:
+      case tickerData.volume > 999999:
+        } else if (tickerData.current_price > 100 && tickerData.volume > 9999) {
           const newCurrentPrice = tickerData.current_price + randomNumber10th;
+          const newVolume = tickerData.volume + randomNumber100th;
           if (newCurrentPrice > tickerData.high_price) {
             const newHighPrice = newCurrentPrice;
           };
