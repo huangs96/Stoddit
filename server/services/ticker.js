@@ -9,9 +9,9 @@ const tickerDataRandomizer = (tickerData) => {
   console.log('tickerData tickerLogic', tickerData);
 
   const newTickerIntervalData = Object.create(Object.getPrototypeOf(tickerData), Object.getOwnPropertyDescriptors(tickerData));
+  console.log('tickerData', tickerData);
 
   if (tickerData) {
-
     switch (priceChangeRandomizer) {
       case true:
         if (tickerData.current_price > 1000) {
@@ -34,8 +34,6 @@ const tickerDataRandomizer = (tickerData) => {
           };
           newTickerIntervalData["current_price"] = newCurrentPrice;
           newTickerIntervalData["volume"] = newVolume;
-          console.log('10th true', newCurrentPrice);
-          console.log('10th true', newVolume);
         } else {
           const newCurrentPrice = tickerData.current_price + randomNumber;
           if (newCurrentPrice > tickerData.high_price) {
@@ -44,8 +42,6 @@ const tickerDataRandomizer = (tickerData) => {
           };
           newTickerIntervalData["current_price"] = newCurrentPrice;
           newTickerIntervalData["volume"] = newVolume;
-          console.log('1th true', newCurrentPrice);
-          console.log('1th true', newVolume);
         }
         break;
       case false:
@@ -58,8 +54,6 @@ const tickerDataRandomizer = (tickerData) => {
           };
           newTickerIntervalData["current_price"] = newCurrentPrice;
           newTickerIntervalData["volume"] = newVolume;
-          console.log('100th false', newCurrentPrice);
-          console.log('100th false', newVolume);
         } else if (tickerData.current_price > 100) {
           const newCurrentPrice = tickerData.current_price - randomNumber10th;
           const newVolume = tickerData.volume - randomNumber10th;
@@ -69,8 +63,6 @@ const tickerDataRandomizer = (tickerData) => {
           };
           newTickerIntervalData["current_price"] = newCurrentPrice;
           newTickerIntervalData["volume"] = newVolume;
-          console.log('10th false', newCurrentPrice);
-          console.log('10th false', newVolume);
         } else {
           const newCurrentPrice = tickerData.current_price - randomNumber;
           const newVolume = tickerData.volume + randomNumber;
@@ -80,13 +72,11 @@ const tickerDataRandomizer = (tickerData) => {
           };
           newTickerIntervalData["current_price"] = newCurrentPrice;
           newTickerIntervalData["volume"] = newVolume;
-          console.log('1th false', newCurrentPrice);
-          console.log('1th false', newVolume);
         }
         break;
     };
   };
-  console.log(newTickerIntervalData);
+  console.log('tickerData1', newTickerIntervalData);
   // return newTickerIntervalData;
 };
 
