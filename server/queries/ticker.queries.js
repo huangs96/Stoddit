@@ -5,7 +5,7 @@ const getTickersByTimeInterval = '';
 const getTickersByTickerID = '';
 
 //Insert
-const insertTimeIntervalToTicker = 'INSERT INTO ticker_time_interval (chatroom_id, name, symbol, ticker_id, current_price, high_price, low_price, recommendation, volume, date_time) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, now());';
+const insertTimeIntervalToTicker = 'INSERT INTO ticker_time_interval (ticker_id, current_price, high_price, low_price, recommendation, volume, date_time) VALUES ($1, $2, $3, $4, $5, $6, now());';
 
 module.exports = {
   getAllTickers,

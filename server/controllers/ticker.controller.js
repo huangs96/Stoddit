@@ -30,9 +30,6 @@ const getTickersByChatroomID = (async (req, res) => {
 
 //INSERT
 const insertTickerByTimeInterval = (async (req, res) => {
-  const chatroom_id = req.body.chatroomID;
-  const name = req.body.tickerName;
-  const symbol = req.body.tickerSymbol;
   const ticker_id = req.body.ticker_id;
   const current_price = req.body.current_price;
   const high_price = req.body.high_price;
@@ -42,7 +39,7 @@ const insertTickerByTimeInterval = (async (req, res) => {
   console.log('req', req.body);
 
   try {
-    const newTicker = await client.query(queries.insertTickerByTimeInterval, [chatroom_id, name, symbol, ticker_id, current_price, high_price, low_price, recommendation, volume]);
+    const newTicker = await client.query(queries.insertTimeIntervalToTicker, [ticker_id, current_price, high_price, low_price, recommendation, volume]);
     console.log('newTicker', newTicker);
     if (newTicker.rows) {
       res.status(201).json('New Ticker has been added');
