@@ -20,6 +20,11 @@ const tickerDataRandomizer = (tickerData) => {
     "tickerName": tickerData.tickerName,
     "tickerSymbol": tickerData.tickerSymbol,
     "ticker_id": tickerData.ticker_id,
+    "current_price": tickerData.current_price,
+    "high_price": tickerData.high_price,
+    "low_price": tickerData.low_price,
+    "recommendation": tickerData.recommendation,
+    "volume": tickerData.volume,
   };
 
   if (tickerData) {
