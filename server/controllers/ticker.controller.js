@@ -61,8 +61,11 @@ const insertTickerByTimeSetInterval = (async (req, res) => {
     const tickerData = await client.query(queries.getAllTickers);
     if (tickerData.rows) {
       for (let ticker of tickerData.rows) {
-        console.log('ticker', ticker);
-      }
+        const chatroom_id = ticker.chatroom_id;
+        console.log('ticker_id', ticker_id);
+        const getTickerIntervalData = await client.query(queries.getTickersByChatroomID, [chatroom_id]);
+        console.log('tickerInterval', getTickerIntervalData.rows);
+      };
     };
 
 
