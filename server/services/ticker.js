@@ -1,7 +1,7 @@
 const client = require('../classes/pgPoolClass');
 const queries = require('../queries/ticker.queries');
 
-const tickerAdd = (tickerData) => {
+const tickerAdd = (socket) => {
   
 };
 
