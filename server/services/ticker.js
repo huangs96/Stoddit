@@ -40,7 +40,6 @@ const tickerDataRandomizer = (tickerData) => {
         }
         break;
       case false:
-
         if (tickerData.current_price > 1000) {
           const newCurrentPrice = tickerData.current_price - randomNumber100th;
           const newVolume = tickerData.volume - randomNumber100th;
