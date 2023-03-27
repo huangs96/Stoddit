@@ -72,9 +72,8 @@ const insertTickerByTimeSetInterval = (async (req, res) => {
     };
     
     for (let tickerData of tickerIntervalData) {
-      for (let ticker of tickerData) {
-        tickerLogic.tickerDataRandomizer(ticker);
-      };
+      // console.log('ticker', tickerData);
+      tickerLogic.tickerDataRandomizer(tickerData);
     };
 
 
