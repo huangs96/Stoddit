@@ -14,11 +14,30 @@ const tickerDataRandomizer = (tickerData) => {
   };
 
   if (tickerData) {
+    const randomNumber = Math.random().toFixed(2);
     const randomNumber10th = Math.floor(Math.random() * 10);
     const randomNumber100th = Math.floor(Math.random() * 100);
-    const newCurrentPrice = Math.floor(Math.random(tickerData.current_price));
+    const priceChangeRandomizer = Math.random() < 0.5;
+
+    // if (priceChangeRandomizer === true && tickerData.current_price < 1000) {
+    //   const newCurrentPrice = tickerData.current_price + randomNumber100th;
+    //   console.log('newCurrentPrice100th');
+    // } else if (priceChangeRandomizer === false) {
+
+    // }
+    switch (priceChangeRandomizer) {
+      case true:
+        if (tickerData.current_price > 1000) {
+          const newCurrentPrice = tickerData.current_price + randomNumber100th;
+        } else if (tickerData.current_price > 100) {
+          const newCurrentPrice = tickerData.current_price + randomNumber10th;
+        }
+
+    }
+    console.log('newCurrentPrice', randomNumber);
     console.log('newCurrentPrice', randomNumber10th);
     console.log('newCurrentPrice', randomNumber100th);
+    console.log('newCurrentPrice', priceChangeRandomizer);
   };
 
 };
