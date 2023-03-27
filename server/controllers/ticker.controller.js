@@ -61,11 +61,13 @@ const insertTickerByTimeSetInterval = (async (req, res) => {
     const tickerData = await client.query(queries.getAllTickers);
     if (tickerData.rows) {
       for (let ticker of tickerData.rows) {
-        const ticker_id = ticker.ticker_id;
+        const ticker_id = ticker.id;
+        console.log('tickerID', ticker)
         const getTickerIntervalData = await client.query(queries.getTickersByTickerID, [ticker_id]);
         if (getTickerIntervalData.rows.length > 0) {
-          // tickerIntervalData.push(getTickerIntervalData.rows);
-          console.log('12312312', getTickerIntervalData.rows);
+          const recentTickerData = getTickerIntervalData.rows[0];
+          console.log('12312312', recentTickerData);
+          
         };
       };
     };
