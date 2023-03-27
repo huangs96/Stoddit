@@ -1,6 +1,7 @@
 //Get
 const getAllTickers = 'SELECT * FROM ticker;';
 const getTickersByChatroomID = 'SELECT * FROM ticker INNER JOIN ticker_time_interval ON ticker.id=ticker_time_interval.ticker_id WHERE chatroom_id = $1 ORDER BY date_time DESC;';
+const getTickersByTickerID = 'SELECT * FROM ticker_time_interval WHERE ticker_id = $1 order by id desc;'
 const getTickersByTimeInterval = '';
 const getTickersByTickerID = '';
 
@@ -10,5 +11,6 @@ const insertTimeIntervalToTicker = 'INSERT INTO ticker_time_interval (ticker_id,
 module.exports = {
   getAllTickers,
   getTickersByChatroomID,
+  getTickersByTickerID,
   insertTimeIntervalToTicker
 };

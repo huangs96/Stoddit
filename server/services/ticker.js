@@ -10,7 +10,6 @@ const tickerDataRandomizer = (arrTickerData) => {
   const newIntervalData = [];
 
   for (let tickerData of arrTickerData) {
-    console.log('tickerData', tickerData);
     if (tickerData) {
       switch (priceChangeRandomizer) {
         case true:

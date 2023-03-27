@@ -61,20 +61,21 @@ const insertTickerByTimeSetInterval = (async (req, res) => {
     const tickerData = await client.query(queries.getAllTickers);
     if (tickerData.rows) {
       for (let ticker of tickerData.rows) {
-        const chatroom_id = ticker.chatroom_id;
+        const ticker_id = ticker.ticker_id;
         const getTickerIntervalData = await client.query(queries.getTickersByChatroomID, [chatroom_id]);
         if (getTickerIntervalData.rows.length > 0) {
-          tickerIntervalData.push(getTickerIntervalData.rows);
+          // tickerIntervalData.push(getTickerIntervalData.rows);
+          console.log('12312312', getTickerIntervalData.rows);
         };
       };
     };
 
     // console.log('tickerInterval', tickerIntervalData);
     
-    for (let arrTickerData of tickerIntervalData) {
-      // console.log('ticker', arrTickerData);
-      tickerLogic.tickerDataRandomizer(arrTickerData);
-    };
+    // for (let arrTickerData of tickerIntervalData) {
+    //   // console.log('ticker', arrTickerData);
+    //   tickerLogic.tickerDataRandomizer(arrTickerData);
+    // };
 
 
     // const newTicker = await client.query(queries.insertTimeIntervalToTicker, [ticker_id, current_price, high_price, low_price, recommendation, volume]);
