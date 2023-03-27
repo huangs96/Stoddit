@@ -7,7 +7,6 @@ const tickerDataRandomizer = (tickerData) => {
   const randomNumber100th = Math.floor(Math.random() * 100);
   const priceChangeRandomizer = Math.random() < 0.5;
   const newTickerIntervalData = Object.create(Object.getPrototypeOf(tickerData), Object.getOwnPropertyDescriptors(tickerData));
-  console.log('tickerData', tickerData);
 
   if (tickerData) {
     switch (priceChangeRandomizer) {
@@ -72,8 +71,7 @@ const tickerDataRandomizer = (tickerData) => {
         break;
     };
   };
-  console.log('tickerData1', newTickerIntervalData);
-  // return newTickerIntervalData;
+  return newTickerIntervalData;
 };
 
 const tickerChange = (tickerData) => {
