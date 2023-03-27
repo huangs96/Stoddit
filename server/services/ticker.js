@@ -9,95 +9,17 @@ const tickerDataRandomizer = (tickerData) => {
   const newTickerIntervalData = Object.create(Object.getPrototypeOf(tickerData), Object.getOwnPropertyDescriptors(tickerData));
   console.log('tickerData', tickerData);
   console.log('randomizer', priceChangeRandomizer);
-  // if (priceChangeRandomizer) {
-  //   const newCurrentPrice = tickerData.current_price + randomNumber10th;
-  //   tickerData.current_price = newCurrentPrice;
-  //   // tickerData.volume = newVolume;
-  // } else {
-  //   const newCurrentPrice = tickerData.current_price - randomNumber10th;
-  //   tickerData.current_price = newCurrentPrice;
-  //   // tickerData.volume = newVolume;
-  // };
-  switch (priceChangeRandomizer) {
-    case true:
-      console.log('true', tickerData);
-      const newCurrentPrice = tickerData.current_price + randomNumber10th;
-      const newVolume = tickerData.volume + randomNumber10th;
-      if (newCurrentPrice > tickerData.high_price) {
-        const newHighPrice = newCurrentPrice;
-        newTickerIntervalData['high_price'] = newHighPrice;
-      };
-      newTickerIntervalData["current_price"] = newCurrentPrice;
-      newTickerIntervalData["volume"] = newVolume;
-      // if (tickerData.current_price > 1000) {
-      //   const newCurrentPrice = tickerData.current_price + randomNumber100th;
-      //   const newVolume = tickerData.volume + randomNumber100th;
-      //   if (newCurrentPrice > tickerData.high_price) {
-      //     const newHighPrice = newCurrentPrice;
-      //     newTickerIntervalData['high_price'] = newHighPrice;
-      //   };
-      //   newTickerIntervalData["current_price"] = newCurrentPrice;
-      //   newTickerIntervalData["volume"] = newVolume;
-      // } else if (tickerData.current_price > 100) {
-      //   const newCurrentPrice = tickerData.current_price + randomNumber10th;
-      //   const newVolume = tickerData.volume + randomNumber100th;
-      //   if (newCurrentPrice > tickerData.high_price) {
-      //     const newHighPrice = newCurrentPrice;
-      //     newTickerIntervalData['high_price'] = newHighPrice;
-      //   };
-      //   newTickerIntervalData["current_price"] = newCurrentPrice;
-      //   newTickerIntervalData["volume"] = newVolume;
-      // } else {
-      //   const newCurrentPrice = tickerData.current_price + randomNumber;
-      //   if (newCurrentPrice > tickerData.high_price) {
-      //     const newHighPrice = newCurrentPrice;
-      //     newTickerIntervalData['high_price'] = newHighPrice;
-      //   };
-      //   newTickerIntervalData["current_price"] = newCurrentPrice;
-      //   newTickerIntervalData["volume"] = newVolume;
-      // }
-      break;
-    case false:
-      console.log('false', tickerData);
-      const newCurrentPriceSub = tickerData.current_price - randomNumber;
-      const newVolumeSub = tickerData.volume - randomNumber10th;
-      if (newCurrentPrice < tickerData.low_price) {
-        const newLowPrice = newCurrentPriceSub;
-        newTickerIntervalData['low_price'] = newLowPrice;
-      };
-      newTickerIntervalData["current_price"] = newCurrentPriceSub;
-      newTickerIntervalData["volume"] = parseInt(newVolumeSub);
-      // if (tickerData.current_price > 1000) {
-      //   const newCurrentPrice = tickerData.current_price - randomNumber100th;
-      //   const newVolume = tickerData.volume - randomNumber100th;
-      //   if (newCurrentPrice < tickerData.low_price) {
-      //     const newLowPrice = newCurrentPrice;
-      //     newTickerIntervalData['low_price'] = newLowPrice;
-      //   };
-      //   newTickerIntervalData["current_price"] = newCurrentPrice;
-      //   newTickerIntervalData["volume"] = newVolume;
-      // } else if (tickerData.current_price > 100) {
-      //   const newCurrentPrice = tickerData.current_price - randomNumber10th;
-      //   const newVolume = tickerData.volume - randomNumber10th;
-      //   if (newCurrentPrice < tickerData.low_price) {
-      //     const newLowPrice = newCurrentPrice;
-      //     newTickerIntervalData['low_price'] = newLowPrice;
-      //   };
-      //   newTickerIntervalData["current_price"] = newCurrentPrice;
-      //   newTickerIntervalData["volume"] = newVolume;
-      // } else {
-      //   const newCurrentPrice = tickerData.current_price - randomNumber;
-      //   const newVolume = tickerData.volume + randomNumber;
-      //   if (newCurrentPrice < tickerData.low_price) {
-      //     const newLowPrice = newCurrentPrice;
-      //     newTickerIntervalData['low_price'] = newLowPrice;
-      //   };
-      //   newTickerIntervalData["current_price"] = newCurrentPrice;
-      //   newTickerIntervalData["volume"] = parseInt(newVolume);
-      // }
-      break;
+  if (priceChangeRandomizer) {
+    const newCurrentPrice = tickerData.current_price + randomNumber10th;
+    newTickerIntervalData.current_price = newCurrentPrice;
+    // tickerData.volume = newVolume;
+  } else {
+    const newCurrentPrice = tickerData.current_price - randomNumber10th;
+    newTickerIntervalData.current_price = newCurrentPrice;
+    // tickerData.volume = newVolume;
   };
-  console.log('444444', tickerData);
+  
+  console.log('444444', newTickerIntervalData);
 };
 
 const tickerChange = (tickerData) => {
