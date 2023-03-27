@@ -16,16 +16,8 @@ const tickerDataRandomizer = (tickerData) => {
     "recommendation": "SELL",
     "volume": 1000000
   };
-  const newTickerIntervalData = {
-    "tickerName": tickerData.tickerName,
-    "tickerSymbol": tickerData.tickerSymbol,
-    "ticker_id": tickerData.ticker_id,
-    "current_price": tickerData.current_price,
-    "high_price": tickerData.high_price,
-    "low_price": tickerData.low_price,
-    "recommendation": tickerData.recommendation,
-    "volume": tickerData.volume,
-  };
+
+  const newTickerIntervalData = Object.create(Object.getPrototypeOf(tickerData), Object.getOwnPropertyDescriptors(tickerData));
 
   if (tickerData) {
 
@@ -103,12 +95,9 @@ const tickerDataRandomizer = (tickerData) => {
         }
         break;
     };
-    // console.log('newCurrentPrice', randomNumber);
-    // console.log('newCurrentPrice', randomNumber10th);
-    // console.log('newCurrentPrice', randomNumber100th);
-    // console.log('newCurrentPrice', priceChangeRandomizer);
   };
 
+  return newTickerIntervalData;
 };
 
 const tickerChange = (tickerData) => {
