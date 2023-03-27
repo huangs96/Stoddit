@@ -90,8 +90,6 @@ io.on("connection", (socket) => {
     // io.emit('getUsers', 'User has left the chat.');
   });
 
-  // socket.emit('ticker', 'tickerData');
-
 });
 /* --------------------------------- */
 

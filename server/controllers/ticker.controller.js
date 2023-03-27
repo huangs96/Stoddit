@@ -30,7 +30,7 @@ const getTickersByChatroomID = (io) => (async (req, res) => {
 });
 
 //INSERT
-const insertTickerByTimeInterval = (async (req, res) => {
+const insertTickerData = (async (req, res) => {
   const ticker_id = req.body.ticker_id;
   const current_price = req.body.current_price;
   const high_price = req.body.high_price;
@@ -48,18 +48,18 @@ const insertTickerByTimeInterval = (async (req, res) => {
     return res.status(400).send(err);
   };
 });
+
 //!!!! This controller is created to automate the ticker generation to demonstrate real-time ticker data - irrelevant with realtime API data
 const insertTickerByTimeSetInterval = (async (req, res) => {
   try {
     const tickerData = await client.query(queries.getAllTickers);
-    // console.log('0000', tickerData.rows);
     for (let ticker=0; ticker<tickerData.rows.length; ticker++) {
       const individualTicker = tickerData.rows[ticker];
       const ticker_id = individualTicker.id;
       const getTickerIntervalDataFromTickerID = await client.query(queries.getTickersByTickerID, [ticker_id]);
       const mostRecentIntervalTickerData = getTickerIntervalDataFromTickerID.rows[0];
       const newIntervalData = tickerLogic.tickerDataRandomizer(mostRecentIntervalTickerData);
-      const addInterval = await client.query(queries.insertTimeIntervalToTicker, [newIntervalData.ticker_id, newIntervalData.current_price, newIntervalData.high_price, newIntervalData.low_price, newIntervalData.recommendation, newIntervalData.volume]);
+      await client.query(queries.insertTimeIntervalToTicker, [newIntervalData.ticker_id, newIntervalData.current_price, newIntervalData.high_price, newIntervalData.low_price, newIntervalData.recommendation, newIntervalData.volume]);
     };
     return res.status(201).send('Ticker Data added through Intervals');
   } catch (err) {
@@ -72,6 +72,6 @@ module.exports = {
   getTickers,
   getTickersByChatroomID,
   //Insert
-  insertTickerByTimeInterval,
+  insertTickerData,
   insertTickerByTimeSetInterval
 };
