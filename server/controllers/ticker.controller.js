@@ -57,13 +57,14 @@ const insertTickerByTimeSetInterval = (async (req, res) => {
   const volume = req.body.volume;
 
   try {
-    const tickerData = await client.query(queries.getAllTickers);
-    if (tickerData.rows) {
-      for (let ticker of tickerData.rows) {
-        const ticker_id = ticker.id;
+    tickerLogic.tickerDataRandomizer();
+    // const tickerData = await client.query(queries.getAllTickers);
+    // if (tickerData.rows) {
+    //   for (let ticker of tickerData.rows) {
+    //     const ticker_id = ticker.id;
         
-      }
-    };
+    //   }
+    // };
 
 
     // const newTicker = await client.query(queries.insertTimeIntervalToTicker, [ticker_id, current_price, high_price, low_price, recommendation, volume]);

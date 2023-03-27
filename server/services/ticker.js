@@ -11,7 +11,16 @@ const tickerDataRandomizer = (tickerData) => {
     "low_price": 607,
     "recommendation": "SELL",
     "volume": 1000000
-  }
+  };
+
+  if (tickerData) {
+    const randomNumber10th = Math.floor(Math.random() * 10);
+    const randomNumber100th = Math.floor(Math.random() * 100);
+    const newCurrentPrice = Math.floor(Math.random(tickerData.current_price));
+    console.log('newCurrentPrice', randomNumber10th);
+    console.log('newCurrentPrice', randomNumber100th);
+  };
+
 };
 
 const tickerChange = (tickerData) => {
@@ -40,5 +49,6 @@ const tickerChange = (tickerData) => {
 };
 
 module.exports = {
+  tickerDataRandomizer,
   tickerChange
 }
