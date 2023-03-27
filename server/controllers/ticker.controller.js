@@ -51,18 +51,18 @@ const insertTickerByTimeInterval = () => (async (req, res) => {
 const insertTickerByTimeSetInterval = (io) => (async (req, res) => {
   try {
     const tickerData = await client.query(queries.getAllTickers);
-    console.log('0000', tickerData.rows);
+    // console.log('0000', tickerData.rows);
     for (let ticker=0; ticker<tickerData.rows.length; ticker++) {
       const individualTicker = tickerData.rows[ticker];
       const ticker_id = individualTicker.id;
-      console.log('tickerid', ticker_id);
+      // console.log('tickerid', ticker_id);
       const getTickerIntervalDataFromTickerID = await client.query(queries.getTickersByTickerID, [ticker_id]);
-      console.log('11111', getTickerIntervalDataFromTickerID.rows[0]);
+      // console.log('11111', getTickerIntervalDataFromTickerID.rows[0]);
       const mostRecentIntervalTickerData = getTickerIntervalDataFromTickerID.rows[0];
       const newIntervalData = tickerLogic.tickerDataRandomizer(mostRecentIntervalTickerData);
-      console.log('22222', newIntervalData);
-      const realtimeIntervalData = await client.query(queries.insertTimeIntervalToTicker, [newIntervalData.ticker_id, newIntervalData.current_price, newIntervalData.high_price, newIntervalData.low_price, newIntervalData.recommendation, newIntervalData.volume]);
-      console.log('3333', realtimeIntervalData.rows);
+      // console.log('22222', newIntervalData);
+      // const realtimeIntervalData = await client.query(queries.insertTimeIntervalToTicker, [newIntervalData.ticker_id, newIntervalData.current_price, newIntervalData.high_price, newIntervalData.low_price, newIntervalData.recommendation, newIntervalData.volume]);
+      // console.log('3333', realtimeIntervalData.rows);
 
     };
     // if (tickerData.rows) {
