@@ -60,14 +60,15 @@ const insertTickerByTimeSetInterval = (async (req, res) => {
     const tickerData = await client.query(queries.getAllTickers);
     if (tickerData.rows) {
       for (let ticker of tickerData.rows) {
-        console.log('ticker', ticker);
+        // console.log('ticker', ticker);
         const ticker_id = ticker.id;
         const getTickerIntervalData = await client.query(queries.getTickersByTickerID, [ticker_id]);
         if (getTickerIntervalData.rows.length > 0) {
           const recentTickerData = getTickerIntervalData.rows[0];
+          // console.log('recentTickerData', recentTickerData);
           const newIntervalData = tickerLogic.tickerDataRandomizer(recentTickerData);
           console.log('newData', newIntervalData);
-          await client.query(queries.insertTimeIntervalToTicker, [newIntervalData.ticker_id, newIntervalData.current_price, newIntervalData.high_price, newIntervalData.low_price, newIntervalData.recommendation, newIntervalData.volume]);
+          // await client.query(queries.insertTimeIntervalToTicker, [newIntervalData.ticker_id, newIntervalData.current_price, newIntervalData.high_price, newIntervalData.low_price, newIntervalData.recommendation, newIntervalData.volume]);
         };
       };
       res.status(201).json('New Ticker has been added in intervals');

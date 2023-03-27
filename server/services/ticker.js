@@ -7,7 +7,7 @@ const tickerDataRandomizer = (tickerData) => {
   const randomNumber100th = Math.floor(Math.random() * 100);
   const priceChangeRandomizer = Math.random() < 0.5;
   const newTickerIntervalData = Object.create(Object.getPrototypeOf(tickerData), Object.getOwnPropertyDescriptors(tickerData));
-
+  // console.log('tickerData', tickerData);
   if (tickerData) {
     switch (priceChangeRandomizer) {
       case true:
@@ -40,6 +40,7 @@ const tickerDataRandomizer = (tickerData) => {
         }
         break;
       case false:
+
         if (tickerData.current_price > 1000) {
           const newCurrentPrice = tickerData.current_price - randomNumber100th;
           const newVolume = tickerData.volume - randomNumber100th;
