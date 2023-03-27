@@ -51,26 +51,30 @@ const insertTickerByTimeInterval = () => (async (req, res) => {
 const insertTickerByTimeSetInterval = (io) => (async (req, res) => {
   try {
     const tickerData = await client.query(queries.getAllTickers);
-    // console.log('0000', tickerData.rows)
-    if (tickerData.rows) {
-      for (let ticker of tickerData.rows) {
-        console.log('01010101', ticker);
-        const ticker_id = ticker.id;
-        console.log('01010101id', ticker_id);
-        // const getTickerIntervalDataFromTickerID = await client.query(queries.getTickersByTickerID, [ticker_id]);
-        // console.log('111111', getTickerIntervalDataFromTickerID.rows);
-        if (getTickerIntervalDataFromTickerID.rows.length > 0) {
-          const recentTickerData = getTickerIntervalData.rows[0];
-          console.log('recentTickerData', recentTickerData);
-          const newIntervalData = tickerLogic.tickerDataRandomizer(recentTickerData);
-          console.log('newData', newIntervalData);
-          // const realtimeIntervalData = await client.query(queries.insertTimeIntervalToTicker, [newIntervalData.ticker_id, newIntervalData.current_price, newIntervalData.high_price, newIntervalData.low_price, newIntervalData.recommendation, newIntervalData.volume]);
-          // console.log('realtimeIntervalData', realtimeIntervalData.rows);
-          // io.emit('ticker', realtimeIntervalData);
-        };
-      };
-      // res.status(201).json('New Ticker has been added in intervals');
-    };
+    console.log('0000', tickerData.rows);
+    for (let ticker=0; ticker<tickerData.rows.length; ticker++) {
+      const individualTicker = tickerData.rows[ticker];
+      console.log('1111', individualTicker.id);
+    }
+    // if (tickerData.rows) {
+    //   for (let ticker=0; ticker<tickerData.rows.length; ticker++) {
+    //     console.log('01010101', tickerData.rows[ticker]);
+    //     const ticker_id = ticker.id;
+    //     console.log('01010101id', ticker_id);
+    //     // const getTickerIntervalDataFromTickerID = await client.query(queries.getTickersByTickerID, [ticker_id]);
+    //     // console.log('111111', getTickerIntervalDataFromTickerID.rows);
+    //     if (getTickerIntervalDataFromTickerID.rows.length > 0) {
+    //       const recentTickerData = getTickerIntervalData.rows[0];
+    //       console.log('recentTickerData', recentTickerData);
+    //       const newIntervalData = tickerLogic.tickerDataRandomizer(recentTickerData);
+    //       console.log('newData', newIntervalData);
+    //       // const realtimeIntervalData = await client.query(queries.insertTimeIntervalToTicker, [newIntervalData.ticker_id, newIntervalData.current_price, newIntervalData.high_price, newIntervalData.low_price, newIntervalData.recommendation, newIntervalData.volume]);
+    //       // console.log('realtimeIntervalData', realtimeIntervalData.rows);
+    //       // io.emit('ticker', realtimeIntervalData);
+    //     };
+    //   };
+    //   // res.status(201).json('New Ticker has been added in intervals');
+    // };
   } catch (err) {
     return res.status(400).send(err);
   };
