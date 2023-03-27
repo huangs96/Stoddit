@@ -70,7 +70,12 @@ const insertTickerByTimeSetInterval = (async (req, res) => {
         };
       };
     };
-    console.log(tickerInterData);
+    
+    if (tickerIntervalData.length > 0) {
+      for (let ticker of tickerIntervalData) {
+        tickerLogic.tickerDataRandomizer(ticker);
+      };
+    };
 
 
     // const newTicker = await client.query(queries.insertTimeIntervalToTicker, [ticker_id, current_price, high_price, low_price, recommendation, volume]);

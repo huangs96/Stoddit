@@ -6,16 +6,6 @@ const tickerDataRandomizer = (tickerData) => {
   const randomNumber10th = Math.floor(Math.random() * 10);
   const randomNumber100th = Math.floor(Math.random() * 100);
   const priceChangeRandomizer = Math.random() < 0.5;
-  tickerData = {
-    "tickerName": "Picrosoft",
-    "tickerSymbol": "$psft",
-    "ticker_id": 4,
-    "current_price": 680,
-    "high_price": 990,
-    "low_price": 607,
-    "recommendation": "SELL",
-    "volume": 1000000
-  };
 
   const newTickerIntervalData = Object.create(Object.getPrototypeOf(tickerData), Object.getOwnPropertyDescriptors(tickerData));
 
