@@ -58,11 +58,14 @@ const insertTickerByTimeSetInterval = (async (req, res) => {
 
   try {
     const tickerData = await client.query(queries.getAllTickers);
-    if (tickerData) {
-      console.log('tickerData', tickerData);
+    if (tickerData.rows) {
+      for (let ticker of tickerData.rows) {
+        const ticker_id = ticker.id;
+        
+      }
     };
 
-    
+
     // const newTicker = await client.query(queries.insertTimeIntervalToTicker, [ticker_id, current_price, high_price, low_price, recommendation, volume]);
     // console.log('newTicker', newTicker);
     // if (newTicker.rows) {
@@ -78,6 +81,6 @@ module.exports = {
   getTickers,
   getTickersByChatroomID,
   //Insert
-  insertTickerByTimeInterval
+  insertTickerByTimeInterval,
   insertTickerByTimeSetInterval
 };

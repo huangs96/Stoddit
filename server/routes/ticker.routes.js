@@ -10,6 +10,7 @@ router.get('/:id', controller.getTickersByChatroomID);
 
 /* ------ Insert Routes ------ */
 router.post('/inserttickerinterval', controller.insertTickerByTimeInterval);
+router.post('/inserttickersetinterval', controller.insertTickerByTimeSetInterval);
 /* -------------------------------- */
 
 module.exports = router;

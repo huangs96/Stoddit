@@ -1,8 +1,17 @@
 const client = require('../classes/pgPoolClass');
 const queries = require('../queries/ticker.queries');
 
-const tickerAdd = (socket) => {
-  
+const tickerDataRandomizer = (tickerData) => {
+  tickerData = {
+    "tickerName": "Picrosoft",
+    "tickerSymbol": "$psft",
+    "ticker_id": 4,
+    "current_price": 680,
+    "high_price": 990,
+    "low_price": 607,
+    "recommendation": "SELL",
+    "volume": 1000000
+  }
 };
 
 const tickerChange = (tickerData) => {
