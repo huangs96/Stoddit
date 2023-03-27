@@ -18,29 +18,47 @@ const tickerDataRandomizer = (tickerData) => {
     const randomNumber10th = Math.floor(Math.random() * 10);
     const randomNumber100th = Math.floor(Math.random() * 100);
     const priceChangeRandomizer = Math.random() < 0.5;
-    
+
     switch (priceChangeRandomizer) {
       case true:
         if (tickerData.current_price > 1000) {
           const newCurrentPrice = tickerData.current_price + randomNumber100th;
+          if (newCurrentPrice > tickerData.high_price) {
+            const newHighPrice = newCurrentPrice;
+          };
           console.log('100th true', newCurrentPrice)
         } else if (tickerData.current_price > 100) {
           const newCurrentPrice = tickerData.current_price + randomNumber10th;
+          if (newCurrentPrice > tickerData.high_price) {
+            const newHighPrice = newCurrentPrice;
+          };
           console.log('10th true', newCurrentPrice)
         } else {
           const newCurrentPrice = tickerData.current_price + randomNumber;
+          if (newCurrentPrice > tickerData.high_price) {
+            const newHighPrice = newCurrentPrice;
+          };
           console.log('1th true', newCurrentPrice)
         }
         break;
       case false:
         if (tickerData.current_price > 1000) {
           const newCurrentPrice = tickerData.current_price - randomNumber100th;
+          if (newCurrentPrice < tickerData.low_price) {
+            const newLowPrice = newCurrentPrice;
+          };
           console.log('100th false', newCurrentPrice)
         } else if (tickerData.current_price > 100) {
           const newCurrentPrice = tickerData.current_price - randomNumber10th;
+          if (newCurrentPrice < tickerData.low_price) {
+            const newLowPrice = newCurrentPrice;
+          };
           console.log('10th false', newCurrentPrice)
         } else {
           const newCurrentPrice = tickerData.current_price - randomNumber;
+          if (newCurrentPrice < tickerData.low_price) {
+            const newLowPrice = newCurrentPrice;
+          };
           console.log('1th false', newCurrentPrice)
         }
         break;
