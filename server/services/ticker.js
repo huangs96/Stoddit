@@ -27,39 +27,43 @@ const tickerDataRandomizer = (tickerData) => {
     switch (priceChangeRandomizer) {
       case true:
       case tickerData.current_price > 1000:
-      case tickerData.volume > 999999:
+      case tickerData.volume > 99999:
         const newCurrentPrice = tickerData.current_price + randomNumber100th;
         const newVolume = tickerData.volume + randomNumber100th;
         if (newCurrentPrice > tickerData.high_price) {
           const newHighPrice = newCurrentPrice;
         };
-          console.log('100th true', newCurrentPrice);
-          break;
+        console.log('100th true', newCurrentPrice);
+        break;
       case true:
-      case tickerData.current_price > 1000:
-      case tickerData.volume > 999999:
-        } else if (tickerData.current_price > 100 && tickerData.volume > 9999) {
-          const newCurrentPrice = tickerData.current_price + randomNumber10th;
-          const newVolume = tickerData.volume + randomNumber100th;
-          if (newCurrentPrice > tickerData.high_price) {
-            const newHighPrice = newCurrentPrice;
-          };
-          console.log('10th true', newCurrentPrice)
-        } else {
-          const newCurrentPrice = tickerData.current_price + randomNumber;
-          if (newCurrentPrice > tickerData.high_price) {
-            const newHighPrice = newCurrentPrice;
-          };
-          console.log('1th true', newCurrentPrice)
-        }
+      case tickerData.current_price > 100:
+      case tickerData.volume > 99999:
+        const newCurrentPrice = tickerData.current_price + randomNumber10th;
+        const newVolume = tickerData.volume + randomNumber10th;
+        if (newCurrentPrice > tickerData.high_price) {
+          const newHighPrice = newCurrentPrice;
+        };
+        console.log('10th true', newCurrentPrice);
+        break;
+      case true:
+      case tickerData.current_price > 10:
+      case tickerData.volume > 99999:
+        const newCurrentPrice = tickerData.current_price + randomNumber;
+        const newVolume = tickerData.volume + randomNumber;
+        if (newCurrentPrice > tickerData.high_price) {
+          const newHighPrice = newCurrentPrice;
+        };
+        console.log('1th true', newCurrentPrice);
         break;
       case false:
-        if (tickerData.current_price > 1000) {
-          const newCurrentPrice = tickerData.current_price - randomNumber100th;
-          if (newCurrentPrice < tickerData.low_price) {
-            const newLowPrice = newCurrentPrice;
-          };
-          console.log('100th false', newCurrentPrice)
+      case tickerData.current_price < 1000:
+      case tickerData.volume > 99999:
+        const newCurrentPrice = tickerData.current_price - randomNumber100th;
+        const newVolume = tickerData.volume - randomNumber100th;
+        if (newCurrentPrice < tickerData.low_price) {
+          const newLowPrice = newCurrentPrice;
+        };
+        console.log('100th false', newCurrentPrice)
         } else if (tickerData.current_price > 100) {
           const newCurrentPrice = tickerData.current_price - randomNumber10th;
           if (newCurrentPrice < tickerData.low_price) {
