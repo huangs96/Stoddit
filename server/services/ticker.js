@@ -1,17 +1,17 @@
 const client = require('../classes/pgPoolClass');
 const queries = require('../queries/ticker.queries');
 
-const tickerDataRandomizer = (tickerData) => {
+const tickerDataRandomizer = (arrTickerData) => {
   const randomNumber = Math.random().toFixed(2);
   const randomNumber10th = Math.floor(Math.random() * 10);
   const randomNumber100th = Math.floor(Math.random() * 100);
   const priceChangeRandomizer = Math.random() < 0.5;
-  // console.log('tickerData tickerLogic', tickerData);
 
   const newTickerIntervalData = [];
+  // console.log('arr', arrTickerData);
 
-  for (tickers of tickerData) {
-    console.log('tickers', tickers);
+  for (let tickerData of arrTickerData) {
+    console.log('tickers', tickerData);
   }
 
   // if (tickerData) {
