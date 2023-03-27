@@ -11,15 +11,17 @@ const tickerDataRandomizer = (tickerData) => {
   console.log('randomizer', priceChangeRandomizer);
   if (priceChangeRandomizer) {
     const newCurrentPrice = tickerData.current_price + randomNumber10th;
+    const newVolume = tickerData.volume + randomNumber100th;
     newTickerIntervalData.current_price = newCurrentPrice;
-    // tickerData.volume = newVolume;
+    newTickerIntervalData.volume = newVolume;
   } else {
     const newCurrentPrice = tickerData.current_price - randomNumber10th;
+    const newVolume = tickerData.volume - randomNumber100th;
     newTickerIntervalData.current_price = newCurrentPrice;
-    // tickerData.volume = newVolume;
+    newTickerIntervalData.volume = newVolume;
   };
   
-  console.log('444444', newTickerIntervalData);
+  return newTickerIntervalData;
 };
 
 const tickerChange = (tickerData) => {
