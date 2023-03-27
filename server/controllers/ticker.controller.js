@@ -42,13 +42,18 @@ const insertTickerByTimeInterval = (async (req, res) => {
 
   try {
     const newTicker = await client.query(queries.insertTickerByTimeInterval, [chatroom_id, name, symbol, ticker_id, current_price, high_price, low_price, recommendation, volume]);
-  } else (err) {
+    if (newTicker.rows) {
+      res.status(201).json('New Ticker has been added');
+    }
+  } catch (err) {
     return res.status(400).send(err);
-  }
-
+  };
 });
 
 module.exports = {
+  //Get
   getTickers,
-  getTickersByChatroomID
+  getTickersByChatroomID,
+  //Insert
+  insertTickerByTimeInterval
 };
