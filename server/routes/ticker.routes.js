@@ -5,13 +5,13 @@ module.exports = (io) => {
   
   /* ------ Get Routes ------ */
   router.get('/', controller.getTickers);
-  router.get('/:id', controller.getTickersByChatroomID);
+  router.get('/:id', controller.getTickersByChatroomID(io));
    /* -------------------------------- */
   
   
   /* ------ Insert Routes ------ */
   router.post('/inserttickerinterval', controller.insertTickerByTimeInterval);
-  router.post('/inserttickersetinterval', controller.insertTickerByTimeSetInterval(io));
+  router.post('/inserttickersetinterval', controller.insertTickerByTimeSetInterval);
   /* -------------------------------- */
   
   return router;
