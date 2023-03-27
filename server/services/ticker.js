@@ -6,6 +6,7 @@ const tickerDataRandomizer = (tickerData) => {
   const randomNumber10th = Math.floor(Math.random() * 10);
   const randomNumber100th = Math.floor(Math.random() * 100);
   const priceChangeRandomizer = Math.random() < 0.5;
+  console.log('tickerData tickerLogic', tickerData);
 
   const newTickerIntervalData = Object.create(Object.getPrototypeOf(tickerData), Object.getOwnPropertyDescriptors(tickerData));
 

@@ -58,7 +58,7 @@ const insertTickerByTimeSetInterval = (async (req, res) => {
   const tickerIntervalData = [];
 
   try {
-    tickerLogic.tickerDataRandomizer();
+    // tickerLogic.tickerDataRandomizer();
     const tickerData = await client.query(queries.getAllTickers);
     if (tickerData.rows) {
       for (let ticker of tickerData.rows) {
@@ -71,8 +71,8 @@ const insertTickerByTimeSetInterval = (async (req, res) => {
       };
     };
     
-    if (tickerIntervalData.length > 0) {
-      for (let ticker of tickerIntervalData) {
+    for (let tickerData of tickerIntervalData) {
+      for (let ticker of tickerData) {
         tickerLogic.tickerDataRandomizer(ticker);
       };
     };
