@@ -54,8 +54,17 @@ const insertTickerByTimeSetInterval = (io) => (async (req, res) => {
     console.log('0000', tickerData.rows);
     for (let ticker=0; ticker<tickerData.rows.length; ticker++) {
       const individualTicker = tickerData.rows[ticker];
-      console.log('1111', individualTicker.id);
-    }
+      const ticker_id = individualTicker.id;
+      console.log('tickerid', ticker_id);
+      const getTickerIntervalDataFromTickerID = await client.query(queries.getTickersByTickerID, [ticker_id]);
+      console.log('11111', getTickerIntervalDataFromTickerID.rows[0]);
+      const mostRecentIntervalTickerData = getTickerIntervalDataFromTickerID.rows[0];
+      const newIntervalData = tickerLogic.tickerDataRandomizer(mostRecentIntervalTickerData);
+      console.log('22222', newIntervalData);
+      const realtimeIntervalData = await client.query(queries.insertTimeIntervalToTicker, [newIntervalData.ticker_id, newIntervalData.current_price, newIntervalData.high_price, newIntervalData.low_price, newIntervalData.recommendation, newIntervalData.volume]);
+      console.log('3333', realtimeIntervalData.rows);
+
+    };
     // if (tickerData.rows) {
     //   for (let ticker=0; ticker<tickerData.rows.length; ticker++) {
     //     console.log('01010101', tickerData.rows[ticker]);
