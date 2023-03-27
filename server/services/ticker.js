@@ -18,13 +18,7 @@ const tickerDataRandomizer = (tickerData) => {
     const randomNumber10th = Math.floor(Math.random() * 10);
     const randomNumber100th = Math.floor(Math.random() * 100);
     const priceChangeRandomizer = Math.random() < 0.5;
-
-    // if (priceChangeRandomizer === true && tickerData.current_price < 1000) {
-    //   const newCurrentPrice = tickerData.current_price + randomNumber100th;
-    //   console.log('newCurrentPrice100th');
-    // } else if (priceChangeRandomizer === false) {
-
-    // }
+    
     switch (priceChangeRandomizer) {
       case true:
         if (tickerData.current_price > 1000) {
