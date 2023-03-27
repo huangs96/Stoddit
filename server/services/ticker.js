@@ -7,92 +7,95 @@ const tickerDataRandomizer = (arrTickerData) => {
   const randomNumber100th = Math.floor(Math.random() * 100);
   const priceChangeRandomizer = Math.random() < 0.5;
 
-  const newTickerIntervalData = [];
-  // console.log('arr', arrTickerData);
+  const newIntervalData = [];
 
   for (let tickerData of arrTickerData) {
-    console.log('tickers', tickerData);
+    console.log('tickerData', tickerData);
+    if (tickerData) {
+      switch (priceChangeRandomizer) {
+        case true:
+          if (tickerData.current_price > 1000) {
+            const newCurrentPrice = tickerData.current_price + randomNumber100th;
+            const newVolume = tickerData.volume + randomNumber100th;
+            if (newCurrentPrice > tickerData.high_price) {
+              const newHighPrice = newCurrentPrice;
+              tickerData['high_price'] = newHighPrice;
+            };
+            tickerData["current_price"] = newCurrentPrice;
+            tickerData["volume"] = newVolume;
+            console.log('100th true', newCurrentPrice);
+            console.log('100th true', newVolume);
+            newIntervalData.push(tickerData);
+          } else if (tickerData.current_price > 100) {
+            const newCurrentPrice = tickerData.current_price + randomNumber10th;
+            const newVolume = tickerData.volume + randomNumber100th;
+            if (newCurrentPrice > tickerData.high_price) {
+              const newHighPrice = newCurrentPrice;
+              tickerData['high_price'] = newHighPrice;
+            };
+            tickerData["current_price"] = newCurrentPrice;
+            tickerData["volume"] = newVolume;
+            console.log('10th true', newCurrentPrice);
+            console.log('10th true', newVolume);
+            newIntervalData.push(tickerData);
+          } else {
+            const newCurrentPrice = tickerData.current_price + randomNumber;
+            if (newCurrentPrice > tickerData.high_price) {
+              const newHighPrice = newCurrentPrice;
+              tickerData['high_price'] = newHighPrice;
+            };
+            tickerData["current_price"] = newCurrentPrice;
+            tickerData["volume"] = newVolume;
+            console.log('1th true', newCurrentPrice);
+            console.log('1th true', newVolume);
+            newIntervalData.push(tickerData);
+          }
+          // break;
+        case false:
+          if (tickerData.current_price > 1000) {
+            const newCurrentPrice = tickerData.current_price - randomNumber100th;
+            const newVolume = tickerData.volume - randomNumber100th;
+            if (newCurrentPrice < tickerData.low_price) {
+              const newLowPrice = newCurrentPrice;
+              tickerData['low_price'] = newLowPrice;
+            };
+            tickerData["current_price"] = newCurrentPrice;
+            tickerData["volume"] = newVolume;
+            console.log('100th false', newCurrentPrice);
+            console.log('100th false', newVolume);
+            newIntervalData.push(tickerData);
+          } else if (tickerData.current_price > 100) {
+            const newCurrentPrice = tickerData.current_price - randomNumber10th;
+            const newVolume = tickerData.volume - randomNumber10th;
+            if (newCurrentPrice < tickerData.low_price) {
+              const newLowPrice = newCurrentPrice;
+              tickerData['low_price'] = newLowPrice;
+            };
+            tickerData["current_price"] = newCurrentPrice;
+            tickerData["volume"] = newVolume;
+            console.log('10th false', newCurrentPrice);
+            console.log('10th false', newVolume);
+            newIntervalData.push(tickerData);
+          } else {
+            const newCurrentPrice = tickerData.current_price - randomNumber;
+            const newVolume = tickerData.volume + randomNumber;
+            if (newCurrentPrice < tickerData.low_price) {
+              const newLowPrice = newCurrentPrice;
+              tickerData['low_price'] = newLowPrice;
+            };
+            tickerData["current_price"] = newCurrentPrice;
+            tickerData["volume"] = newVolume;
+            newIntervalData.push(tickerData);
+            console.log('1th false', newCurrentPrice);
+            console.log('1th false', newVolume);
+          }
+          // break;
+      };
+    };
   }
 
-  // if (tickerData) {
 
-  //   switch (priceChangeRandomizer) {
-  //     case true:
-  //     case tickerData.current_price > 1000:
-  //       if (tickerData.current_price > 1000) {
-  //         const newCurrentPrice = tickerData.current_price + randomNumber100th;
-  //         const newVolume = tickerData.volume + randomNumber100th;
-  //         if (newCurrentPrice > tickerData.high_price) {
-  //           const newHighPrice = newCurrentPrice;
-  //           newTickerIntervalData['high_price'] = newHighPrice;
-  //         };
-  //         newTickerIntervalData["current_price"] = newCurrentPrice;
-  //         newTickerIntervalData["volume"] = newVolume;
-  //         console.log('100th true', newCurrentPrice);
-  //         console.log('100th true', newVolume);
-  //       } else if (tickerData.current_price > 100) {
-  //         const newCurrentPrice = tickerData.current_price + randomNumber10th;
-  //         const newVolume = tickerData.volume + randomNumber100th;
-  //         if (newCurrentPrice > tickerData.high_price) {
-  //           const newHighPrice = newCurrentPrice;
-  //           newTickerIntervalData['high_price'] = newHighPrice;
-  //         };
-  //         newTickerIntervalData["current_price"] = newCurrentPrice;
-  //         newTickerIntervalData["volume"] = newVolume;
-  //         console.log('10th true', newCurrentPrice);
-  //         console.log('10th true', newVolume);
-  //       } else {
-  //         const newCurrentPrice = tickerData.current_price + randomNumber;
-  //         if (newCurrentPrice > tickerData.high_price) {
-  //           const newHighPrice = newCurrentPrice;
-  //           newTickerIntervalData['high_price'] = newHighPrice;
-  //         };
-  //         newTickerIntervalData["current_price"] = newCurrentPrice;
-  //         newTickerIntervalData["volume"] = newVolume;
-  //         console.log('1th true', newCurrentPrice);
-  //         console.log('1th true', newVolume);
-  //       }
-  //       break;
-  //     case false:
-  //       if (tickerData.current_price > 1000) {
-  //         const newCurrentPrice = tickerData.current_price - randomNumber100th;
-  //         const newVolume = tickerData.volume - randomNumber100th;
-  //         if (newCurrentPrice < tickerData.low_price) {
-  //           const newLowPrice = newCurrentPrice;
-  //           newTickerIntervalData['low_price'] = newLowPrice;
-  //         };
-  //         newTickerIntervalData["current_price"] = newCurrentPrice;
-  //         newTickerIntervalData["volume"] = newVolume;
-  //         console.log('100th false', newCurrentPrice);
-  //         console.log('100th false', newVolume);
-  //       } else if (tickerData.current_price > 100) {
-  //         const newCurrentPrice = tickerData.current_price - randomNumber10th;
-  //         const newVolume = tickerData.volume - randomNumber10th;
-  //         if (newCurrentPrice < tickerData.low_price) {
-  //           const newLowPrice = newCurrentPrice;
-  //           newTickerIntervalData['low_price'] = newLowPrice;
-  //         };
-  //         newTickerIntervalData["current_price"] = newCurrentPrice;
-  //         newTickerIntervalData["volume"] = newVolume;
-  //         console.log('10th false', newCurrentPrice);
-  //         console.log('10th false', newVolume);
-  //       } else {
-  //         const newCurrentPrice = tickerData.current_price - randomNumber;
-  //         const newVolume = tickerData.volume + randomNumber;
-  //         if (newCurrentPrice < tickerData.low_price) {
-  //           const newLowPrice = newCurrentPrice;
-  //           newTickerIntervalData['low_price'] = newLowPrice;
-  //         };
-  //         newTickerIntervalData["current_price"] = newCurrentPrice;
-  //         newTickerIntervalData["volume"] = newVolume;
-  //         console.log('1th false', newCurrentPrice);
-  //         console.log('1th false', newVolume);
-  //       }
-  //       break;
-  //   };
-  // };
-
-  // return newTickerIntervalData;
+  console.log('213123', newIntervalData);
 };
 
 const tickerChange = (tickerData) => {
