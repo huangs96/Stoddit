@@ -49,13 +49,6 @@ const insertTickerByTimeInterval = (async (req, res) => {
 });
 //!!!! This controller is created to automate the ticker generation to demonstrate real-time ticker data - irrelevant with realtime API data
 const insertTickerByTimeSetInterval = (async (req, res) => {
-  const ticker_id = req.body.ticker_id;
-  const current_price = req.body.current_price;
-  const high_price = req.body.high_price;
-  const low_price = req.body.low_price;
-  const recommendation = req.body.recommendation;
-  const volume = req.body.volume;
-
   try {
     const tickerData = await client.query(queries.getAllTickers);
     if (tickerData.rows) {
@@ -68,7 +61,7 @@ const insertTickerByTimeSetInterval = (async (req, res) => {
           // console.log('recentTickerData', recentTickerData);
           const newIntervalData = tickerLogic.tickerDataRandomizer(recentTickerData);
           console.log('newData', newIntervalData);
-          // await client.query(queries.insertTimeIntervalToTicker, [newIntervalData.ticker_id, newIntervalData.current_price, newIntervalData.high_price, newIntervalData.low_price, newIntervalData.recommendation, newIntervalData.volume]);
+          await client.query(queries.insertTimeIntervalToTicker, [newIntervalData.ticker_id, newIntervalData.current_price, newIntervalData.high_price, newIntervalData.low_price, newIntervalData.recommendation, newIntervalData.volume]);
         };
       };
       res.status(201).json('New Ticker has been added in intervals');
