@@ -2,7 +2,7 @@ require('dotenv').config();
 const client = require('../classes/pgPoolClass');
 const queries = require('../queries/ticker.queries');
 const tickerLogic = require('../services/ticker');
-
+//GET
 const getTickers = (async (req, res) => {
   try {
     const allTickers = await client.query(queries.getAllTickers);
@@ -26,6 +26,11 @@ const getTickersByChatroomID = (async (req, res) => {
   } catch (err) {
     return res.status(400).send(err);
   };
+});
+
+//INSERT
+const insertTickerByTimeInterval = (async (req, res) => {
+  
 });
 
 module.exports = {
