@@ -57,11 +57,17 @@ const insertTickerByTimeSetInterval = (async (req, res) => {
   const volume = req.body.volume;
 
   try {
-    const newTicker = await client.query(queries.insertTimeIntervalToTicker, [ticker_id, current_price, high_price, low_price, recommendation, volume]);
-    console.log('newTicker', newTicker);
-    if (newTicker.rows) {
-      res.status(201).json('New Ticker has been added');
-    }
+    const tickerData = await client.query(queries.getAllTickers);
+    if (tickerData) {
+      console.log('tickerData', tickerData);
+    };
+
+    
+    // const newTicker = await client.query(queries.insertTimeIntervalToTicker, [ticker_id, current_price, high_price, low_price, recommendation, volume]);
+    // console.log('newTicker', newTicker);
+    // if (newTicker.rows) {
+    //   res.status(201).json('New Ticker has been added');
+    // }
   } catch (err) {
     return res.status(400).send(err);
   };
