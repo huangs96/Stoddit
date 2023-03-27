@@ -5,12 +5,12 @@ import chevronUp from '../../../../images/chevron-up.svg';
 
 function TickerTabs({ticker}) {
   const [tickerChange, setTickerChange] = useState('positive');
-  if (ticker[0].changePercentage < 0) {
-    console.log('negative', ticker[0].changePercentage)
-    // setTickerChange('negative');
-  } else {
-    console.log('positive', ticker[0].changePercentage)
-  };
+  // if (ticker[0].changePercentage < 0) {
+  //   console.log('negative', ticker[0].changePercentage)
+  //   // setTickerChange('negative');
+  // } else {
+  //   console.log('positive', ticker[0].changePercentage)
+  // };
   const arrowDisplay = (
     <img
       src={ticker[0].changePercentage < 0 ?

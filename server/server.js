@@ -89,6 +89,9 @@ io.on("connection", (socket) => {
     io.emit('getUsers', users);
     // io.emit('getUsers', 'User has left the chat.');
   });
+
+  socket.emit('ticker', 'tickerData');
+
 });
 /* --------------------------------- */
 
@@ -100,7 +103,7 @@ app.use("/login", authRoutes);
 
 /* ------ Chat Routes ------ */
 app.use("/chat", chatRoutes(io, users));
-app.use("/tickers", tickerRoutes);
+app.use("/tickers", tickerRoutes(io));
 /* --------------------------------- */
 
 /* ------ Setting Routes ------ */

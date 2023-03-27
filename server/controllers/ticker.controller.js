@@ -29,7 +29,7 @@ const getTickersByChatroomID = (async (req, res) => {
 });
 
 //INSERT
-const insertTickerByTimeInterval = (async (req, res) => {
+const insertTickerByTimeInterval = () => (async (req, res) => {
   const ticker_id = req.body.ticker_id;
   const current_price = req.body.current_price;
   const high_price = req.body.high_price;
@@ -48,7 +48,7 @@ const insertTickerByTimeInterval = (async (req, res) => {
   };
 });
 //!!!! This controller is created to automate the ticker generation to demonstrate real-time ticker data - irrelevant with realtime API data
-const insertTickerByTimeSetInterval = (async (req, res) => {
+const insertTickerByTimeSetInterval = (io) => (async (req, res) => {
   try {
     const tickerData = await client.query(queries.getAllTickers);
     if (tickerData.rows) {

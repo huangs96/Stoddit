@@ -22,7 +22,7 @@ import {
   addMessageToConversation, 
   addFriendtoFriendList
  } from '../../contexts/chatContext';
- import { SocketContext } from '../../contexts/socketProvider';
+import { SocketContext } from '../../contexts/socketProvider';
 import { 
   getChatroomByUserID,
   getMessagesByChatroomID,

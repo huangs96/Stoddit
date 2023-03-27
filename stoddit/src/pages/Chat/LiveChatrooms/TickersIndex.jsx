@@ -1,12 +1,23 @@
-import {React, useState, useEffect} from 'react';
+import {React, useState, useEffect, useContext} from 'react';
 import { getTickers, getTickersByChatroomID } from '../../../services/ticker.service';
+import { SocketContext } from '../../../contexts/socketProvider';
 import TickerDisplay from './TickerComponents/TickerDisplay';
 
 function TickersIndex() {
   const [chatroomKey, setChatroomKey] = useState(287);
   const [chatroomTickers, setAllChatroomTickers] = useState([]);
   const [allTickers, setAllTickers] = useState([]);
+  const socket = useContext(SocketContext);
   console.log('chatroomKey Tickers', chatroomKey);
+
+  useEffect(() => {
+    socket.on('ticker', tickerData => {
+      console.log('tickerData', tickerData);
+    });
+    return () => {
+      socket.off('tickerChange');
+    };
+  }, []);
 
   useEffect(() => {
     let isLoaded = true;
@@ -30,7 +41,6 @@ function TickersIndex() {
     let isLoaded = true;
     if (isLoaded) {
       const getChatroomTickers = async () => {
-        console.log('data2222', chatroomKey);
         const data = await getTickersByChatroomID(chatroomKey);
         if (data) {
           setAllChatroomTickers(data);
