@@ -107,6 +107,14 @@ const getLiveChatroom = (async (req, res) => {
   };
 });
 
+const joinLiveChatroom = (async (req, res) => {
+  try {
+
+  } catch (err) {
+
+  };
+});
+
 /* -------------------------------- */
 
 

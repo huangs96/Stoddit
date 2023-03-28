@@ -41,7 +41,9 @@ module.exports = {
   getChatroomByUserID,
   createChatroom,
   deleteChatroom,
+  //live chatroom
   getLiveChatroom,
+  joinLiveChatroom,
   //participant
   getParticipant,
   createParticipantFromChatroom,
