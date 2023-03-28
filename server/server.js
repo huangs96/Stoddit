@@ -71,15 +71,15 @@ io.on("connection", (socket) => {
   socket.on('chatMessage', messageData => {
     io.emit(messageData);
   });
-  socket.on('conversationSocket', conversationData => {
-    console.log('convodata', conversationData);
-    chatroom = conversationData;
-    io.emit(conversationData);
-  });
+  // socket.on('conversationSocket', conversationData => {
+  //   console.log('convodata', conversationData);
+  //   chatroom = conversationData;
+  //   io.emit(conversationData);
+  // });
   socket.on('joinLiveChatroom', liveChatroomData => {
     console.log('convodata', liveChatroomData);
     
-    io.emit('joinLiveChatroom', liveChatroomData.chatroomData, liveChatroomData.userData);
+    io.emit('getLiveUsers', liveChatroomData.chatroomData, liveChatroomData.userData);
   });
   socket.on('logout', () => {
     // console.log('logout1', socket);

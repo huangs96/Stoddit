@@ -411,7 +411,7 @@ function ChatIndex() {
   }, []);
 
   useEffect(() => {
-    socket.on('joinLiveChatroom', liveChatroomData => {
+    socket.on('getLiveUsers', liveChatroomData => {
       console.log('liveChatroomData from Socket', liveChatroomData);
     });
   }, []);
@@ -693,7 +693,7 @@ function ChatIndex() {
                   <div className="searchFriends">
                     <TextField 
                       className="chatMenuInput" 
-                      label="Search Friends or Users"
+                      label="Search Tickers"
                       variant="standard"
                       onChange={getFriendSearchInput}
                       value={allUsersInput}
