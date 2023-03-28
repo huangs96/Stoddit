@@ -68,6 +68,10 @@ const getAllLiveChatrooms = async () => {
     }
     throw response;
   });
+};
+
+const joinLiveChatrooms = async () => {
+  
 }
 /* -------------------------------- */
 
