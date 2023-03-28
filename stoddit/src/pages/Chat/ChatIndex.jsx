@@ -60,6 +60,7 @@ function ChatIndex() {
   const [liveChatroomKey, setLiveChatroomKey] = useState(null);
   //deleting chatroom
   const [userHasLeftConversation, setUserHasLeftConversation] = useState(false);
+  const [userHasJoinedConversation, setUserHasJoinedConversation] = useState(false);
   //participants
   const [participantsInChatroom, setParticipantsInChatroom] = useState([]);
   //friendslist
@@ -291,7 +292,7 @@ function ChatIndex() {
     return () => {
       isLoaded = false;
     };
-  }, [userHasLeftConversation]);
+  }, []);
 
   useEffect(() => {
     let isLoaded = true;
@@ -393,6 +394,11 @@ function ChatIndex() {
   /* --------------------------------- */
 
   /* ------ Live Chatrooms ------ */
+  const joinLiveChatroom = () => {
+
+  };
+
+  
   useEffect(() => {
     let isLoaded = true;
     const getLiveChatrooms = async () => {
@@ -620,6 +626,7 @@ function ChatIndex() {
                   <LiveChatroomMessage 
                     userID={userID} 
                     messages={messages}
+                    userHasJoined={userHasJoinedConversation}
                     userHasLeft={userHasLeftConversation}
                   />
                   <div ref={scrollRef}></div>
