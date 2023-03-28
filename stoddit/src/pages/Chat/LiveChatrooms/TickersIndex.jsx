@@ -1,7 +1,8 @@
 import {React, useState, useEffect, useContext} from 'react';
 import { getTickers, getTickersByChatroomID } from '../../../services/ticker.service';
 import { SocketContext } from '../../../contexts/socketProvider';
-import TickerDisplay from './TickerComponents/TickerDisplay';
+import TickerCharts from './TickerComponents/TickerCharts';
+import TickerTabs from './TickerComponents/TickerTabs';
 import { getAllLiveChatrooms } from '../../../services/chat.service';
 
 function TickersIndex({liveChatroomKey}) {
@@ -72,14 +73,18 @@ function TickersIndex({liveChatroomKey}) {
     };
   }, [liveChatroomKey]);
 
-
+  const tickerNames = Object.keys(chatroomTickers);
+  const displayTickersTab = tickerNames.map(names => {
+    const tickerData = chatroomTickers[names];
+    return (
+      <TickerTabs ticker={tickerData}/>
+    );
+  });
 
   return (
     <div className='tickersContainer'>
       <h5>Tickers</h5>
-      <TickerDisplay 
-        chatroomTickers={chatroomTickers}
-      />
+      {displayTickersTab}
     </div>
   )
 }
