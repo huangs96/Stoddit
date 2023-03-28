@@ -5,7 +5,7 @@ module.exports = (io) => {
   
   /* ------ Get Routes ------ */
   router.get('/', controller.getTickers);
-  router.get('/:id', controller.getTickersByChatroomID(io));
+  router.get('/:id', controller.getTickersByChatroomID);
    /* -------------------------------- */
   
   
