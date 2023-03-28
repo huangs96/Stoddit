@@ -22,10 +22,12 @@ import {
   getChatroomByUserID,
   getMessagesByChatroomID,
   getFriendsListById,
-  deleteFriend
+  deleteFriend,
+  getAllLiveChatroom,
+  joinLiveChatroom,
+  leaveLiveChatroom
 } from '../../services/chat.service';
 import { getAllUsers } from '../../services/user.service';
-import { getAllLiveChatrooms } from '../../services/chat.service';
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -395,7 +397,7 @@ function ChatIndex() {
 
   /* ------ Live Chatrooms ------ */
   const joinLiveChatroom = () => {
-
+    
   };
 
 
@@ -403,7 +405,7 @@ function ChatIndex() {
     let isLoaded = true;
     const getLiveChatrooms = async () => {
       if (isLoaded) {
-        const data = await getAllLiveChatrooms();
+        const data = await getAllLiveChatroom();
         if (data) {
           setLiveChatroom(data);
         };
@@ -417,9 +419,13 @@ function ChatIndex() {
   }, []);
 
   useEffect(() => {
-    socket.on('getLiveUsers', liveChatroomData => {
+    socket.on('getLiveChatroomUsers', liveChatroomData => {
       console.log('liveChatroomData from Socket', liveChatroomData);
     });
+    return () => {
+      socket.off('getLiveChatroomUsers');
+      console.log('LiveUsers Socket Off')
+    };
   }, []);
 
   const displayLiveChatrooms = liveChatroom.map(chatrooms => {
@@ -496,7 +502,7 @@ function ChatIndex() {
   // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);
   // console.log('conversations---', conversations);
-  console.log('liveChatrooms--', liveChatroom);
+  // console.log('liveChatrooms--', liveChatroom);
   // console.log('username chatIndex', username);
   // console.log('setNewConversation---', newConversation);
   // console.log('messages', messages);

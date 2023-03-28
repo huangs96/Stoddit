@@ -54,7 +54,7 @@ const deleteChatroomByID = async (id) => {
   });
 };
 //get live chatrooms from database
-const getAllLiveChatrooms = async () => {
+const getAllLiveChatroom = async () => {
   return fetch('http://localhost:5000/chat/livechatroom', {
     headers: {
       'Content-Type': 'application/json'
@@ -70,7 +70,7 @@ const getAllLiveChatrooms = async () => {
   });
 };
 
-const joinLiveChatrooms = async (data) => {
+const joinLiveChatroom = async (data) => {
   return fetch('http://localhost:5000/chat/joinlivechatrooms', {
     method: 'POST',
     headers: {
@@ -89,7 +89,7 @@ const joinLiveChatrooms = async (data) => {
   });
 };
 
-const leaveLiveChatrooms = async (data) => {
+const leaveLiveChatroom = async (data) => {
   return fetch('http://localhost:5000/chat/leavelivechatrooms', {
     method: 'DELETE',
     headers: {
@@ -302,9 +302,9 @@ module.exports = {
   createNewChatroom,
   deleteChatroomByID,
   //live chatrooms
-  getAllLiveChatrooms,
-  joinLiveChatrooms,
-  leaveLiveChatrooms,
+  getAllLiveChatroom,
+  joinLiveChatroom,
+  leaveLiveChatroom,
   //participant
   getParticipantIDFromChatroomID,
   getParticipantIDFromAccountID,

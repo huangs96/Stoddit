@@ -79,7 +79,7 @@ io.on("connection", (socket) => {
   socket.on('joinLiveChatroom', liveChatroomData => {
     console.log('convodata', liveChatroomData);
     
-    io.emit('getLiveUsers', liveChatroomData.chatroomData, liveChatroomData.userData);
+    io.emit('getLiveChatroomUsers', liveChatroomData.chatroomData, liveChatroomData.userData);
   });
   socket.on('logout', () => {
     // console.log('logout1', socket);

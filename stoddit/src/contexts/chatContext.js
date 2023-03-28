@@ -1,4 +1,4 @@
-import {sendMessage, createNewChatroom, addFriend, deleteFriend} from '../services/chat.service';
+import {sendMessage, createNewChatroom, addFriend, deleteFriend, joinLiveChatroom, leaveLiveChatroom} from '../services/chat.service';
 
 /* ------ Chatroom ------ */
 const createNewChatroomWithParticipants = async (data) => {
@@ -10,6 +10,21 @@ const createNewChatroomWithParticipants = async (data) => {
   };
   let result = await createNewChatroom(chatroomBody);
   return result;
+};
+
+//live chatroom
+const joinLiveChatroomContext = async (data) => {
+  let joinData = {
+    
+  };
+  await joinLiveChatroom(joinData);
+};
+
+const leaveLiveChatroomContext = async (data) => {
+  let leaveData = {
+
+  };
+  await leaveLiveChatroom(leaveData);
 };
 /* -------------------------------- */
 
@@ -44,5 +59,7 @@ const addFriendtoFriendList = async (userID, username) => {
 export {
   addMessageToConversation,
   createNewChatroomWithParticipants,
-  addFriendtoFriendList
+  addFriendtoFriendList,
+  joinLiveChatroomContext,
+  leaveLiveChatroomContext,
 }
