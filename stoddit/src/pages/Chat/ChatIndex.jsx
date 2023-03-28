@@ -415,7 +415,7 @@ function ChatIndex() {
       <div
         onClick={() => {
           setLiveChatroomKey(chatrooms.id);
-          socket.emit('joinLiveChatroom', chatrooms.id);
+          socket.emit('joinLiveChatroom', chatrooms);
         }}
       >
         <LiveChatrooms 
