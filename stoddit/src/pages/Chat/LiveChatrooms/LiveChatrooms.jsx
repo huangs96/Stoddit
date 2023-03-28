@@ -1,37 +1,67 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react';
+import { getAllLiveChatrooms } from '../../../services/chat.service';
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import LaptopChromebookSharpIcon from '@mui/icons-material/LaptopChromebookSharp';
 
 function LiveChatrooms() {
+  const [liveChatrooms, setLiveChatrooms] = useState([]);
 
-  return (
-    <>
+  useEffect(() => {
+    let isLoaded = true;
+    const getLiveChatrooms = async () => {
+      if (isLoaded) {
+        const data = await getAllLiveChatrooms();
+        if (data) {
+          setLiveChatrooms(data);
+        };
+      };
+    };
+    getLiveChatrooms()
+    .catch(console.error);
+
+    return () => {
+      isLoaded = false;
+    };
+  }, []);
+
+  const displayLiveChatrooms = liveChatrooms.map(chatrooms => {
+
+    return (
       <div className="conversationContainer">
         <div
           className="conversation"
         >
-          <img 
-              className="conversationImg" 
-              src='https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg' 
-              alt="" 
-            />
-            <span 
-              className="conversationName" 
-            >
-              chatroom
-            </span>
-            <div className="contentContainer">
-              <div className="avatarContainer">
-              {/* {displayImg} */}
-            </div>
+          <span className='avatarList'>
+        </span>
+          {chatrooms.name === 'Auto' ? 
+            <DirectionsCarIcon />
+          :
+           <LaptopChromebookSharpIcon />
+          }
+          <span 
+            className="conversationName" 
+          >
+            {chatrooms.description}
+          </span>
+          <div className="contentContainer">
+            <div className="avatarContainer">
+          </div>
             <div className="conversationInfoContainer">
                 <h5
                   STYLE="font-size: 10pt; color: gray"
                 >
-                  S&P 500
+                  {chatrooms.name}
                 </h5>
             </div>
           </div>
         </div>
       </div>
+    )
+  })
+
+  return (
+    <>
+      {displayLiveChatrooms}
     </>
   )
 }

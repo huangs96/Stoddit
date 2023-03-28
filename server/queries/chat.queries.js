@@ -1,9 +1,12 @@
 /* ------ Chatroom ------ */
+// friends chat
 const getChatroom = "SELECT * FROM chatroom";
 const getChatroomByChatroomID = "SELECT * FROM chatroom WHERE id = $1 AND delete_date IS NULL";
 const getChatroomByUserID = "SELECT participant.account_id, chatroom.name, chatroom.description, participant.chatroom_id FROM participant INNER JOIN chatroom ON participant.chatroom_id=chatroom.id WHERE account_id = $1 AND participant.deleted_at IS NULL AND chatroom.deleted_at IS NULL";
 const createChatroom = "INSERT INTO chatroom (name, description) VALUES ($1, $2) returning id";
 const deleteChatroom = "UPDATE chatroom SET deleted_at = $1 WHERE id = $2;";
+// live chatrooms for tickers
+const getLiveChatroom = "SELECT * FROM chatroom WHERE live = true;";
 /* -------------------------------- */
 
 /* ------ Participant ------ */
@@ -37,6 +40,7 @@ module.exports = {
   getChatroomByUserID,
   createChatroom,
   deleteChatroom,
+  getLiveChatroom,
   //participant
   getParticipant,
   createParticipantFromChatroom,

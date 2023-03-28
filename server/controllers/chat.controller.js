@@ -4,6 +4,7 @@ const queries = require('../queries/chat.queries');
 const awsS3 = require('../classes/awsClass');
 
 /* ------ Chatroom ------ */
+// friends chat
 const getChatroom = (async (req, res) => {
   try {
     const allChatrooms = await client.query(queries.getChatroom);
@@ -93,6 +94,19 @@ const deleteChatroom = (async (req, res) => {
     return res.status(400).send(err);
   };
 });
+
+// live chatrooms for tickers
+const getLiveChatroom = (async (req, res) => {
+  try {
+    const allLiveChatrooms = await client.query(queries.getLiveChatroom);
+    if (allLiveChatrooms.rows.length) {
+      res.status(200).json(allLiveChatrooms.rows);
+    };
+  } catch (err) {
+    return res.status(400).send(err);
+  };
+});
+
 /* -------------------------------- */
 
 
@@ -322,6 +336,7 @@ module.exports = {
   getChatroomByUserID,
   createChatroom,
   deleteChatroom,
+  getLiveChatroom,
   //participant
   getParticipant,
   getParticipantFromChatroomID,

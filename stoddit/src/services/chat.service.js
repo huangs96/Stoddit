@@ -53,6 +53,22 @@ const deleteChatroomByID = async (id) => {
     throw response;
   });
 };
+//get live chatrooms from database
+const getAllLiveChatrooms = async () => {
+  return fetch('http://localhost:5000/chat/livechatroom', {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    mode: 'cors',
+    credentials: 'include'
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw response;
+  });
+}
 /* -------------------------------- */
 
 
@@ -247,6 +263,7 @@ module.exports = {
   getChatroomByUserID,
   createNewChatroom,
   deleteChatroomByID,
+  getAllLiveChatrooms,
   //participant
   getParticipantIDFromChatroomID,
   getParticipantIDFromAccountID,
