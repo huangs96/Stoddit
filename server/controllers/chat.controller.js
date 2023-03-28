@@ -108,10 +108,17 @@ const getLiveChatroom = (async (req, res) => {
 });
 
 const joinLiveChatroom = (async (req, res) => {
+  const account_id = req.body.account_id;
+  const chatroom_id = req.body.chatroom_id;
+  const joined_datetime = req.body.joined_datetime;
+
   try {
-
+    const joinedChatroom = await client.query(queries.joinLiveChatroom, [account_id, chatroom_id, joined_datetime]);
+    if (joinedChatroom) {
+      res.status(200).json('Participant joined livechatroom');
+    };
   } catch (err) {
-
+    res.status(400).send(err);
   };
 });
 
@@ -344,7 +351,9 @@ module.exports = {
   getChatroomByUserID,
   createChatroom,
   deleteChatroom,
+  //live chatroom
   getLiveChatroom,
+  joinLiveChatroom,
   //participant
   getParticipant,
   getParticipantFromChatroomID,

@@ -14,6 +14,7 @@ module.exports = (io, users) => {
   router.delete('/deletechatroom/:id', controller.deleteChatroom);
   // live chatrooms for tickers
   router.get('/livechatroom', controller.getLiveChatroom);
+  router.post('/joinlivechatroom', controller.joinLiveChatroom);
   /* -------------------------------- */
   
   
