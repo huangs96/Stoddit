@@ -1,0 +1,11 @@
+.selectedConversation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 10px 10px 10px;
+  cursor: pointer;
+  width: 100%;
+  background-color: rgb(209, 214, 221);
+  border-radius: 10px;
+  margin: 10px;
+}

@@ -7,7 +7,7 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey}) {
   return (
     <>
       <div className="conversationContainer">
-        <div className="conversation">
+        <div className={liveChatroomKey === liveChatrooms.id ?"selectedConversation" : "conversation"}>
           {liveChatrooms.name === 'Auto' ? 
             <DirectionsCarIcon />
           :
