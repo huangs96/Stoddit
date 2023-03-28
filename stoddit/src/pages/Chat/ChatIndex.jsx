@@ -422,7 +422,7 @@ function ChatIndex() {
   const displayLiveChatrooms = liveChatrooms.map(chatrooms => {
     return (
       <div
-        onClick={setLiveChatroomKey(chatrooms.id)}
+        onClick={() => setLiveChatroomKey(chatrooms.id)}
       >
         <LiveChatrooms liveChatrooms={chatrooms} />
       </div>

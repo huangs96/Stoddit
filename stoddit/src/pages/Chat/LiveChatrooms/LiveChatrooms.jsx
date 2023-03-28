@@ -4,12 +4,11 @@ import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import LaptopChromebookSharpIcon from '@mui/icons-material/LaptopChromebookSharp';
 
 function LiveChatrooms({liveChatrooms}) {
-
-  const displayLiveChatrooms = liveChatrooms.map(chatrooms => {
-    return (
+  return (
+    <>
       <div className="conversationContainer">
         <div className="conversation">
-          {chatrooms.name === 'Auto' ? 
+          {liveChatrooms.name === 'Auto' ? 
             <DirectionsCarIcon />
           :
            <LaptopChromebookSharpIcon />
@@ -17,7 +16,7 @@ function LiveChatrooms({liveChatrooms}) {
           <span 
             className="conversationName" 
           >
-            {chatrooms.description}
+            {liveChatrooms.description}
           </span>
           <div className="contentContainer">
             <div className="avatarContainer">
@@ -26,18 +25,12 @@ function LiveChatrooms({liveChatrooms}) {
                 <h5
                   STYLE="font-size: 10pt; color: gray"
                 >
-                  {chatrooms.name}
+                  {liveChatrooms.name}
                 </h5>
             </div>
           </div>
         </div>
       </div>
-    );
-  });
-
-  return (
-    <>
-      {displayLiveChatrooms}
     </>
   )
 }
