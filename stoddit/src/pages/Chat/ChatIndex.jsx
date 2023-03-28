@@ -397,7 +397,10 @@ function ChatIndex() {
 
   /* ------ Live Chatrooms ------ */
   const joinLiveChatroom = () => {
-    
+    const joinData = {
+      'account_id': userID,
+      'chatroom_id': liveChatroomKey
+    };
   };
 
 
