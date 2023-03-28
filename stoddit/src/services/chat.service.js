@@ -70,9 +70,43 @@ const getAllLiveChatrooms = async () => {
   });
 };
 
-const joinLiveChatrooms = async () => {
-  
-}
+const joinLiveChatrooms = async (data) => {
+  return fetch('http://localhost:5000/chat/joinlivechatrooms', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    mode: 'cors',
+    credentials: 'include',
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw response;
+  });
+};
+
+const leaveLiveChatrooms = async (data) => {
+  return fetch('http://localhost:5000/chat/leavelivechatrooms', {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    mode: 'cors',
+    credentials: 'include',
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw response;
+  });
+};
 /* -------------------------------- */
 
 
@@ -267,7 +301,10 @@ module.exports = {
   getChatroomByUserID,
   createNewChatroom,
   deleteChatroomByID,
+  //live chatrooms
   getAllLiveChatrooms,
+  joinLiveChatrooms,
+  leaveLiveChatrooms,
   //participant
   getParticipantIDFromChatroomID,
   getParticipantIDFromAccountID,
