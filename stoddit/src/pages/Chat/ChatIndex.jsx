@@ -7,14 +7,17 @@ import React, {
 } from 'react';
 import Conversation from './Conversations/Conversation';
 import NewConversation from './Conversations/newConversation'
-import Message from './Messages/Message';
 import FriendsOnline from './ChatOnline/FriendsOnline';
+import Message from './Messages/Message';
+import LiveChatrooms from './LiveChatrooms/LiveChatrooms';
+import TickersIndex from './LiveChatrooms/TickersIndex';
+import LiveChatroomMessage from './LiveChatroomMessages/LiveChatroomMessage';
+import { SocketContext } from '../../contexts/socketProvider';
 import { imgExtract } from '../../contexts/userContext';
 import { 
   addMessageToConversation, 
   addFriendtoFriendList
 } from '../../contexts/chatContext';
-import { SocketContext } from '../../contexts/socketProvider';
 import { 
   getChatroomByUserID,
   getMessagesByChatroomID,
@@ -23,9 +26,6 @@ import {
 } from '../../services/chat.service';
 import { getAllUsers } from '../../services/user.service';
 import { getAllLiveChatrooms } from '../../services/chat.service';
-import TickersIndex from './LiveChatrooms/TickersIndex';
-import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
-import LaptopChromebookSharpIcon from '@mui/icons-material/LaptopChromebookSharp';
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -34,7 +34,6 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import LiveChatrooms from './LiveChatrooms/LiveChatrooms';
 
 function ChatIndex() {
   //user data
@@ -608,7 +607,7 @@ function ChatIndex() {
               :
                 <>
                   <h5>Live Chat Messages</h5>
-                  <Message 
+                  <LiveChatroomMessage 
                     userID={userID} 
                     messages={messages}
                     userHasLeft={userHasLeftConversation}
