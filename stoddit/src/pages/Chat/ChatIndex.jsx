@@ -57,7 +57,7 @@ function ChatIndex() {
   const [searchConversationInput, setConversationSearchInput] = useState('');
   const [newConversation, setNewConversation] = useState(false);
   //live chatrooms
-  const [liveChatrooms, setLiveChatrooms] = useState([]);
+  const [liveChatroom, setLiveChatroom] = useState([]);
   const [liveChatroomKey, setLiveChatroomKey] = useState(null);
   //deleting chatroom
   const [userHasLeftConversation, setUserHasLeftConversation] = useState(false);
@@ -400,7 +400,7 @@ function ChatIndex() {
       if (isLoaded) {
         const data = await getAllLiveChatrooms();
         if (data) {
-          setLiveChatrooms(data);
+          setLiveChatroom(data);
         };
       };
     };
@@ -411,14 +411,19 @@ function ChatIndex() {
     };
   }, []);
 
-  const displayLiveChatrooms = liveChatrooms.map(chatrooms => {
+  const displayLiveChatrooms = liveChatroom.map(chatrooms => {
     return (
       <div
-        onClick={() => setLiveChatroomKey(chatrooms.id)}
+        onClick={() => {
+          setLiveChatroomKey(chatrooms.id);
+        }}
       >
-        <LiveChatrooms liveChatrooms={chatrooms} />
+        <LiveChatrooms 
+          liveChatrooms={chatrooms}
+          liveChatroomKey={liveChatroomKey}
+        />
       </div>
-    )
+    );
   });
   
   /* ------ Sending Messages ------ */

@@ -56,7 +56,7 @@ function TickersIndex({liveChatroomKey}) {
 
   useEffect(() => {
     let isLoaded = true;
-    if (isLoaded) {
+    if (isLoaded && liveChatroomKey) {
       const getChatroomTickers = async () => {
         const data = await getTickersByChatroomID(liveChatroomKey);
         if (data) {
