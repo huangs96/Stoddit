@@ -20,7 +20,6 @@ const getTickersByChatroomID = (io) => (async (req, res) => {
   try {
     const allTickers = await client.query(queries.getTickersByChatroomID, [chatroom_id]);
     const calculatedTickerData = tickerLogic.tickerChange(allTickers.rows);
-    io.emit('ticker', calculatedTickerData);
     if (allTickers) {
       res.status(200).json(calculatedTickerData);
     };
@@ -66,6 +65,27 @@ const insertTickerByTimeSetInterval = (async (req, res) => {
     return res.status(400).send(err);
   };
 });
+
+const intervalFunction = async () => {
+  try {
+    const tickerData = await client.query(queries.getAllTickers);
+    for (let ticker=0; ticker<tickerData.rows.length; ticker++) {
+      const individualTicker = tickerData.rows[ticker];
+      const ticker_id = individualTicker.id;
+      const getTickerIntervalDataFromTickerID = await client.query(queries.getTickersByTickerID, [ticker_id]);
+      const mostRecentIntervalTickerData = getTickerIntervalDataFromTickerID.rows[0];
+      const newIntervalData = tickerLogic.tickerDataRandomizer(mostRecentIntervalTickerData);
+      await client.query(queries.insertTimeIntervalToTicker, [newIntervalData.ticker_id, newIntervalData.current_price, newIntervalData.high_price, newIntervalData.low_price, newIntervalData.recommendation, newIntervalData.volume]);
+    };
+    console.log('Ticker Interval Added');
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+// setInterval(() => {
+//   intervalFunction();
+// }, 5000);
 
 module.exports = {
   //Get
