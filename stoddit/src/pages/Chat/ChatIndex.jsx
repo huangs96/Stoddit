@@ -57,6 +57,7 @@ function ChatIndex() {
   const [newConversation, setNewConversation] = useState(false);
   //live chatrooms
   const [liveChatrooms, setLiveChatrooms] = useState([]);
+  const [liveChatroomKey, setLiveChatroomKey] = useState(null);
   //deleting chatroom
   const [userHasLeftConversation, setUserHasLeftConversation] = useState(false);
   //participants
@@ -409,12 +410,20 @@ function ChatIndex() {
     };
   }, []);
 
+  useEffect(() => {
+    let isLoaded = true;
+    console.log(liveChatroomKey);
+    return () => {
+      isLoaded = false;
+    };
+  }, [liveChatroomKey]);
+
   const displayLiveChatrooms = liveChatrooms.map(chatroom => {
     return (
       <div className="conversationContainer">
         <div
           className="conversation"
-          onClick={() => setChatroomKey(chatroom.id)}
+          onClick={() => setLiveChatroomKey(chatroom.id)}
         >
           {chatroom.name === 'Auto' ? 
             <DirectionsCarIcon />

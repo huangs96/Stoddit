@@ -9,7 +9,7 @@ function TickersIndex() {
   const [chatroomTickers, setAllChatroomTickers] = useState([]);
   const [allTickers, setAllTickers] = useState([]);
   const socket = useContext(SocketContext);
-  console.log('chatroomKey Tickers', chatroomTickers);
+  // console.log('chatroomKey Tickers', chatroomTickers);
 
   useEffect(() => {
     socket.on('ticker', tickerData => {
