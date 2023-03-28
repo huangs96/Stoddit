@@ -371,6 +371,7 @@ module.exports = {
   //live chatroom
   getLiveChatroom,
   joinLiveChatroom,
+  leaveLiveChatroom,
   //participant
   getParticipant,
   getParticipantFromChatroomID,
