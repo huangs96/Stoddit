@@ -19,11 +19,18 @@ function LiveChatrooms() {
     };
     getLiveChatrooms()
     .catch(console.error);
-
     return () => {
       isLoaded = false;
     };
   }, []);
+
+  useEffect(() => {
+    let isLoaded = true;
+    console.log(chatroomKey);
+    return () => {
+      isLoaded = false;
+    };
+  }, [chatroomKey]);
 
   const displayLiveChatrooms = liveChatrooms.map(chatrooms => {
     return (
@@ -32,8 +39,6 @@ function LiveChatrooms() {
           className="conversation"
           onClick={() => setChatroomKey(chatrooms.id)}
         >
-          <span className='avatarList'>
-        </span>
           {chatrooms.name === 'Auto' ? 
             <DirectionsCarIcon />
           :

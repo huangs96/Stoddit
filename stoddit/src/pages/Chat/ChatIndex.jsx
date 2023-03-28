@@ -386,6 +386,9 @@ function ChatIndex() {
     };
   });
   /* --------------------------------- */
+
+  /* ------ Live Chatrooms ------ */
+  const displayLiveChatrooms = 
   
   /* ------ Sending Messages ------ */
   const onChangeMessage = (e) => {
