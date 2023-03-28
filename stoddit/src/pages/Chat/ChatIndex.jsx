@@ -597,10 +597,10 @@ function ChatIndex() {
             <div className="chatBoxTop">
               {value == 0 ?
                 <>
+                  <h5>Chat Messages</h5>
                   <Message 
                     userID={userID} 
                     messages={messages}
-                    userHasLeft={userHasLeftConversation}
                   />
                   <div ref={scrollRef}></div>
                 </>
@@ -680,7 +680,7 @@ function ChatIndex() {
                 </>
               :
                 <>
-                  {/* <div className="searchFriends">
+                  <div className="searchFriends">
                     <TextField 
                       className="chatMenuInput" 
                       label="Search Friends or Users"
@@ -699,20 +699,7 @@ function ChatIndex() {
                     >
                     </TextField>
                   </div>
-                  <h4>
-                  Friends
-                  </h4>
-                  <FriendsOnline 
-                    userID={userID}
-                    username={username}
-                    friendsList={friendsList}
-                    onlineFriends={onlineFriendsData}
-                    allUsers={filteredUsers}
-                    searched={searched}
-                    getNewConversation={getNewConversation}
-                    addUser={addUser}
-                    deleteUser={deleteUser}
-                  /> */}
+                  <h4>Tickers</h4>
                   <TickersIndex liveChatroomKey={liveChatroomKey}/>
                 </>
 

@@ -82,7 +82,6 @@ function TickersIndex({liveChatroomKey}) {
 
   return (
     <div className='tickersContainer'>
-      <h5>Tickers</h5>
       {displayTickersTab}
     </div>
   )
