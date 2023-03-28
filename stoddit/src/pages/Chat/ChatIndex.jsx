@@ -34,6 +34,7 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import LiveChatrooms from './LiveChatrooms/LiveChatrooms';
 
 function ChatIndex() {
   //user data
@@ -418,35 +419,12 @@ function ChatIndex() {
     };
   }, [liveChatroomKey]);
 
-  const displayLiveChatrooms = liveChatrooms.map(chatroom => {
+  const displayLiveChatrooms = liveChatrooms.map(chatrooms => {
     return (
-      <div className="conversationContainer">
-        <div
-          className="conversation"
-          onClick={() => setLiveChatroomKey(chatroom.id)}
-        >
-          {chatroom.name === 'Auto' ? 
-            <DirectionsCarIcon />
-          :
-           <LaptopChromebookSharpIcon />
-          }
-          <span 
-            className="conversationName" 
-          >
-            {chatroom.description}
-          </span>
-          <div className="contentContainer">
-            <div className="avatarContainer">
-          </div>
-            <div className="conversationInfoContainer">
-                <h5
-                  STYLE="font-size: 10pt; color: gray"
-                >
-                  {chatroom.name}
-                </h5>
-            </div>
-          </div>
-        </div>
+      <div
+        onClick={setLiveChatroomKey(chatrooms.id)}
+      >
+        <LiveChatrooms liveChatrooms={chatrooms} />
       </div>
     )
   });

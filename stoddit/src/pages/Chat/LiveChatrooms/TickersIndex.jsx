@@ -6,7 +6,7 @@ import { getAllLiveChatrooms } from '../../../services/chat.service';
 
 function TickersIndex({liveChatroomKey}) {
   const [chatroomTickers, setAllChatroomTickers] = useState([]);
-  const [allTickers, setAllTickers] = useState([]);
+  // const [allTickers, setAllTickers] = useState([]);
   const socket = useContext(SocketContext);
   // console.log('chatroomKey Tickers', chatroomTickers);
 
@@ -37,22 +37,22 @@ function TickersIndex({liveChatroomKey}) {
     };
   }, []);
 
-  useEffect(() => {
-    let isLoaded = true;
-    const getAllTickers = async () => {
-      if (isLoaded) {
-        const data = await getTickers();
-        if (data) {
-          setAllTickers(data);
-        };
-      };
-    };
-    getAllTickers()
-    .catch(console.error);
-    return () => {
-      isLoaded = false;
-    };
-  }, []);
+  // useEffect(() => {
+  //   let isLoaded = true;
+  //   const getAllTickers = async () => {
+  //     if (isLoaded) {
+  //       const data = await getTickers();
+  //       if (data) {
+  //         setAllTickers(data);
+  //       };
+  //     };
+  //   };
+  //   getAllTickers()
+  //   .catch(console.error);
+  //   return () => {
+  //     isLoaded = false;
+  //   };
+  // }, []);
 
   useEffect(() => {
     let isLoaded = true;
