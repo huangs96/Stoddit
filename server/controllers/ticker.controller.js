@@ -14,13 +14,14 @@ const getTickers = (async (req, res) => {
   };
 });
 
-const getTickersByChatroomID = (io) => (async (req, res) => {
+const getTickersByChatroomID = (async (req, res) => {
   const chatroom_id = parseInt(req.params.id);
   console.log('id', chatroom_id);
   try {
     const allTickers = await client.query(queries.getTickersByChatroomID, [chatroom_id]);
     console.log('allTickersrows', allTickers.rows);
     const calculatedTickerData = tickerLogic.tickerChange(allTickers.rows);
+    console.log('calcTickers', calculatedTickerData);
     if (allTickers) {
       res.status(200).json(calculatedTickerData);
     };

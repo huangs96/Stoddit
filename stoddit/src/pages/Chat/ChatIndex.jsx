@@ -108,7 +108,6 @@ function ChatIndex() {
   //emit to backend which users are live
   useEffect(() => {
     socket.emit('liveUsers', userID);
-
     return () => {
       socket.off('liveUsers');
     };

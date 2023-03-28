@@ -19,12 +19,15 @@ function TickersIndex() {
     };
   }, []);
 
+  // useEffect(() => {
+
+  // }, [])
+
   useEffect(() => {
     let isLoaded = true;
     const getAllTickers = async () => {
       if (isLoaded) {
         const data = await getTickers();
-        // console.log('data', data);
         if (data) {
           setAllTickers(data);
         };
@@ -44,7 +47,7 @@ function TickersIndex() {
         const data = await getTickersByChatroomID(chatroomKey);
         if (data) {
           setAllChatroomTickers(data);
-          // console.log('allChatroomTickers', data);
+          console.log('allChatroomTickers', data);
         };
       };
       getChatroomTickers()
