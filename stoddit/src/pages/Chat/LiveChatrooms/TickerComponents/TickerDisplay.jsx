@@ -9,8 +9,8 @@ function TickerDisplay({chatroomTickers}) {
     const tickerData = chatroomTickers[names];
     return (
       <TickerTabs ticker={tickerData}/>
-    )
-  })
+    );
+  });
   return (
     <div>
       {/* {displayTickersChart} */}

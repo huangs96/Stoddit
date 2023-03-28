@@ -4,8 +4,7 @@ import { SocketContext } from '../../../contexts/socketProvider';
 import TickerDisplay from './TickerComponents/TickerDisplay';
 import { getAllLiveChatrooms } from '../../../services/chat.service';
 
-function TickersIndex() {
-  const [chatroomKey, setChatroomKey] = useState(287);
+function TickersIndex({liveChatroomKey}) {
   const [chatroomTickers, setAllChatroomTickers] = useState([]);
   const [allTickers, setAllTickers] = useState([]);
   const socket = useContext(SocketContext);
@@ -59,7 +58,7 @@ function TickersIndex() {
     let isLoaded = true;
     if (isLoaded) {
       const getChatroomTickers = async () => {
-        const data = await getTickersByChatroomID(chatroomKey);
+        const data = await getTickersByChatroomID(liveChatroomKey);
         if (data) {
           setAllChatroomTickers(data);
           console.log('allChatroomTickers', data);
@@ -71,7 +70,7 @@ function TickersIndex() {
     return () => {
       isLoaded = false;
     };
-  }, [chatroomKey]);
+  }, [liveChatroomKey]);
 
 
 

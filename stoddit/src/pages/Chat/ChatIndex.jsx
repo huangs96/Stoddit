@@ -739,7 +739,7 @@ function ChatIndex() {
                     addUser={addUser}
                     deleteUser={deleteUser}
                   /> */}
-                  <TickersIndex />
+                  <TickersIndex liveChatroomKey={liveChatroomKey}/>
                 </>
 
               }
