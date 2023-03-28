@@ -398,7 +398,7 @@ function ChatIndex() {
 
   };
 
-  
+
   useEffect(() => {
     let isLoaded = true;
     const getLiveChatrooms = async () => {
@@ -496,6 +496,7 @@ function ChatIndex() {
   // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);
   // console.log('conversations---', conversations);
+  console.log('liveChatrooms--', liveChatroom);
   // console.log('username chatIndex', username);
   // console.log('setNewConversation---', newConversation);
   // console.log('messages', messages);
