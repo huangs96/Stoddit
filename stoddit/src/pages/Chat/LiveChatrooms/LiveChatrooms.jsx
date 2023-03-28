@@ -4,6 +4,7 @@ import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import LaptopChromebookSharpIcon from '@mui/icons-material/LaptopChromebookSharp';
 
 function LiveChatrooms() {
+  const [chatroomKey, setChatroomKey] = useState(null);
   const [liveChatrooms, setLiveChatrooms] = useState([]);
 
   useEffect(() => {
@@ -25,11 +26,11 @@ function LiveChatrooms() {
   }, []);
 
   const displayLiveChatrooms = liveChatrooms.map(chatrooms => {
-
     return (
       <div className="conversationContainer">
         <div
           className="conversation"
+          onClick={() => setChatroomKey(chatrooms.id)}
         >
           <span className='avatarList'>
         </span>
@@ -56,8 +57,8 @@ function LiveChatrooms() {
           </div>
         </div>
       </div>
-    )
-  })
+    );
+  });
 
   return (
     <>
