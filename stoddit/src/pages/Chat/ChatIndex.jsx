@@ -5,14 +5,6 @@ import React, {
   useRef,
   useContext
 } from 'react';
-import { useNavigate } from 'react-router-dom';
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
-import ClearIcon from '@mui/icons-material/Clear';
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import Conversation from './Conversations/Conversation';
 import NewConversation from './Conversations/newConversation'
 import Message from './Messages/Message';
@@ -21,7 +13,7 @@ import { imgExtract } from '../../contexts/userContext';
 import { 
   addMessageToConversation, 
   addFriendtoFriendList
- } from '../../contexts/chatContext';
+} from '../../contexts/chatContext';
 import { SocketContext } from '../../contexts/socketProvider';
 import { 
   getChatroomByUserID,
@@ -30,8 +22,18 @@ import {
   deleteFriend
 } from '../../services/chat.service';
 import { getAllUsers } from '../../services/user.service';
-import LiveChatrooms from './LiveChatrooms/LiveChatrooms';
+import { getAllLiveChatrooms } from '../../services/chat.service';
 import TickersIndex from './LiveChatrooms/TickersIndex';
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import LaptopChromebookSharpIcon from '@mui/icons-material/LaptopChromebookSharp';
+import { useNavigate } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import ClearIcon from '@mui/icons-material/Clear';
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 function ChatIndex() {
   //user data
@@ -53,6 +55,8 @@ function ChatIndex() {
   const [convoImgLoad, setConvoImgLoad] = useState(false);
   const [searchConversationInput, setConversationSearchInput] = useState('');
   const [newConversation, setNewConversation] = useState(false);
+  //live chatrooms
+  const [liveChatrooms, setLiveChatrooms] = useState([]);
   //deleting chatroom
   const [userHasLeftConversation, setUserHasLeftConversation] = useState(false);
   //participants
@@ -388,7 +392,55 @@ function ChatIndex() {
   /* --------------------------------- */
 
   /* ------ Live Chatrooms ------ */
-  const displayLiveChatrooms = 
+  useEffect(() => {
+    let isLoaded = true;
+    const getLiveChatrooms = async () => {
+      if (isLoaded) {
+        const data = await getAllLiveChatrooms();
+        if (data) {
+          setLiveChatrooms(data);
+        };
+      };
+    };
+    getLiveChatrooms()
+    .catch(console.error);
+    return () => {
+      isLoaded = false;
+    };
+  }, []);
+
+  const displayLiveChatrooms = liveChatrooms.map(chatroom => {
+    return (
+      <div className="conversationContainer">
+        <div
+          className="conversation"
+          onClick={() => setChatroomKey(chatroom.id)}
+        >
+          {chatroom.name === 'Auto' ? 
+            <DirectionsCarIcon />
+          :
+           <LaptopChromebookSharpIcon />
+          }
+          <span 
+            className="conversationName" 
+          >
+            {chatroom.description}
+          </span>
+          <div className="contentContainer">
+            <div className="avatarContainer">
+          </div>
+            <div className="conversationInfoContainer">
+                <h5
+                  STYLE="font-size: 10pt; color: gray"
+                >
+                  {chatroom.name}
+                </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  });
   
   /* ------ Sending Messages ------ */
   const onChangeMessage = (e) => {
@@ -515,11 +567,7 @@ function ChatIndex() {
               {value == 0 ?
                 displayConversations
                 :
-                <>
-                <LiveChatrooms>
-
-                </LiveChatrooms>
-                </>
+                displayLiveChatrooms
               }
             </div>
             {value == 0 ? 
