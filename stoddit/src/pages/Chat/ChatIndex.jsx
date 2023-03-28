@@ -415,6 +415,7 @@ function ChatIndex() {
       <div
         onClick={() => {
           setLiveChatroomKey(chatrooms.id);
+          socket.emit('joinLiveChatroom', chatrooms.id);
         }}
       >
         <LiveChatrooms 
@@ -702,7 +703,6 @@ function ChatIndex() {
                   <h4>Tickers</h4>
                   <TickersIndex liveChatroomKey={liveChatroomKey}/>
                 </>
-
               }
           </div>
         </div>   
