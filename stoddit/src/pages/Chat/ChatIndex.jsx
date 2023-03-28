@@ -411,14 +411,6 @@ function ChatIndex() {
     };
   }, []);
 
-  useEffect(() => {
-    let isLoaded = true;
-    console.log(liveChatroomKey);
-    return () => {
-      isLoaded = false;
-    };
-  }, [liveChatroomKey]);
-
   const displayLiveChatrooms = liveChatrooms.map(chatrooms => {
     return (
       <div
