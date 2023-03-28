@@ -19,9 +19,9 @@ const getTickersByChatroomID = (async (req, res) => {
   console.log('id', chatroom_id);
   try {
     const allTickers = await client.query(queries.getTickersByChatroomID, [chatroom_id]);
-    console.log('allTickersrows', allTickers.rows);
+    // console.log('allTickersrows', allTickers.rows);
     const calculatedTickerData = tickerLogic.tickerChange(allTickers.rows);
-    console.log('calcTickers', calculatedTickerData);
+    // console.log('calcTickers', calculatedTickerData);
     if (allTickers) {
       res.status(200).json(calculatedTickerData);
     };
@@ -41,7 +41,7 @@ const insertTickerData = (async (req, res) => {
 
   try {
     const newTicker = await client.query(queries.insertTimeIntervalToTicker, [ticker_id, current_price, high_price, low_price, recommendation, volume]);
-    console.log('newTicker', newTicker);
+    // console.log('newTicker', newTicker);
     if (newTicker.rows) {
       res.status(201).json('New Ticker has been added');
     }
