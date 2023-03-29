@@ -3,9 +3,9 @@ import React from 'react';
 import {format} from 'timeago.js';
 
 function LiveChatroomMessage({userID, messages}) {
-  console.log('live chat messages', messages);
+  // console.log('live chat messages', messages);
   const displayLiveChatroomMessages = messages.map((data, i) => {
-    console.log('data msg', data);
+    // console.log('data msg', data);
     if (userID === data.account_id) {
       data.ownMessage = true;
     } else {
@@ -44,7 +44,7 @@ function LiveChatroomMessage({userID, messages}) {
   return (
     <>
     <div>
-      {displayLiveChatroomMessages}
+      {/* {displayLiveChatroomMessages} */}
     </div>
     </>
   )

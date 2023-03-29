@@ -258,6 +258,7 @@ function ChatIndex() {
     let isLoaded = true;
     const getChatroomDataByChatroomID = async () => {
       const chatroomData = await getMessagesByChatroomID(chatroomKey);
+      console.log('chatroom Data in useEffect', chatroomData);
       setMessages(chatroomData);
       conversations.map(convos => {
         if (chatroomKey === convos.chatroom_id) {
