@@ -437,6 +437,10 @@ function ChatIndex() {
       </div>
     );
   });
+
+  const handleSubmitForLiveChat = (e) => {
+    console.log('livechat');
+  };
   
   /* ------ Sending Messages ------ */
   const onChangeMessage = (e) => {
@@ -444,7 +448,7 @@ function ChatIndex() {
     setMessageText(message);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmitForChat = (e) => {
     e.preventDefault();
     console.log('sent');
     if (messageText) {
@@ -455,7 +459,6 @@ function ChatIndex() {
       });
 
       const userParticipant = participantsInChatroom.find((item) => {
-        console.log('item', item);
         if (item.account_id === userID) {
           setUserParticipantID(item.id);
           return item;
@@ -488,6 +491,7 @@ function ChatIndex() {
       console.log('no message');
     };
 
+    
     //empty textbox
     setMessageText('');
   };
@@ -498,8 +502,8 @@ function ChatIndex() {
   // console.log('socket chatIndex', socket);
   // console.log('userParticipantID', userParticipantID);
   // console.log('participantsinChatroom', participantsInChatroom);
-  console.log('chatroomKey', chatroomKey);
-  console.log('conversations---', conversations);
+  // console.log('chatroomKey', chatroomKey);
+  // console.log('conversations---', conversations);
   // console.log('liveChatrooms--', liveChatroom);
   // console.log('username chatIndex', username);
   // console.log('setNewConversation---', newConversation);
@@ -639,7 +643,12 @@ function ChatIndex() {
                 </>
               }
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={
+              value == 0 ?
+              handleSubmitForChat
+              :
+              handleSubmitForLiveChat
+            }>
               <div className="chatBoxBottom">          
                 <TextField 
                   name="message"
