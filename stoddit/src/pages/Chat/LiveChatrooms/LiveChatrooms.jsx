@@ -2,8 +2,10 @@ import React, {useEffect, useState} from 'react';
 import { getAllLiveChatrooms } from '../../../services/chat.service';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import LaptopChromebookSharpIcon from '@mui/icons-material/LaptopChromebookSharp';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
-function LiveChatrooms({liveChatrooms, liveChatroomKey}) {
+function LiveChatrooms({liveChatrooms, liveChatroomKey, leaveChatroom, userID}) {
+
   return (
     <>
       <div className="conversationContainer">
@@ -29,6 +31,14 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey}) {
                 </h5>
             </div>
           </div>
+          {
+            <ExitToAppIcon
+              className="leaveChatroomIcon"
+              onClick={() => {
+                leaveChatroom(userID, liveChatrooms.id)
+              }}
+            />
+          }
         </div>
       </div>
     </>

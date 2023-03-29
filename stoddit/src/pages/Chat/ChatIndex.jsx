@@ -457,6 +457,8 @@ function ChatIndex() {
         <LiveChatrooms 
           liveChatrooms={chatrooms}
           liveChatroomKey={liveChatroomKey}
+          leaveChatroom={leaveLiveChatroomFunction}
+          userID={userID}
         />
       </div>
     );
