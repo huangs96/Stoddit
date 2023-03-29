@@ -248,9 +248,6 @@ const getMessageByChatroom = (async (req, res) => {
 //function creating a function
 const createMessage = (io, users) => (async (req,res) => {
   const {participantData, message_text, receiverID, chatroomID, senderUsername, isLive} = req.body;
-  console.log('message req body', req.body);
-  console.log('message username', senderUsername);
-  console.log('message username', isLive);
 
   try {
     const newMessage = await client.query(queries.createMessage, [participantData.id, message_text]);
