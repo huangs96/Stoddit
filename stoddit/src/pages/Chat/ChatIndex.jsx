@@ -193,6 +193,16 @@ function ChatIndex() {
         };
       });
     });
+    liveChatroomMessages.map(message => {
+      usernames.map(username => {
+        if (message.username === username) {
+          message.imgUrl = imgData[username];
+          setMessageImgLoad(true);
+        } else if (message.username === null) {
+          message.imgUrl = 'https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg';
+        };
+      });
+    });
     scrollRef.current?.scrollIntoView({
       behavior: 'smooth'
     });
@@ -410,7 +420,6 @@ function ChatIndex() {
     return (
       <div
         onClick={() => {
-          // joinLiveChatroomFunction(userID, chatrooms.id);
           setChatroomKey(chatrooms.id);
           // socket.emit('joinLiveChatroom', {
           //   'chatroomData' : chatrooms,
@@ -618,7 +627,7 @@ function ChatIndex() {
                   <h5>Live Chat Messages</h5>
                   <LiveChatroomMessage 
                     userID={userID} 
-                    messages={messages}
+                    liveChatroomMessages={liveChatroomMessages}
                     userHasJoined={userHasJoinedConversation}
                     userHasLeft={userHasLeftLiveChatroom}
                   />

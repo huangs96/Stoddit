@@ -2,9 +2,9 @@ import './LiveChatroomMessage.css';
 import React from 'react';
 import {format} from 'timeago.js';
 
-function LiveChatroomMessage({userID, messages}) {
+function LiveChatroomMessage({userID, liveChatroomMessages}) {
   // console.log('live chat messages', messages);
-  const displayLiveChatroomMessages = messages.map((data, i) => {
+  const displayLiveChatroomMessages = liveChatroomMessages.map((data, i) => {
     // console.log('data msg', data);
     if (userID === data.account_id) {
       data.ownMessage = true;
@@ -44,7 +44,7 @@ function LiveChatroomMessage({userID, messages}) {
   return (
     <>
     <div>
-      {/* {displayLiveChatroomMessages} */}
+      {displayLiveChatroomMessages}
     </div>
     </>
   )
