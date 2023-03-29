@@ -510,7 +510,7 @@ function ChatIndex() {
   };
   /* --------------------------------- */
 
-  console.log('conversation Deleted chatindex', userHasLeftConversation);
+  // console.log('conversation Deleted chatindex', userHasLeftConversation);
   // console.log('userID', userID);
   // console.log('socket chatIndex', socket);
   // console.log('userParticipantID', userParticipantID);

@@ -257,12 +257,10 @@ const createMessage = (io, users) => (async (req,res) => {
     if (newMessage) {
       const socketIDs = [];
       receiverID.map(data => {
-        console.log('data', data);
         if (users.users[data.account_id] !== undefined && !socketIDs.includes(users.users[data.account_id])) {
           socketIDs.push(users.users[data.account_id]);
         };
       });
-      console.log('socket ID', socketIDs);
       if (socketIDs.length >= 2) {
         socketIDs.map(socketID => {    
           io.to(socketID).emit('chatMessage', {
