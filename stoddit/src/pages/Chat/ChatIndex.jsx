@@ -95,7 +95,7 @@ function ChatIndex() {
     });
     //updating realtime messages
     socket.on('chatMessage', messageData => {
-      // console.log('socket message received', messageData.senderID);
+      console.log('socket message received', messageData);
       // const participantUsername = participantsInChatroom.filter(participant => {
       //   if (participant.id === messageData.senderID) {
       //     return participant;
