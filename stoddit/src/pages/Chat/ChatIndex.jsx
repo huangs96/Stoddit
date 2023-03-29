@@ -95,14 +95,14 @@ function ChatIndex() {
     });
     //updating realtime messages
     socket.on('chatMessage', messageData => {
-      console.log('socket message received', messageData.senderID);
-      const participantUsername = participantsInChatroom.filter(participant => {
-        if (participant.id === messageData.senderID) {
-          return participant;
-        };
-      });
+      // console.log('socket message received', messageData.senderID);
+      // const participantUsername = participantsInChatroom.filter(participant => {
+      //   if (participant.id === messageData.senderID) {
+      //     return participant;
+      //   };
+      // });
 
-      console.log('2222', participantUsername);
+      // console.log('2222', participantUsername);
       setRealtimeMessage({
         message_text: messageData.text,
         participantID: messageData.receiverID[0].id,
