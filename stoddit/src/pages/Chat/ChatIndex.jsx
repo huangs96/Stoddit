@@ -110,7 +110,7 @@ function ChatIndex() {
           hour: '2-digit',
           minute: '2-digit'
         }),
-        username: participantUsername[0].username,
+        username: username,
         chatroomID: messageData.chatroomID
       });
     });
@@ -495,7 +495,7 @@ function ChatIndex() {
         };
       });
 
-      addMessageToConversation(userParticipant, messageText, receiverID, chatroomKey);
+      addMessageToConversation(userParticipant, messageText, receiverID, chatroomKey, username);
 
       setMessages(msgData => [...msgData, {
         account_id: userID,
