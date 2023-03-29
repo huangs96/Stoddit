@@ -6,7 +6,6 @@ import {
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 function Conversation({conversation, conversationDeleted, participantData, username, selectedConversation}) {
-  const [conversationDeleted1, setConversationDeleted1] = useState(false);
   const [hovered, setHovered] = useState(false);
   const conversationHovered = async () => {
     setHovered(true);
@@ -78,7 +77,6 @@ function Conversation({conversation, conversationDeleted, participantData, usern
                 sx={{ "&:hover": { color: "red" } }} 
                 onClick={() => {
                   deleteConversation()
-                  setConversationDeleted1(boolean => !boolean);
                 }}
               />
             </div>
