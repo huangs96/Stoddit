@@ -29,6 +29,18 @@ const addMessageToConversation = async (participantData, text, receiverID, chatr
   //insert message into database to refresh and get new message
   await sendMessage(body);
 };
+const addMessageToLiveChatroom = async (participantData, text, receiverID, chatroomID, username) => {
+  let body = {
+    participantData: participantData,
+    message_text: text,
+    receiverID: receiverID,
+    chatroomID: chatroomID,
+    senderUsername: username
+  };
+  console.log('messageContext', body);
+  //insert message into database to refresh and get new message
+  await sendMessage(body);
+};
 /* -------------------------------- */
 
 /* ------ Friend_List ------ */
@@ -45,6 +57,7 @@ const addFriendtoFriendList = async (userID, username) => {
 
 export {
   addMessageToConversation,
+  addMessageToLiveChatroom,
   createNewChatroomWithParticipants,
   addFriendtoFriendList,
 }

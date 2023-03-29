@@ -15,7 +15,8 @@ import LiveChatroomMessage from './LiveChatroomMessages/LiveChatroomMessage';
 import { SocketContext } from '../../contexts/socketProvider';
 import { imgExtract } from '../../contexts/userContext';
 import { 
-  addMessageToConversation, 
+  addMessageToConversation,
+  addMessageToLiveChatroom,
   addFriendtoFriendList
 } from '../../contexts/chatContext';
 import { 
@@ -61,6 +62,7 @@ function ChatIndex() {
   //live chatrooms
   const [liveChatroom, setLiveChatroom] = useState([]);
   const [liveChatroomMessages, setLiveChatroomMessages] = useState([]);
+  const [participantsInLiveChatroom, setParticipantsInLiveChatroom] = useState([]);
   const [userHasJoinedLiveChatroom, setUserHasJoinedLiveChatroom] = useState(false);
   const [userHasLeftLiveChatroom, setUserHasLeftLiveCharoom] = useState(false);
   //deleting chatroom
@@ -281,6 +283,11 @@ function ChatIndex() {
           setParticipantsInChatroom(convos.participantData);
         };
       });
+      liveChatroom.map(convos => {
+        if (chatroomKey === convos.id) {
+          setParticipantsInLiveChatroom(convos.participantData);
+        };
+      });
     };
     if (isLoaded && chatroomKey) {
       getChatroomDataByChatroomID();
@@ -441,6 +448,44 @@ function ChatIndex() {
   const handleSubmitForLiveChat = (e) => {
     e.preventDefault();
     console.log('livechat');
+    if (messageText) {
+      console.log('participantsInChatroom', participantsInLiveChatroom);
+      // const receiverID = participantsInChatroom.filter((item) => {
+      //   if (item.account_id !== userID) {
+      //     return item.id;
+      //   };
+      // });
+
+      // const userParticipant = participantsInChatroom.find((item) => {
+      //   if (item.account_id === userID) {
+      //     setUserParticipantID(item.id);
+      //     return item;
+      //   };
+      // });
+
+      // addMessageToLiveChatroom(userParticipant, messageText, receiverID, chatroomKey, username);
+
+      // setLiveChatroomMessages(msgData => [...msgData, {
+      //   account_id: userID,
+      //   chatroom_id: chatroomKey,
+      //   deleted_at: null,
+      //   message_text: messageText,
+      //   ownMessage: true,
+      //   participant_id: userParticipant,
+      //   sent_at: new Date().toLocaleString('en-US', {
+      //     hour: '2-digit',
+      //     minute: '2-digit'
+      //   }),
+      //   username: username,
+      //   imgUrl: realTimeMsgImgObj[username]
+      // }]);
+    } else {
+      console.log('no message');
+    };
+
+    
+    //empty textbox
+    setMessageText('');
   };
   
   /* ------ Sending Messages ------ */
@@ -466,28 +511,22 @@ function ChatIndex() {
         };
       });
 
-      console.log('userParticipant', userParticipant);
-      console.log('userText', messageText);
-      console.log('receiverID', receiverID);
-      console.log('chatroomKey', chatroomKey);
-      console.log('username', username);
+      addMessageToConversation(userParticipant, messageText, receiverID, chatroomKey, username);
 
-      // addMessageToConversation(userParticipant, messageText, receiverID, chatroomKey, username);
-
-      // setMessages(msgData => [...msgData, {
-      //   account_id: userID,
-      //   chatroom_id: chatroomKey,
-      //   deleted_at: null,
-      //   message_text: messageText,
-      //   ownMessage: true,
-      //   participant_id: userParticipant,
-      //   sent_at: new Date().toLocaleString('en-US', {
-      //     hour: '2-digit',
-      //     minute: '2-digit'
-      //   }),
-      //   username: username,
-      //   imgUrl: realTimeMsgImgObj[username]
-      // }]);
+      setMessages(msgData => [...msgData, {
+        account_id: userID,
+        chatroom_id: chatroomKey,
+        deleted_at: null,
+        message_text: messageText,
+        ownMessage: true,
+        participant_id: userParticipant,
+        sent_at: new Date().toLocaleString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit'
+        }),
+        username: username,
+        imgUrl: realTimeMsgImgObj[username]
+      }]);
     } else {
       console.log('no message');
     };
@@ -508,8 +547,8 @@ function ChatIndex() {
   // console.log('liveChatrooms--', liveChatroom);
   // console.log('username chatIndex', username);
   // console.log('setNewConversation---', newConversation);
-  console.log('messages', messages);
-  console.log('livechatmessages', liveChatroomMessages);
+  // console.log('messages', messages);
+  // console.log('livechatmessages', liveChatroomMessages);
   // console.log('realtimeMsg', realtimeMessage);
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
   // console.log('friendsList ChatIndex', friendsList);
