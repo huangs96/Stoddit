@@ -60,6 +60,7 @@ function ChatIndex() {
   const [newConversation, setNewConversation] = useState(false);
   //live chatrooms
   const [liveChatroom, setLiveChatroom] = useState([]);
+  const [liveChatroomMessages, setLiveChatroomMessages] = useState([]);
   const [userHasJoinedLiveChatroom, setUserHasJoinedLiveChatroom] = useState(false);
   const [userHasLeftLiveChatroom, setUserHasLeftLiveCharoom] = useState(false);
   //deleting chatroom
@@ -255,7 +256,6 @@ function ChatIndex() {
 
   useEffect(() => {
     let isLoaded = true;
-    console.log('userHasLeft useEffect');
     const getChatroomDataByChatroomID = async () => {
       const chatroomData = await getMessagesByChatroomID(chatroomKey);
       setMessages(chatroomData);
