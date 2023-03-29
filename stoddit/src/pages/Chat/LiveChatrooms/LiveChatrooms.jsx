@@ -7,13 +7,14 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatroom, userID}) {
   const [participantExist, setParticipantExist] = useState(false);
   // console.log('chatroomKey for Live Chatrooms', liveChatroomKey);
-  // console.log('liveChatrooms livechatrooms', liveChatrooms);
+  console.log('liveChatrooms livechatrooms', liveChatrooms);
+  
   useEffect(() => {
-    liveChatrooms.participantData.map(participants => {
+    liveChatrooms.participantData.filter(participants => {
       if (participants.account_id === userID) {
+        console.log('setParticipant should be true');
         setParticipantExist(true);
-      } else {
-        setParticipantExist(false);
+        return;
       };
     });
   }, []);

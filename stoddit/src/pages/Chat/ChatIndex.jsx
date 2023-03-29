@@ -439,6 +439,7 @@ function ChatIndex() {
   });
 
   const handleSubmitForLiveChat = (e) => {
+    e.preventDefault();
     console.log('livechat');
   };
   
