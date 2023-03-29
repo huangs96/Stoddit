@@ -4,12 +4,35 @@ import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import LaptopChromebookSharpIcon from '@mui/icons-material/LaptopChromebookSharp';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
-function LiveChatrooms({liveChatrooms, liveChatroomKey, leaveChatroom, userID}) {
-  console.log('livechatrooms', liveChatrooms);
+function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatroom, userID}) {
+  const [participantExist, setParticipantExist] = useState(false);
+  // console.log('chatroomKey for Live Chatrooms', liveChatroomKey);
+  console.log('liveChatrooms livechatrooms', liveChatrooms);
+  useEffect(() => {
+    liveChatrooms.participantData.map(participants => {
+      if (participants.account_id === userID) {
+        setParticipantExist(true);
+      } else {
+        setParticipantExist(false);
+      };
+    });
+  }, []);
+
   return (
     <>
-      <div className="conversationContainer">
-        <div className={liveChatroomKey === liveChatrooms.id ?"selectedConversation" : "conversation"}>
+      <div 
+        className={"conversationContainer"}
+      >
+        <div 
+          className={liveChatroomKey === liveChatrooms.id ?          "selectedConversation" 
+          : 
+          "conversation"
+          }
+          onClick={() => {
+            setParticipantExist(true);
+            joinChatroom(userID, liveChatrooms.id);
+          }}
+          >
           {liveChatrooms.name === 'Auto' ? 
             <DirectionsCarIcon />
           :
@@ -31,18 +54,19 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, leaveChatroom, userID}) 
                 </h5>
             </div>
           </div>
-          {
+        </div>
+          {participantExist &&
             <ExitToAppIcon
               sx={{
                 color: 'gray',
                 "&:hover": { color: "red" } 
               }} 
               onClick={() => {
+                setParticipantExist(false);
                 leaveChatroom(userID, liveChatrooms.id)
               }}
             />
           }
-        </div>
       </div>
     </>
   )

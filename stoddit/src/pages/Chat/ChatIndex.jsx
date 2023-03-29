@@ -59,6 +59,8 @@ function ChatIndex() {
   const [newConversation, setNewConversation] = useState(false);
   //live chatrooms
   const [liveChatroom, setLiveChatroom] = useState([]);
+  const [userHasJoinedLiveChatroom, setUserHasJoinedLiveChatroom] = useState(false);
+  const [userHasLeftLiveChatroom, setUserHasLeftLiveCharoom] = useState(false);
   //deleting chatroom
   const [userHasLeftConversation, setUserHasLeftConversation] = useState(false);
   const [userHasJoinedConversation, setUserHasJoinedConversation] = useState(false);
@@ -93,7 +95,14 @@ function ChatIndex() {
     });
     //updating realtime messages
     socket.on('chatMessage', messageData => {
-      console.log('socket', messageData.receiverID[0].id);
+      console.log('socket message received', messageData.senderID);
+      const participantUsername = participantsInChatroom.filter(participant => {
+        if (participant.id === messageData.senderID) {
+          return participant;
+        };
+      });
+
+      console.log('2222', participantUsername);
       setRealtimeMessage({
         message_text: messageData.text,
         participantID: messageData.receiverID[0].id,
@@ -101,7 +110,7 @@ function ChatIndex() {
           hour: '2-digit',
           minute: '2-digit'
         }),
-        username: username,
+        username: participantUsername[0].username,
         chatroomID: messageData.chatroomID
       });
     });
@@ -318,6 +327,8 @@ function ChatIndex() {
   }, [chatroomKey, newConversation]);
 
   useEffect(() => {
+    // console.log('realtimeMessage', realtimeMessage);
+    // console.log('chatroomKey socket', chatroomKey);
     if (realtimeMessage && chatroomKey === realtimeMessage.chatroomID) {
       setMessages(msgData => [...msgData, {
         message_text: realtimeMessage.message_text,
@@ -396,12 +407,10 @@ function ChatIndex() {
 
   /* ------ Live Chatrooms ------ */
   const joinLiveChatroomFunction = async (userID, chatroomID) => {
-    console.log('hi', userID, chatroomID);
     const joinData = {
       'account_id': userID,
       'chatroom_id': chatroomID,
     };
-    console.log('joindata', joinData);
     await joinLiveChatroom(joinData);
   };
 
@@ -444,17 +453,18 @@ function ChatIndex() {
     return (
       <div
         onClick={() => {
-          joinLiveChatroomFunction(userID, chatrooms.id);
+          // joinLiveChatroomFunction(userID, chatrooms.id);
           setChatroomKey(chatrooms.id);
-          socket.emit('joinLiveChatroom', {
-            'chatroomData' : chatrooms,
-            'userData' : username
-          });
+          // socket.emit('joinLiveChatroom', {
+          //   'chatroomData' : chatrooms,
+          //   'userData' : username
+          // });
         }}
       >
         <LiveChatrooms 
           liveChatrooms={chatrooms}
           liveChatroomKey={chatroomKey}
+          joinChatroom={joinLiveChatroomFunction}
           leaveChatroom={leaveLiveChatroomFunction}
           userID={userID}
         />
@@ -514,14 +524,14 @@ function ChatIndex() {
   // console.log('userID', userID);
   // console.log('socket chatIndex', socket);
   // console.log('userParticipantID', userParticipantID);
-  // console.log('participantsinChatroom', participantsInChatroom);
+  console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);
   // console.log('conversations---', conversations);
   // console.log('liveChatrooms--', liveChatroom);
   // console.log('username chatIndex', username);
   // console.log('setNewConversation---', newConversation);
   // console.log('messages', messages);
-  // console.log('realtimeMsg', realtimeMessage);
+  console.log('realtimeMsg', realtimeMessage);
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
   // console.log('friendsList ChatIndex', friendsList);
   // console.log('allUsers ChatIndex', allUsers);
@@ -639,6 +649,7 @@ function ChatIndex() {
                   <Message 
                     userID={userID} 
                     messages={messages}
+                    userHasLeft={userHasLeftConversation}
                   />
                   <div ref={scrollRef}></div>
                 </>
@@ -649,7 +660,7 @@ function ChatIndex() {
                     userID={userID} 
                     messages={messages}
                     userHasJoined={userHasJoinedConversation}
-                    userHasLeft={userHasLeftConversation}
+                    userHasLeft={userHasLeftLiveChatroom}
                   />
                   <div ref={scrollRef}></div>
                 </>

@@ -99,6 +99,13 @@ const deleteChatroom = (async (req, res) => {
 const getLiveChatroom = (async (req, res) => {
   try {
     const allLiveChatrooms = await client.query(queries.getLiveChatroom);
+    for (let x=0; x<allLiveChatrooms.rows.length; x++) {
+      const chatroomData = allLiveChatrooms.rows[x];
+      console.log('chatroomData', chatroomData);
+      const participantData = await client.query(queries.getParticipantFromChatroomID, [chatroomData.id]);
+      console.log('participantData', participantData.rows);
+      chatroomData['participantData'] = participantData.rows;
+    };
     if (allLiveChatrooms.rows.length) {
       res.status(200).json(allLiveChatrooms.rows);
     };
@@ -110,11 +117,9 @@ const getLiveChatroom = (async (req, res) => {
 const joinLiveChatroom = (async (req, res) => {
   const account_id = req.body.account_id;
   const chatroom_id = req.body.chatroom_id;
-  console.log(req.body);
 
   try {
     const userExists = await client.query(queries.userExistsInLiveChatroom, [account_id, chatroom_id]);
-    console.log('userExists', userExists.rows);
     if (userExists.rows.length > 0) {
       res.status(204).send('Participant Exists');
     } else {
@@ -202,7 +207,6 @@ const getUserParticipantInChatroom = (async (req, res) => {
 const deleteParticipantFromChatroom = (async (req, res) => {
   const newDate = new Date();
   const deleteDate = newDate;
-  // console.log(req.body);
   const account_ID = req.body.userID;
   const chatroom_ID = req.body.chatroomID;
   
@@ -244,7 +248,8 @@ const getMessageByChatroom = (async (req, res) => {
 //function creating a function
 const createMessage = (io, users) => (async (req,res) => {
   const {participantData, message_text, receiverID, chatroomID} = req.body;
-  console.log(req.body);
+  console.log('message req body', req.body);
+  console.log('message user', users);
 
   try {
     const newMessage = await client.query(queries.createMessage, [participantData.id, message_text]);
@@ -252,10 +257,12 @@ const createMessage = (io, users) => (async (req,res) => {
     if (newMessage) {
       const socketIDs = [];
       receiverID.map(data => {
+        console.log('data', data);
         if (users.users[data.account_id] !== undefined && !socketIDs.includes(users.users[data.account_id])) {
           socketIDs.push(users.users[data.account_id]);
         };
       });
+      console.log('socket ID', socketIDs);
       if (socketIDs.length >= 2) {
         socketIDs.map(socketID => {    
           io.to(socketID).emit('chatMessage', {
@@ -311,23 +318,18 @@ const getUserIDfromName = (async (req, res) => {
     nameFromFriendList = nameFromFriendList.split(',');
   };
 
-  console.log('friendlist', typeof(nameFromFriendList));
-
   try {
     if (typeof(nameFromFriendList) === 'string') {
       const idFromName = await client.query(queries.getUserIDfromFriendListName, [nameFromFriendList]);
       if (idFromName) {
-        console.log('id', idFromName)
         return res.status(200).json(idFromName.rows[0].id);
       };
     } else if (nameFromFriendList.length > 1) {
       const userIDs = [];
       for (let x=0; x<nameFromFriendList.length; x++) {
-        console.log('here2', nameFromFriendList[x]);
         const idsFromNames = await client.query(queries.getUserIDfromFriendListName, [nameFromFriendList[x]]);
         if (idsFromNames) {
           userIDs.push(idsFromNames.rows[0].id);
-          console.log('here3', userIDs);
         };
       };
       return res.status(200).json(userIDs);

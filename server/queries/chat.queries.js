@@ -8,13 +8,13 @@ const deleteChatroom = "UPDATE chatroom SET deleted_at = $1 WHERE id = $2;";
 // live chatrooms for tickers
 const getLiveChatroom = "SELECT * FROM chatroom WHERE live = true;";
 const joinLiveChatroom = "INSERT INTO participant (account_id, chatroom_id, joined_datetime) VALUES ($1, $2, now());";
-const userExistsInLiveChatroom = "SELECT * FROM participant WHERE account_id = $1 AND chatroom_id = $2 AND left_datetime IS NULL;";
-const leaveLiveChatroom = "UPDATE participant SET left_datetime = now() WHERE account_id = $1 AND chatroom_id = $2;";
+const userExistsInLiveChatroom = "SELECT * FROM participant WHERE account_id = $1 AND chatroom_id = $2 AND deleted_at IS NULL;";
+const leaveLiveChatroom = "UPDATE participant SET deleted_at = now() WHERE account_id = $1 AND chatroom_id = $2;";
 /* -------------------------------- */
 
 /* ------ Participant ------ */
 const getParticipant = "SELECT * FROM participant;";
-const getParticipantFromChatroomID = "SELECT * FROM (SELECT participant.id, participant.left_datetime, participant.account_id, participant.chatroom_id, participant.deleted_at, participant.joined_datetime, account.contact_img, account.username FROM participant INNER JOIN account ON participant.account_id = account.id WHERE chatroom_id = $1 AND left_datetime IS NULL) chatroom;";
+const getParticipantFromChatroomID = "SELECT * FROM (SELECT participant.id, participant.left_datetime, participant.account_id, participant.chatroom_id, participant.deleted_at, participant.joined_datetime, account.contact_img, account.username FROM participant INNER JOIN account ON participant.account_id = account.id WHERE chatroom_id = $1 AND deleted_at IS NULL) chatroom;";
 const getParticipantFromAccountID = "SELECT * FROM participant WHERE account_id = $1;";
 const getUserParticipantInChatroom = "SELECT id FROM participant WHERE account_id = $1 AND chatroom_id = $2;";
 const createParticipantFromChatroom = "INSERT INTO participant (chatroom_id, account_id, left_datetime) VALUES ($1, $2, $3);";

@@ -83,7 +83,7 @@ const joinLiveChatroom = async (data) => {
   })
   .then(response => {
     if (response.ok) {
-      return response.json();
+      return response;
     }
     throw response;
   });
@@ -102,7 +102,7 @@ const leaveLiveChatroom = async (data) => {
   })
   .then(response => {
     if (response.ok) {
-      return response.json();
+      return response;
     }
     throw response;
   });
