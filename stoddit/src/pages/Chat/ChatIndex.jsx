@@ -463,23 +463,27 @@ function ChatIndex() {
       });
 
       console.log('userParticipant', userParticipant);
+      console.log('userText', messageText);
+      console.log('receiverID', receiverID);
+      console.log('chatroomKey', chatroomKey);
+      console.log('username', username);
 
-      addMessageToConversation(userParticipant, messageText, receiverID, chatroomKey, username);
+      // addMessageToConversation(userParticipant, messageText, receiverID, chatroomKey, username);
 
-      setMessages(msgData => [...msgData, {
-        account_id: userID,
-        chatroom_id: chatroomKey,
-        deleted_at: null,
-        message_text: messageText,
-        ownMessage: true,
-        participant_id: userParticipant,
-        sent_at: new Date().toLocaleString('en-US', {
-          hour: '2-digit',
-          minute: '2-digit'
-        }),
-        username: username,
-        imgUrl: realTimeMsgImgObj[username]
-      }]);
+      // setMessages(msgData => [...msgData, {
+      //   account_id: userID,
+      //   chatroom_id: chatroomKey,
+      //   deleted_at: null,
+      //   message_text: messageText,
+      //   ownMessage: true,
+      //   participant_id: userParticipant,
+      //   sent_at: new Date().toLocaleString('en-US', {
+      //     hour: '2-digit',
+      //     minute: '2-digit'
+      //   }),
+      //   username: username,
+      //   imgUrl: realTimeMsgImgObj[username]
+      // }]);
     } else {
       console.log('no message');
     };
