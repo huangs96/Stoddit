@@ -8,6 +8,7 @@ const deleteChatroom = "UPDATE chatroom SET deleted_at = $1 WHERE id = $2;";
 // live chatrooms for tickers
 const getLiveChatroom = "SELECT * FROM chatroom WHERE live = true;";
 const joinLiveChatroom = "INSERT INTO participant (account_id, chatroom_id, joined_datetime) VALUES ($1, $2, now());";
+const userExistsInLiveChatroom = "SELECT * FROM participant WHERE account_d = $1 AND chatroom_id = $2;";
 const leaveLiveChatroom = "UPDATE participant SET left_datetime = now() WHERE chatroom_id = $2 AND account_id = $3;";
 /* -------------------------------- */
 
@@ -45,6 +46,7 @@ module.exports = {
   //live chatroom
   getLiveChatroom,
   joinLiveChatroom,
+  userExistsInLiveChatroom,
   leaveLiveChatroom,
   //participant
   getParticipant,
