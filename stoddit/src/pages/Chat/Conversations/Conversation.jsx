@@ -20,6 +20,7 @@ function Conversation({conversation, conversationDeleted, participantData, usern
     };
     await deleteParticipantFromChatroom(participantData);
     console.log('user has left the chat');
+    conversationDeleted();
   };
   const displayImg = participantData.map((data) => {
     if (data.username !== username) {

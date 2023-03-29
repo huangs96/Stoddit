@@ -242,7 +242,6 @@ function ChatIndex() {
           imgUrl: realTimeMsgImgObj[selectedFriendsUsername]
         }
       ];
-      console.log('it got here111');
       setConversations(convos => [...convos, {
         account_id: userID,
         name: convoName,
@@ -332,6 +331,9 @@ function ChatIndex() {
       setSelectedConversation(key);
     };
   };
+  const conversationDeleted = () => {
+    setUserHasLeftConversation(boolean => !boolean);
+  };
   /* --------------------------------- */
 
   /* ------ Search Inputs for Conversations, Friends, and AllUsers ------ */
@@ -360,6 +362,7 @@ function ChatIndex() {
           conversation={convo}
           userParticipantID={userParticipantID}
           username={username}
+          conversationDeleted={conversationDeleted}
           participantData={convo.participantData}
           selectedConversation={selectedConversation}
         />
