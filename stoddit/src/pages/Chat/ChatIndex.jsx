@@ -229,7 +229,7 @@ function ChatIndex() {
   const handleClose = () => {
     setOpen(false);
   };
-  const getNewConversation1 = () => {
+  const getNewConversation = () => {
     setNewConversationCreated(boolean => !boolean);
   };
   /* --------------------------------- */
@@ -569,7 +569,7 @@ function ChatIndex() {
                   open={open}
                   friendsList={friendsList}
                   onClose={handleClose}
-                  getNewConversation={getNewConversation1}
+                  getNewConversation={getNewConversation}
                 />
               </div>
             :
