@@ -54,6 +54,7 @@ function ChatIndex() {
   const [conversations, setConversations] = useState([]);
   const [selectedConversation, setSelectedConversation] = useState(undefined);
   const [conversationMembers, setConversationMembers] = useState([]);
+  const [newConversationCreated, setNewConversationCreated] = useState(false);
   const [convoImgLoad, setConvoImgLoad] = useState(false);
   const [searchConversationInput, setConversationSearchInput] = useState('');
   const [newConversation, setNewConversation] = useState(false);
@@ -228,48 +229,8 @@ function ChatIndex() {
   const handleClose = () => {
     setOpen(false);
   };
-  const getNewConversation = (newChatroomID, convoName, convoDescription, selectedFriendsUsername) => {
-    let splitChatroomReturnStr = newChatroomID.split(':');
-    let newGeneratedChatroomID = parseInt(splitChatroomReturnStr[splitChatroomReturnStr.length-1]);
-    if (selectedFriendsUsername.length < 2) {
-      const participantData = [
-        {
-          username: username,
-          imgUrl: realTimeMsgImgObj[username]
-        },
-        {
-          username: selectedFriendsUsername,
-          imgUrl: realTimeMsgImgObj[selectedFriendsUsername]
-        }
-      ];
-      setConversations(convos => [...convos, {
-        account_id: userID,
-        name: convoName,
-        chatroom_id: newGeneratedChatroomID,
-        description: convoDescription,
-        participantData: participantData,
-      }]);
-    } else if (selectedFriendsUsername.length >= 2) {
-      const participantData = [
-        {
-          username: username,
-          imgUrl: realTimeMsgImgObj[username]
-        }
-      ];
-      selectedFriendsUsername.map(sFriends => {
-        participantData.push({
-          username: sFriends,
-          imgUrl: realTimeMsgImgObj[sFriends]
-        })
-      });
-      setConversations(convos => [...convos, {
-        account_id: userID,
-        name: convoName,
-        chatroom_id: newGeneratedChatroomID,
-        description: convoDescription,
-        participantData: participantData,
-      }]);
-    };
+  const getNewConversation1 = () => {
+    setNewConversationCreated(boolean => !boolean);
   };
   /* --------------------------------- */
 
@@ -290,7 +251,7 @@ function ChatIndex() {
     return () => {
       isLoaded = false;
     };
-  }, [userHasLeftConversation]);
+  }, [userHasLeftConversation, newConversationCreated]);
 
   useEffect(() => {
     let isLoaded = true;
@@ -608,7 +569,7 @@ function ChatIndex() {
                   open={open}
                   friendsList={friendsList}
                   onClose={handleClose}
-                  getNewConversation={getNewConversation}
+                  getNewConversation={getNewConversation1}
                 />
               </div>
             :

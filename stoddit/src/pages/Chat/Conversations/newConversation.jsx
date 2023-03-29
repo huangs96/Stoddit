@@ -95,9 +95,11 @@ function NewConversation(props) {
       conversationData.chatroomName = conversationName;
       conversationData.chatroomDescription = conversationDescription;
     };
-    let newGeneratedChatroomID = await createNewChatroomWithParticipants(conversationData);
 
-    props.getNewConversation(newGeneratedChatroomID, conversationName, conversationDescription, selectedFriends);
+    
+    await createNewChatroomWithParticipants(conversationData);
+
+    props.getNewConversation();
 
     resetConversationData();
     handleClose();
