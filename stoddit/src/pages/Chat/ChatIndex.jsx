@@ -477,13 +477,16 @@ function ChatIndex() {
           return item.id;
         };
       });
-
+      console.log('participantsInChatroom', participantsInChatroom);
       const userParticipant = participantsInChatroom.find((item) => {
+        console.log('item', item);
         if (item.account_id === userID) {
           setUserParticipantID(item.id);
           return item;
         };
       });
+
+      console.log('userParticipant', userParticipant);
 
       addMessageToConversation(userParticipant, messageText, receiverID, chatroomKey, username);
 
