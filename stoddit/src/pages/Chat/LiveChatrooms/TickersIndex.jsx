@@ -19,24 +19,6 @@ function TickersIndex({liveChatroomKey}) {
     };
   }, []);
 
-  useEffect(() => {
-    let isLoaded = true;
-    const getLiveChatrooms = async () => {
-      if (isLoaded) {
-        const data = await getAllLiveChatrooms();
-        if (data) {
-          console.log('data', data);
-        };
-      };
-    };
-    getLiveChatrooms()
-    .catch(console.error);
-
-    return () => {
-      isLoaded = false;
-    };
-  }, []);
-
   // useEffect(() => {
   //   let isLoaded = true;
   //   const getAllTickers = async () => {

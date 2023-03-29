@@ -59,7 +59,6 @@ function ChatIndex() {
   const [newConversation, setNewConversation] = useState(false);
   //live chatrooms
   const [liveChatroom, setLiveChatroom] = useState([]);
-  const [liveChatroomKey, setLiveChatroomKey] = useState(null);
   //deleting chatroom
   const [userHasLeftConversation, setUserHasLeftConversation] = useState(false);
   const [userHasJoinedConversation, setUserHasJoinedConversation] = useState(false);
@@ -414,7 +413,6 @@ function ChatIndex() {
     await leaveLiveChatroom(leaveData);
   };
 
-
   useEffect(() => {
     let isLoaded = true;
     const getLiveChatrooms = async () => {
@@ -447,7 +445,7 @@ function ChatIndex() {
       <div
         onClick={() => {
           joinLiveChatroomFunction(userID, chatrooms.id);
-          setLiveChatroomKey(chatrooms.id);
+          setChatroomKey(chatrooms.id);
           socket.emit('joinLiveChatroom', {
             'chatroomData' : chatrooms,
             'userData' : username
@@ -456,7 +454,7 @@ function ChatIndex() {
       >
         <LiveChatrooms 
           liveChatrooms={chatrooms}
-          liveChatroomKey={liveChatroomKey}
+          liveChatroomKey={chatroomKey}
           leaveChatroom={leaveLiveChatroomFunction}
           userID={userID}
         />
@@ -741,7 +739,7 @@ function ChatIndex() {
                     </TextField>
                   </div>
                   <h4>Tickers</h4>
-                  <TickersIndex liveChatroomKey={liveChatroomKey}/>
+                  <TickersIndex liveChatroomKey={chatroomKey}/>
                 </>
               }
           </div>

@@ -5,7 +5,7 @@ import LaptopChromebookSharpIcon from '@mui/icons-material/LaptopChromebookSharp
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 function LiveChatrooms({liveChatrooms, liveChatroomKey, leaveChatroom, userID}) {
-
+  console.log('livechatrooms', liveChatrooms);
   return (
     <>
       <div className="conversationContainer">
