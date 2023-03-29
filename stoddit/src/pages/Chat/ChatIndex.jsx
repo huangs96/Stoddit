@@ -106,7 +106,8 @@ function ChatIndex() {
           minute: '2-digit'
         }),
         username: messageData.senderUsername,
-        chatroomID: messageData.chatroomID
+        chatroomID: messageData.chatroomID,
+        isLive: messageData.isLive
       });
     });
     return () => {
@@ -300,14 +301,15 @@ function ChatIndex() {
   }, [chatroomKey, newConversation]);
 
   useEffect(() => {
-    if (!realtimeMessage.isLive && chatroomKey === realtimeMessage.chatroomID) {
+    console.log('realtimeMsg', realtimeMessage);
+    if (realtimeMessage && realtimeMessage.isLive === null && chatroomKey === realtimeMessage.chatroomID) {
       setMessages(msgData => [...msgData, {
         message_text: realtimeMessage.message_text,
         participantID: realtimeMessage.participantID,
         sent_at: realtimeMessage.sent_at,
         username: realtimeMessage.username
       }]);
-    } else if (realtimeMessage.isLive && chatroomKey === realtimeMessage.chatroom_id) {
+    } else if (realtimeMessage && realtimeMessage.isLive && chatroomKey === realtimeMessage.chatroom_id) {
       setLiveChatroomMessages(msgData => [...msgData, {
         message_text: realtimeMessage.message_text,
         participantID: realtimeMessage.participantID,
@@ -315,14 +317,6 @@ function ChatIndex() {
         username: realtimeMessage.username
       }]);
     };
-    // } else if (realtimeMessage && chatroomKey === realtimeMessage.chatroomID) {
-    //   setLiveChatroomMessages(msgData => [...msgData, {
-    //     message_text: realtimeMessage.message_text,
-    //     participantID: realtimeMessage.participantID,
-    //     sent_at: realtimeMessage.sent_at,
-    //     username: realtimeMessage.username
-    //   }]);
-    // }
   }, [realtimeMessage]);
 
   const selectConversation = (key) => {
