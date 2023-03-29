@@ -308,6 +308,14 @@ function ChatIndex() {
         username: realtimeMessage.username
       }]);
     };
+    // } else if (realtimeMessage && chatroomKey === realtimeMessage.chatroomID) {
+    //   setLiveChatroomMessages(msgData => [...msgData, {
+    //     message_text: realtimeMessage.message_text,
+    //     participantID: realtimeMessage.participantID,
+    //     sent_at: realtimeMessage.sent_at,
+    //     username: realtimeMessage.username
+    //   }]);
+    // }
   }, [realtimeMessage]);
 
   const selectConversation = (key) => {
@@ -446,6 +454,7 @@ function ChatIndex() {
 
   const handleSubmitForLiveChat = (e) => {
     e.preventDefault();
+    const live = true;
     console.log('livechat');
     if (messageText) {
       console.log('participantsInChatroom', participantsInLiveChatroom);
@@ -463,7 +472,7 @@ function ChatIndex() {
       console.log('receiverID', receiverID);
       console.log('userParticipant', userParticipant);
 
-      addMessageToConversation(userParticipant, messageText, receiverID, chatroomKey, username);
+      addMessageToConversation(userParticipant, messageText, receiverID, chatroomKey, username, live);
 
       setLiveChatroomMessages(msgData => [...msgData, {
         account_id: userID,
