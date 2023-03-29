@@ -312,7 +312,7 @@ function ChatIndex() {
       isLoaded = false;
       console.log('getMessagesFromChatroom returned');
     };
-  }, [chatroomKey, newConversation]);
+  }, [chatroomKey, newConversation, userHasLeftConversation]);
 
   useEffect(() => {
     if (realtimeMessage && chatroomKey === realtimeMessage.chatroomID) {
@@ -509,7 +509,7 @@ function ChatIndex() {
   };
   /* --------------------------------- */
 
-
+  console.log('conversation Deleted chatindex', userHasLeftConversation);
   // console.log('userID', userID);
   // console.log('socket chatIndex', socket);
   // console.log('userParticipantID', userParticipantID);
