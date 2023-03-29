@@ -401,17 +401,15 @@ function ChatIndex() {
     const joinData = {
       'account_id': userID,
       'chatroom_id': chatroomID,
-      'joined_datetime': new Date(),
     };
     console.log('joindata', joinData);
-    // await joinLiveChatroom(joinData);
+    await joinLiveChatroom(joinData);
   };
 
   const leaveLiveChatroomFunction = async (userID, chatroomID) => {
     const leaveData = {
       'chatroom_id': chatroomID,
       'account_id': userID,
-      'leave_datetime': new Date()
     };
     await leaveLiveChatroom(leaveData);
   };
