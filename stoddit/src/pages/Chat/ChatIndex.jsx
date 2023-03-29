@@ -232,8 +232,7 @@ function ChatIndex() {
     let splitChatroomReturnStr = newChatroomID.split(':');
     let newGeneratedChatroomID = parseInt(splitChatroomReturnStr[splitChatroomReturnStr.length-1]);
     if (selectedFriendsUsername.length < 2) {
-      
-      const participantImgData = [
+      const participantData = [
         {
           username: username,
           imgUrl: realTimeMsgImgObj[username]
@@ -248,10 +247,10 @@ function ChatIndex() {
         name: convoName,
         chatroom_id: newGeneratedChatroomID,
         description: convoDescription,
-        participantImgData: participantImgData
+        participantData: participantData,
       }]);
     } else if (selectedFriendsUsername.length >= 2) {
-      const participantImgData = [
+      const participantData = [
         {
           username: username,
           imgUrl: realTimeMsgImgObj[username]
@@ -268,7 +267,7 @@ function ChatIndex() {
         name: convoName,
         chatroom_id: newGeneratedChatroomID,
         description: convoDescription,
-        participantImgData: participantImgData
+        participantData: participantData,
       }]);
     };
   };
@@ -365,7 +364,6 @@ function ChatIndex() {
           userParticipantID={userParticipantID}
           username={username}
           conversationDeleted={conversationDeleted}
-          participantImgData={convo.participantImgData}
           selectedConversation={selectedConversation}
         />
       </div>
@@ -478,6 +476,7 @@ function ChatIndex() {
           return item.id;
         };
       });
+
       const userParticipant = participantsInChatroom.find((item) => {
         console.log('item', item);
         if (item.account_id === userID) {
@@ -485,6 +484,9 @@ function ChatIndex() {
           return item;
         };
       });
+
+      console.log('userParticipant', userParticipant);
+
       addMessageToConversation(userParticipant, messageText, receiverID, chatroomKey, username);
 
       setMessages(msgData => [...msgData, {

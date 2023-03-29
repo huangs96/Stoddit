@@ -5,7 +5,8 @@ import {
 } from '../../../services/chat.service';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-function Conversation({conversation, conversationDeleted, participantImgData, username, selectedConversation}) {
+function Conversation({conversation, conversationDeleted, participantData, username, selectedConversation}) {
+  console.log('convo convo', conversation);
   const [hovered, setHovered] = useState(false);
   const conversationHovered = async () => {
     setHovered(true);
@@ -22,7 +23,7 @@ function Conversation({conversation, conversationDeleted, participantImgData, us
     console.log('user has left the chat');
     conversationDeleted();
   };
-  const displayImg = participantImgData.map((data) => {
+  const displayImg = participantData.map((data) => {
     if (data.username !== username) {
       return (
         <span className='avatarList'>
@@ -35,7 +36,7 @@ function Conversation({conversation, conversationDeleted, participantImgData, us
       );
     };
   });
-  const displayDirectMessage = participantImgData.map((data) => {
+  const displayDirectMessage = participantData.map((data) => {
     if (data.username !== username) {
       return (
         <span 
