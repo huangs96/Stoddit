@@ -114,8 +114,8 @@ const joinLiveChatroom = (async (req, res) => {
 
   try {
     const userExists = await client.query(queries.userExistsInLiveChatroom, [account_id, chatroom_id]);
-    console.log('userExists', userExists);
-    if (userExists.rows) {
+    console.log('userExists', userExists.rows);
+    if (userExists.rows.length > 0) {
       res.status(204).send('Participant Exists');
     } else {
       const joinedChatroom = await client.query(queries.joinLiveChatroom, [account_id, chatroom_id]);
