@@ -231,6 +231,7 @@ function ChatIndex() {
   const getNewConversation = (newChatroomID, convoName, convoDescription, selectedFriendsUsername) => {
     let splitChatroomReturnStr = newChatroomID.split(':');
     let newGeneratedChatroomID = parseInt(splitChatroomReturnStr[splitChatroomReturnStr.length-1]);
+    console.log('newGeneratedChatroomID chatIndex', newGeneratedChatroomID);
     if (selectedFriendsUsername.length < 2) {
       const participantData = [
         {
@@ -250,7 +251,8 @@ function ChatIndex() {
         description: convoDescription,
         participantData: participantData
       }]);
-    } else if (selectedFriendsUsername.length > 2) {
+    } else if (selectedFriendsUsername.length >= 2) {
+      console.log('it got here222');
       const participantData = [
         {
           username: username,
