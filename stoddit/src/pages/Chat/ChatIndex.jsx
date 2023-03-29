@@ -206,7 +206,7 @@ function ChatIndex() {
     scrollRef.current?.scrollIntoView({
       behavior: 'smooth'
     });
-  }, [allUsers, conversations, friendsList, messages]);
+  }, [allUsers, conversations, friendsList, messages, liveChatroomMessages]);
 
 
   const addUser = async (userID, username) => {
