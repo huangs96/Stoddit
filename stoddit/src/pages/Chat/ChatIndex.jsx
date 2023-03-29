@@ -241,7 +241,8 @@ function ChatIndex() {
           username: selectedFriendsUsername,
           imgUrl: realTimeMsgImgObj[selectedFriendsUsername]
         }
-      ]
+      ];
+      console.log('it got here111');
       setConversations(convos => [...convos, {
         account_id: userID,
         name: convoName,
@@ -315,8 +316,6 @@ function ChatIndex() {
   }, [chatroomKey, newConversation]);
 
   useEffect(() => {
-    // console.log('realtimeMessage', realtimeMessage);
-    // console.log('chatroomKey socket', chatroomKey);
     if (realtimeMessage && chatroomKey === realtimeMessage.chatroomID) {
       setMessages(msgData => [...msgData, {
         message_text: realtimeMessage.message_text,
@@ -511,14 +510,14 @@ function ChatIndex() {
   // console.log('userID', userID);
   // console.log('socket chatIndex', socket);
   // console.log('userParticipantID', userParticipantID);
-  console.log('participantsinChatroom', participantsInChatroom);
+  // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('chatroomKey', chatroomKey);
   // console.log('conversations---', conversations);
   // console.log('liveChatrooms--', liveChatroom);
   // console.log('username chatIndex', username);
   // console.log('setNewConversation---', newConversation);
   // console.log('messages', messages);
-  console.log('realtimeMsg', realtimeMessage);
+  // console.log('realtimeMsg', realtimeMessage);
   // console.log('friendsOnline ChatIndex', onlineFriendsData);
   // console.log('friendsList ChatIndex', friendsList);
   // console.log('allUsers ChatIndex', allUsers);

@@ -89,7 +89,6 @@ function NewConversation(props) {
       conversationData.userIDs.push(idFromUsername, props.userID);
     };
     if (conversationData.userIDs.length === 2 && conversationData.userIDs.includes(props.userID)) {
-      console.log('selectedFriends', selectedFriends);
       conversationData.chatroomName = selectedFriends[0];
       conversationData.chatroomDescription = '';
     } else {
