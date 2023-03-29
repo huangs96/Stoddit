@@ -232,7 +232,8 @@ function ChatIndex() {
     let splitChatroomReturnStr = newChatroomID.split(':');
     let newGeneratedChatroomID = parseInt(splitChatroomReturnStr[splitChatroomReturnStr.length-1]);
     if (selectedFriendsUsername.length < 2) {
-      const participantData = [
+      
+      const participantImgData = [
         {
           username: username,
           imgUrl: realTimeMsgImgObj[username]
@@ -247,10 +248,10 @@ function ChatIndex() {
         name: convoName,
         chatroom_id: newGeneratedChatroomID,
         description: convoDescription,
-        participantData: participantData
+        participantImgData: participantImgData
       }]);
     } else if (selectedFriendsUsername.length >= 2) {
-      const participantData = [
+      const participantImgData = [
         {
           username: username,
           imgUrl: realTimeMsgImgObj[username]
@@ -267,7 +268,7 @@ function ChatIndex() {
         name: convoName,
         chatroom_id: newGeneratedChatroomID,
         description: convoDescription,
-        participantData: participantData
+        participantImgData: participantImgData
       }]);
     };
   };
@@ -364,7 +365,7 @@ function ChatIndex() {
           userParticipantID={userParticipantID}
           username={username}
           conversationDeleted={conversationDeleted}
-          participantData={convo.participantData}
+          participantImgData={convo.participantImgData}
           selectedConversation={selectedConversation}
         />
       </div>
@@ -477,7 +478,6 @@ function ChatIndex() {
           return item.id;
         };
       });
-      console.log('participantsInChatroom', participantsInChatroom);
       const userParticipant = participantsInChatroom.find((item) => {
         console.log('item', item);
         if (item.account_id === userID) {
@@ -485,9 +485,6 @@ function ChatIndex() {
           return item;
         };
       });
-
-      console.log('userParticipant', userParticipant);
-
       addMessageToConversation(userParticipant, messageText, receiverID, chatroomKey, username);
 
       setMessages(msgData => [...msgData, {
