@@ -33,7 +33,10 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, leaveChatroom, userID}) 
           </div>
           {
             <ExitToAppIcon
-              className="leaveChatroomIcon"
+              sx={{
+                color: 'gray',
+                "&:hover": { color: "red" } 
+              }} 
               onClick={() => {
                 leaveChatroom(userID, liveChatrooms.id)
               }}
