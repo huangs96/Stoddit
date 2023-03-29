@@ -108,13 +108,12 @@ const getLiveChatroom = (async (req, res) => {
 });
 
 const joinLiveChatroom = (async (req, res) => {
-  const newDate = new Date();
   const account_id = req.body.account_id;
   const chatroom_id = req.body.chatroom_id;
-  const joined_datetime = newDate;
+  console.log(req.body);
 
   try {
-    const joinedChatroom = await client.query(queries.joinLiveChatroom, [account_id, chatroom_id, joined_datetime]);
+    const joinedChatroom = await client.query(queries.joinLiveChatroom, [account_id, chatroom_id]);
     if (joinedChatroom) {
       res.status(200).json(`Participant joined chatroom ${chatroom_id}`);
     };
@@ -124,13 +123,11 @@ const joinLiveChatroom = (async (req, res) => {
 });
 
 const leaveLiveChatroom = (async (req, res) => {
-  const newDate = new Date();
-  const leaveDate = newDate;
   const chatroom_id = req.body.chatroom_id;
   const account_id = req.body.account_id;
   
   try {
-    const leaveLiveChatroom = await client.query(queries.leaveLiveChatroom, [leaveDate, chatroom_id, account_id]);
+    const leaveLiveChatroom = await client.query(queries.leaveLiveChatroom, [chatroom_id, account_id]);
     if(leaveLiveChatroom) {
       res.status(200).send(`Participant left chatroom ${chatroom_id}`);
     };

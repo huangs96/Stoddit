@@ -71,7 +71,7 @@ const getAllLiveChatroom = async () => {
 };
 
 const joinLiveChatroom = async (data) => {
-  return fetch('http://localhost:5000/chat/joinlivechatrooms', {
+  return fetch('http://localhost:5000/chat/joinlivechatroom', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ const joinLiveChatroom = async (data) => {
 };
 
 const leaveLiveChatroom = async (data) => {
-  return fetch('http://localhost:5000/chat/leavelivechatrooms', {
+  return fetch('http://localhost:5000/chat/leavelivechatroom', {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',

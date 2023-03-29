@@ -396,11 +396,24 @@ function ChatIndex() {
   /* --------------------------------- */
 
   /* ------ Live Chatrooms ------ */
-  const joinLiveChatroom = () => {
+  const joinLiveChatroomFunction = async (userID, chatroomID) => {
+    console.log('hi', userID, chatroomID);
     const joinData = {
       'account_id': userID,
-      'chatroom_id': liveChatroomKey
+      'chatroom_id': chatroomID,
+      'joined_datetime': new Date(),
     };
+    console.log('joindata', joinData);
+    // await joinLiveChatroom(joinData);
+  };
+
+  const leaveLiveChatroomFunction = async (userID, chatroomID) => {
+    const leaveData = {
+      'chatroom_id': chatroomID,
+      'account_id': userID,
+      'leave_datetime': new Date()
+    };
+    await leaveLiveChatroom(leaveData);
   };
 
 
@@ -435,6 +448,7 @@ function ChatIndex() {
     return (
       <div
         onClick={() => {
+          joinLiveChatroomFunction(userID, chatrooms.id);
           setLiveChatroomKey(chatrooms.id);
           socket.emit('joinLiveChatroom', {
             'chatroomData' : chatrooms,
