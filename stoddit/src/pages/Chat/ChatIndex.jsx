@@ -290,10 +290,11 @@ function ChatIndex() {
     return () => {
       isLoaded = false;
     };
-  }, []);
+  }, [userHasLeftConversation]);
 
   useEffect(() => {
     let isLoaded = true;
+    console.log('userHasLeft useEffect');
     const getChatroomDataByChatroomID = async () => {
       const chatroomData = await getMessagesByChatroomID(chatroomKey);
       setMessages(chatroomData);
@@ -312,7 +313,7 @@ function ChatIndex() {
       isLoaded = false;
       console.log('getMessagesFromChatroom returned');
     };
-  }, [chatroomKey, newConversation, userHasLeftConversation]);
+  }, [chatroomKey, newConversation]);
 
   useEffect(() => {
     if (realtimeMessage && chatroomKey === realtimeMessage.chatroomID) {
@@ -638,7 +639,6 @@ function ChatIndex() {
                   <Message 
                     userID={userID} 
                     messages={messages}
-                    userHasLeft={userHasLeftConversation}
                   />
                   <div ref={scrollRef}></div>
                 </>
