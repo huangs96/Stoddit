@@ -9,7 +9,7 @@ const deleteChatroom = "UPDATE chatroom SET deleted_at = $1 WHERE id = $2;";
 const getLiveChatroom = "SELECT * FROM chatroom WHERE live = true;";
 const joinLiveChatroom = "INSERT INTO participant (account_id, chatroom_id, joined_datetime) VALUES ($1, $2, now());";
 const userExistsInLiveChatroom = "SELECT * FROM participant WHERE account_id = $1 AND chatroom_id = $2 AND left_datetime IS NULL;";
-const leaveLiveChatroom = "UPDATE participant SET left_datetime = now() WHERE chatroom_id = $2 AND account_id = $3;";
+const leaveLiveChatroom = "UPDATE participant SET left_datetime = now() WHERE account_id = $1 AND chatroom_id = $2;";
 /* -------------------------------- */
 
 /* ------ Participant ------ */

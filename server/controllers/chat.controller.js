@@ -133,7 +133,7 @@ const leaveLiveChatroom = (async (req, res) => {
   const account_id = req.body.account_id;
   
   try {
-    const leaveLiveChatroom = await client.query(queries.leaveLiveChatroom, [chatroom_id, account_id]);
+    const leaveLiveChatroom = await client.query(queries.leaveLiveChatroom, [account_id, chatroom_id]);
     if(leaveLiveChatroom) {
       res.status(200).send(`Participant left chatroom ${chatroom_id}`);
     };

@@ -408,8 +408,8 @@ function ChatIndex() {
 
   const leaveLiveChatroomFunction = async (userID, chatroomID) => {
     const leaveData = {
-      'chatroom_id': chatroomID,
       'account_id': userID,
+      'chatroom_id': chatroomID,
     };
     await leaveLiveChatroom(leaveData);
   };
