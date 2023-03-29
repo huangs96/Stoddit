@@ -301,15 +301,16 @@ function ChatIndex() {
   }, [chatroomKey, newConversation]);
 
   useEffect(() => {
-    console.log('realtimeMsg', realtimeMessage);
-    if (realtimeMessage && realtimeMessage.isLive === null && chatroomKey === realtimeMessage.chatroomID) {
+    console.log('realtime', realtimeMessage)
+    if (realtimeMessage && realtimeMessage.isLive === undefined && chatroomKey === realtimeMessage.chatroomID) {
       setMessages(msgData => [...msgData, {
         message_text: realtimeMessage.message_text,
         participantID: realtimeMessage.participantID,
         sent_at: realtimeMessage.sent_at,
         username: realtimeMessage.username
       }]);
-    } else if (realtimeMessage && realtimeMessage.isLive && chatroomKey === realtimeMessage.chatroom_id) {
+    } else if (realtimeMessage && realtimeMessage.isLive && chatroomKey === realtimeMessage.chatroomID) {
+      console.log('here');
       setLiveChatroomMessages(msgData => [...msgData, {
         message_text: realtimeMessage.message_text,
         participantID: realtimeMessage.participantID,
