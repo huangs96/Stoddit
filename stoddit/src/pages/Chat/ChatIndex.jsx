@@ -95,14 +95,6 @@ function ChatIndex() {
     });
     //updating realtime messages
     socket.on('chatMessage', messageData => {
-      console.log('socket message received', messageData);
-      // const participantUsername = participantsInChatroom.filter(participant => {
-      //   if (participant.id === messageData.senderID) {
-      //     return participant;
-      //   };
-      // });
-
-      // console.log('2222', participantUsername);
       setRealtimeMessage({
         message_text: messageData.text,
         participantID: messageData.receiverID[0].id,
@@ -279,10 +271,6 @@ function ChatIndex() {
       }]);
     };
   };
-
-  const conversationDeleted = () => {
-    setUserHasLeftConversation(boolean => !boolean);
-  };
   /* --------------------------------- */
 
   /* ------ Loading Conversations and Messages ------ */
@@ -373,7 +361,6 @@ function ChatIndex() {
           conversation={convo}
           userParticipantID={userParticipantID}
           username={username}
-          conversationDeleted={conversationDeleted}
           participantData={convo.participantData}
           selectedConversation={selectedConversation}
         />

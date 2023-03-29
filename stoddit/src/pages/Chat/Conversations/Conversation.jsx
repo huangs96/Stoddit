@@ -6,6 +6,7 @@ import {
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 function Conversation({conversation, conversationDeleted, participantData, username, selectedConversation}) {
+  const [conversationDeleted1, setConversationDeleted1] = useState(false);
   const [hovered, setHovered] = useState(false);
   const conversationHovered = async () => {
     setHovered(true);
@@ -20,7 +21,6 @@ function Conversation({conversation, conversationDeleted, participantData, usern
     };
     await deleteParticipantFromChatroom(participantData);
     console.log('user has left the chat');
-    conversationDeleted();
   };
   const displayImg = participantData.map((data) => {
     if (data.username !== username) {
@@ -76,7 +76,10 @@ function Conversation({conversation, conversationDeleted, participantData, usern
             <div className="deleteButtonContainer">
               <DeleteOutlinedIcon 
                 sx={{ "&:hover": { color: "red" } }} 
-                onClick={deleteConversation}
+                onClick={() => {
+                  deleteConversation()
+                  setConversationDeleted1(boolean => !boolean);
+                }}
               />
             </div>
           }
