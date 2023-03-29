@@ -16,7 +16,6 @@ import { SocketContext } from '../../contexts/socketProvider';
 import { imgExtract } from '../../contexts/userContext';
 import { 
   addMessageToConversation,
-  addMessageToLiveChatroom,
   addFriendtoFriendList
 } from '../../contexts/chatContext';
 import { 
@@ -450,35 +449,36 @@ function ChatIndex() {
     console.log('livechat');
     if (messageText) {
       console.log('participantsInChatroom', participantsInLiveChatroom);
-      // const receiverID = participantsInChatroom.filter((item) => {
-      //   if (item.account_id !== userID) {
-      //     return item.id;
-      //   };
-      // });
+      const receiverID = participantsInLiveChatroom.filter((item) => {
+        if (item.account_id !== userID) {
+          return item.id;
+        };
+      });
+      const userParticipant = participantsInLiveChatroom.find((item) => {
+        if (item.account_id === userID) {
+          setUserParticipantID(item.id);
+          return item;
+        };
+      });
+      console.log('receiverID', receiverID);
+      console.log('userParticipant', userParticipant);
 
-      // const userParticipant = participantsInChatroom.find((item) => {
-      //   if (item.account_id === userID) {
-      //     setUserParticipantID(item.id);
-      //     return item;
-      //   };
-      // });
+      addMessageToConversation(userParticipant, messageText, receiverID, chatroomKey, username);
 
-      // addMessageToLiveChatroom(userParticipant, messageText, receiverID, chatroomKey, username);
-
-      // setLiveChatroomMessages(msgData => [...msgData, {
-      //   account_id: userID,
-      //   chatroom_id: chatroomKey,
-      //   deleted_at: null,
-      //   message_text: messageText,
-      //   ownMessage: true,
-      //   participant_id: userParticipant,
-      //   sent_at: new Date().toLocaleString('en-US', {
-      //     hour: '2-digit',
-      //     minute: '2-digit'
-      //   }),
-      //   username: username,
-      //   imgUrl: realTimeMsgImgObj[username]
-      // }]);
+      setLiveChatroomMessages(msgData => [...msgData, {
+        account_id: userID,
+        chatroom_id: chatroomKey,
+        deleted_at: null,
+        message_text: messageText,
+        ownMessage: true,
+        participant_id: userParticipant,
+        sent_at: new Date().toLocaleString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit'
+        }),
+        username: username,
+        imgUrl: realTimeMsgImgObj[username]
+      }]);
     } else {
       console.log('no message');
     };
