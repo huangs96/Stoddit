@@ -269,7 +269,8 @@ const createMessage = (io, users) => (async (req,res) => {
             senderID: participantData.id,
             text: message_text,
             chatroomID: chatroomID,
-            senderUsername: senderUsername
+            senderUsername: senderUsername,
+            isLive: isLive,
           });
         });
       } else {
@@ -278,7 +279,8 @@ const createMessage = (io, users) => (async (req,res) => {
           senderID: participantData.id,
           text: message_text,
           chatroomID: chatroomID,
-          senderUsername: senderUsername
+          senderUsername: senderUsername,
+          isLive: isLive
         });
       };
       return res.status(200).json('Message successfully sent');
