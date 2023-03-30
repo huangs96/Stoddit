@@ -11,7 +11,7 @@
 }
 
 .chatMenu {
-  flex: 2;
+  flex: 2.8;
   position: relative;
   width: 100%;
   /* margin-right: 10px; */
@@ -23,13 +23,14 @@
 }
 
 .chatBox {
-  flex: 5.5;
+  flex: 8;
 }
 
 .chatBoxWrapper {
   display:flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 10px 10px 1px 10px;
 }
 
 .searchConversations {
@@ -43,11 +44,14 @@
 }
 
 .chatMenuWrapper, .chatBoxWrapper, .chatOnlineWrapper {
-  padding: 10px;
   height: 100%;
   overflow-y: scroll;
   /* border-left: 1px solid rgb(214, 214, 214);
   border-right: 1px solid rgb(214, 214, 214); */
+}
+
+.chatOnlineWrapper {
+  padding: 1px 10px 10px 10px;
 }
 
 .chatMenuWrapper {
@@ -109,7 +113,7 @@
   display: flex;
   justify-content: center;
   padding-top: 10px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 /* .exitLogoContainer {

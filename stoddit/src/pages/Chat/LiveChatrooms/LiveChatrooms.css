@@ -2,7 +2,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 12px;
+  padding: 5px 15px 5px 15px;
   cursor: pointer;
   margin: 10px;
 }
@@ -11,9 +11,8 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 12px;
+  padding: 5px 15px 5px 15px;
   cursor: pointer;
-  /* width: 100%; */
   background-color: rgb(209, 214, 221);
   border-radius: 10px;
   margin: 10px;
