@@ -5,7 +5,7 @@
 
 .liveConversation {
   display: flex;
-  /* justify-content: center; */
+  justify-content: flex-start;
   align-items: center;
   padding: 25px 10px 10px 10px;
   cursor: pointer;
@@ -15,7 +15,7 @@
 
 .selectedLiveConversation {
   display: flex;
-  /* justify-content: center; */
+  justify-content: flex-start;
   align-items: center;
   padding: 25px 10px 10px 10px;
   cursor: pointer;
@@ -31,9 +31,8 @@
   margin: 10px;
 }
 
-.imgParticipantContainer {
-  /* display: flex;
-  padding-right: 30px; */
+.liveChatroomAvatar {
+  padding-right: 30px;
 }
 
 .avatarList {
@@ -72,6 +71,10 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.exitLogoContainer {
+  /* padding-left: 130px; */
 }
 
 #modal-box {
