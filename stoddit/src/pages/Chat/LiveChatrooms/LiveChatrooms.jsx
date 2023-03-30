@@ -39,24 +39,18 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
                     alt="" 
                   />
                 </span>
-                <h6 STYLE='color: gray'>
-                1/2
-                </h6>
               </>
             :
-            <>
-              <span className='liveChatroomAvatar'>
-                <img
-                  className="conversationImg" 
-                  src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
-                  alt="" 
-                />
-              </span>
-              <h6 STYLE='color: gray'>
-                1/2
-              </h6>
-            </>
-            }
+              <>
+                <span className='liveChatroomAvatar'>
+                  <img
+                    className="conversationImg" 
+                    src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
+                    alt="" 
+                  />
+                </span>
+              </>
+              }
             </div>
           <span 
             className="conversationName" 
@@ -72,6 +66,9 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
                 >
                   {liveChatrooms.name}
                 </h5>
+                <h6 STYLE='color: gray'>
+                  1/20
+                </h6>
             </div>
           </div>
         </div>
