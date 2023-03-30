@@ -74,6 +74,7 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
         <div className="exitLogoContainer">
           {participantExist &&
             <ExitToAppIcon
+              fontSize="small"
               sx={{
                 color: 'gray',
                 "&:hover": { color: "red" } 
