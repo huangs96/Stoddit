@@ -302,7 +302,7 @@ function ChatIndex() {
       isLoaded = false;
       console.log('getMessagesFromChatroom returned');
     };
-  }, [chatroomKey, newConversation]);
+  }, [chatroomKey, newConversation, liveChatroomMessageReset]);
 
   useEffect(() => {
     console.log('realtime', realtimeMessage)
@@ -399,6 +399,7 @@ function ChatIndex() {
       'chatroom_id': chatroomID,
     };
     await joinLiveChatroom(joinData);
+    setLiveChatroomMessageReset(boolean => !boolean);
   };
 
   const leaveLiveChatroomFunction = async (userID, chatroomID) => {
