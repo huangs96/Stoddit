@@ -1,10 +1,6 @@
-.liveConversationContainer {
-  display: flex;
-  align-items: center;
-}
-
 .liveConversation {
   display: flex;
+  /* flex-direction: column; */
   justify-content: flex-start;
   align-items: center;
   padding: 25px 10px 10px 10px;
@@ -23,6 +19,11 @@
   background-color: rgb(209, 214, 221);
   border-radius: 10px;
   margin: 10px;
+}
+
+.selectableLiveConversation {
+  display: flex;
+  align-items: center;
 }
 
 .conversationInfoContainer {

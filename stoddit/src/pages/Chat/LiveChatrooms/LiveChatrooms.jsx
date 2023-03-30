@@ -20,11 +20,14 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
 
   return (
     <>
+      <div
+        className={liveChatroomKey === liveChatrooms.id ?          "selectedLiveConversation" 
+        : 
+        "liveConversation"
+      }
+      >
         <div
-          className={liveChatroomKey === liveChatrooms.id ?          "selectedLiveConversation" 
-          : 
-          "liveConversation"
-          }
+          className="selectableLiveConversation"
           onClick={() => {
             setParticipantExist(true);
             joinChatroom(userID, liveChatrooms.id);
@@ -50,37 +53,38 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
                 />
               </span>
             </>
-            }
-        <div className="liveContentContainer">
-          <h5
-            STYLE="font-size: 10pt; color: gray"
-          >
-            {liveChatrooms.name}
-          </h5>
-          <span 
-            className="conversationName" 
-          >
-            {liveChatrooms.description}
-          </span>
-            <h6 STYLE='color: gray'>
-              1/20
-            </h6>
-        </div>
-          <div className="exitLogoContainer">
-            {participantExist &&
-              <ExitToAppIcon
-                sx={{
-                  color: 'gray',
-                  "&:hover": { color: "red" } 
-                }} 
-                onClick={() => {
-                  setParticipantExist(false);
-                  leaveChatroom(userID, liveChatrooms.id)
-                }}
-              />
-            }
+          }
+          <div className="liveContentContainer">
+            <h5
+              STYLE="font-size: 10pt; color: gray"
+            >
+              {liveChatrooms.name}
+            </h5>
+            <span 
+              className="conversationName" 
+            >
+              {liveChatrooms.description}
+            </span>
+              <h6 STYLE='color: gray'>
+                1/20
+              </h6>
           </div>
         </div>
+        <div className="exitLogoContainer">
+          {participantExist &&
+            <ExitToAppIcon
+              sx={{
+                color: 'gray',
+                "&:hover": { color: "red" } 
+              }} 
+              onClick={() => {
+                setParticipantExist(false);
+                leaveChatroom(userID, liveChatrooms.id)
+              }}
+            />
+          }
+        </div>
+      </div>
     </>
   )
 }
