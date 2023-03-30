@@ -3,6 +3,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatroom, userID}) {
   const [participantExist, setParticipantExist] = useState(false);
+  console.log(participantExist)
   // console.log('chatroomKey for Live Chatrooms', liveChatroomKey);
   // console.log('liveChatrooms livechatrooms', liveChatrooms);
   
@@ -71,7 +72,6 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
                 </h6>
             </div>
           </div>
-        </div>
           <div className="exitLogoContainer">
             {participantExist &&
               <ExitToAppIcon
@@ -81,11 +81,12 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
                 }} 
                 onClick={() => {
                   setParticipantExist(false);
-                  leaveChatroom(userID, liveChatrooms.id)
+                  // leaveChatroom(userID, liveChatrooms.id)
                 }}
               />
             }
           </div>
+        </div>
       </div>
     </>
   )
