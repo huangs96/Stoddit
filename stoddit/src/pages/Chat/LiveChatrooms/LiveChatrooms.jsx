@@ -1,3 +1,4 @@
+import './LiveChatrooms.css';
 import React, {useEffect, useState} from 'react';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
@@ -19,7 +20,10 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
 
   return (
     <>
-      <div className="conversationContainer">
+      <div className={
+        liveChatroomKey === liveChatrooms.id ?          "selectedConversationContainer" 
+        : 
+        "conversationContainer"}>
         <div 
           className={liveChatroomKey === liveChatrooms.id ?          "selectedConversation" 
           : 
@@ -72,6 +76,7 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
                 </h6>
             </div>
           </div>
+        </div>
           <div className="exitLogoContainer">
             {participantExist &&
               <ExitToAppIcon
@@ -81,12 +86,11 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
                 }} 
                 onClick={() => {
                   setParticipantExist(false);
-                  // leaveChatroom(userID, liveChatrooms.id)
+                  leaveChatroom(userID, liveChatrooms.id)
                 }}
               />
             }
           </div>
-        </div>
       </div>
     </>
   )
