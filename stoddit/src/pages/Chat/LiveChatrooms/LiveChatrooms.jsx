@@ -20,10 +20,7 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
 
   return (
     <>
-      <div className={
-        liveChatroomKey === liveChatrooms.id ?          "selectedConversationContainer" 
-        : 
-        "conversationContainer"}>
+      <div className="conversationContainer">
         <div 
           className={liveChatroomKey === liveChatrooms.id ?          "selectedConversation" 
           : 
@@ -57,24 +54,20 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
               </>
               }
             </div>
-          <span 
-            className="conversationName" 
-          >
-            {liveChatrooms.description}
-          </span>
           <div className="contentContainer">
-            <div className="avatarContainer">
-          </div>
-            <div className="conversationInfoContainer">
-                <h5
-                  STYLE="font-size: 10pt; color: gray"
-                >
-                  {liveChatrooms.name}
-                </h5>
-                <h6 STYLE='color: gray'>
-                  1/20
-                </h6>
-            </div>
+            <span 
+              className="conversationName" 
+            >
+              {liveChatrooms.description}
+            </span>
+              <h5
+                STYLE="font-size: 10pt; color: gray"
+              >
+                {liveChatrooms.name}
+              </h5>
+              <h6 STYLE='color: gray'>
+                1/20
+              </h6>
           </div>
         </div>
           <div className="exitLogoContainer">
