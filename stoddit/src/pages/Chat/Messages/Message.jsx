@@ -20,12 +20,17 @@ function Message({userID, messages}) {
                 className="messageInfo"
                 key={i}
               >
-                <div 
-                  className={data.ownMessage ? "messageTop own" : "messageTop"}
-                  >
+                <div className="nameTimestampContainer">
                   <span STYLE="margin-right: 10px">
                     {data.username}
                   </span>
+                  <span STYLE="color:gray">
+                    {format(data.sent_at)}
+                  </span>
+                </div>
+                <div 
+                  className={data.ownMessage ? "messageTop own" : "messageTop"}
+                  >
                   <img 
                     className="messageImg" 
                     src={data.imgUrl}
@@ -37,9 +42,6 @@ function Message({userID, messages}) {
                     >
                     {data.message_text}
                   </p>
-                  <span STYLE="color:gray">
-                    {format(data.sent_at)}
-                  </span>
                 </div>
               </div>
             </div>
