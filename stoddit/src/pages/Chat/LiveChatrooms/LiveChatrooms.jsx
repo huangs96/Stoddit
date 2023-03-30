@@ -20,7 +20,6 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
 
   return (
     <>
-      <div className="liveConversationContainer">
         <div 
           className={liveChatroomKey === liveChatrooms.id ?          "selectedLiveConversation" 
           : 
@@ -31,44 +30,42 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
             joinChatroom(userID, liveChatrooms.id);
           }}
           >
-            <div className="imgParticipantContainer">
-            {liveChatrooms.name === 'Auto' ? 
-              <>
-                <span className='liveChatroomAvatar'>
-                  <img
-                    className="liveConversationImg" 
-                    src="https://images.unsplash.com/photo-1568496700509-083ddf62299c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80"
-                    alt="" 
-                  />
-                </span>
-              </>
-            :
-              <>
-                <span className='liveChatroomAvatar'>
-                  <img
-                    className="conversationImg" 
-                    src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
-                    alt="" 
-                  />
-                </span>
-              </>
-              }
-            </div>
-          <div className="liveContentContainer">
-            <span 
-              className="conversationName" 
-            >
-              {liveChatrooms.description}
-            </span>
-              <h5
-                STYLE="font-size: 10pt; color: gray"
-              >
-                {liveChatrooms.name}
-              </h5>
-              <h6 STYLE='color: gray'>
-                1/20
-              </h6>
-          </div>
+          {liveChatrooms.name === 'Auto' ? 
+            <>
+              <span className='liveChatroomAvatar'>
+                <img
+                  className="liveConversationImg" 
+                  src="https://images.unsplash.com/photo-1568496700509-083ddf62299c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80"
+                  alt="" 
+                />
+              </span>
+            </>
+          :
+            <>
+              <span className='liveChatroomAvatar'>
+                <img
+                  className="conversationImg" 
+                  src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
+                  alt="" 
+                />
+              </span>
+            </>
+            }
+        <div className="liveContentContainer">
+          <h5
+            STYLE="font-size: 10pt; color: gray"
+          >
+            {liveChatrooms.name}
+          </h5>
+          <span 
+            className="conversationName" 
+          >
+            {liveChatrooms.description}
+          </span>
+            <h6 STYLE='color: gray'>
+              1/20
+            </h6>
+        </div>
         </div>
           <div className="exitLogoContainer">
             {participantExist &&
@@ -84,7 +81,6 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
               />
             }
           </div>
-      </div>
     </>
   )
 }

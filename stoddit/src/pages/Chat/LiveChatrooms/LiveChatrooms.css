@@ -5,7 +5,7 @@
 
 .liveConversation {
   display: flex;
-  /* justify-content: space-between; */
+  /* justify-content: center; */
   align-items: center;
   padding: 25px 10px 10px 10px;
   cursor: pointer;
@@ -15,7 +15,7 @@
 
 .selectedLiveConversation {
   display: flex;
-  /* justify-content: space-between; */
+  /* justify-content: center; */
   align-items: center;
   padding: 25px 10px 10px 10px;
   cursor: pointer;
@@ -31,10 +31,9 @@
   margin: 10px;
 }
 
-.avatarContainer {
-  display: inline-flex;
-  flex-direction: row-reverse;
-  width: 100px;
+.imgParticipantContainer {
+  /* display: flex;
+  padding-right: 30px; */
 }
 
 .avatarList {

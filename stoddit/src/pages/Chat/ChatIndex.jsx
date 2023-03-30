@@ -438,6 +438,7 @@ function ChatIndex() {
   const displayLiveChatrooms = liveChatroom.map(chatrooms => {
     return (
       <div
+        className="liveConversationContainer"
         onClick={() => {
           setChatroomKey(chatrooms.id);
           // socket.emit('joinLiveChatroom', {
