@@ -20,28 +20,28 @@ function Message({userID, messages}) {
                 className="messageInfo"
                 key={i}
               >
-                <span STYLE="margin-right: 10px">
-                  {data.username}
-                </span>
-                <span STYLE="color:gray">
-                  {format(data.sent_at)}
-                </span>
-              <div 
-                className={data.ownMessage ? "messageTop own" : "messageTop"}
-                >
-                <img 
-                  className="messageImg" 
-                  src={data.imgUrl}
-                  alt=""
-                  />
-                <p 
-                  className="messageText" 
-                  key={i}
+                <div 
+                  className={data.ownMessage ? "messageTop own" : "messageTop"}
                   >
-                  {data.message_text}
-                </p>
+                  <span STYLE="margin-right: 10px">
+                    {data.username}
+                  </span>
+                  <img 
+                    className="messageImg" 
+                    src={data.imgUrl}
+                    alt=""
+                    />
+                  <p 
+                    className="messageText" 
+                    key={i}
+                    >
+                    {data.message_text}
+                  </p>
+                  <span STYLE="color:gray">
+                    {format(data.sent_at)}
+                  </span>
+                </div>
               </div>
-                  </div>
             </div>
           )
         })
