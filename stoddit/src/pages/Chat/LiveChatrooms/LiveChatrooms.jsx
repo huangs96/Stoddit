@@ -1,7 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import { getAllLiveChatrooms } from '../../../services/chat.service';
-import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
-import LaptopChromebookSharpIcon from '@mui/icons-material/LaptopChromebookSharp';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatroom, userID}) {
@@ -21,7 +18,7 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
 
   return (
     <>
-      <div className={"conversationContainer"}>
+      <div className="conversationContainer">
         <div 
           className={liveChatroomKey === liveChatrooms.id ?          "selectedConversation" 
           : 
@@ -32,11 +29,35 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
             joinChatroom(userID, liveChatrooms.id);
           }}
           >
-          {liveChatrooms.name === 'Auto' ? 
-            <DirectionsCarIcon />
-          :
-           <LaptopChromebookSharpIcon />
-          }
+            <div className="imgParticipantContainer">
+            {liveChatrooms.name === 'Auto' ? 
+              <>
+                <span className='liveChatroomAvatar'>
+                  <img
+                    className="conversationImg" 
+                    src="https://images.unsplash.com/photo-1568496700509-083ddf62299c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80"
+                    alt="" 
+                  />
+                </span>
+                <h6 STYLE='color: gray'>
+                1/2
+                </h6>
+              </>
+            :
+            <>
+              <span className='liveChatroomAvatar'>
+                <img
+                  className="conversationImg" 
+                  src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
+                  alt="" 
+                />
+              </span>
+              <h6 STYLE='color: gray'>
+                1/2
+              </h6>
+            </>
+            }
+            </div>
           <span 
             className="conversationName" 
           >
@@ -54,18 +75,20 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
             </div>
           </div>
         </div>
-          {participantExist &&
-            <ExitToAppIcon
-              sx={{
-                color: 'gray',
-                "&:hover": { color: "red" } 
-              }} 
-              onClick={() => {
-                setParticipantExist(false);
-                leaveChatroom(userID, liveChatrooms.id)
-              }}
-            />
-          }
+          <div className="exitLogoContainer">
+            {participantExist &&
+              <ExitToAppIcon
+                sx={{
+                  color: 'gray',
+                  "&:hover": { color: "red" } 
+                }} 
+                onClick={() => {
+                  setParticipantExist(false);
+                  leaveChatroom(userID, liveChatrooms.id)
+                }}
+              />
+            }
+          </div>
       </div>
     </>
   )
