@@ -20,11 +20,11 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
 
   return (
     <>
-      <div className="conversationContainer">
+      <div className="liveConversationContainer">
         <div 
-          className={liveChatroomKey === liveChatrooms.id ?          "selectedConversation" 
+          className={liveChatroomKey === liveChatrooms.id ?          "selectedLiveConversation" 
           : 
-          "conversation"
+          "liveConversation"
           }
           onClick={() => {
             setParticipantExist(true);
@@ -36,7 +36,7 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
               <>
                 <span className='liveChatroomAvatar'>
                   <img
-                    className="conversationImg" 
+                    className="liveConversationImg" 
                     src="https://images.unsplash.com/photo-1568496700509-083ddf62299c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80"
                     alt="" 
                   />
@@ -54,7 +54,7 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
               </>
               }
             </div>
-          <div className="contentContainer">
+          <div className="liveContentContainer">
             <span 
               className="conversationName" 
             >
