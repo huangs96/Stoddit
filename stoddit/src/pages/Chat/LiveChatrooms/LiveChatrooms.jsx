@@ -10,9 +10,9 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
   
   useEffect(() => {
     liveChatrooms.participantData.filter(participants => {
-      console.log('participants', participants);
+      // console.log('participants', participants);
       if (participants.account_id === userID) {
-        console.log('setParticipant should be true');
+        // console.log('setParticipant should be true');
         setParticipantExist(true);
         return;
       };

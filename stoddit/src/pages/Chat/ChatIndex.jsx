@@ -560,7 +560,7 @@ function ChatIndex() {
   // console.log('socket chatIndex', socket);
   // console.log('userParticipantID', userParticipantID);
   // console.log('participantsinChatroom', participantsInChatroom);
-  console.log('participantsinLiveChatroom', participantsInLiveChatroom);
+  // console.log('participantsinLiveChatroom', participantsInLiveChatroom);
   // console.log('chatroomKey', chatroomKey);
   // console.log('conversations---', conversations);
   // console.log('liveChatrooms--', liveChatroom);
