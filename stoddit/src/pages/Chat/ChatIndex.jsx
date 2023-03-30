@@ -60,6 +60,7 @@ function ChatIndex() {
   const [newConversation, setNewConversation] = useState(false);
   //live chatrooms
   const [liveChatroom, setLiveChatroom] = useState([]);
+  const [liveChatroomMessageReset, setLiveChatroomMessageReset] = useState(false);
   const [liveChatroomMessages, setLiveChatroomMessages] = useState([]);
   const [participantsInLiveChatroom, setParticipantsInLiveChatroom] = useState([]);
   const [userHasJoinedLiveChatroom, setUserHasJoinedLiveChatroom] = useState(false);
@@ -406,6 +407,7 @@ function ChatIndex() {
       'chatroom_id': chatroomID,
     };
     await leaveLiveChatroom(leaveData);
+    setLiveChatroomMessages([]);
   };
 
   useEffect(() => {
@@ -557,6 +559,7 @@ function ChatIndex() {
   // console.log('socket chatIndex', socket);
   // console.log('userParticipantID', userParticipantID);
   // console.log('participantsinChatroom', participantsInChatroom);
+  console.log('participantsinLiveChatroom', participantsInLiveChatroom);
   // console.log('chatroomKey', chatroomKey);
   // console.log('conversations---', conversations);
   // console.log('liveChatrooms--', liveChatroom);
