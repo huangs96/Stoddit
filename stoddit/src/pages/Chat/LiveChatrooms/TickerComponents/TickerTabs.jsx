@@ -29,7 +29,7 @@ function TickerTabs({ticker}) {
 
   const displayTickerTab = 
     (
-     <>
+      <>
       <div className="tickerContainer">
         <div className="tickerList">
           <div className="tickerNameSymbolContainer">
@@ -41,10 +41,7 @@ function TickerTabs({ticker}) {
           {arrowDisplay}
           </div>
           <div className={ticker[0].changePercentage < 0 ?"currentCPriceN" : "currentCPriceP"}>{ticker[0].current_price}</div>
-          <div className="tickerVolume">
-            <h6>Volume</h6>
-            {ticker[0].volume}
-          </div>
+          <div className="tickerVolume">{ticker[0].volume}</div>
         </div>
         </div>
       </div>
