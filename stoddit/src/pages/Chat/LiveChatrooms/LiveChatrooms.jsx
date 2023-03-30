@@ -20,7 +20,7 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
 
   return (
     <>
-        <div 
+        <div
           className={liveChatroomKey === liveChatrooms.id ?          "selectedLiveConversation" 
           : 
           "liveConversation"
@@ -66,7 +66,6 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
               1/20
             </h6>
         </div>
-        </div>
           <div className="exitLogoContainer">
             {participantExist &&
               <ExitToAppIcon
@@ -81,6 +80,7 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
               />
             }
           </div>
+        </div>
     </>
   )
 }
