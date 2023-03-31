@@ -11,7 +11,7 @@ function TickersIndex({liveChatroomKey}) {
   const socket = useContext(SocketContext);
 
   useEffect(() => {
-    socket.on('newIntervalData', tickerData => {
+    socket.on('tickerInterval', tickerData => {
       console.log('tickerData', tickerData);
     });
     return () => {

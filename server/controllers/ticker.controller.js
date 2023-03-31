@@ -67,12 +67,6 @@ const insertTickerByTimeSetInterval = (async () => {
     // return res.status(201).send('Ticker Data added through Intervals');
 });
 
-
-// setInterval(() => {
-//   insertTickerByTimeSetInterval();
-//   console.log('sent');
-// }, 5000);
-
 module.exports = {
   //Get
   getTickers,

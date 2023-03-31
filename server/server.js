@@ -7,6 +7,7 @@ const chatRoutes = require("./routes/chat.routes");
 const tickerRoutes = require("./routes/ticker.routes");
 const userRoutes = require("./routes/user.routes");
 const socketHelper = require('./helpers/socketHelpers');
+const tickerController = require('./controllers/ticker.controller');
 const http = require("http");
 const { Server } = require("socket.io");
 const LiveUserContainer = require("./classes/usersClass");
@@ -75,6 +76,10 @@ io.on("connection", (socket) => {
     io.emit('getLiveChatroomData', liveChatroomData.chatroomData);
     console.log(users);
   });
+  // setInterval(() => {
+  //   io.emit('tickerInterval', tickerController.insertTickerByTimeSetInterval());
+  //   console.log('sent');
+  // }, 5000);
   socket.on('logout', () => {
     // console.log('logout1', socket);
     // console.log('logout2', users);
