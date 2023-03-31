@@ -6,11 +6,19 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
   const [participantExist, setParticipantExist] = useState(false);
   let counter = 0;
   // console.log('chatroomKey for Live Chatrooms', liveChatroomKey);
-  console.log('liveChatroomUsers', liveChatroomUsers[0]);
+  // console.log('liveChatroomUsers', liveChatroomUsers[0]);
 
   useEffect(() => {
-    console.log('liveusers', liveChatroomUsers);
-  }, [liveChatroomUsers])
+    console.log('liveusers', liveChatroomUsers[0][userID]);
+    const liveUserIDs = liveChatroomUsers[0][userID];
+    if (liveUserIDs) {
+      counter += 1;
+    } else {
+      console.log('false');
+    };
+  }, [liveChatroomUsers]);
+
+  console.log('counter', counter);
   
   useEffect(() => {
     liveChatrooms.participantData.filter(participants => {
