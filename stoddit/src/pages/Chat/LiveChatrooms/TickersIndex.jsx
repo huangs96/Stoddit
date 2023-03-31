@@ -11,30 +11,13 @@ function TickersIndex({liveChatroomKey}) {
   const socket = useContext(SocketContext);
 
   useEffect(() => {
-    socket.on('ticker', tickerData => {
+    socket.on('newIntervalData', tickerData => {
       console.log('tickerData', tickerData);
     });
     return () => {
       socket.off('ticker');
     };
   }, []);
-
-  // useEffect(() => {
-  //   let isLoaded = true;
-  //   const getAllTickers = async () => {
-  //     if (isLoaded) {
-  //       const data = await getTickers();
-  //       if (data) {
-  //         setAllTickers(data);
-  //       };
-  //     };
-  //   };
-  //   getAllTickers()
-  //   .catch(console.error);
-  //   return () => {
-  //     isLoaded = false;
-  //   };
-  // }, []);
 
   useEffect(() => {
     let isLoaded = true;
@@ -43,7 +26,6 @@ function TickersIndex({liveChatroomKey}) {
         const data = await getTickersByChatroomID(liveChatroomKey);
         if (data) {
           setAllChatroomTickers(data);
-          console.log('allChatroomTickers', data);
         };
       };
       getChatroomTickers()

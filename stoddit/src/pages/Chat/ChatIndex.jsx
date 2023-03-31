@@ -273,15 +273,12 @@ function ChatIndex() {
     let isLoaded = true;
     const getChatroomDataByChatroomID = async () => {
       const chatroomData = await getMessagesByChatroomID(chatroomKey);
-      console.log('chatdata', chatroomData);
       if (chatroomData.length > 0 && chatroomData[0].live === null) {
         console.log('setting friend chat data');
         setMessages(chatroomData);
       } else if (chatroomData.length > 0 && chatroomData[0].live === true) {
-        console.log('setting live chat data');
         setLiveChatroomMessages(chatroomData);
       } else {
-        console.log('restart chat data');
         setMessages([]);
       };
       conversations.map(convos => {
@@ -434,7 +431,7 @@ function ChatIndex() {
 
   useEffect(() => {
     socket.on('getLiveChatroomData', liveChatroomData => {
-      console.log('liveChatroomData from Socket', liveChatroomData);
+      // console.log('liveChatroomData from Socket', liveChatroomData);
     });
     socket.on('getUsers', liveChatroomUsers => {
       setOnlineParticipantInLiveChatroom([liveChatroomUsers.users]);
