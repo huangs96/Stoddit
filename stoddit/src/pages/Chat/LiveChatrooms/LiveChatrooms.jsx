@@ -4,37 +4,22 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatroom, userID, liveUsers}) {
   const [participantExist, setParticipantExist] = useState(false);
-  const liveUsersInChatroom = [];
   // console.log('liveChatroomUsers', liveChatrooms.participantData);
   // console.log('liveusers', Object.keys(liveUsers[0]));
   // const liveUserIDs = Object.keys(liveUsers[0]);
   useEffect(() => {
     let isLoaded = true;
-    if (liveUsers.length > 0) {
-      const liveUserIDs = Object.keys(liveUsers[0]);
+    if (liveUsers.length > 0 && isLoaded) {
       liveChatrooms.participantData.map(participant => {
         if (liveUsers[0][participant.account_id]) {
-          
+          console.log('participant in chatroom live', participant);
         };
-      })
-    }
-    // if (liveUsers.length > 0) {
-    //   const liveUserIDs = liveUsers[0][userID];
-    //   if (liveUserIDs) {
-    //     liveChatrooms.participantData.map(participant => {
-    //       if (participant.account_id === userID) {
-    //         console.log('userID', userID)
-    //         liveUsersInChatroom.push(userID);
-    //         console.log('liveUsers1', liveUsersInChatroom);
-    //       };
-    //     });
-    //   } else {
-    //     console.log('false');
-    //   };
-    // };
+      });
+    };
+    return () => {
+      isLoaded = false;
+    };
   }, [liveUsers]);
-
-  // console.log('liveUsers2', liveUsersInChatroom);
   
   useEffect(() => {
     liveChatrooms.participantData.filter(participants => {
@@ -93,7 +78,7 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
               {liveChatrooms.description}
             </span>
               <h6 STYLE='color: gray'>
-                {`${liveUsersInChatroom.length}/${liveChatrooms.participantData.length}`}
+                {`${0}/${liveChatrooms.participantData.length}`}
               </h6>
           </div>
         </div>
