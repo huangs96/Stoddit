@@ -63,7 +63,7 @@ function ChatIndex() {
   const [liveChatroomMessageReset, setLiveChatroomMessageReset] = useState(false);
   const [liveChatroomMessages, setLiveChatroomMessages] = useState([]);
   const [participantsInLiveChatroom, setParticipantsInLiveChatroom] = useState([]);
-  const [liveParticipantInLiveChatroom, setLiveParticipantInLiveChatroom] = useState([]);
+  const [onlineParticipantInLiveChatroom, setOnlineParticipantInLiveChatroom] = useState([]);
   const [userHasJoinedLiveChatroom, setUserHasJoinedLiveChatroom] = useState(false);
   const [userHasLeftLiveChatroom, setUserHasLeftLiveCharoom] = useState(false);
   //deleting chatroom
@@ -433,8 +433,9 @@ function ChatIndex() {
     socket.on('getLiveChatroomData', liveChatroomData => {
       console.log('liveChatroomData from Socket', liveChatroomData);
     });
-    socket.on('getLiveChatroomUsers', liveChatroomUsers => {
-      setLiveParticipantInLiveChatroom([liveChatroomUsers.users]);
+    socket.on('getUsers', liveChatroomUsers => {
+      console.log('2323123', liveChatroomUsers);
+      setOnlineParticipantInLiveChatroom([liveChatroomUsers.users]);
     });
     return () => {
       socket.off('getLiveChatroomData');
@@ -450,17 +451,17 @@ function ChatIndex() {
         className="liveConversationContainer"
         onClick={() => {
           setChatroomKey(chatrooms.id);
-          socket.emit('joinLiveChatroom', {
-            'chatroomData' : chatrooms,
-            'userData' : username,
-            'participantData': participantsInLiveChatroom
-          });
+          // socket.emit('joinLiveChatroom', {
+          //   'chatroomData' : chatrooms,
+          //   'userData' : username,
+          //   'participantData': participantsInLiveChatroom
+          // });
         }}
       >
         <LiveChatrooms 
           liveChatrooms={chatrooms}
           liveChatroomKey={chatroomKey}
-          liveUsers={liveParticipantInLiveChatroom}
+          liveUsers={onlineParticipantInLiveChatroom}
           joinChatroom={joinLiveChatroomFunction}
           leaveChatroom={leaveLiveChatroomFunction}
           userID={userID}
@@ -569,7 +570,7 @@ function ChatIndex() {
   // console.log('userParticipantID', userParticipantID);
   // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('participantsinLiveChatroom', participantsInLiveChatroom);
-  console.log('liveParticipantsinLiveChatroom', liveParticipantInLiveChatroom);
+  console.log('liveParticipantsinLiveChatroom', onlineParticipantInLiveChatroom);
   // console.log('chatroomKey', chatroomKey);
   // console.log('conversations---', conversations);
   // console.log('liveChatrooms--', liveChatroom);

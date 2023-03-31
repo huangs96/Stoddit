@@ -72,13 +72,13 @@ io.on("connection", (socket) => {
     io.emit(messageData);
   });
   socket.on('joinLiveChatroom', liveChatroomData => {
+    console.log('123', liveChatroomData)
     for (x=0; x<liveChatroomData.participantData.length; x++) {
       const chatroomParticipants = liveChatroomData.participantData[x];
       console.log('111', chatroomParticipants);
-    }
+    };
     io.emit('getLiveChatroomData', liveChatroomData.chatroomData);
     console.log(users);
-    io.emit('getLiveChatroomUsers', users);
   });
   socket.on('logout', () => {
     // console.log('logout1', socket);
