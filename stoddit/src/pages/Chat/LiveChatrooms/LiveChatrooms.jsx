@@ -5,26 +5,26 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatroom, userID, liveUsers}) {
   const [participantExist, setParticipantExist] = useState(false);
   const liveUsersInChatroom = [];
-  // console.log('chatroomKey for Live Chatrooms', liveChatroomKey);
-  console.log('liveChatroomUsers', liveChatrooms.participantData);
+  // console.log('liveChatroomUsers', liveChatrooms.participantData);
   console.log('liveusers', liveUsers);
   useEffect(() => {
-    if (liveUsers.length > 0) {
-      const liveUserIDs = liveUsers[0][userID];
-      if (liveUserIDs) {
-        liveChatrooms.participantData.map(participant => {
-          if (participant.account_id === userID) {
-            console.log('participant', participant);
-          };
-        });
-        // counter += 1;
-      } else {
-        console.log('false');
-      };
-    };
+    // if (liveUsers.length > 0) {
+    //   const liveUserIDs = liveUsers[0][userID];
+    //   if (liveUserIDs) {
+    //     liveChatrooms.participantData.map(participant => {
+    //       if (participant.account_id === userID) {
+    //         console.log('userID', userID)
+    //         liveUsersInChatroom.push(userID);
+    //         console.log('liveUsers1', liveUsersInChatroom);
+    //       };
+    //     });
+    //   } else {
+    //     console.log('false');
+    //   };
+    // };
   }, [liveUsers]);
 
-  console.log('liveUsers', liveUsersInChatroom);
+  console.log('liveUsers2', liveUsersInChatroom);
   
   useEffect(() => {
     liveChatrooms.participantData.filter(participants => {
