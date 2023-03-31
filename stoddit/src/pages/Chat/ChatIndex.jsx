@@ -274,7 +274,6 @@ function ChatIndex() {
     const getChatroomDataByChatroomID = async () => {
       const chatroomData = await getMessagesByChatroomID(chatroomKey);
       if (chatroomData.length > 0 && chatroomData[0].live === null) {
-        console.log('setting friend chat data');
         setMessages(chatroomData);
       } else if (chatroomData.length > 0 && chatroomData[0].live === true) {
         setLiveChatroomMessages(chatroomData);
@@ -304,7 +303,6 @@ function ChatIndex() {
   }, [chatroomKey, newConversation, liveChatroomMessageReset]);
 
   useEffect(() => {
-    console.log('realtime', realtimeMessage)
     if (realtimeMessage && realtimeMessage.isLive === undefined && chatroomKey === realtimeMessage.chatroomID) {
       setMessages(msgData => [...msgData, {
         message_text: realtimeMessage.message_text,
