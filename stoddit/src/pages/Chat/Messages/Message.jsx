@@ -45,29 +45,6 @@ function Message({userID, messages}) {
                 </div>
               </div>
             </div>
-            // <div className="messageContainer">
-            //   <img 
-            //     className="messageImg" 
-            //     src={data.imgUrl}
-            //     alt=""
-            //   />
-            //   <div className="messageInfoContainer">
-            //     <div className="nameTimeContainer">
-            //       <span>
-            //         {data.username}
-            //       </span>
-            //       <span className="timestamp">
-            //         {format(data.sent_at)}
-            //       </span>
-            //     </div>
-            //       <p 
-            //         className="messageText1" 
-            //         key={i}
-            //         >
-            //         {data.message_text}
-            //       </p>
-            //   </div>
-            // </div>
           )
         })
       }
