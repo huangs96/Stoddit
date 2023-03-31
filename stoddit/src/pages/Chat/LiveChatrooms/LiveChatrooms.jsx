@@ -2,10 +2,16 @@ import './LiveChatrooms.css';
 import React, {useEffect, useState} from 'react';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
-function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatroom, userID}) {
+function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatroom, userID, liveChatroomUsers}) {
   const [participantExist, setParticipantExist] = useState(false);
+  let counter = 0;
   // console.log('chatroomKey for Live Chatrooms', liveChatroomKey);
-  console.log('liveChatrooms livechatrooms', liveChatrooms.participantData.length);
+  console.log('liveChatroomUsers', liveChatroomUsers[0]);
+
+  useEffect(() => {
+    const liveUserIDs = liveChatroomUsers.get(userID);
+    console.log('liveUserIDs', liveUserIDs);
+  }, [liveChatroomUsers])
   
   useEffect(() => {
     liveChatrooms.participantData.filter(participants => {
@@ -66,7 +72,7 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
               {liveChatrooms.description}
             </span>
               <h6 STYLE='color: gray'>
-                {`1/${liveChatrooms.participantData.length}`}
+                {`${counter}/${liveChatrooms.participantData.length}`}
               </h6>
           </div>
         </div>

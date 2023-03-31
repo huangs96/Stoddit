@@ -430,14 +430,19 @@ function ChatIndex() {
   }, []);
 
   useEffect(() => {
-    socket.on('getLiveChatroomUsers', liveChatroomData => {
+    socket.on('getLiveChatroomData', liveChatroomData => {
       console.log('liveChatroomData from Socket', liveChatroomData);
     });
+    socket.on('getLiveChatroomUsers', liveChatroomUsers => {
+      setLiveParticipantInLiveChatroom([liveChatroomUsers.users]);
+    });
     return () => {
+      socket.off('getLiveChatroomData');
       socket.off('getLiveChatroomUsers');
       console.log('LiveUsers Socket Off')
     };
   }, []);
+
 
   const displayLiveChatrooms = liveChatroom.map(chatrooms => {
     return (
@@ -455,6 +460,7 @@ function ChatIndex() {
         <LiveChatrooms 
           liveChatrooms={chatrooms}
           liveChatroomKey={chatroomKey}
+          liveChatroomUsers={liveParticipantInLiveChatroom}
           joinChatroom={joinLiveChatroomFunction}
           leaveChatroom={leaveLiveChatroomFunction}
           userID={userID}
@@ -563,6 +569,7 @@ function ChatIndex() {
   // console.log('userParticipantID', userParticipantID);
   // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('participantsinLiveChatroom', participantsInLiveChatroom);
+  console.log('liveParticipantsinLiveChatroom', liveParticipantInLiveChatroom);
   // console.log('chatroomKey', chatroomKey);
   // console.log('conversations---', conversations);
   // console.log('liveChatrooms--', liveChatroom);
