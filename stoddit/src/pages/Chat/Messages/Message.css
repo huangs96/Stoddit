@@ -18,8 +18,8 @@
 }
 
 .messageImg {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 30%;
   object-fit: cover;
   margin: 10px;
@@ -31,8 +31,8 @@
 }
 
 .messageText {
-  padding: 10px;
-  border-radius: 20px;
+  /* padding: 10px; */
+  /* border-radius: 20px; */
   background-color: rgb(95, 95, 95);
   color: rgb(255, 255, 255);
   max-width: 300px;
