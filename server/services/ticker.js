@@ -47,7 +47,12 @@ const tickerChange = (tickerData) => {
   return mostRecentTickers;
 };
 
+const tickerDataGenerator = (tickerData) => {
+  console.log('ticker', tickerData);
+};
+
 module.exports = {
   tickerDataRandomizer,
-  tickerChange
+  tickerChange,
+  tickerDataGenerator
 }

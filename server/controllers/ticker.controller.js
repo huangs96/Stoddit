@@ -53,24 +53,21 @@ const insertTickerData = (async (req, res) => {
 const insertTickerByTimeSetInterval = (async (req, res) => {
   try {
     const tickerData = await client.query(queries.getAllTickers);
+    console.log('tickerData', tickerData);
     for (let ticker=0; ticker<tickerData.rows.length; ticker++) {
       const individualTicker = tickerData.rows[ticker];
       const ticker_id = individualTicker.id;
       const getTickerIntervalDataFromTickerID = await client.query(queries.getTickersByTickerID, [ticker_id]);
       const mostRecentIntervalTickerData = getTickerIntervalDataFromTickerID.rows[0];
       const newIntervalData = tickerLogic.tickerDataRandomizer(mostRecentIntervalTickerData);
-      await client.query(queries.insertTimeIntervalToTicker, [newIntervalData.ticker_id, newIntervalData.current_price, newIntervalData.high_price, newIntervalData.low_price, newIntervalData.recommendation, newIntervalData.volume]);
+      console.log('newIntervalData', newIntervalData);
+      // await client.query(queries.insertTimeIntervalToTicker, [newIntervalData.ticker_id, newIntervalData.current_price, newIntervalData.high_price, newIntervalData.low_price, newIntervalData.recommendation, newIntervalData.volume]);
     };
-    return res.status(201).send('Ticker Data added through Intervals');
+    // return res.status(201).send('Ticker Data added through Intervals');
   } catch (err) {
     return res.status(400).send(err);
   };
 });
-
-
-// setInterval(() => {
-//   intervalFunction();
-// }, 5000);
 
 module.exports = {
   //Get
