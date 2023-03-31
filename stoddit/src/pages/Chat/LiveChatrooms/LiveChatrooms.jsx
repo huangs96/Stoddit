@@ -66,7 +66,7 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
               {liveChatrooms.description}
             </span>
               <h6 STYLE='color: gray'>
-                1/20
+                {`1/${liveChatrooms.participantData.length}`}
               </h6>
           </div>
         </div>
