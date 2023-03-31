@@ -5,15 +5,18 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatroom, userID, liveUsers}) {
   const [participantExist, setParticipantExist] = useState(false);
   const arr = [];
+  let counter = 0;
   // console.log('liveChatroomUsers', liveChatrooms.participantData);
   console.log('liveusers', liveUsers);
+
   useEffect(() => {
     let isLoaded = true;
     if (liveUsers.length > 0 && isLoaded) {
       liveChatrooms.participantData.map(participant => {
         if (liveUsers[0][participant.account_id]) {
           arr.push(participant);
-          console.log('arr', arr);
+          counter += 1;
+          console.log('counter1', counter);
         };
       });
     };
@@ -21,6 +24,9 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
       isLoaded = false;
     };
   }, [liveUsers]);
+
+  console.log('arr2', arr);
+  console.log('counter2', counter);
   
   useEffect(() => {
     liveChatrooms.participantData.filter(participants => {
@@ -34,7 +40,7 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
   return (
     <>
       <div
-        className={liveChatroomKey === liveChatrooms.id ?          "selectedLiveConversation" 
+        className={liveChatroomKey === liveChatrooms.id ? "selectedLiveConversation" 
         : 
         "liveConversation"
       }
