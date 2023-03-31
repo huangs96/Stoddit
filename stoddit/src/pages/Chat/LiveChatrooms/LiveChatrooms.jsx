@@ -2,15 +2,15 @@ import './LiveChatrooms.css';
 import React, {useEffect, useState} from 'react';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
-function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatroom, userID, liveChatroomUsers}) {
+function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatroom, userID, liveUsers}) {
   const [participantExist, setParticipantExist] = useState(false);
   const liveUsersInChatroom = []
   // console.log('chatroomKey for Live Chatrooms', liveChatroomKey);
   console.log('liveChatroomUsers', liveChatrooms.participantData);
-  console.log('liveusers', liveChatroomUsers);
+  console.log('liveusers', liveUsers);
   useEffect(() => {
-    console.log('liveusers', liveChatroomUsers);
-    const liveUserIDs = liveChatroomUsers[0][userID];
+    console.log('liveusers', liveUsers);
+    const liveUserIDs = liveUsers[0][userID];
     if (liveUserIDs) {
       liveChatrooms.participantData.map(participant => {
         if (participant.account_id === userID) {

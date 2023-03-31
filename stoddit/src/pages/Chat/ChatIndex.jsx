@@ -460,7 +460,7 @@ function ChatIndex() {
         <LiveChatrooms 
           liveChatrooms={chatrooms}
           liveChatroomKey={chatroomKey}
-          liveChatroomUsers={liveParticipantInLiveChatroom}
+          liveUsers={liveParticipantInLiveChatroom}
           joinChatroom={joinLiveChatroomFunction}
           leaveChatroom={leaveLiveChatroomFunction}
           userID={userID}
