@@ -60,6 +60,7 @@ function ChatIndex() {
   const [newConversation, setNewConversation] = useState(false);
   //live chatrooms
   const [liveChatroom, setLiveChatroom] = useState([]);
+  const [liveChatroomReset, setLiveChatroomReset] = useState(false);
   const [liveChatroomMessageReset, setLiveChatroomMessageReset] = useState(false);
   const [liveChatroomMessages, setLiveChatroomMessages] = useState([]);
   const [participantsInLiveChatroom, setParticipantsInLiveChatroom] = useState([]);
@@ -400,6 +401,7 @@ function ChatIndex() {
       'chatroom_id': chatroomID,
     };
     await joinLiveChatroom(joinData);
+    setLiveChatroomReset(boolean => !boolean);
     setLiveChatroomMessageReset(boolean => !boolean);
   };
 
@@ -409,6 +411,7 @@ function ChatIndex() {
       'chatroom_id': chatroomID,
     };
     await leaveLiveChatroom(leaveData);
+    setLiveChatroomReset(boolean => !boolean);
     setLiveChatroomMessages([]);
   };
 
@@ -427,7 +430,7 @@ function ChatIndex() {
     return () => {
       isLoaded = false;
     };
-  }, []);
+  }, [liveChatroomReset]);
 
   useEffect(() => {
     socket.on('getLiveChatroomData', liveChatroomData => {
