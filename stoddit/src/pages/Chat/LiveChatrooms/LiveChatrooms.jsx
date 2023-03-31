@@ -4,29 +4,18 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatroom, userID, liveUsers}) {
   const [participantExist, setParticipantExist] = useState(false);
-  const arr = [];
-  let counter = 0;
-  // console.log('liveChatroomUsers', liveChatrooms.participantData);
+  const participantsOnline = [];
   console.log('liveusers', liveUsers);
 
-  useEffect(() => {
-    let isLoaded = true;
-    if (liveUsers.length > 0 && isLoaded) {
-      liveChatrooms.participantData.map(participant => {
-        if (liveUsers[0][participant.account_id]) {
-          arr.push(participant);
-          counter += 1;
-          console.log('counter1', counter);
-        };
-      });
-    };
-    return () => {
-      isLoaded = false;
-    };
-  }, [liveUsers]);
+  if (liveUsers.length > 0) {
+    liveChatrooms.participantData.map(participant => {
+      if (liveUsers[0][participant.account_id]) {
+        participantsOnline.push(participant);
+      };
+    });
+  };
 
-  console.log('arr2', arr);
-  console.log('counter2', counter);
+  console.log('arr2', participantsOnline);
   
   useEffect(() => {
     liveChatrooms.participantData.filter(participants => {
@@ -85,7 +74,7 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
               {liveChatrooms.description}
             </span>
               <h6 STYLE='color: gray'>
-                {`${0}/${liveChatrooms.participantData.length}`}
+                {`${participantsOnline.length}/${liveChatrooms.participantData.length}`}
               </h6>
           </div>
         </div>
