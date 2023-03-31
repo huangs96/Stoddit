@@ -14,14 +14,13 @@ const getTickers = (async (req, res) => {
   };
 });
 
-const getTickersByChatroomID = (io) = (async (req, res) => {
+const getTickersByChatroomID = (io) => (async (req, res) => {
   const chatroom_id = parseInt(req.params.id);
   try {
     const allTickers = await client.query(queries.getTickersByChatroomID, [chatroom_id]);
     // console.log('allTickersrows', allTickers.rows);
     const calculatedTickerData = tickerLogic.tickerChange(allTickers.rows);
     console.log('io', io);
-    // console.log('calcTickers', calculatedTickerData);
     if (allTickers) {
       res.status(200).json(calculatedTickerData);
     };
@@ -58,14 +57,22 @@ const insertTickerByTimeSetInterval = (async () => {
     for (let ticker=0; ticker<tickerData.rows.length; ticker++) {
       const individualTicker = tickerData.rows[ticker];
       const ticker_id = individualTicker.id;
+      console.log('ticker_id', ticker_id);
       const getTickerIntervalDataFromTickerID = await client.query(queries.getTickersByTickerID, [ticker_id]);
+      console.log('1111', getTickerIntervalDataFromTickerID.rows);
       const mostRecentIntervalTickerData = getTickerIntervalDataFromTickerID.rows[0];
-      const newIntervalData = tickerLogic.tickerDataRandomizer(mostRecentIntervalTickerData);
-      randomGeneratedTickerData.push(newIntervalData);
+      console.log('mostRecentInterval', mostRecentIntervalTickerData);
+      // const newIntervalData = tickerLogic.tickerDataRandomizer(mostRecentIntervalTickerData);
+      // randomGeneratedTickerData.push(newIntervalData);
       // await client.query(queries.insertTimeIntervalToTicker, [newIntervalData.ticker_id, newIntervalData.current_price, newIntervalData.high_price, newIntervalData.low_price, newIntervalData.recommendation, newIntervalData.volume]);
     };
-    return randomGeneratedTickerData;
+    // return randomGeneratedTickerData;
     // return res.status(201).send('Ticker Data added through Intervals');
+});
+
+insertTickerByTimeSetInterval()
+.then(data => {
+  console.log('data', data);
 });
 
 module.exports = {
