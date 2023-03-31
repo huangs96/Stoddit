@@ -434,7 +434,6 @@ function ChatIndex() {
       console.log('liveChatroomData from Socket', liveChatroomData);
     });
     socket.on('getUsers', liveChatroomUsers => {
-      console.log('2323123', liveChatroomUsers);
       setOnlineParticipantInLiveChatroom([liveChatroomUsers.users]);
     });
     return () => {
@@ -461,7 +460,7 @@ function ChatIndex() {
         <LiveChatrooms 
           liveChatrooms={chatrooms}
           liveChatroomKey={chatroomKey}
-          liveUsers={onlineFriendsData}
+          liveUsers={onlineParticipantInLiveChatroom}
           joinChatroom={joinLiveChatroomFunction}
           leaveChatroom={leaveLiveChatroomFunction}
           userID={userID}
@@ -570,7 +569,7 @@ function ChatIndex() {
   // console.log('userParticipantID', userParticipantID);
   // console.log('participantsinChatroom', participantsInChatroom);
   // console.log('participantsinLiveChatroom', participantsInLiveChatroom);
-  console.log('liveParticipantsinLiveChatroom', onlineParticipantInLiveChatroom);
+  // console.log('liveParticipantsinLiveChatroom', onlineParticipantInLiveChatroom);
   // console.log('chatroomKey', chatroomKey);
   // console.log('conversations---', conversations);
   // console.log('liveChatrooms--', liveChatroom);
