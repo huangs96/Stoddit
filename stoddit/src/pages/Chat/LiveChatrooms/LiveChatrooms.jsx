@@ -6,8 +6,18 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
   const [participantExist, setParticipantExist] = useState(false);
   const liveUsersInChatroom = [];
   // console.log('liveChatroomUsers', liveChatrooms.participantData);
-  console.log('liveusers', liveUsers);
+  // console.log('liveusers', Object.keys(liveUsers[0]));
+  // const liveUserIDs = Object.keys(liveUsers[0]);
   useEffect(() => {
+    let isLoaded = true;
+    if (liveUsers.length > 0) {
+      const liveUserIDs = Object.keys(liveUsers[0]);
+      liveChatrooms.participantData.map(participant => {
+        if (liveUsers[0][participant.account_id]) {
+          
+        };
+      })
+    }
     // if (liveUsers.length > 0) {
     //   const liveUserIDs = liveUsers[0][userID];
     //   if (liveUserIDs) {
@@ -24,7 +34,7 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
     // };
   }, [liveUsers]);
 
-  console.log('liveUsers2', liveUsersInChatroom);
+  // console.log('liveUsers2', liveUsersInChatroom);
   
   useEffect(() => {
     liveChatrooms.participantData.filter(participants => {
