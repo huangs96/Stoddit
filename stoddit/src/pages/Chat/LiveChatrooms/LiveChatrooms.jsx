@@ -4,9 +4,8 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatroom, userID}) {
   const [participantExist, setParticipantExist] = useState(false);
-  console.log(participantExist)
   // console.log('chatroomKey for Live Chatrooms', liveChatroomKey);
-  // console.log('liveChatrooms livechatrooms', liveChatrooms);
+  console.log('liveChatrooms livechatrooms', liveChatrooms.participantData.length);
   
   useEffect(() => {
     liveChatrooms.participantData.filter(participants => {
