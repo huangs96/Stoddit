@@ -24,14 +24,21 @@ const tickerDataRandomizer = (tickerData) => {
 
 const tickerChange = (tickerData) => {
   const mostRecentTickers = {};
-  for (let ticker = 0; ticker<tickerData.length; ticker++) {
-    let eachTickerInfo = tickerData[ticker];
-    if (!mostRecentTickers[eachTickerInfo.name]) {
-      mostRecentTickers[eachTickerInfo.name] = [eachTickerInfo];
-    } else if (mostRecentTickers[eachTickerInfo.name] && mostRecentTickers[eachTickerInfo.name].length < 2) {
-      mostRecentTickers[eachTickerInfo.name].push(eachTickerInfo);
+  // console.log('tickerData11111', tickerData);
+  if (tickerData.length > 2) {
+    for (let ticker = 0; ticker<tickerData.length; ticker++) {
+      let eachTickerInfo = tickerData[ticker];
+      if (!mostRecentTickers[eachTickerInfo.name]) {
+        mostRecentTickers[eachTickerInfo.name] = [eachTickerInfo];
+      } else if (mostRecentTickers[eachTickerInfo.name] && mostRecentTickers[eachTickerInfo.name].length < 2) {
+        mostRecentTickers[eachTickerInfo.name].push(eachTickerInfo);
+      };
     };
+  } else {
+    mostRecentTickers[tickerData.name] = tickerData;
   };
+
+  // console.log('mostRecentTickers111111', mostRecentTickers);
   let mostRecentTickerData = Object.values(mostRecentTickers);
   for (let recentTicker = 0; recentTicker<mostRecentTickerData.length; recentTicker++) {
     let firstRecentTicker = mostRecentTickerData[recentTicker][0];
