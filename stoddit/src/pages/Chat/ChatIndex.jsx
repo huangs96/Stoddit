@@ -636,6 +636,12 @@ function ChatIndex() {
                   onChange={handleChange} 
                   aria-label="conversationTabs"
                   centered
+                  onClick={() => {
+                    socket.emit('joinLiveChatroom', {
+                      'userData' : username,
+                      'participantData': participantsInLiveChatroom
+                    });
+                  }}
                 >
                   <Tab label="Direct Messages" />
                   <Tab label="Live Chatrooms" />

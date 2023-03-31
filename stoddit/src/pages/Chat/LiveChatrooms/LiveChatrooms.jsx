@@ -4,32 +4,31 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatroom, userID, liveUsers}) {
   const [participantExist, setParticipantExist] = useState(false);
-  const liveUsersInChatroom = []
+  const liveUsersInChatroom = [];
   // console.log('chatroomKey for Live Chatrooms', liveChatroomKey);
   console.log('liveChatroomUsers', liveChatrooms.participantData);
   console.log('liveusers', liveUsers);
   useEffect(() => {
-    console.log('liveusers', liveUsers);
-    const liveUserIDs = liveUsers[0][userID];
-    if (liveUserIDs) {
-      liveChatrooms.participantData.map(participant => {
-        if (participant.account_id === userID) {
-          liveUsersInChatroom.push(userID);
-        }
-      })
-      // counter += 1;
-    } else {
-      console.log('false');
+    if (liveUsers.length > 0) {
+      const liveUserIDs = liveUsers[0][userID];
+      if (liveUserIDs) {
+        liveChatrooms.participantData.map(participant => {
+          if (participant.account_id === userID) {
+            console.log('participant', participant);
+          };
+        });
+        // counter += 1;
+      } else {
+        console.log('false');
+      };
     };
-  }, [liveChatroomUsers]);
+  }, [liveUsers]);
 
-  console.log('counter', counter);
+  console.log('liveUsers', liveUsersInChatroom);
   
   useEffect(() => {
     liveChatrooms.participantData.filter(participants => {
-      // console.log('participants', participants);
       if (participants.account_id === userID) {
-        // console.log('setParticipant should be true');
         setParticipantExist(true);
         return;
       };
@@ -84,7 +83,7 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
               {liveChatrooms.description}
             </span>
               <h6 STYLE='color: gray'>
-                {`${counter}/${liveChatrooms.participantData.length}`}
+                {`${liveUsersInChatroom.length}/${liveChatrooms.participantData.length}`}
               </h6>
           </div>
         </div>
