@@ -25,6 +25,11 @@
   margin: 10px;
 }
 
+.timestamp {
+  color: gray;
+  padding-right: 10px;
+}
+
 .messageText {
   padding: 10px;
   border-radius: 20px;
@@ -57,12 +62,4 @@
   color: gray;
   display: flex;
   justify-content: center;
-}
-
-
-
-
-.messageContainer {
-  display: flex;
-  flex-direction: row;
 }
