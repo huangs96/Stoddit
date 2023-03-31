@@ -461,7 +461,7 @@ function ChatIndex() {
         <LiveChatrooms 
           liveChatrooms={chatrooms}
           liveChatroomKey={chatroomKey}
-          liveUsers={onlineParticipantInLiveChatroom}
+          liveUsers={onlineFriendsData}
           joinChatroom={joinLiveChatroomFunction}
           leaveChatroom={leaveLiveChatroomFunction}
           userID={userID}
@@ -639,8 +639,8 @@ function ChatIndex() {
                   centered
                   onClick={() => {
                     socket.emit('joinLiveChatroom', {
-                      'userData' : username,
-                      'participantData': participantsInLiveChatroom
+                      'userData' : username
+                      // 'participantData': participantsInLiveChatroom
                     });
                   }}
                 >
