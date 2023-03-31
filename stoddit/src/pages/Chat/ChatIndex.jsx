@@ -63,6 +63,7 @@ function ChatIndex() {
   const [liveChatroomMessageReset, setLiveChatroomMessageReset] = useState(false);
   const [liveChatroomMessages, setLiveChatroomMessages] = useState([]);
   const [participantsInLiveChatroom, setParticipantsInLiveChatroom] = useState([]);
+  const [liveParticipantInLiveChatroom, setLiveParticipantInLiveChatroom] = useState([]);
   const [userHasJoinedLiveChatroom, setUserHasJoinedLiveChatroom] = useState(false);
   const [userHasLeftLiveChatroom, setUserHasLeftLiveCharoom] = useState(false);
   //deleting chatroom
