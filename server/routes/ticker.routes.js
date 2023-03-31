@@ -11,7 +11,7 @@ module.exports = (io) => {
   
   /* ------ Insert Routes ------ */
   router.post('/inserttickerinterval', controller.insertTickerData);
-  router.get('/inserttickersetinterval', controller.insertTickerByTimeSetInterval);
+  router.get('/inserttickersetinterval', controller.insertTickerByTimeSetInterval(io));
   /* -------------------------------- */
   
   return router;
