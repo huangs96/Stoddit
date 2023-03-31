@@ -58,3 +58,11 @@
   display: flex;
   justify-content: center;
 }
+
+
+
+
+.messageContainer {
+  display: flex;
+  flex-direction: row;
+}
