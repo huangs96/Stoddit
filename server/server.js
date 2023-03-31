@@ -76,10 +76,14 @@ io.on("connection", (socket) => {
     io.emit('getLiveChatroomData', liveChatroomData.chatroomData);
     console.log(users);
   });
-  // setInterval(() => {
-  //   io.emit('tickerInterval', tickerController.insertTickerByTimeSetInterval());
-  //   console.log('sent');
-  // }, 5000);
+
+  tickerController.insertTickerByTimeSetInterval()
+  .then(data => {
+    // setInterval(() => {
+    //   io.emit('tickerInterval', data);
+    //   console.log('sent');
+    // }, 5000);
+  });
   socket.on('logout', () => {
     // console.log('logout1', socket);
     // console.log('logout2', users);
