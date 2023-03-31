@@ -9,8 +9,7 @@ function LiveChatrooms({liveChatrooms, liveChatroomKey, joinChatroom, leaveChatr
   console.log('liveChatroomUsers', liveChatroomUsers[0]);
 
   useEffect(() => {
-    const liveUserIDs = liveChatroomUsers.get(userID);
-    console.log('liveUserIDs', liveUserIDs);
+    console.log('liveusers', liveChatroomUsers);
   }, [liveChatroomUsers])
   
   useEffect(() => {
