@@ -15,7 +15,6 @@ const getTickers = () => {
 };
 
 const getTickersByChatroomID = async (chatroomID) => {
-  console.log('first', chatroomID);
   return fetch(`http://localhost:5000/tickers/${chatroomID}`, {
     headers: {
       'Content-Type': 'application/json'

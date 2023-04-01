@@ -82,7 +82,7 @@ io.on("connection", (socket) => {
     // setInterval(() => {
     //   io.emit('tickerInterval', data);
     //   console.log('sent');
-    // }, 5000);
+    // }, 1000);
   });
   socket.on('logout', () => {
     // console.log('logout1', socket);

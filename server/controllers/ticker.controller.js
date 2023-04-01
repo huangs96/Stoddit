@@ -20,6 +20,7 @@ const getTickersByChatroomID = (io) => (async (req, res) => {
     const allTickers = await client.query(queries.getTickersByChatroomID, [chatroom_id]);
     // console.log('allTickersrows', allTickers.rows);
     const calculatedTickerData = tickerLogic.tickerChange(allTickers.rows);
+    console.log('calc', calculatedTickerData);
     // console.log('io', io);
     if (allTickers) {
       res.status(200).json(calculatedTickerData);
@@ -76,6 +77,7 @@ const insertTickerByTimeSetInterval = (async () => {
     const calculatedTicker= tickerLogic.tickerChange([randomizedTicker, recentTicker[recentTickerKeys[x]]]);
     // console.log('3333', calculatedTicker[recentTickerKeys[x]][0]);
     randomGeneratedTickerData.push(calculatedTicker[recentTickerKeys[x]][0]);
+    // console.log('rando', randomGeneratedTickerData);
   };
   
   return randomGeneratedTickerData;
