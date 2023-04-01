@@ -35,9 +35,8 @@ function TickersIndex({liveChatroomKey}) {
         // console.log('tickerData11111', ticker.chatroom_id);
         // console.log('tickerData2222', liveChatroomKey);
         if (!liveTickers[ticker.name] && ticker.chatroom_id === liveChatroomKey) {
-          liveTickers[ticker.name] = [ticker, chatroomTickers[0]];
-          // setAllChatroomTickers(liveTickers);
-          console.log('liveTickers333', liveTickers);
+          liveTickers[ticker.name] = [ticker, chatroomTickers[ticker.name][0]];
+          setAllChatroomTickers(liveTickers);
         };
       })
     });
@@ -46,7 +45,7 @@ function TickersIndex({liveChatroomKey}) {
     };
   }, []);
 
-  console.log('chatroomTickers111', chatroomTickers);
+  // console.log('chatroomTickers111', chatroomTickers);
 
   const tickerNames = Object.keys(chatroomTickers);
   console.log('tickerNames', tickerNames);
