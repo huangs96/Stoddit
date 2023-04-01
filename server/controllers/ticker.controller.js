@@ -56,28 +56,11 @@ const insertTickerByTimeSetInterval = (async () => {
     // console.log('tickerData', tickerData);
     for (let ticker=0; ticker<tickerData.rows.length; ticker++) {
       const individualTicker = tickerData.rows[ticker];
-      const chatroom_id = individualTicker.chatroom_id;
-      const getTickerIntervalDataFromChatroomID = await client.query(queries.getTickersByChatroomID, [chatroom_id]);
-      const recentTickers = {};
-      for (x=0; x<getTickerIntervalDataFromChatroomID.rows.length; x++) {
-        const individualTicker = getTickerIntervalDataFromChatroomID.rows[x];
-        if (!recentTickers[individualTicker.name]) {
-          recentTickers[individualTicker.name] = individualTicker;
-        } else {
-          console.log('exists');
-        };
-      };
-      console.log('recent tickers', recentTickers);
-      
-      
-      // console.log('newIntervalData33333', newIntervalData);
-      // const mostRecentIntervalTickerData = getTickerIntervalDataFromTickerID.rows[0];
-      // console.log('mostRecentInterval', mostRecentIntervalTickerData);
-      // randomGeneratedTickerData.push(newIntervalData);
-      // await client.query(queries.insertTimeIntervalToTicker, [newIntervalData.ticker_id, newIntervalData.current_price, newIntervalData.high_price, newIntervalData.low_price, newIntervalData.recommendation, newIntervalData.volume]);
+      const chatroomIndividualTicker = await client.query(queries.getTickersByChatroomID, [individualTicker.chatroom_id]);
+      console.log('chatroomTicker', chatroomIndividualTicker.rows);
+
     };
-    // return randomGeneratedTickerData;
-    // return res.status(201).send('Ticker Data added through Intervals');
+  
 });
 
 insertTickerByTimeSetInterval()
