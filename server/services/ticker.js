@@ -7,22 +7,20 @@ const tickerDataRandomizer = (tickerData) => {
   const randomNumber10th = Math.floor(Math.random() * 10);
   const randomNumber100th = Math.floor(Math.random() * 100);
   const priceChangeRandomizer = Math.random() < 0.5;
-  if (tickerData[0] !== undefined) {
-    const newTickerIntervalData = Object.create(Object.getPrototypeOf(tickerData[0]), Object.getOwnPropertyDescriptors(tickerData[0]));
-    // console.log('new Interval copy', newTickerIntervalData);
-    // if (priceChangeRandomizer) {
-    //   const newCurrentPrice = tickerData.current_price + randomNumber10th;
-    //   const newVolume = tickerData.volume + randomNumber100th;
-    //   newTickerIntervalData.current_price = newCurrentPrice;
-    //   newTickerIntervalData.volume = newVolume;
-    // } else {
-    //   const newCurrentPrice = tickerData.current_price - randomNumber10th;
-    //   const newVolume = tickerData.volume - randomNumber100th;
-    //   newTickerIntervalData.current_price = newCurrentPrice;
-    //   newTickerIntervalData.volume = newVolume;
-    // };
-    // return newTickerIntervalData;
-  };
+  const newTickerIntervalData = Object.create(Object.getPrototypeOf(tickerData), Object.getOwnPropertyDescriptors(tickerData));
+  // console.log('new Interval copy', newTickerIntervalData);
+    if (priceChangeRandomizer) {
+      const newCurrentPrice = tickerData.current_price + randomNumber10th;
+      const newVolume = tickerData.volume + randomNumber100th;
+      newTickerIntervalData.current_price = newCurrentPrice;
+      newTickerIntervalData.volume = newVolume;
+    } else {
+      const newCurrentPrice = tickerData.current_price - randomNumber10th;
+      const newVolume = tickerData.volume - randomNumber100th;
+      newTickerIntervalData.current_price = newCurrentPrice;
+      newTickerIntervalData.volume = newVolume;
+    };
+    return newTickerIntervalData;
 };
 
 const tickerChange = (tickerData) => {

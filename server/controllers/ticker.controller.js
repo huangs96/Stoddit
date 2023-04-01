@@ -58,10 +58,18 @@ const insertTickerByTimeSetInterval = (async () => {
       const individualTicker = tickerData.rows[ticker];
       const chatroom_id = individualTicker.chatroom_id;
       const getTickerIntervalDataFromChatroomID = await client.query(queries.getTickersByChatroomID, [chatroom_id]);
+      const recentTickers = {};
       for (x=0; x<getTickerIntervalDataFromChatroomID.rows.length; x++) {
         const individualTicker = getTickerIntervalDataFromChatroomID.rows[x];
-        const newIntervalData = tickerLogic.tickerDataRandomizer(individualTicker);
+        if (!recentTickers[individualTicker.name]) {
+          recentTickers[individualTicker.name] = individualTicker;
+        } else {
+          console.log('exists');
+        };
       };
+      console.log('recent tickers', recentTickers);
+      
+      
       // console.log('newIntervalData33333', newIntervalData);
       // const mostRecentIntervalTickerData = getTickerIntervalDataFromTickerID.rows[0];
       // console.log('mostRecentInterval', mostRecentIntervalTickerData);
