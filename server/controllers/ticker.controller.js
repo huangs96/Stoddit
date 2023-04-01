@@ -67,19 +67,16 @@ const insertTickerByTimeSetInterval = (async () => {
         }
       };
     };
-  // console.log('recentticker', recentTicker);
-  // console.log('recentticker222', Object.keys(recentTicker));
   const recentTickerKeys = Object.keys(recentTicker);
+  // console.log('recentTickerKeys', recentTickerKeys);
 
   for (let x=0; x<recentTickerKeys.length; x++) {
     const randomizedTicker = tickerLogic.tickerDataRandomizer(recentTicker[recentTickerKeys[x]]);
     // console.log('222', randomizedTicker);
-    const calculatedTicker= tickerLogic.tickerChange([randomizedTicker, recentTicker[recentTickerKeys[x]]]);
-    // console.log('3333', calculatedTicker[recentTickerKeys[x]][0]);
-    randomGeneratedTickerData.push(calculatedTicker[recentTickerKeys[x]][0]);
-    // console.log('rando', randomGeneratedTickerData);
+    const calculatedTicker = tickerLogic.tickerChange([randomizedTicker, recentTicker[recentTickerKeys[x]]]);
+    randomGeneratedTickerData.push(calculatedTicker);
   };
-  
+  console.log('rando', randomGeneratedTickerData);
   return randomGeneratedTickerData;
 });
 

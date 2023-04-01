@@ -76,7 +76,6 @@ io.on("connection", (socket) => {
     io.emit('getLiveChatroomData', liveChatroomData.chatroomData);
     console.log(users);
   });
-
   tickerController.insertTickerByTimeSetInterval()
   .then(data => {
     // setInterval(() => {

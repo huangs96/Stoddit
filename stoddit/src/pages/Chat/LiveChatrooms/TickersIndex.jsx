@@ -31,13 +31,12 @@ function TickersIndex({liveChatroomKey}) {
 
   useEffect(() => {
     socket.on('tickerInterval', tickerData => {
+      console.log('tickerData', tickerData);
       tickerData.map(ticker => {
-        // console.log('tickerData11111', ticker.chatroom_id);
-        // console.log('tickerData2222', liveChatroomKey);
-        if (!liveTickers[ticker.name] && ticker.chatroom_id === liveChatroomKey) {
-          liveTickers[ticker.name] = [ticker, chatroomTickers[ticker.name][0]];
-          setAllChatroomTickers(liveTickers);
-        };
+        // if (!liveTickers[ticker.name] && ticker.chatroom_id === liveChatroomKey) {
+        //   liveTickers[ticker.name] = [ticker, chatroomTickers[ticker.name][0]];
+        //   setAllChatroomTickers(liveTickers);
+        // };
       })
     });
     return () => {
