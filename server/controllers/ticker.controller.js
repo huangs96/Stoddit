@@ -61,13 +61,16 @@ const insertTickerByTimeSetInterval = (async () => {
       const recentTicker = [];
       for (x=0; x<chatroomIndividualTicker.rows.length; x++) {
         const loopedTicker = chatroomIndividualTicker.rows[x];
-        if (recentTicker.length < 1 || recentTicker[0].name !== loopedTicker.name) {
-          console.log('recentTickerName', recentTicker)
-          console.log('loopedTickerName', loopedTicker.name)
+        if (recentTicker.length < 1) {
           recentTicker.push(loopedTicker);
-        };
+        }
+        // if (recentTicker.length < 1) {
+        //   console.log('recentTickerName', recentTicker)
+        //   console.log('loopedTickerName', loopedTicker.name)
+        //   recentTicker.push(loopedTicker);
+        // };
       };
-      // console.log('recentticker', recentTicker);
+      console.log('recentticker', recentTicker);
     };
   
 });
