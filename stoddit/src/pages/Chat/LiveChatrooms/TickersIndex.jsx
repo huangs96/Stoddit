@@ -9,6 +9,7 @@ function TickersIndex({liveChatroomKey}) {
   const [chatroomTickers, setAllChatroomTickers] = useState([]);
   // const [allTickers, setAllTickers] = useState([]);
   const socket = useContext(SocketContext);
+  const liveTickers = {};
 
   
   useEffect(() => {
@@ -30,11 +31,15 @@ function TickersIndex({liveChatroomKey}) {
 
   useEffect(() => {
     socket.on('tickerInterval', tickerData => {
-      console.log('tickerData', tickerData);
       tickerData.map(ticker => {
-        if (ticker.chatroom_id === liveChatroomKey) {
-          setAllChatroomTickers(tickerData);
+        console.log('tickerData', tickerData);
+        if (!liveTickers[ticker.name]) {
+          liveTickers[ticker.name] = ticker;
+        } else {
+          liveTickers[ticker.name].push(ticker);
         };
+        console.log('liveTickers', liveTickers);
+          // setAllChatroomTickers(tickerData);
       })
     });
     return () => {
@@ -50,7 +55,7 @@ function TickersIndex({liveChatroomKey}) {
     const tickerData = chatroomTickers[names];
     console.log('names3333', tickerData);
     return (
-      <TickerTabs ticker={tickerData}/>
+      <TickerTabs ticker={tickerData[0]}/>
     );
   });
 

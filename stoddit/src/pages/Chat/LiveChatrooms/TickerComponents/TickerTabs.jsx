@@ -5,20 +5,15 @@ import chevronUp from '../../../../images/chevron-up.svg';
 
 function TickerTabs({ticker}) {
   const [tickerChange, setTickerChange] = useState('positive');
-  // if (ticker[0].changePercentage < 0) {
-  //   console.log('negative', ticker[0].changePercentage)
-  //   // setTickerChange('negative');
-  // } else {
-  //   console.log('positive', ticker[0].changePercentage)
-  // };
+  
   const arrowDisplay = (
     <img
-      src={ticker[0].changePercentage < 0 ?
+      src={ticker.changePercentage < 0 ?
       chevronDown
       :
       chevronUp
     }
-      alt={ticker[0].changePercentage < 0 ?
+      alt={ticker.changePercentage < 0 ?
       chevronDown
       :
       chevronUp
@@ -33,15 +28,15 @@ function TickerTabs({ticker}) {
       <div className="tickerContainer">
         <div className="tickerList">
           <div className="tickerNameSymbolContainer">
-          <div className="tickerSymbol">{ticker[0].symbol}</div>
-          <div className="tickerName">{ticker[0].name}</div>
+          <div className="tickerSymbol">{ticker.symbol}</div>
+          <div className="tickerName">{ticker.name}</div>
         </div>
         <div className="priceContainer">
-          <div className={ticker[0].changePercentage < 0 ?"changePercentageN" : "changePercentageP"}>{ticker[0].changePercentage}%
+          <div className={ticker.changePercentage < 0 ?"changePercentageN" : "changePercentageP"}>{ticker.changePercentage}%
           {arrowDisplay}
           </div>
-          <div className={ticker[0].changePercentage < 0 ?"currentCPriceN" : "currentCPriceP"}>{ticker[0].current_price}</div>
-          <div className="tickerVolume">{ticker[0].volume}</div>
+          <div className={ticker.changePercentage < 0 ?"currentCPriceN" : "currentCPriceP"}>{ticker.current_price}</div>
+          <div className="tickerVolume">{ticker.volume}</div>
         </div>
         </div>
       </div>
