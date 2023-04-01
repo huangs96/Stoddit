@@ -5,6 +5,8 @@ import chevronUp from '../../../../images/chevron-up.svg';
 
 function TickerTabs({ticker}) {
   const [tickerChange, setTickerChange] = useState('positive');
+
+  console.log('ticker tickerTabs', ticker);
   
   const arrowDisplay = (
     <img

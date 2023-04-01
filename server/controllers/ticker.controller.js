@@ -76,7 +76,7 @@ const insertTickerByTimeSetInterval = (async () => {
     const calculatedTicker = tickerLogic.tickerChange([randomizedTicker, recentTicker[recentTickerKeys[x]]]);
     randomGeneratedTickerData.push(calculatedTicker);
   };
-  console.log('rando', randomGeneratedTickerData);
+  // console.log('rando', randomGeneratedTickerData);
   return randomGeneratedTickerData;
 });
 
