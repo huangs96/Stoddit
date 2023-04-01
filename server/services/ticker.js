@@ -2,7 +2,7 @@ const client = require('../classes/pgPoolClass');
 const queries = require('../queries/ticker.queries');
 
 const tickerDataRandomizer = (tickerData) => {
-  console.log('ticker data in randomizer', tickerData);
+  // console.log('ticker data in randomizer', tickerData);
   const randomNumber = Math.random().toFixed(2);
   const randomNumber10th = Math.floor(Math.random() * 10);
   const randomNumber100th = Math.floor(Math.random() * 100);
@@ -25,8 +25,8 @@ const tickerDataRandomizer = (tickerData) => {
 
 const tickerChange = (tickerData) => {
   const mostRecentTickers = {};
-  // console.log('tickerData11111', tickerData);
-  if (tickerData.length > 2) {
+  // console.log('tickerData11111', tickerData.length);
+  if (tickerData.length > 1) {
     for (let ticker = 0; ticker<tickerData.length; ticker++) {
       let eachTickerInfo = tickerData[ticker];
       if (!mostRecentTickers[eachTickerInfo.name]) {

@@ -77,13 +77,13 @@ io.on("connection", (socket) => {
     console.log(users);
   });
 
-  // tickerController.insertTickerByTimeSetInterval()
-  // .then(data => {
-  //   setInterval(() => {
-  //     io.emit('tickerInterval', data);
-  //     console.log('sent');
-  //   }, 5000);
-  // });
+  tickerController.insertTickerByTimeSetInterval()
+  .then(data => {
+    // setInterval(() => {
+    //   io.emit('tickerInterval', data);
+    //   console.log('sent');
+    // }, 5000);
+  });
   socket.on('logout', () => {
     // console.log('logout1', socket);
     // console.log('logout2', users);
