@@ -53,25 +53,20 @@ const insertTickerData = (async (req, res) => {
 const insertTickerByTimeSetInterval = (async () => {
     const randomGeneratedTickerData = [];
     const tickerData = await client.query(queries.getAllTickers);
+    const recentTicker = {};
     // console.log('tickerData', tickerData);
     for (let ticker=0; ticker<tickerData.rows.length; ticker++) {
       const individualTicker = tickerData.rows[ticker];
       const chatroomIndividualTicker = await client.query(queries.getTickersByChatroomID, [individualTicker.chatroom_id]);
       // console.log('chatroomTicker', chatroomIndividualTicker.rows);
-      const recentTicker = [];
       for (x=0; x<chatroomIndividualTicker.rows.length; x++) {
         const loopedTicker = chatroomIndividualTicker.rows[x];
-        if (recentTicker.length < 1) {
-          recentTicker.push(loopedTicker);
+        if (!recentTicker[loopedTicker.name]) {
+          recentTicker[loopedTicker.name] = loopedTicker;
         }
-        // if (recentTicker.length < 1) {
-        //   console.log('recentTickerName', recentTicker)
-        //   console.log('loopedTickerName', loopedTicker.name)
-        //   recentTicker.push(loopedTicker);
-        // };
       };
-      console.log('recentticker', recentTicker);
     };
+  console.log('recentticker', recentTicker);
   
 });
 
