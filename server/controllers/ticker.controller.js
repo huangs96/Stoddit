@@ -14,7 +14,7 @@ const getTickers = (async (req, res) => {
   };
 });
 
-const getTickersByChatroomID = (io) => (async (req, res) => {
+const getTickersByChatroomID = (async (req, res) => {
   const chatroom_id = parseInt(req.params.id);
   try {
     const allTickers = await client.query(queries.getTickersByChatroomID, [chatroom_id]);
@@ -78,10 +78,10 @@ const insertTickerByTimeSetInterval = (async () => {
   return randomGeneratedTickerData;
 });
 
-insertTickerByTimeSetInterval()
-.then(data => {
-  console.log('data', data);
-});
+// insertTickerByTimeSetInterval()
+// .then(data => {
+//   console.log('data', data);
+// });
 
 module.exports = {
   //Get

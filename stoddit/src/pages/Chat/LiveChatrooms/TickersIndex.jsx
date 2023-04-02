@@ -6,6 +6,7 @@ import TickerTabs from './TickerComponents/TickerTabs';
 
 function TickersIndex({liveChatroomKey}) {
   const [chatroomTickers, setAllChatroomTickers] = useState([]);
+  const [intervalTickers, setIntervalTickers] = useState([]);
   // const [allTickers, setAllTickers] = useState([]);
   const socket = useContext(SocketContext);
   // const liveTickers = {};
@@ -26,47 +27,20 @@ function TickersIndex({liveChatroomKey}) {
       getChatroomTickers()
       .catch(console.error);
     };
-    socket.on('tickerInterval', tickerData => {
-      const liveTickers = {};
-      console.log('11111', tickerData);
-      console.log('names0000', tickerNames);
-      tickerNames.map(names => {
-        // console.log('names111111', names);
-        // tickerData.map(ticker => {
-        //   if (ticker[names] !== undefined && !liveTickers[ticker[names][0].name]) {
-        //     liveTickers[ticker[names][0].name] = ticker[names];
-        //     console.log('11111', liveTickers);
-        //   };
-        // });
-      });
-      // setAllChatroomTickers(liveTickers);
-    });
     return () => {
       isLoaded = false;
     };
 
   }, [liveChatroomKey]);
   
-  // useEffect(() => {
-  //   socket.on('tickerInterval', tickerData => {
-  //     const liveTickers = {};
-  //     // console.log('11111', tickerData);
-  //     console.log('names0000', tickerNames);
-  //     tickerNames.map(names => {
-  //       console.log('names111111', names);
-  //       // tickerData.map(ticker => {
-  //       //   if (ticker[names] !== undefined && !liveTickers[ticker[names][0].name]) {
-  //       //     liveTickers[ticker[names][0].name] = ticker[names];
-  //       //     console.log('11111', liveTickers);
-  //       //   };
-  //       // });
-  //     });
-  //     // setAllChatroomTickers(liveTickers);
-  //   });
-  //   return () => {
-  //     socket.off('ticker');
-  //   };
-  // }, [liveChatroomKey]);
+  useEffect(() => {
+    socket.on('tickerInterval', tickerData => {
+      setIntervalTickers(tickerData);
+    });
+    return () => {
+      socket.off('ticker');
+    };
+  }, []);
 
   const displayTickersTab = tickerNames.map(names => {
     // console.log('names2222222', names);
