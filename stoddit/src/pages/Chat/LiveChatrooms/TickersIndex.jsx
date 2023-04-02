@@ -3,7 +3,6 @@ import { getTickers, getTickersByChatroomID } from '../../../services/ticker.ser
 import { SocketContext } from '../../../contexts/socketProvider';
 import TickerCharts from './TickerComponents/TickerCharts';
 import TickerTabs from './TickerComponents/TickerTabs';
-import { getAllLiveChatrooms } from '../../../services/chat.service';
 
 function TickersIndex({liveChatroomKey}) {
   const [chatroomTickers, setAllChatroomTickers] = useState([]);
@@ -11,6 +10,10 @@ function TickersIndex({liveChatroomKey}) {
   const socket = useContext(SocketContext);
   // const liveTickers = {};
   const tickerNames = Object.keys(chatroomTickers);
+
+  useEffect(() => {
+
+  }, [])
   
   
   useEffect(() => {
