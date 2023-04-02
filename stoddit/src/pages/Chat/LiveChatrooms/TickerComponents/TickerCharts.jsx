@@ -12,6 +12,8 @@ import {
 import { Line } from 'react-chartjs-2';
 import config from './chartConfig';
 
+//modal needed
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
