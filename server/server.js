@@ -76,21 +76,14 @@ io.on("connection", (socket) => {
     io.emit('getLiveChatroomData', liveChatroomData.chatroomData);
     console.log(users);
   });
-  tickerController.insertTickerByTimeSetInterval()
-  .then(data => {
-    // setInterval(() => {
-    //   io.emit('tickerInterval', data);
-    //   console.log('sent');
-    // }, 7000);
-  });
 
-  setInterval(() => {
-    tickerController.insertTickerByTimeSetInterval()
-    .then(data => {
-      io.emit('tickerInterval', data);
-      console.log('sent');
-    });
-  }, 3000);
+  // setInterval(() => {
+  //   tickerController.insertTickerByTimeSetInterval()
+  //   .then(data => {
+  //     io.emit('tickerInterval', data);
+  //     console.log(data[0]);
+  //   });
+  // }, 3000);
 
   socket.on('logout', () => {
     // console.log('logout1', socket);
