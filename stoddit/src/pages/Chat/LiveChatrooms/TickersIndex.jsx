@@ -49,9 +49,9 @@ function TickersIndex({liveChatroomKey}) {
 
   const displayTickersTab = tickerNames.map(names => {
     const tickerData = chatroomTickers[names];
-    console.log('2222', tickerData[0]);
+    console.log('2222', tickerData);
     return (
-      <TickerTabs ticker={tickerData[0]}/>
+      <TickerTabs ticker={tickerData}/>
     );
   });
 
