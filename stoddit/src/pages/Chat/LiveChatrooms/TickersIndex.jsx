@@ -44,14 +44,19 @@ function TickersIndex({liveChatroomKey}) {
   useEffect(() => {
     const liveTickerUpdateObj = {};
     intervalTickers.map(iTicker => {
-      console.log('itick', Object.values(iTicker));
+      const iTickerValue = Object.values(iTicker)[0][0];
+      console.log('tickervalue', iTickerValue);
       // console.log('itick2', chatroomTickers);
-      // if (iTicker[0].chatroom_id === liveChatroomKey) {
-      //   console.log(
-      //     'live', iTicker
-      //   );
-      // };
+      if (iTickerValue.chatroom_id === liveChatroomKey) {
+        tickerNames.map(names => {
+          if (iTicker[names] !== undefined) {
+            console.log('live2', iTicker[names]);
+            liveTickerUpdateObj[names] = iTicker[names];
+          };
+        });
+      };
     });
+    console.log('22222', liveTickerUpdateObj)
   }, [intervalTickers])
 
 
