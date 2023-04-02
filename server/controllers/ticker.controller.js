@@ -80,12 +80,10 @@ const insertTickerByTimeSetInterval = (async () => {
   return randomGeneratedTickerData;
 });
 
-// insertTickerByTimeSetInterval()
-// .then(data => {
-//   setInterval(() => {
-
-//   })
-// });
+insertTickerByTimeSetInterval()
+.then(data => {
+  console.log('data', data);
+});
 
 module.exports = {
   //Get
