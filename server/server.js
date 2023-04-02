@@ -78,10 +78,10 @@ io.on("connection", (socket) => {
   });
   tickerController.insertTickerByTimeSetInterval()
   .then(data => {
-    // setInterval(() => {
-    //   io.emit('tickerInterval', data);
-    //   console.log('sent');
-    // }, 3000);
+    setInterval(() => {
+      io.emit('tickerInterval', data);
+      console.log('sent');
+    }, 3000);
   });
   socket.on('logout', () => {
     // console.log('logout1', socket);
