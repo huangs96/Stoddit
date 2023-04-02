@@ -26,17 +26,12 @@ function TickersIndex({liveChatroomKey}) {
       getChatroomTickers()
       .catch(console.error);
     };
-    return () => {
-      isLoaded = false;
-    };
-  }, [liveChatroomKey]);
-  
-  useEffect(() => {
     socket.on('tickerInterval', tickerData => {
       const liveTickers = {};
-      console.log('11111', tickerData);
+      // console.log('11111', tickerData);
+      // console.log('names0000', tickerNames);
       tickerNames.map(names => {
-        console.log('names', names);
+        console.log('names111111', names);
         // tickerData.map(ticker => {
         //   if (ticker[names] !== undefined && !liveTickers[ticker[names][0].name]) {
         //     liveTickers[ticker[names][0].name] = ticker[names];
@@ -47,12 +42,34 @@ function TickersIndex({liveChatroomKey}) {
       // setAllChatroomTickers(liveTickers);
     });
     return () => {
-      socket.off('ticker');
+      isLoaded = false;
     };
+
   }, [liveChatroomKey]);
+  
+  // useEffect(() => {
+  //   socket.on('tickerInterval', tickerData => {
+  //     const liveTickers = {};
+  //     // console.log('11111', tickerData);
+  //     console.log('names0000', tickerNames);
+  //     tickerNames.map(names => {
+  //       console.log('names111111', names);
+  //       // tickerData.map(ticker => {
+  //       //   if (ticker[names] !== undefined && !liveTickers[ticker[names][0].name]) {
+  //       //     liveTickers[ticker[names][0].name] = ticker[names];
+  //       //     console.log('11111', liveTickers);
+  //       //   };
+  //       // });
+  //     });
+  //     // setAllChatroomTickers(liveTickers);
+  //   });
+  //   return () => {
+  //     socket.off('ticker');
+  //   };
+  // }, [liveChatroomKey]);
 
   const displayTickersTab = tickerNames.map(names => {
-    console.log('names', names);
+    // console.log('names2222222', names);
     // console.log('ticker', chatroomTickers);
     const tickerData = chatroomTickers[names];
     // console.log('tickerData', tickerData);

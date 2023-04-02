@@ -78,11 +78,13 @@ io.on("connection", (socket) => {
   });
 
   // setInterval(() => {
-  //   tickerController.insertTickerByTimeSetInterval()
-  //   .then(data => {
-  //     io.emit('tickerInterval', data);
+  //   const callTicker = () => {
+  //     const res = await tickerController.insertTickerByTimeSetInterval();
+  //     return res;
+  //   }
+  //   console.log( tickerController.insertTickerByTimeSetInterval());
+  //     // io.emit('tickerInterval', data);
   //     // console.log(data[0]);
-  //   });
   // }, 4000);
 
   socket.on('logout', () => {
@@ -101,7 +103,6 @@ io.on("connection", (socket) => {
 
 });
 /* --------------------------------- */
-
 
 /* ------ Auth Routes ------ */
 app.use("/register", registerRoutes);
