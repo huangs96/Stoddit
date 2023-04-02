@@ -56,7 +56,7 @@ function TickersIndex({liveChatroomKey}) {
         });
       };
     });
-    console.log('22222', liveTickerUpdateObj)
+    setAllChatroomTickers(liveTickerUpdateObj);
   }, [intervalTickers])
 
 
