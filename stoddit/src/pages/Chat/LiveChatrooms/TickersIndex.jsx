@@ -7,7 +7,6 @@ import TickerTabs from './TickerComponents/TickerTabs';
 function TickersIndex({liveChatroomKey}) {
   const [chatroomTickers, setAllChatroomTickers] = useState([]);
   const [intervalTickers, setIntervalTickers] = useState([]);
-  // const [allTickers, setAllTickers] = useState([]);
   const socket = useContext(SocketContext);
   // const liveTickers = {};
   const [tickerNames, setTickerNames] = useState([]);
@@ -41,6 +40,20 @@ function TickersIndex({liveChatroomKey}) {
       socket.off('ticker');
     };
   }, []);
+
+  useEffect(() => {
+    const liveTickerUpdateObj = {};
+    intervalTickers.map(iTicker => {
+      console.log('itick', Object.values(iTicker));
+      // console.log('itick2', chatroomTickers);
+      // if (iTicker[0].chatroom_id === liveChatroomKey) {
+      //   console.log(
+      //     'live', iTicker
+      //   );
+      // };
+    });
+  }, [intervalTickers])
+
 
   const displayTickersTab = tickerNames.map(names => {
     // console.log('names2222222', names);

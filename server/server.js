@@ -81,7 +81,7 @@ io.on("connection", (socket) => {
   //   tickerController.insertTickerByTimeSetInterval().then(
   //     data => {
   //       io.emit('tickerInterval', data);
-  //       console.log(data);
+  //       console.log(data[0]);
   //     }
   //   );
   // }, 4000);
