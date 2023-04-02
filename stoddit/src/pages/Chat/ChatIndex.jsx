@@ -63,6 +63,7 @@ function ChatIndex() {
   const [liveChatroomReset, setLiveChatroomReset] = useState(false);
   const [liveChatroomMessageReset, setLiveChatroomMessageReset] = useState(false);
   const [liveChatroomMessages, setLiveChatroomMessages] = useState([]);
+  const [liveTickerReset, setLiveTickerReset] = useState(true);
   const [participantsInLiveChatroom, setParticipantsInLiveChatroom] = useState([]);
   const [onlineParticipantInLiveChatroom, setOnlineParticipantInLiveChatroom] = useState([]);
   const [userHasJoinedLiveChatroom, setUserHasJoinedLiveChatroom] = useState(false);
@@ -398,6 +399,7 @@ function ChatIndex() {
     await joinLiveChatroom(joinData);
     setLiveChatroomReset(boolean => !boolean);
     setLiveChatroomMessageReset(boolean => !boolean);
+    setLiveTickerReset(true);
   };
 
   const leaveLiveChatroomFunction = async (userID, chatroomID) => {
@@ -408,6 +410,7 @@ function ChatIndex() {
     await leaveLiveChatroom(leaveData);
     setLiveChatroomReset(boolean => !boolean);
     setLiveChatroomMessages([]);
+    setLiveTickerReset(false);
   };
 
   useEffect(() => {
@@ -804,7 +807,10 @@ function ChatIndex() {
                     </TextField>
                   </div>
                   <h4>Tickers</h4>
-                  <TickersIndex liveChatroomKey={chatroomKey}/>
+                  <TickersIndex 
+                    liveChatroomKey={chatroomKey}
+                    liveTickerReset={liveTickerReset}
+                  />
                 </>
               }
           </div>

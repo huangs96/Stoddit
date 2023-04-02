@@ -4,14 +4,11 @@ import { SocketContext } from '../../../contexts/socketProvider';
 import TickerCharts from './TickerComponents/TickerCharts';
 import TickerTabs from './TickerComponents/TickerTabs';
 
-function TickersIndex({liveChatroomKey}) {
+function TickersIndex({liveChatroomKey, liveTickerReset}) {
   const [chatroomTickers, setAllChatroomTickers] = useState([]);
   const [intervalTickers, setIntervalTickers] = useState([]);
-  const socket = useContext(SocketContext);
-  // const liveTickers = {};
   const [tickerNames, setTickerNames] = useState([]);
-
-  
+  const socket = useContext(SocketContext);
   
   useEffect(() => {
     let isLoaded = true;
@@ -57,30 +54,21 @@ function TickersIndex({liveChatroomKey}) {
       };
     });
     setAllChatroomTickers(liveTickerUpdateObj);
-  }, [intervalTickers])
-
+  }, [intervalTickers]);
 
   const displayTickersTab = tickerNames.map(names => {
-    // console.log('names2222222', names);
-    // console.log('ticker', chatroomTickers);
     const tickerData = chatroomTickers[names];
-    // console.log('tickerData', tickerData);
-    if (tickerData.length >= 2) {
-      // console.log('tickerData more than', tickerData[0]);
+    if (tickerData) {
       return (
       <TickerTabs ticker={tickerData[0]} />
-      );
-    } else {
-      console.log('tickerData less than', tickerData)
-      return (
-        <TickerTabs ticker={tickerData} />
       );
     };
   });
 
   return (
     <div className='tickersContainer'>
-      {displayTickersTab}
+      {liveTickerReset &&
+      displayTickersTab}
     </div>
   )
 }
