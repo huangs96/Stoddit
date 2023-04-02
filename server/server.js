@@ -78,13 +78,12 @@ io.on("connection", (socket) => {
   });
 
   // setInterval(() => {
-  //   const callTicker = () => {
-  //     const res = await tickerController.insertTickerByTimeSetInterval();
-  //     return res;
-  //   }
-  //   console.log( tickerController.insertTickerByTimeSetInterval());
-  //     // io.emit('tickerInterval', data);
-  //     // console.log(data[0]);
+  //   tickerController.insertTickerByTimeSetInterval().then(
+  //     data => {
+  //       io.emit('tickerInterval', data);
+  //       console.log(data);
+  //     }
+  //   );
   // }, 4000);
 
   socket.on('logout', () => {

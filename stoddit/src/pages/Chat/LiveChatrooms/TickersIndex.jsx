@@ -28,10 +28,10 @@ function TickersIndex({liveChatroomKey}) {
     };
     socket.on('tickerInterval', tickerData => {
       const liveTickers = {};
-      // console.log('11111', tickerData);
-      // console.log('names0000', tickerNames);
+      console.log('11111', tickerData);
+      console.log('names0000', tickerNames);
       tickerNames.map(names => {
-        console.log('names111111', names);
+        // console.log('names111111', names);
         // tickerData.map(ticker => {
         //   if (ticker[names] !== undefined && !liveTickers[ticker[names][0].name]) {
         //     liveTickers[ticker[names][0].name] = ticker[names];

@@ -14,14 +14,12 @@ const getTickers = (async (req, res) => {
   };
 });
 
-const getTickersByChatroomID = (async (req, res) => {
+const getTickersByChatroomID = (io) => (async (req, res) => {
   const chatroom_id = parseInt(req.params.id);
   try {
     const allTickers = await client.query(queries.getTickersByChatroomID, [chatroom_id]);
     // console.log('allTickersrows', allTickers.rows);
     const calculatedTickerData = tickerLogic.tickerChange(allTickers.rows);
-    console.log('calc', calculatedTickerData);
-    // console.log('io', io);
     if (allTickers) {
       res.status(200).json(calculatedTickerData);
     };
@@ -51,11 +49,10 @@ const insertTickerData = (async (req, res) => {
 });
 
 //!!!! This controller is created to automate the ticker generation to demonstrate real-time ticker data - irrelevant with realtime API data
-const insertTickerByTimeSetInterval = (io) => (async () => {
+const insertTickerByTimeSetInterval = (async () => {
     const randomGeneratedTickerData = [];
     const tickerData = await client.query(queries.getAllTickers);
     const recentTicker = {};
-    console.log('io', io);
     // console.log('tickerData', tickerData);
     for (let ticker=0; ticker<tickerData.rows.length; ticker++) {
       const individualTicker = tickerData.rows[ticker];
@@ -78,13 +75,13 @@ const insertTickerByTimeSetInterval = (io) => (async () => {
     randomGeneratedTickerData.push(calculatedTicker);
   };
   // console.log('rando', randomGeneratedTickerData);
-  // return randomGeneratedTickerData;
+  return randomGeneratedTickerData;
 });
 
-setInterval(() => {
-  insertTickerByTimeSetInterval();
-}, 3000);
-
+insertTickerByTimeSetInterval()
+.then(data => {
+  console.log('data', data);
+});
 
 module.exports = {
   //Get
