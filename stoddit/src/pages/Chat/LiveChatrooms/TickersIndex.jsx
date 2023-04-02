@@ -36,6 +36,7 @@ function TickersIndex({liveChatroomKey}) {
         tickerData.map(ticker => {
           if (ticker[names] !== undefined) {
             setAllChatroomTickers(ticker[names]);
+            console.log('11111', chatroomTickers);
           };
         });
       });
@@ -47,6 +48,7 @@ function TickersIndex({liveChatroomKey}) {
 
   const displayTickersTab = tickerNames.map(names => {
     const tickerData = chatroomTickers[names];
+    console.log('2222', tickerData);
     return (
       <TickerTabs ticker={tickerData[0]}/>
     );
