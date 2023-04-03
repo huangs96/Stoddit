@@ -1,14 +1,23 @@
 import React, {useState} from 'react';
 import './TickerTabs.css';
+import TickerModal from './TickerModal';
 import chevronDown from '../../../../images/chevron-down.svg'
 import chevronUp from '../../../../images/chevron-up.svg';
 
 function TickerTabs({ticker}) {
   const [tickerChange, setTickerChange] = useState('positive');
-
+  const [value, setValue] = useState(0);
+  const [open, setOpen] = useState(false);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   // console.log('ticker tickerTabs', ticker);
-
-
   
   const arrowDisplay = (
     <img
@@ -29,7 +38,10 @@ function TickerTabs({ticker}) {
   const displayTickerTab = 
     (
       <>
-      <div className="tickerContainer">
+      <div 
+        className="tickerContainer"
+        onClick={handleOpen}
+      >
         <div className="tickerList">
           <div className="tickerNameSymbolContainer">
           <div className="tickerSymbol">{ticker.symbol}</div>
@@ -44,6 +56,10 @@ function TickerTabs({ticker}) {
         </div>
         </div>
       </div>
+      <TickerModal 
+        onClose={handleClose}
+        open={open}
+      />
     </>
   )
 

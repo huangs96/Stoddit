@@ -8,6 +8,17 @@ function TickersIndex({liveChatroomKey, liveTickerReset}) {
   const [chatroomTickers, setAllChatroomTickers] = useState([]);
   const [intervalTickers, setIntervalTickers] = useState([]);
   const [tickerNames, setTickerNames] = useState([]);
+  const [value, setValue] = useState(0);
+  const [open, setOpen] = useState(false);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   const socket = useContext(SocketContext);
   
   useEffect(() => {
