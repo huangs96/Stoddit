@@ -37,12 +37,12 @@ function TickerModal({onClose, open, ticker}) {
   const style = {
     display: 'flex',
     flexDirection: 'column',
+    alignItems:'center',
     justifyContent: 'space-between',
     width: 400,
     bgcolor: 'background.paper',
-    // border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
+    p: 10,
   };
 
   const arrowDisplay = (
