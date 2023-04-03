@@ -4,7 +4,7 @@ const queries = require('../queries/ticker.queries');
 const tickerDataRandomizer = (tickerData) => {
   // console.log('ticker data in randomizer', tickerData);
   const randomNumber = Math.random().toFixed(2);
-  const randomNumber10th = Math.floor(Math.random() * 10);
+  const randomNumber10th = Math.floor(Math.random() * 100);
   const randomNumber100th = Math.floor(Math.random() * 100);
   const priceChangeRandomizer = Math.random() < 0.5;
   const newTickerIntervalData = Object.create(Object.getPrototypeOf(tickerData), Object.getOwnPropertyDescriptors(tickerData));

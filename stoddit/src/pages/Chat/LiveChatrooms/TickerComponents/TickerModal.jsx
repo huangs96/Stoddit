@@ -17,6 +17,7 @@ import chevronUp from '../../../../images/chevron-up.svg';
 function TickerModal({onClose, open, ticker}) {
   const [realtime, setRealTime] = useState(null);
   const [timeDataArray, setTimeDataArray] = useState([]);
+  const [priceDataArray, setPriceDataArray] = useState([]);
   const socket = useContext(SocketContext);
 
   useEffect(() => {
@@ -39,7 +40,19 @@ function TickerModal({onClose, open, ticker}) {
     };
   }, [realtime]);
 
+  useEffect(() => {
+    if (priceDataArray.length < 6) {
+      console.log('here', priceDataArray.length);
+      setPriceDataArray(prices => [...prices, ticker.current_price]);
+    } else {
+      console.log('here2', priceDataArray.length);
+      priceDataArray.shift();
+      setPriceDataArray(prices => [...prices, ticker.current_price]);
+    };
+  }, [ticker]);
+
   console.log('time1', timeDataArray);
+  console.log('price1', priceDataArray);
 
   const style = {
     display: 'flex',
@@ -84,13 +97,17 @@ function TickerModal({onClose, open, ticker}) {
           <div className={ticker.changePercentage < 0 ?"modalChangePercentageN" : "modalChangePercentageP"}>{ticker.changePercentage}%
           {arrowDisplay}
           </div>
-          <div className={ticker.changePercentage < 0 ?"currentCPriceN" : "currentCPriceP"}>{ticker.current_price}</div>
+          <div className={ticker.changePercentage < 0 ?"currentCPriceN" : "currentCPriceP"}>Current Price: {ticker.current_price}</div>
+          <div className="modalTickerlPrice">Low Price: {ticker.low_price}</div>
+          <div className="modalTickerhPrice">High Price: {ticker.high_price}</div>
+          <div className={ticker.recommendation === "BUY" ? "modalPRecommendation" : "modalNRecommendation"}>{ticker.recommendation}</div>
           <div className="modalTickerVolume">{ticker.volume}</div>
         </div>
         </div>
       <TickerCharts 
         ticker={ticker}
         timeData={timeDataArray}
+        priceData={priceDataArray}
       />
       </Box>
     </Dialog>

@@ -26,13 +26,13 @@ const roundedNumber = (price) => {
 };
 
 
-function TickerCharts({ticker, timeData}) {
+function TickerCharts({ticker, timeData, priceData}) {
   console.log('ticker chart', ticker);
   const data = {
     labels: timeData,
     datasets: [{
       // labels: 'Hello',
-      data: [500, 600, 700],
+      data: priceData,
     }]
   };
   
