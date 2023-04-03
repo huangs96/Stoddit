@@ -32,9 +32,10 @@ const getUsersById = async (req, res) => {
       const userDetails = userWithId.rows;
       if (userDetails.contact_img !== null) {
         const url = await awsS3.getImgUrl(userDetails.contact_img);
-        userDetails.imgUrl = url;
+        userDetails[0].imgUrl = url;
       };
-      return res.status(200).json(userWithId.rows);
+      console.log('userDetails', userDetails);
+      return res.status(200).json(userDetails);
     } else {
       return res.send('Unable to find user with given ID.');
     }
