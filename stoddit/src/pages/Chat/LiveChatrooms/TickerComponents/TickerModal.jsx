@@ -19,7 +19,7 @@ function TickerModal({onClose, open, ticker}) {
     justifyContent: 'space-between',
     width: 400,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    // border: '2px solid #000',
     boxShadow: 24,
     p: 4,
   };
@@ -29,7 +29,7 @@ function TickerModal({onClose, open, ticker}) {
     <Dialog onClose={onClose} open={open}>
       <Box sx={style} textAlign='center'>
       <DialogTitle variant="h4">
-        Ticker
+        {ticker.name}
       </DialogTitle>
       <TickerCharts 
         ticker={ticker}
