@@ -21,37 +21,30 @@ ChartJS.register(
   LineElement,
 );
 
-const data = {
-  labels: ['8:00am', '8:30am', '9:00am'],
-  datasets: [{
-    // labels: 'Hello',
-    data: [3, 6, 9],
-  }]
-};
-
-const options = {
-  plugins: {
-    legend: true
-  },
-  scales: {
-    y: {
-      min: 120,
-      max: 180
-    },
-  },
-};
 
 function TickerCharts({ticker}) {
+  console.log('ticker chart', ticker);
+  const data = {
+    labels: ['8:00am', '8:30am', '9:00am'],
+    datasets: [{
+      // labels: 'Hello',
+      data: [3, 6, 9],
+    }]
+  };
+  
+  const options = {
+    plugins: {
+      legend: true
+    },
+    scales: {
+      y: {
+        min: 120,
+        max: 180
+      },
+    },
+  };
+
   return (
-    // <div 
-    //   className="friendsOffline"
-    //   >
-    //   <div className="chatOfflineFriend">
-    //     <div className="friendOfflineImgContainer">
-    //     </div>
-    //     <span className="offlineFriendName">{ticker.name}</span>
-    //   </div>
-    // </div>
     <Line
       data={data}
       options={options}
