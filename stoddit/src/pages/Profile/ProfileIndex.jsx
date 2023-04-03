@@ -1,3 +1,4 @@
+import './ProfileIndex.css';
 import React, { useState, useEffect } from 'react'
 import { getUserByID } from '../../services/user.service';
 import { TextField, MenuItem, Typography, Grid, Button } from '@mui/material';
@@ -5,7 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ProfileCard from "../../components/ProfileCard";
 import SettingsCard from '../../components/SettingForms';
-import './ProfileIndex.css';
+import { imgExtract } from '../../contexts/userContext';
 
 // STYLE & THEME
 const theme = createTheme();
