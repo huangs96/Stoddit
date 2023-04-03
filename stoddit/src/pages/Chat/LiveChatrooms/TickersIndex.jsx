@@ -44,6 +44,9 @@ function TickersIndex({liveChatroomKey, liveTickerReset}) {
     socket.on('tickerInterval', tickerData => {
       setIntervalTickers(tickerData);
     });
+    socket.on('tickerTime', time => {
+      console.log('time', time);
+    });
     return () => {
       socket.off('ticker');
     };

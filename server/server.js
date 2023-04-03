@@ -58,6 +58,8 @@ const io = new Server(server, {
   }
 });
 /* ------ Socket Server ------ */
+const time = new Date();
+const realtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 let users = new LiveUserContainer;
 
 //Run when connected
@@ -81,6 +83,7 @@ io.on("connection", (socket) => {
   //   tickerController.insertTickerByTimeSetInterval().then(
   //     data => {
   //       io.emit('tickerInterval', data);
+          io.emit('tickerTime', realtime);
   //       console.log(data[0]);
   //     }
   //   );
