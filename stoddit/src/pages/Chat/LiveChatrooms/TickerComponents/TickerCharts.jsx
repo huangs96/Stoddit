@@ -21,9 +21,6 @@ ChartJS.register(
   LineElement,
 );
 
-const time = new Date();
-const realtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-
 const roundedNumber = (price) => {
   return Math.round(price/100)*100;
 };

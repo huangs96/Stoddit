@@ -15,6 +15,15 @@ import chevronUp from '../../../../images/chevron-up.svg';
 
 function TickerModal({onClose, open, ticker}) {
 
+  useEffect(() => {
+    socket.on('tickerTime', time => {
+      console.log('time', time);
+    });
+    return () => {
+      socket.off('ticker');
+    };
+  }, []);
+
   const style = {
     display: 'flex',
     flexDirection: 'column',
