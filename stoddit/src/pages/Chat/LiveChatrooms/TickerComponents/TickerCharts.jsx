@@ -29,7 +29,7 @@ const roundedNumber = (price) => {
 function TickerCharts({ticker}) {
   console.log('ticker chart', ticker);
   const data = {
-    labels: ['8:00am', '8:30am', realtime],
+    labels: ['8:00am', '8:30am'],
     datasets: [{
       // labels: 'Hello',
       data: [500, 600, 700],

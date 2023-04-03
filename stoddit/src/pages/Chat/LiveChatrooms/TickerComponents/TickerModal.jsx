@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import { SocketContext } from '../../../../contexts/socketProvider';
 import TickerCharts from './TickerCharts';
 import Box from '@mui/material/Box';
@@ -15,17 +15,24 @@ import chevronDown from '../../../../images/chevron-down.svg'
 import chevronUp from '../../../../images/chevron-up.svg';
 
 function TickerModal({onClose, open, ticker}) {
-  const [time, setTime] = useState(null);
+  const [time, setTime] = useState([]);
   const socket = useContext(SocketContext);
 
   useEffect(() => {
-    socket.on('tickerTime', time => {
-      console.log('time', time);
+    socket.on('tickerTime', newTime => {
+      if (time.length <= 3) {
+        setTime(times => [...times, newTime]);
+      } else {
+        time.splice(0, 1);
+        setTime(times => [...times, newTime]);
+      };
     });
     return () => {
       socket.off('ticker');
     };
   }, []);
+
+  console.log('time', time);
 
   const style = {
     display: 'flex',
