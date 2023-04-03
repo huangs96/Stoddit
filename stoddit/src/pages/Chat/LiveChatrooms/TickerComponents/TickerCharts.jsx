@@ -21,6 +21,10 @@ ChartJS.register(
   LineElement,
 );
 
+const time = new Date();
+const realtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+
+
 const roundedNumber = (price) => {
   return Math.round(price/100)*100;
 };
@@ -29,10 +33,10 @@ const roundedNumber = (price) => {
 function TickerCharts({ticker}) {
   console.log('ticker chart', ticker);
   const data = {
-    labels: ['8:00am', '8:30am', '9:00am'],
+    labels: ['8:00am', '8:30am', realtime],
     datasets: [{
       // labels: 'Hello',
-      data: [3, 6, 9],
+      data: [500, 600, 700],
     }]
   };
   
