@@ -21,6 +21,10 @@ ChartJS.register(
   LineElement,
 );
 
+const roundedNumber = (price) => {
+  return Math.round(price/100)*100;
+};
+
 
 function TickerCharts({ticker}) {
   console.log('ticker chart', ticker);
@@ -38,8 +42,8 @@ function TickerCharts({ticker}) {
     },
     scales: {
       y: {
-        min: 120,
-        max: 180
+        min: roundedNumber(ticker.low_price),
+        max: roundedNumber(ticker.high_price)
       },
     },
   };
