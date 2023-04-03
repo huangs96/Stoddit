@@ -11,12 +11,27 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 
 function TickerModal({onClose, open}) {
+
+  const style = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+
   return (
     <>
     <Dialog onClose={onClose} open={open}>
-
+      <Box sx={style} textAlign='center'>
+      <DialogTitle variant="h4">
+          Ticker
+        </DialogTitle>
+      </Box>
     </Dialog>
-    <div>TickerModal</div>
     </>
   )
 }
