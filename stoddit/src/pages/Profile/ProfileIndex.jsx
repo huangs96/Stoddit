@@ -15,6 +15,7 @@ function ProfileIndex() {
 
   const userID = JSON.parse(localStorage.getItem('UserID'));
   const [text, setText] = useState("");
+  const [imgData, setImgData] = useState([]);
   const [mainUser, setMainUser] = useState({});
   
   useEffect(() => {
@@ -23,6 +24,8 @@ function ProfileIndex() {
       const fetchUserSettingData = async () => {
         const data = await getUserByID(userID);
         console.log('data', data[0]);
+        const userImg = imgExtract(data);
+        console.log('userimg', userImg);
         const userData = data[0];
         setMainUser({
           // DEFAULT VALUES

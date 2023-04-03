@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import {format} from 'timeago.js';
 
 function Message({userID, messages}) {
-
+  console.log('messages', messages);
   return (
     <>
     <div>
