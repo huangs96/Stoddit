@@ -59,6 +59,7 @@ function TickerTabs({ticker}) {
       <TickerModal 
         onClose={handleClose}
         open={open}
+        ticker={ticker}
       />
     </>
   )

@@ -1,4 +1,5 @@
 import React from 'react';
+import TickerCharts from './TickerCharts';
 import Box from '@mui/material/Box';
 import { TextField, Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
@@ -10,7 +11,7 @@ import ListItemText from '@mui/material/ListItemText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 
-function TickerModal({onClose, open}) {
+function TickerModal({onClose, open, ticker}) {
 
   const style = {
     display: 'flex',
@@ -28,8 +29,11 @@ function TickerModal({onClose, open}) {
     <Dialog onClose={onClose} open={open}>
       <Box sx={style} textAlign='center'>
       <DialogTitle variant="h4">
-          Ticker
-        </DialogTitle>
+        Ticker
+      </DialogTitle>
+      <TickerCharts 
+        ticker={ticker}
+      />
       </Box>
     </Dialog>
     </>
