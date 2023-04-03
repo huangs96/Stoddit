@@ -52,10 +52,6 @@ function TickerModal({onClose, open, ticker}) {
     p: 10,
   };
 
-  const timeForChartData = timeDataArray.map(data => {
-    console.log('data', data);
-  });
-
   const arrowDisplay = (
     <img
       src={ticker.changePercentage < 0 ?
@@ -94,6 +90,7 @@ function TickerModal({onClose, open, ticker}) {
         </div>
       <TickerCharts 
         ticker={ticker}
+        timeData={timeDataArray}
       />
       </Box>
     </Dialog>
