@@ -84,7 +84,7 @@ io.on("connection", (socket) => {
   //     data => {
   //       io.emit('tickerInterval', data);
   //       io.emit('tickerTime', realtime);
-  //       console.log(data[0]);
+  //       // console.log(data[0]);
   //     }
   //   );
   // }, 4000);

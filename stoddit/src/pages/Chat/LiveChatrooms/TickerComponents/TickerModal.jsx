@@ -15,24 +15,31 @@ import chevronDown from '../../../../images/chevron-down.svg'
 import chevronUp from '../../../../images/chevron-up.svg';
 
 function TickerModal({onClose, open, ticker}) {
-  const [time, setTime] = useState([]);
+  const [realtime, setRealTime] = useState(null);
+  const [timeDataArray, setTimeDataArray] = useState([]);
   const socket = useContext(SocketContext);
 
   useEffect(() => {
     socket.on('tickerTime', newTime => {
-      if (time.length <= 3) {
-        setTime(times => [...times, newTime]);
-      } else {
-        time.splice(0, 1);
-        setTime(times => [...times, newTime]);
-      };
+      setRealTime(newTime);
     });
     return () => {
-      socket.off('ticker');
+      socket.off('tickerTime');
     };
   }, []);
 
-  console.log('time', time);
+  useEffect(() => {
+    if (timeDataArray.length < 6) {
+      console.log('here', timeDataArray.length);
+      setTimeDataArray(times => [...times, realtime]);
+    } else {
+      console.log('here2', timeDataArray.length);
+      timeDataArray.shift();
+      setTimeDataArray(times => [...times, realtime]);
+    };
+  }, [realtime]);
+
+  console.log('time1', timeDataArray);
 
   const style = {
     display: 'flex',
