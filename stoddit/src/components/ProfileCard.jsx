@@ -14,7 +14,7 @@ function ProfileCard(props) {
 
   const [image, setImage] = useState('');
   const [showSave, setShowSave] = useState(false);
-
+  console.log('props', props);
   // STYLES
   const styles = {
     details: {
@@ -109,7 +109,7 @@ function ProfileCard(props) {
           >
             <Avatar
               sx={{ width: 100, height: 100, mb: 1.5 }}
-              src="https://media.glamour.com/photos/5a425fd3b6bcee68da9f86f8/master/pass/best-face-oil.png"
+              src={props.userImg[props.sub]}
             ></Avatar>
           </Badge>
 

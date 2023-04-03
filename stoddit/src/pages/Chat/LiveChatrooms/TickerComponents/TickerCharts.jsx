@@ -52,7 +52,6 @@ function TickerCharts({ticker, timeData}) {
     <Line
       data={data}
       options={options}
-
     >
 
     </Line>

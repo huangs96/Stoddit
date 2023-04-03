@@ -78,20 +78,20 @@ io.on("connection", (socket) => {
     console.log(users);
   });
 
-  // setInterval(() => {
-  //   const time = new Date();
-  //   const realtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second:'numeric', hour12: true });
-  //   io.emit('tickerTime', realtime);
-  // }, 4000);
+  setInterval(() => {
+    const time = new Date();
+    const realtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second:'numeric', hour12: true });
+    io.emit('tickerTime', realtime);
+  }, 4000);
   
-  // setInterval(() => {
-  //   tickerController.insertTickerByTimeSetInterval().then(
-  //     data => {
-  //       io.emit('tickerInterval', data);
-  //       // console.log(data[0]);
-  //     }
-  //   );
-  // }, 4000);
+  setInterval(() => {
+    tickerController.insertTickerByTimeSetInterval().then(
+      data => {
+        io.emit('tickerInterval', data);
+        // console.log(data[0]);
+      }
+    );
+  }, 4000);
 
   socket.on('logout', () => {
     // console.log('logout1', socket);

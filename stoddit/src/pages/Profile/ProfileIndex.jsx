@@ -25,7 +25,7 @@ function ProfileIndex() {
         const data = await getUserByID(userID);
         console.log('data', data[0]);
         const userImg = imgExtract(data);
-        console.log('userimg', userImg);
+        setImgData(userImg);
         const userData = data[0];
         setMainUser({
           // DEFAULT VALUES
@@ -77,6 +77,7 @@ function ProfileIndex() {
                   dt1={mainUser.dt1}
                   dt2={mainUser.dt2}
                   dt3={mainUser.dt3}
+                  userImg={imgData}
                 >
                 </ProfileCard>
               </Grid>
