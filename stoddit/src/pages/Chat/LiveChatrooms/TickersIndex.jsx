@@ -53,8 +53,6 @@ function TickersIndex({liveChatroomKey, liveTickerReset}) {
     const liveTickerUpdateObj = {};
     intervalTickers.map(iTicker => {
       const iTickerValue = Object.values(iTicker)[0][0];
-      console.log('tickervalue', iTickerValue);
-      // console.log('itick2', chatroomTickers);
       if (iTickerValue.chatroom_id === liveChatroomKey) {
         tickerNames.map(names => {
           if (iTicker[names] !== undefined) {
