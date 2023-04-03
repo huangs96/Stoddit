@@ -10,6 +10,8 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
+import chevronDown from '../../../../images/chevron-down.svg'
+import chevronUp from '../../../../images/chevron-up.svg';
 
 function TickerModal({onClose, open, ticker}) {
 
@@ -24,6 +26,22 @@ function TickerModal({onClose, open, ticker}) {
     p: 4,
   };
 
+  const arrowDisplay = (
+    <img
+      src={ticker.changePercentage < 0 ?
+      chevronDown
+      :
+      chevronUp
+    }
+      alt={ticker.changePercentage < 0 ?
+      chevronDown
+      :
+      chevronUp
+    }
+    >
+    </img>
+  )
+
   return (
     <>
     <Dialog onClose={onClose} open={open}>
@@ -31,6 +49,19 @@ function TickerModal({onClose, open, ticker}) {
       <DialogTitle variant="h4">
         {ticker.name}
       </DialogTitle>
+      <div className="modalTickerList">
+          <div className="modalTickerNameSymbolContainer">
+          <div className="modalTickerSymbol">{ticker.symbol}</div>
+          <div className="modalTickerName">{ticker.name}</div>
+        </div>
+        <div className="modalPriceContainer">
+          <div className={ticker.changePercentage < 0 ?"modalChangePercentageN" : "modalChangePercentageP"}>{ticker.changePercentage}%
+          {arrowDisplay}
+          </div>
+          <div className={ticker.changePercentage < 0 ?"currentCPriceN" : "currentCPriceP"}>{ticker.current_price}</div>
+          <div className="modalTickerVolume">{ticker.volume}</div>
+        </div>
+        </div>
       <TickerCharts 
         ticker={ticker}
       />
