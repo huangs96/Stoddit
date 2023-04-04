@@ -17,7 +17,7 @@ function TickerTabs({ticker}) {
   const handleClose = () => {
     setOpen(false);
   };
-  // console.log('ticker tickerTabs', ticker);
+  console.log('ticker tickerTabs', ticker);
   
   const arrowDisplay = (
     <img

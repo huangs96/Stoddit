@@ -31,8 +31,6 @@ const randomNumber = Math.random().toFixed(2);
 const randomNumber10th = Math.floor(Math.random() * 10);
 const randomNumber100th = Math.floor(Math.random() * 100);
 
-
-
 function TickerCharts({ticker, timeData, priceData}) {
   console.log('ticker chart', ticker);
   const liveData = {
