@@ -24,6 +24,19 @@ ChartJS.register(
 const roundedNumber = (price) => {
   return Math.round(price/100)*100;
 };
+const priceRandommizer = (currentPrice) => {
+  const randomNumber = Math.random().toFixed(2);
+  const randomNumber10th = Math.floor(Math.random() * 10);
+  const randomNumber100th = Math.floor(Math.random() * 100);
+  const priceChangeRandomizer = Math.random() < 0.5;
+  const randomPriceArray = [];
+  if (currentPrice < 500 && currentPrice.length <= 6 && priceChangeRandomizer) {
+    const newPrice = currentPrice + randomNumber10th;
+    randomPriceArray.push(newPrice);
+  } else if (currentPrice < 500 && currentPrice.length > 6 && priceChangeRandomizer) {
+    const newPrice = currentPrice + randomNumber10th;
+  }
+}
 
 
 function TickerCharts({ticker, timeData, priceData}) {

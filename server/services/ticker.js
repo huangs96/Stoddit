@@ -4,13 +4,13 @@ const queries = require('../queries/ticker.queries');
 const tickerDataRandomizer = (tickerData) => {
   // console.log('ticker data in randomizer', tickerData);
   const randomNumber = Math.random().toFixed(2);
-  const randomNumber10th = Math.floor(Math.random() * 100);
+  const randomNumber10th = Math.floor(Math.random() * 10);
   const randomNumber100th = Math.floor(Math.random() * 100);
   const priceChangeRandomizer = Math.random() < 0.5;
   const newTickerIntervalData = Object.create(Object.getPrototypeOf(tickerData), Object.getOwnPropertyDescriptors(tickerData));
   // console.log('new Interval copy', newTickerIntervalData);
     if (priceChangeRandomizer) {
-      const newCurrentPrice = tickerData.current_price + randomNumber10th;
+      const newCurrentPrice = tickerData.current_price + randomNumber100th;
       const newVolume = tickerData.volume + randomNumber100th;
       newTickerIntervalData.current_price = newCurrentPrice;
       newTickerIntervalData.volume = newVolume;
