@@ -44,9 +44,11 @@ function TickerCharts({ticker, timeData, priceData}) {
   const staticData = {
     labels: ['8:30am', '9:00am', '9:30am', '10:00am', '10:30am', '11:00am'],
     datasets: [{
-      data: [ticker.current_price - randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price - randomNumber10th, ticker.current_price - randomNumber10th ,ticker.current_price]
+      data: [ticker.current_price - randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price - randomNumber10th, ticker.current_price - randomNumber10th ,ticker.current_price],
+      borderColor: 'blue',
+    backgroundColor: 'rgb(75, 192, 192)'
     }]
-  }
+  };
   
   const options = {
     plugins: {
@@ -65,7 +67,6 @@ function TickerCharts({ticker, timeData, priceData}) {
       data={!timeData.includes(null) ? liveData : staticData}
       options={options}
     >
-
     </Line>
   )
 }
