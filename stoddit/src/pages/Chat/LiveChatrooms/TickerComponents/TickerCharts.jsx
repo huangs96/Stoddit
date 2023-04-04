@@ -28,13 +28,20 @@ const roundedNumber = (price) => {
 
 function TickerCharts({ticker, timeData, priceData}) {
   console.log('ticker chart', ticker);
-  const data = {
+  const liveData = {
     labels: timeData,
     datasets: [{
       // labels: 'Hello',
       data: priceData,
     }]
   };
+
+  const staticData = {
+    labels: [],
+    datasets: [{
+      data: [ticker.currentPrice - 300, ticker.currentPrice + 50, ticker.currentPrice + 280, ticker.currentPrice - 132, ticker.currentPrice - 31 ,ticker.currentPrice]
+    }]
+  }
   
   const options = {
     plugins: {
@@ -50,7 +57,7 @@ function TickerCharts({ticker, timeData, priceData}) {
 
   return (
     <Line
-      data={data}
+      data={liveData}
       options={options}
     >
 

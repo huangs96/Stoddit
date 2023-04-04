@@ -86,3 +86,11 @@
 .tickerChangePositive {
   color: #26a69a;
 }
+
+.modalPRecommendation {
+  color: green;
+}
+
+.modalNRecommendation {
+  color: red;
+}

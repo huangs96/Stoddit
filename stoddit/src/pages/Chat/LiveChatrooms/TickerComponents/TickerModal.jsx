@@ -15,6 +15,7 @@ import chevronDown from '../../../../images/chevron-down.svg'
 import chevronUp from '../../../../images/chevron-up.svg';
 
 function TickerModal({onClose, open, ticker}) {
+  const [realtimeDataOn, setRealTimeDataOn] = useState(false);
   const [realtime, setRealTime] = useState(null);
   const [timeDataArray, setTimeDataArray] = useState([]);
   const [priceDataArray, setPriceDataArray] = useState([]);
@@ -97,7 +98,7 @@ function TickerModal({onClose, open, ticker}) {
           <div className={ticker.changePercentage < 0 ?"modalChangePercentageN" : "modalChangePercentageP"}>{ticker.changePercentage}%
           {arrowDisplay}
           </div>
-          <div className={ticker.changePercentage < 0 ?"currentCPriceN" : "currentCPriceP"}>Current Price: {ticker.current_price}</div>
+          <div className={ticker.changePercentage < 0 ? "currentCPriceN" : "currentCPriceP"}>Current Price: {ticker.current_price}</div>
           <div className="modalTickerlPrice">Low Price: {ticker.low_price}</div>
           <div className="modalTickerhPrice">High Price: {ticker.high_price}</div>
           <div className={ticker.recommendation === "BUY" ? "modalPRecommendation" : "modalNRecommendation"}>{ticker.recommendation}</div>
