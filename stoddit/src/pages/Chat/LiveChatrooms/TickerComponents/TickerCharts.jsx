@@ -65,8 +65,8 @@ function TickerCharts({ticker, timeData, priceData}) {
 
   return (
     <div style={{
-      width: '600px',
-      height: '700px'
+      // width: '600px',
+      // height: '700px'
     }}>
       <Line
         data={!timeData.includes(null) ? liveData : staticData}

@@ -59,7 +59,8 @@ function TickerModal({onClose, open, ticker}) {
     flexDirection: 'column',
     alignItems:'center',
     justifyContent: 'space-between',
-    width: 400,
+    width: 500,
+    height: 1000,
     bgcolor: 'background.paper',
     boxShadow: 24,
     p: 10,
@@ -83,11 +84,20 @@ function TickerModal({onClose, open, ticker}) {
 
   return (
     <>
-    <Dialog onClose={onClose} open={open}>
-      <Box sx={style} textAlign='center'>
+    <Dialog 
+      onClose={onClose} 
+      open={open}
+      PaperProps={{ sx: { width: "100%", height: "100%" } }}
+    >
       <DialogTitle variant="h4">
         {ticker.name}
       </DialogTitle>
+      <TickerCharts 
+        ticker={ticker}
+        timeData={timeDataArray}
+        priceData={priceDataArray}
+      />
+      <Box sx={style} textAlign='center'>
       <div className="modalTickerList">
           <div className="modalTickerNameSymbolContainer">
           <div className="modalTickerSymbol">{ticker.symbol}</div>
@@ -104,11 +114,6 @@ function TickerModal({onClose, open, ticker}) {
           <div className="modalTickerVolume">{ticker.volume}</div>
         </div>
         </div>
-      <TickerCharts 
-        ticker={ticker}
-        timeData={timeDataArray}
-        priceData={priceDataArray}
-      />
       </Box>
     </Dialog>
     </>
