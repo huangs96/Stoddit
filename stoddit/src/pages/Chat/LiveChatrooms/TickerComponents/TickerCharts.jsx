@@ -45,8 +45,9 @@ function TickerCharts({ticker, timeData, priceData}) {
     labels: ['8:30am', '9:00am', '9:30am', '10:00am', '10:30am', '11:00am'],
     datasets: [{
       data: [ticker.current_price - randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price - randomNumber10th, ticker.current_price - randomNumber10th ,ticker.current_price],
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      pointBorderColor: 'aqua',
+      borderColor: 'aqua',
+      backgroundColor: 'aqua',
     }]
   };
   
@@ -63,11 +64,16 @@ function TickerCharts({ticker, timeData, priceData}) {
   };
 
   return (
-    <Line
-      data={!timeData.includes(null) ? liveData : staticData}
-      options={options}
-    >
-    </Line>
+    <div style={{
+      width: '600px',
+      height: '700px'
+    }}>
+      <Line
+        data={!timeData.includes(null) ? liveData : staticData}
+        options={options}
+      >
+      </Line>
+    </div>
   )
 }
 
