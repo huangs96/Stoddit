@@ -25,6 +25,11 @@ const roundedNumber = (price) => {
   return Math.round(price/100)*100;
 };
 
+const randomNumber = Math.random().toFixed(2);
+const randomNumber10th = Math.floor(Math.random() * 10);
+const randomNumber100th = Math.floor(Math.random() * 100);
+
+
 
 function TickerCharts({ticker, timeData, priceData}) {
   console.log('ticker chart', ticker);
@@ -37,9 +42,9 @@ function TickerCharts({ticker, timeData, priceData}) {
   };
 
   const staticData = {
-    labels: [],
+    labels: ['8:30am', '9:00am', '9:30am', '10:00am', '10:30am', '11:00am'],
     datasets: [{
-      data: [ticker.currentPrice - 10, ticker.currentPrice + 10, ticker.currentPrice + 180, ticker.currentPrice - 132, ticker.currentPrice - 100, ticker.currentPrice]
+      data: [ticker.current_price - randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price - randomNumber10th, ticker.current_price - randomNumber10th ,ticker.current_price]
     }]
   }
   
