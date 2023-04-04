@@ -39,7 +39,7 @@ function TickerCharts({ticker, timeData, priceData}) {
   const staticData = {
     labels: [],
     datasets: [{
-      data: [ticker.currentPrice - 300, ticker.currentPrice + 50, ticker.currentPrice + 280, ticker.currentPrice - 132, ticker.currentPrice - 31 ,ticker.currentPrice]
+      data: [ticker.currentPrice - 100, ticker.currentPrice + 100, ticker.currentPrice + 180, ticker.currentPrice - 132, ticker.currentPrice - 100 ,ticker.currentPrice]
     }]
   }
   
@@ -57,7 +57,7 @@ function TickerCharts({ticker, timeData, priceData}) {
 
   return (
     <Line
-      data={liveData}
+      data={!timeData.includes(null) ? liveData : staticData}
       options={options}
     >
 

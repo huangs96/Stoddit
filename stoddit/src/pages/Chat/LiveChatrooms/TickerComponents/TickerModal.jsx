@@ -15,7 +15,6 @@ import chevronDown from '../../../../images/chevron-down.svg'
 import chevronUp from '../../../../images/chevron-up.svg';
 
 function TickerModal({onClose, open, ticker}) {
-  const [realtimeDataOn, setRealTimeDataOn] = useState(false);
   const [realtime, setRealTime] = useState(null);
   const [timeDataArray, setTimeDataArray] = useState([]);
   const [priceDataArray, setPriceDataArray] = useState([]);
