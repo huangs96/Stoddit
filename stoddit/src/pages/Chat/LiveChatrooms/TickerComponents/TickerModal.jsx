@@ -108,7 +108,7 @@ function TickerModal({onClose, open, ticker}) {
         timeData={timeDataArray}
         priceData={priceDataArray}
       />
-      <TableContainer>
+      {/* <TableContainer>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -129,15 +129,15 @@ function TickerModal({onClose, open, ticker}) {
               </TableRow>
           </TableBody>
         </Table>
-      </TableContainer>
-      <Box sx={{ width: '100%' }}>
-      <Stack spacing={2}>
-        <Item>
-          {displayDate}
-          {ticker.current_price}
-        </Item>
-        <Item>Item 2</Item>
-        <Item>Item 3</Item>
+      </TableContainer> */}
+      <Box sx={{ width: '100%', display: 'flex', flexDirection:'row', justifyContent:'space-between', padding: '10px' }}>
+      <Stack spacing={1} direction="row">
+        <Item>Date</Item>
+        <Item>{displayDate}</Item>
+      </Stack>
+      <Stack spacing={1} direction="row">
+        <Item>Current Price</Item>
+        <Item>{ticker.current_price}</Item>
       </Stack>
     </Box>
     </Dialog>
