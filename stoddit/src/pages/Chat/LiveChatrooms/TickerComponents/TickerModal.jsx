@@ -115,12 +115,13 @@ function TickerModal({onClose, open, ticker}) {
       />
       <Grid 
         container 
-        rowSpacing={3} 
+        rowSpacing={4} 
         columnSpacing={{ 
-          xs: 6, sm: 1, md: 5 
+          xs: 1, sm: 1, md: 6 
         }}
         style={{
-          padding: "15px"
+          padding: "15px",
+          justifyContent: "space-around"
         }}
       >
         <Grid item xs={5}>
