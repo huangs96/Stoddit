@@ -88,13 +88,16 @@ function TickerModal({onClose, open, ticker}) {
     >
       <DialogTitle variant="h4">
         {ticker.name}
+        <div>
+          {ticker.changePercentage}%
+        </div>
+        <h6 style={{
+          color: 'gray',
+          margin: '1px'
+        }}>
+          {ticker.symbol}
+        </h6>
       </DialogTitle>
-      <h6 style={{
-        color: 'gray',
-        marginLeft: '30px'
-      }}>
-        {ticker.symbol}
-      </h6>
       <TickerCharts 
         ticker={ticker}
         timeData={timeDataArray}
