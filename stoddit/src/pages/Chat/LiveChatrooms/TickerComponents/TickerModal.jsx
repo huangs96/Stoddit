@@ -132,7 +132,10 @@ function TickerModal({onClose, open, ticker}) {
       </TableContainer>
       <Box sx={{ width: '100%' }}>
       <Stack spacing={2}>
-        <Item>Item 1</Item>
+        <Item>
+          {displayDate}
+          {ticker.current_price}
+        </Item>
         <Item>Item 2</Item>
         <Item>Item 3</Item>
       </Stack>
