@@ -84,7 +84,12 @@ function TickerModal({onClose, open, ticker}) {
     <Dialog 
       onClose={onClose} 
       open={open}
-      PaperProps={{ sx: { width: "100%", height: "65%" } }}
+      PaperProps={{ 
+        sx: { 
+          width: "100%", 
+          height: "75%" 
+        } 
+      }}
     >
       <DialogTitle variant="h5">
         <h2 style={{
@@ -108,7 +113,7 @@ function TickerModal({onClose, open, ticker}) {
         timeData={timeDataArray}
         priceData={priceDataArray}
       />
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      <Grid container rowSpacing={3} columnSpacing={{ xs: 6, sm: 1, md: 5 }}>
         <Grid item xs={6}>
           <Item>Volume</Item>
           <Item>{ticker.volume}</Item>
@@ -125,7 +130,7 @@ function TickerModal({onClose, open, ticker}) {
           <Item>Date</Item>
           <Item>{displayDate}</Item>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={6}>
           <Item>Current Price</Item>
           <Item>{ticker.current_price}</Item>
         </Grid>
