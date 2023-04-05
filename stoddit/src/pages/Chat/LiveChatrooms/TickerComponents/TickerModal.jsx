@@ -4,6 +4,8 @@ import TickerCharts from './TickerCharts';
 import Box from '@mui/material/Box';
 import { TextField, Typography } from '@mui/material';
 import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import Table from "@mui/material/Table";
@@ -23,6 +25,14 @@ function TickerModal({onClose, open, ticker}) {
   const date = new Date();
   const displayDate = date.toLocaleDateString();
   const displayTimeDate = date.toLocaleTimeString();
+
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
 
   useEffect(() => {
     socket.on('tickerTime', newTime => {
@@ -120,7 +130,13 @@ function TickerModal({onClose, open, ticker}) {
           </TableBody>
         </Table>
       </TableContainer>
-      
+      <Box sx={{ width: '100%' }}>
+      <Stack spacing={2}>
+        <Item>Item 1</Item>
+        <Item>Item 2</Item>
+        <Item>Item 3</Item>
+      </Stack>
+    </Box>
     </Dialog>
     </>
   )
