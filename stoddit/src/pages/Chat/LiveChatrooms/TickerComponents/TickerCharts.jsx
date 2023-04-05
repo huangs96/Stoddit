@@ -21,6 +21,7 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
+  Tooltip,
   Filler
 );
 
@@ -49,7 +50,7 @@ function TickerCharts({ticker, timeData, priceData}) {
   const staticData = {
     labels: ['8:30am', '9:00am', '9:30am', '10:00am', '10:30am', '11:00am'],
     datasets: [{
-      label: 'Hi',
+      label: [],
       data: [ticker.current_price - randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price - randomNumber10th, ticker.current_price - randomNumber10th ,ticker.current_price],
       pointBorderColor: 'pink',
       pointBackgroundColor: 'pink',
@@ -67,7 +68,10 @@ function TickerCharts({ticker, timeData, priceData}) {
   
   const options = {
     plugins: {
-      legend: true
+      legend: true,
+      tooltip: {
+        enabled: true
+      }
     },
     scales: {
       y: {
