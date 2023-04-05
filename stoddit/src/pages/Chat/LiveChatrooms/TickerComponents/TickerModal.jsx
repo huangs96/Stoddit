@@ -89,6 +89,12 @@ function TickerModal({onClose, open, ticker}) {
       <DialogTitle variant="h4">
         {ticker.name}
       </DialogTitle>
+      <h6 style={{
+        color: 'gray',
+        marginLeft: '30px'
+      }}>
+        {ticker.symbol}
+      </h6>
       <TickerCharts 
         ticker={ticker}
         timeData={timeDataArray}
@@ -118,8 +124,8 @@ function TickerModal({onClose, open, ticker}) {
           <TableHead>
             <TableRow>
               <TableCell>S.No</TableCell>
-              <TableCell align="right">Item</TableCell>
-              <TableCell align="right">Quantity&nbsp;(kg)</TableCell>
+              <TableCell align="right">Days Range</TableCell>
+              <TableCell align="right">Volume</TableCell>
               <TableCell align="right">Price&nbsp;($)</TableCell>
             </TableRow>
           </TableHead>
