@@ -134,7 +134,8 @@ function TickerModal({onClose, open, ticker}) {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
-      height: '170px'
+      height: '170px',
+      width: '100%'
     }}>
       <Box sx={{ 
         width: '100%', 
@@ -142,15 +143,15 @@ function TickerModal({onClose, open, ticker}) {
         flexDirection:'row', 
         justifyContent:'space-evenly',
       }}>
-        <Grid spacing={1} direction="row">
+        <Grid item xs={6}>
           <Item>Date</Item>
           <Item>{displayDate}</Item>
         </Grid>
-        <Grid spacing={1} direction="row">
+        <Grid spacing={1}>
           <Item>Current Price</Item>
           <Item>{ticker.current_price}</Item>
         </Grid>
-        <Grid spacing={1} direction="row">
+        <Grid spacing={1}>
           <Item>Day Range</Item>
           <Item>{ticker.low_price} - {ticker.high_price}</Item>
         </Grid>
@@ -161,15 +162,15 @@ function TickerModal({onClose, open, ticker}) {
         flexDirection:'row', 
         justifyContent:'space-evenly',
       }}>
-        <Grid spacing={1} direction="row">
+        <Grid spacing={1}>
           <Item>Volume</Item>
           <Item>{ticker.volume}</Item>
         </Grid>
-        <Grid spacing={1} direction="row">
+        <Grid spacing={1}>
           <Item>Recommendation</Item>
           <Item>{ticker.recommendation}</Item>
         </Grid>
-        <Grid spacing={1} direction="row">
+        <Grid spacing={1}>
           <Item>Current Price</Item>
           <Item>{ticker.current_price}</Item>
         </Grid>
