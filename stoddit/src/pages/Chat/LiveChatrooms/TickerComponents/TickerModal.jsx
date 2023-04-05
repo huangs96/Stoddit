@@ -130,23 +130,58 @@ function TickerModal({onClose, open, ticker}) {
           </TableBody>
         </Table>
       </TableContainer> */}
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      height: '170px'
+    }}>
       <Box sx={{ 
         width: '100%', 
         display: 'flex', 
         flexDirection:'row', 
-        justifyContent:'space-between',
-        paddingLeft: '20px',
-        paddingRight: '20px'
+        justifyContent:'space-evenly',
       }}>
-      <Stack spacing={1} direction="row">
-        <Item>Date</Item>
-        <Item>{displayDate}</Item>
-      </Stack>
-      <Stack spacing={1} direction="row">
-        <Item>Current Price</Item>
-        <Item>{ticker.current_price}</Item>
-      </Stack>
-    </Box>
+        <Stack spacing={1} direction="row">
+          <Item>Date</Item>
+          <Item>{displayDate}</Item>
+        </Stack>
+        <Stack spacing={1} direction="row">
+          <Item>Current Price</Item>
+          <Item>{ticker.current_price}</Item>
+        </Stack>
+      </Box>
+      <Box sx={{ 
+        width: '100%', 
+        display: 'flex', 
+        flexDirection:'row', 
+        justifyContent:'space-evenly',
+      }}>
+        <Stack spacing={1} direction="row">
+          <Item>Day Range</Item>
+          <Item>{ticker.low_price} - {ticker.high_price}</Item>
+        </Stack>
+        <Stack spacing={1} direction="row">
+          <Item>Current Price</Item>
+          <Item>{ticker.current_price}</Item>
+        </Stack>
+      </Box>
+      <Box sx={{ 
+        width: '100%', 
+        display: 'flex', 
+        flexDirection:'row', 
+        justifyContent:'space-evenly',
+      }}>
+        <Stack spacing={1} direction="row">
+          <Item>Date</Item>
+          <Item>{displayDate}</Item>
+        </Stack>
+        <Stack spacing={1} direction="row">
+          <Item>Current Price</Item>
+          <Item>{ticker.current_price}</Item>
+        </Stack>
+      </Box>
+    </div>
     </Dialog>
     </>
   )
