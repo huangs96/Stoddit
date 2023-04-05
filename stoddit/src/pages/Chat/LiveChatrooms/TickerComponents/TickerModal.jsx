@@ -130,38 +130,7 @@ function TickerModal({onClose, open, ticker}) {
           </TableBody>
         </Table>
       </TableContainer> */}
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      height: '170px',
-      width: '100%'
-    }}>
-      <Box sx={{ 
-        width: '100%', 
-        display: 'flex', 
-        flexDirection:'row', 
-        justifyContent:'space-evenly',
-      }}>
-        <Grid item xs={6}>
-          <Item>Date</Item>
-          <Item>{displayDate}</Item>
-        </Grid>
-        <Grid item xs={12}>
-          <Item>Current Price</Item>
-          <Item>{ticker.current_price}</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>Day Range</Item>
-          <Item>{ticker.low_price} - {ticker.high_price}</Item>
-        </Grid>
-      </Box>
-      <Box sx={{ 
-        width: '100%', 
-        display: 'flex', 
-        flexDirection:'row', 
-        justifyContent:'space-evenly',
-      }}>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid item xs={6}>
           <Item>Volume</Item>
           <Item>{ticker.volume}</Item>
@@ -174,8 +143,19 @@ function TickerModal({onClose, open, ticker}) {
           <Item>Current Price</Item>
           <Item>{ticker.current_price}</Item>
         </Grid>
-      </Box>
-    </div>
+        <Grid item xs={6}>
+          <Item>Date</Item>
+          <Item>{displayDate}</Item>
+        </Grid>
+        <Grid item xs={12}>
+          <Item>Current Price</Item>
+          <Item>{ticker.current_price}</Item>
+        </Grid>
+        <Grid item xs={6}>
+          <Item>Day Range</Item>
+          <Item>{ticker.low_price} - {ticker.high_price}</Item>
+        </Grid>
+      </Grid>
     </Dialog>
     </>
   )
