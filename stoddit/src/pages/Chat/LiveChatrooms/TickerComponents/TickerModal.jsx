@@ -131,13 +131,14 @@ function TickerModal({onClose, open, ticker}) {
               <TableCell align="right">Days Range</TableCell>
               <TableCell align="right">Volume</TableCell>
               <TableCell align="right">Price&nbsp;($)</TableCell>
+              <TableCell align="right">Recommendation</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
               <TableRow>
                 <TableCell component="th" scope="row">
                 </TableCell>
-                <TableCell align="right">{ticker.current_price}</TableCell>
+                <TableCell align="right">{ticker.low_price} - {ticker.high_price}</TableCell>
                 <TableCell align="right">{ticker.current_price}</TableCell>
                 <TableCell align="right">{ticker.current_price}</TableCell>
               </TableRow>
