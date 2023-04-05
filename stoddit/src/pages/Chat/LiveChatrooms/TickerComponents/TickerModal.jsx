@@ -86,17 +86,19 @@ function TickerModal({onClose, open, ticker}) {
       open={open}
       PaperProps={{ sx: { width: "100%", height: "100%" } }}
     >
-      <DialogTitle variant="h4">
-        {ticker.name}
-        <div>
-          {ticker.changePercentage}%
-        </div>
+      <DialogTitle variant="h5">
+        <h2>
+          {ticker.name}
+        </h2>
         <h6 style={{
           color: 'gray',
           margin: '1px'
         }}>
           {ticker.symbol}
         </h6>
+        <div className={ticker.changePercentage < 0 ?"modalChangePercentageN" : "modalChangePercentageP"}>{ticker.changePercentage}%
+        {arrowDisplay}
+        </div>
       </DialogTitle>
       <TickerCharts 
         ticker={ticker}
@@ -110,9 +112,6 @@ function TickerModal({onClose, open, ticker}) {
           <div className="modalTickerName">{ticker.name}</div>
         </div>
         <div className="modalPriceContainer">
-          <div className={ticker.changePercentage < 0 ?"modalChangePercentageN" : "modalChangePercentageP"}>{ticker.changePercentage}%
-          {arrowDisplay}
-          </div>
           <div className={ticker.changePercentage < 0 ? "currentCPriceN" : "currentCPriceP"}>Current Price: {ticker.current_price}</div>
           <div className="modalTickerlPrice">Low Price: {ticker.low_price}</div>
           <div className="modalTickerhPrice">High Price: {ticker.high_price}</div>
