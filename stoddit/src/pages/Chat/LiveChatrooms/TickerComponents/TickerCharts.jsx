@@ -52,6 +52,9 @@ function TickerCharts({ticker, timeData, priceData}) {
       label: 'Hi',
       data: [ticker.current_price - randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price - randomNumber10th, ticker.current_price - randomNumber10th ,ticker.current_price],
       pointBorderColor: 'pink',
+      pointBackgroundColor: 'pink',
+      pointHoverBackgorundColor: 'pink',
+      pointHoverBorderColor: 'pink',
       borderColor: 'pink',
       backgroundColor: '#84ACCE',
       fill: 'start'
