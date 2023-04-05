@@ -3,6 +3,7 @@ import { SocketContext } from '../../../../contexts/socketProvider';
 import TickerCharts from './TickerCharts';
 import Box from '@mui/material/Box';
 import { TextField, Typography } from '@mui/material';
+import Stack from '@mui/material/Stack';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import Table from "@mui/material/Table";
@@ -57,15 +58,6 @@ function TickerModal({onClose, open, ticker}) {
   console.log('time1', timeDataArray);
   console.log('price1', priceDataArray);
 
-  const style = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems:'center',
-    justifyContent: 'space-between',
-    bgcolor: 'background.paper',
-    p: 10,
-  };
-
   const arrowDisplay = (
     <img
       src={ticker.changePercentage < 0 ?
@@ -82,7 +74,7 @@ function TickerModal({onClose, open, ticker}) {
     <Dialog 
       onClose={onClose} 
       open={open}
-      PaperProps={{ sx: { width: "100%", height: "60%" } }}
+      PaperProps={{ sx: { width: "100%", height: "65%" } }}
     >
       <DialogTitle variant="h5">
         <h2 style={{
@@ -125,16 +117,10 @@ function TickerModal({onClose, open, ticker}) {
                 <TableCell align="right">{ticker.current_price}</TableCell>
                 <TableCell align="right">{ticker.recommendation}</TableCell>
               </TableRow>
-              <TableRow>
-                <TableCell align="right">{displayDate}</TableCell>
-                <TableCell align="right">{ticker.low_price} - {ticker.high_price}</TableCell>
-                <TableCell align="right">{ticker.volume}</TableCell>
-                <TableCell align="right">{ticker.current_price}</TableCell>
-                <TableCell align="right">{ticker.recommendation}</TableCell>
-              </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
+      
     </Dialog>
     </>
   )
