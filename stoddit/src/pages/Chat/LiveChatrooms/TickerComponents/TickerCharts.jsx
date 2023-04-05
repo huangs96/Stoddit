@@ -57,7 +57,11 @@ function TickerCharts({ticker, timeData, priceData}) {
       pointHoverBorderColor: 'pink',
       borderColor: 'pink',
       backgroundColor: '#84ACCE',
-      fill: 'start'
+      fill: 'start',
+      hover: {
+        mode: 'nearest',
+        intersect: true
+      },
     }]
   };
   
