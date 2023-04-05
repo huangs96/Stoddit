@@ -12,6 +12,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import config from './chartConfig';
+import { style } from '@mui/system';
 
 //modal needed
 
@@ -45,9 +46,9 @@ function TickerCharts({ticker, timeData, priceData}) {
     labels: ['8:30am', '9:00am', '9:30am', '10:00am', '10:30am', '11:00am'],
     datasets: [{
       data: [ticker.current_price - randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price - randomNumber10th, ticker.current_price - randomNumber10th ,ticker.current_price],
-      pointBorderColor: 'aqua',
+      pointBorderColor: 'blue',
       borderColor: 'aqua',
-      backgroundColor: 'aqua',
+      backgroundColor: 'white',
     }]
   };
   
@@ -65,8 +66,8 @@ function TickerCharts({ticker, timeData, priceData}) {
 
   return (
     <div style={{
-      // width: '600px',
-      // height: '700px'
+      margin: '30px',
+      border: '3px'
     }}>
       <Line
         data={!timeData.includes(null) ? liveData : staticData}

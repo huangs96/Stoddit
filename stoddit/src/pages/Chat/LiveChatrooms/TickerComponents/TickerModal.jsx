@@ -3,14 +3,14 @@ import { SocketContext } from '../../../../contexts/socketProvider';
 import TickerCharts from './TickerCharts';
 import Box from '@mui/material/Box';
 import { TextField, Typography } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 import chevronDown from '../../../../images/chevron-down.svg'
 import chevronUp from '../../../../images/chevron-up.svg';
 
@@ -59,10 +59,7 @@ function TickerModal({onClose, open, ticker}) {
     flexDirection: 'column',
     alignItems:'center',
     justifyContent: 'space-between',
-    width: 500,
-    height: 1000,
     bgcolor: 'background.paper',
-    boxShadow: 24,
     p: 10,
   };
 
@@ -115,6 +112,28 @@ function TickerModal({onClose, open, ticker}) {
         </div>
         </div>
       </Box>
+
+      <TableContainer>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>S.No</TableCell>
+              <TableCell align="right">Item</TableCell>
+              <TableCell align="right">Quantity&nbsp;(kg)</TableCell>
+              <TableCell align="right">Price&nbsp;($)</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+              <TableRow>
+                <TableCell component="th" scope="row">
+                </TableCell>
+                <TableCell align="right">{ticker.current_price}</TableCell>
+                <TableCell align="right">{ticker.current_price}</TableCell>
+                <TableCell align="right">{ticker.current_price}</TableCell>
+              </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Dialog>
     </>
   )
