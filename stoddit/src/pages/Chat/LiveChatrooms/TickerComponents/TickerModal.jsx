@@ -73,21 +73,16 @@ function TickerModal({onClose, open, ticker}) {
       :
       chevronUp
     }
-      alt={ticker.changePercentage < 0 ?
-      chevronDown
-      :
-      chevronUp
-    }
     >
     </img>
-  )
+  );
 
   return (
     <>
     <Dialog 
       onClose={onClose} 
       open={open}
-      PaperProps={{ sx: { width: "100%", height: "100%" } }}
+      PaperProps={{ sx: { width: "100%", height: "60%" } }}
     >
       <DialogTitle variant="h5">
         <h2 style={{
@@ -111,22 +106,6 @@ function TickerModal({onClose, open, ticker}) {
         timeData={timeDataArray}
         priceData={priceDataArray}
       />
-      <Box sx={style} textAlign='center'>
-      <div className="modalTickerList">
-          <div className="modalTickerNameSymbolContainer">
-          <div className="modalTickerSymbol">{ticker.symbol}</div>
-          <div className="modalTickerName">{ticker.name}</div>
-        </div>
-        <div className="modalPriceContainer">
-          <div className={ticker.changePercentage < 0 ? "currentCPriceN" : "currentCPriceP"}>Current Price: {ticker.current_price}</div>
-          <div className="modalTickerlPrice">Low Price: {ticker.low_price}</div>
-          <div className="modalTickerhPrice">High Price: {ticker.high_price}</div>
-          <div className={ticker.recommendation === "BUY" ? "modalPRecommendation" : "modalNRecommendation"}>{ticker.recommendation}</div>
-          <div className="modalTickerVolume">{ticker.volume}</div>
-        </div>
-        </div>
-      </Box>
-
       <TableContainer>
         <Table aria-label="simple table">
           <TableHead>
@@ -139,6 +118,13 @@ function TickerModal({onClose, open, ticker}) {
             </TableRow>
           </TableHead>
           <TableBody>
+              <TableRow>
+                <TableCell align="right">{displayDate}</TableCell>
+                <TableCell align="right">{ticker.low_price} - {ticker.high_price}</TableCell>
+                <TableCell align="right">{ticker.volume}</TableCell>
+                <TableCell align="right">{ticker.current_price}</TableCell>
+                <TableCell align="right">{ticker.recommendation}</TableCell>
+              </TableRow>
               <TableRow>
                 <TableCell align="right">{displayDate}</TableCell>
                 <TableCell align="right">{ticker.low_price} - {ticker.high_price}</TableCell>
