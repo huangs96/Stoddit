@@ -113,28 +113,37 @@ function TickerModal({onClose, open, ticker}) {
         timeData={timeDataArray}
         priceData={priceDataArray}
       />
-      <Grid container rowSpacing={3} columnSpacing={{ xs: 6, sm: 1, md: 5 }}>
-        <Grid item xs={6}>
+      <Grid 
+        container 
+        rowSpacing={3} 
+        columnSpacing={{ 
+          xs: 6, sm: 1, md: 5 
+        }}
+        style={{
+          padding: "15px"
+        }}
+      >
+        <Grid item xs={5}>
           <Item>Volume</Item>
           <Item>{ticker.volume}</Item>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={5}>
           <Item>Recommendation</Item>
           <Item>{ticker.recommendation}</Item>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={5}>
           <Item>Current Price</Item>
           <Item>{ticker.current_price}</Item>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={5}>
           <Item>Date</Item>
           <Item>{displayDate}</Item>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={5}>
           <Item>Current Price</Item>
           <Item>{ticker.current_price}</Item>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={5}>
           <Item>Day Range</Item>
           <Item>{ticker.low_price} - {ticker.high_price}</Item>
         </Grid>
