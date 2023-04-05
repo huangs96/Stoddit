@@ -87,7 +87,9 @@ function TickerModal({onClose, open, ticker}) {
       PaperProps={{ sx: { width: "100%", height: "100%" } }}
     >
       <DialogTitle variant="h5">
-        <h2>
+        <h2 style={{
+          margin: '1px'
+        }}>
           {ticker.name}
         </h2>
         <h6 style={{
@@ -96,7 +98,7 @@ function TickerModal({onClose, open, ticker}) {
         }}>
           {ticker.symbol}
         </h6>
-        <div className={ticker.changePercentage < 0 ?"modalChangePercentageN" : "modalChangePercentageP"}>{ticker.changePercentage}%
+        <div className={ticker.changePercentage < 0 ? "modalChangePercentageN" : "modalChangePercentageP"}>{ticker.changePercentage}%
         {arrowDisplay}
         </div>
       </DialogTitle>

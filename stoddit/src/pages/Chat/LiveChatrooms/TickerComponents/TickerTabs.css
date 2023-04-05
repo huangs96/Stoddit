@@ -91,6 +91,14 @@
   color: green;
 }
 
-.modalNRecommendation {
+.modalChangePercentageP {
+  color:green;
+}
+
+.modalChangePercentageN {
+  color:red;
+}
+
+.modalNRecommendation.modalChangePercentageN {
   color: red;
 }
