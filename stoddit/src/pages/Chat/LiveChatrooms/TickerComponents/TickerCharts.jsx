@@ -8,7 +8,6 @@ import {
   Title,
   Tooltip,
   Legend,
-  Colors
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import config from './chartConfig';
@@ -21,7 +20,6 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
-  Colors
 );
 
 const roundedNumber = (price) => {
@@ -39,6 +37,10 @@ function TickerCharts({ticker, timeData, priceData}) {
     datasets: [{
       // labels: 'Hello',
       data: priceData,
+      pointBorderColor: 'blue',
+      borderColor: 'purple',
+      backgroundColor: 'blue',
+      fill: 'true'
     }]
   };
 
@@ -47,8 +49,9 @@ function TickerCharts({ticker, timeData, priceData}) {
     datasets: [{
       data: [ticker.current_price - randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price - randomNumber10th, ticker.current_price - randomNumber10th ,ticker.current_price],
       pointBorderColor: 'blue',
-      borderColor: 'aqua',
-      backgroundColor: 'white',
+      borderColor: 'purple',
+      backgroundColor: 'blue',
+      fill: 'true'
     }]
   };
   
