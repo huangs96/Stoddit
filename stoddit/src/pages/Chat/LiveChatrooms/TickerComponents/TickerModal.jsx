@@ -125,28 +125,28 @@ function TickerModal({onClose, open, ticker}) {
         }}
       >
         <Grid item xs={5}>
-          <Item>Volume</Item>
-          <Item>{ticker.volume}</Item>
+          <Item>Date</Item>
+          <Item><b>{displayDate}</b></Item>
         </Grid>
         <Grid item xs={5}>
           <Item>Recommendation</Item>
-          <Item>{ticker.recommendation}</Item>
+          <Item><b>{ticker.recommendation}</b></Item>
         </Grid>
         <Grid item xs={5}>
           <Item>Current Price</Item>
-          <Item>{ticker.current_price}</Item>
-        </Grid>
-        <Grid item xs={5}>
-          <Item>Date</Item>
-          <Item>{displayDate}</Item>
+          <Item><b>{ticker.current_price}</b></Item>
         </Grid>
         <Grid item xs={5}>
           <Item>Current Price</Item>
-          <Item>{ticker.current_price}</Item>
+          <Item><b>{ticker.current_price}</b></Item>
         </Grid>
         <Grid item xs={5}>
           <Item>Day Range</Item>
-          <Item>{ticker.low_price} - {ticker.high_price}</Item>
+          <Item><b>{ticker.low_price} - {ticker.high_price}</b></Item>
+        </Grid>
+        <Grid item xs={5}>
+          <Item>Volume</Item>
+          <Item><b>{ticker.volume}</b></Item>
         </Grid>
       </Grid>
     </Dialog>
