@@ -130,7 +130,14 @@ function TickerModal({onClose, open, ticker}) {
           </TableBody>
         </Table>
       </TableContainer> */}
-      <Box sx={{ width: '100%', display: 'flex', flexDirection:'row', justifyContent:'space-between', padding: '10px' }}>
+      <Box sx={{ 
+        width: '100%', 
+        display: 'flex', 
+        flexDirection:'row', 
+        justifyContent:'space-between',
+        paddingLeft: '20px',
+        paddingRight: '20px'
+      }}>
       <Stack spacing={1} direction="row">
         <Item>Date</Item>
         <Item>{displayDate}</Item>
