@@ -3,7 +3,7 @@ import { SocketContext } from '../../../../contexts/socketProvider';
 import TickerCharts from './TickerCharts';
 import Box from '@mui/material/Box';
 import { TextField, Typography } from '@mui/material';
-import Stack from '@mui/material/Stack';
+import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -142,29 +142,18 @@ function TickerModal({onClose, open, ticker}) {
         flexDirection:'row', 
         justifyContent:'space-evenly',
       }}>
-        <Stack spacing={1} direction="row">
+        <Grid spacing={1} direction="row">
           <Item>Date</Item>
           <Item>{displayDate}</Item>
-        </Stack>
-        <Stack spacing={1} direction="row">
+        </Grid>
+        <Grid spacing={1} direction="row">
           <Item>Current Price</Item>
           <Item>{ticker.current_price}</Item>
-        </Stack>
-      </Box>
-      <Box sx={{ 
-        width: '100%', 
-        display: 'flex', 
-        flexDirection:'row', 
-        justifyContent:'space-evenly',
-      }}>
-        <Stack spacing={1} direction="row">
+        </Grid>
+        <Grid spacing={1} direction="row">
           <Item>Day Range</Item>
           <Item>{ticker.low_price} - {ticker.high_price}</Item>
-        </Stack>
-        <Stack spacing={1} direction="row">
-          <Item>Current Price</Item>
-          <Item>{ticker.current_price}</Item>
-        </Stack>
+        </Grid>
       </Box>
       <Box sx={{ 
         width: '100%', 
@@ -172,14 +161,18 @@ function TickerModal({onClose, open, ticker}) {
         flexDirection:'row', 
         justifyContent:'space-evenly',
       }}>
-        <Stack spacing={1} direction="row">
-          <Item>Date</Item>
-          <Item>{displayDate}</Item>
-        </Stack>
-        <Stack spacing={1} direction="row">
+        <Grid spacing={1} direction="row">
+          <Item>Volume</Item>
+          <Item>{ticker.volume}</Item>
+        </Grid>
+        <Grid spacing={1} direction="row">
+          <Item>Recommendation</Item>
+          <Item>{ticker.recommendation}</Item>
+        </Grid>
+        <Grid spacing={1} direction="row">
           <Item>Current Price</Item>
           <Item>{ticker.current_price}</Item>
-        </Stack>
+        </Grid>
       </Box>
     </div>
     </Dialog>
