@@ -147,11 +147,11 @@ function TickerModal({onClose, open, ticker}) {
           <Item>Date</Item>
           <Item>{displayDate}</Item>
         </Grid>
-        <Grid spacing={1}>
+        <Grid item xs={12}>
           <Item>Current Price</Item>
           <Item>{ticker.current_price}</Item>
         </Grid>
-        <Grid spacing={1}>
+        <Grid item xs={6}>
           <Item>Day Range</Item>
           <Item>{ticker.low_price} - {ticker.high_price}</Item>
         </Grid>
@@ -162,15 +162,15 @@ function TickerModal({onClose, open, ticker}) {
         flexDirection:'row', 
         justifyContent:'space-evenly',
       }}>
-        <Grid spacing={1}>
+        <Grid item xs={6}>
           <Item>Volume</Item>
           <Item>{ticker.volume}</Item>
         </Grid>
-        <Grid spacing={1}>
+        <Grid item xs={6}>
           <Item>Recommendation</Item>
           <Item>{ticker.recommendation}</Item>
         </Grid>
-        <Grid spacing={1}>
+        <Grid item xs={6}>
           <Item>Current Price</Item>
           <Item>{ticker.current_price}</Item>
         </Grid>
