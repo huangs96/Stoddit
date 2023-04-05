@@ -19,6 +19,8 @@ function TickerModal({onClose, open, ticker}) {
   const [timeDataArray, setTimeDataArray] = useState([]);
   const [priceDataArray, setPriceDataArray] = useState([]);
   const socket = useContext(SocketContext);
+  const date = new Date();
+  const displayDate = date.toLocaleString();
 
   useEffect(() => {
     socket.on('tickerTime', newTime => {
@@ -97,6 +99,7 @@ function TickerModal({onClose, open, ticker}) {
           margin: '1px'
         }}>
           {ticker.symbol}
+          {displayDate}
         </h6>
         <div className={ticker.changePercentage < 0 ? "modalChangePercentageN" : "modalChangePercentageP"}>{ticker.changePercentage}%
         {arrowDisplay}
@@ -127,7 +130,7 @@ function TickerModal({onClose, open, ticker}) {
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>S.No</TableCell>
+              <TableCell align="right">S.No</TableCell>
               <TableCell align="right">Days Range</TableCell>
               <TableCell align="right">Volume</TableCell>
               <TableCell align="right">Price&nbsp;($)</TableCell>
@@ -139,8 +142,9 @@ function TickerModal({onClose, open, ticker}) {
                 <TableCell component="th" scope="row">
                 </TableCell>
                 <TableCell align="right">{ticker.low_price} - {ticker.high_price}</TableCell>
+                <TableCell align="right">{ticker.volume}</TableCell>
                 <TableCell align="right">{ticker.current_price}</TableCell>
-                <TableCell align="right">{ticker.current_price}</TableCell>
+                <TableCell align="right">{ticker.recommendation}</TableCell>
               </TableRow>
           </TableBody>
         </Table>
