@@ -849,7 +849,7 @@ function ChatIndex() {
                       label="Search Tickers"
                       variant="standard"
                       onChange={getTickerSearchInput}
-                      value={allUsersInput}
+                      value={allLiveTickersInput}
                       InputProps={{
                         endAdornment: <InputAdornment>
                           <ClearIcon
