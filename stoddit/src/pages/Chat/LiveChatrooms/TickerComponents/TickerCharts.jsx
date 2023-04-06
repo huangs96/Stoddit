@@ -12,7 +12,6 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import ChartStreaming from 'chartjs-plugin-streaming';
-import 'chartjs-adapter-luxon';
 import config from './chartConfig';
 import { style } from '@mui/system';
 
@@ -74,16 +73,26 @@ function TickerCharts({ticker, timeData, priceData}) {
     },
     scales: {
       x: {
-        type:'realtime',
+        type: 'realtime',
         realtime: {
-          duration: 2000
+          delay: 2000,
+          onRefresh: chart => {
+            chart.data.datasets.forEach(dataset => {
+              dataset.data.push({
+                x: Date.now(),
+                y: Math.random()
+              });
+            });
+          }
         }
-      },
-      y: {
-        min: roundedNumber(ticker.low_price),
-        max: roundedNumber(ticker.high_price)
-      },
-    },
+      }
+    }
+    // scales: {
+    //   y: {
+    //     min: roundedNumber(ticker.low_price),
+    //     max: roundedNumber(ticker.high_price)
+    //   },
+    // },
   };
 
   return (
