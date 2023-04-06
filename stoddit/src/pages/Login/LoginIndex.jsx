@@ -122,93 +122,95 @@ function LoginPage() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 30,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign into Stoddit
-          </Typography>
-          <div style={{paddingTop:'12px', paddingBottom:'25px'}}>
-            <Divider variant="middle" style={{width: '500px'}}/>
-          </div>
-          <Box component="form" onSubmit={handleSubmit} ref={form} noValidate sx={{ mt: 1 }}>
-            <TextField
-              style={{
-                width: '500px',
-                borderRadius: '12px'
-              }}
-              margin="normal"
-              required
-              id="email"
-              label="Username"
-              InputLabelProps={{ shrink: true }}
-              name="email"
-              autoFocus
-              onChange={onChangeUsername}
-              error={Boolean(incorrectInput?.shortUsername)}
-              helperText={incorrectInput?.shortUsername}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              InputLabelProps={{ shrink: true }}
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              onChange={onChangePassword}
-              error={Boolean(incorrectInput?.shortPassword)}
-              helperText={incorrectInput?.shortPassword}
-            />
-            {postLoginMessage()}
-            <div style={{
+      <div style={{display: 'flex'}}>
+        <ThemeProvider theme={theme}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <Box
+            sx={{
+              marginTop: 30,
               display: 'flex',
+              flexDirection: 'column',
               alignItems: 'center',
-              justifyContent: 'space-between',
-              width: '100%',
-            }}>
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
+            }}
+          >
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign into Stoddit
+            </Typography>
+            <div style={{paddingTop:'12px', paddingBottom:'25px'}}>
+              <Divider variant="middle" style={{width: '500px'}}/>
             </div>
-            <Button
-              style={{borderRadius: 12, marginTop: '10px'}}
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              color='purpleBlue'
-            >
-              Sign In
-            </Button>
-            <Grid container justifyContent="center">
-              <Grid item>
-                <Link href="/register" variant="body2">
-                  {"Don't have an account? Sign Up"}
+            <Box component="form" onSubmit={handleSubmit} ref={form} noValidate sx={{ mt: 1 }}>
+              <TextField
+                style={{
+                  width: '500px',
+                  borderRadius: '12px'
+                }}
+                margin="normal"
+                required
+                id="email"
+                label="Username"
+                InputLabelProps={{ shrink: true }}
+                name="email"
+                autoFocus
+                onChange={onChangeUsername}
+                error={Boolean(incorrectInput?.shortUsername)}
+                helperText={incorrectInput?.shortUsername}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                InputLabelProps={{ shrink: true }}
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                onChange={onChangePassword}
+                error={Boolean(incorrectInput?.shortPassword)}
+                helperText={incorrectInput?.shortPassword}
+              />
+              {postLoginMessage()}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: '100%',
+              }}>
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                />
+                <Link href="#" variant="body2">
+                  Forgot password?
                 </Link>
+              </div>
+              <Button
+                style={{borderRadius: 12, marginTop: '10px'}}
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                color='purpleBlue'
+              >
+                Sign In
+              </Button>
+              <Grid container justifyContent="center">
+                <Grid item>
+                  <Link href="/register" variant="body2">
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
               </Grid>
-            </Grid>
+            </Box>
           </Box>
-        </Box>
-      </Container>
-      </ThemeProvider>
+        </Container>
+        </ThemeProvider>
+      </div>
     </>
   )
 }
