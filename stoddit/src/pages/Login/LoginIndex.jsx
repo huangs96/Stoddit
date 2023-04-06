@@ -140,12 +140,12 @@ function LoginPage() {
             Sign into Stoddit
           </Typography>
           <div style={{paddingTop:'12px', paddingBottom:'25px'}}>
-            <Divider variant="middle" style={{width: '650px'}}/>
+            <Divider variant="middle" style={{width: '500px'}}/>
           </div>
           <Box component="form" onSubmit={handleSubmit} ref={form} noValidate sx={{ mt: 1 }}>
             <TextField
               style={{
-                width: '650px',
+                width: '500px',
                 borderRadius: '12px'
               }}
               margin="normal"
