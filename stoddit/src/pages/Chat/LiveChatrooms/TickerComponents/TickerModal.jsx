@@ -104,8 +104,8 @@ function TickerModal({onClose, open, ticker}) {
           {ticker.symbol}
         </h6>
           {displayTimeDate}
-        <div className={ticker.changePercentage < 0 ? "modalChangePercentageN" : "modalChangePercentageP"}>{ticker.changePercentage}%
-        {arrowDisplay}
+        <div className={ticker.changePercentage < 0 && ticker.changePercentage != 0 ? "modalChangePercentageN" : "modalChangePercentageP"}>{ticker.changePercentage}%
+        {ticker.changePercentage != 0 && arrowDisplay}
         </div>
       </DialogTitle>
       <TickerCharts 
