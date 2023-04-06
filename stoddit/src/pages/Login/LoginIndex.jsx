@@ -139,12 +139,9 @@ function LoginPage() {
           <Typography component="h1" variant="h5">
             Sign into Stoddit
           </Typography>
-          <Divider variant="middle" style={
-              {
-              width: '650px',
-              }
-            }
-          />
+          <div style={{paddingTop:'12px', paddingBottom:'25px'}}>
+            <Divider variant="middle" style={{width: '650px'}}/>
+          </div>
           <Box component="form" onSubmit={handleSubmit} ref={form} noValidate sx={{ mt: 1 }}>
             <TextField
               style={{
