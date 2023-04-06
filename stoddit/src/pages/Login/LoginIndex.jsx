@@ -135,8 +135,8 @@ function LoginPage() {
               fullWidth
               id="email"
               label="Username"
+              InputLabelProps={{ shrink: true }}
               name="email"
-              autoComplete="email"
               autoFocus
               onChange={onChangeUsername}
               error={Boolean(incorrectInput?.shortUsername)}
@@ -148,6 +148,7 @@ function LoginPage() {
               fullWidth
               name="password"
               label="Password"
+              InputLabelProps={{ shrink: true }}
               type="password"
               id="password"
               autoComplete="current-password"

@@ -445,32 +445,7 @@ function ChatIndex() {
       console.log('LiveUsers Socket Off')
     };
   }, []);
-
-
-  // const displayLiveChatrooms = liveChatroom.map(chatrooms => {
-  //   return (
-  //     <div
-  //       className="liveConversationContainer"
-  //       onClick={() => {
-  //         setChatroomKey(chatrooms.id);
-  //         // socket.emit('joinLiveChatroom', {
-  //         //   'chatroomData' : chatrooms,
-  //         //   'userData' : username,
-  //         //   'participantData': participantsInLiveChatroom
-  //         // });
-  //       }}
-  //     >
-  //       <LiveChatrooms 
-  //         liveChatrooms={chatrooms}
-  //         liveChatroomKey={chatroomKey}
-  //         liveUsers={onlineParticipantInLiveChatroom}
-  //         joinChatroom={joinLiveChatroomFunction}
-  //         leaveChatroom={leaveLiveChatroomFunction}
-  //         userID={userID}
-  //       />
-  //     </div>
-  //   );
-  // });
+  
   /* ------ Search Inputs for Live Chatrooms and Tickers ------ */
 
   const getLiveChatroomSearchInput = async (e) => {
