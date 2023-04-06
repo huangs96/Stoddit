@@ -477,11 +477,11 @@ function ChatIndex() {
     setSearchLiveChatroomInput(searchLiveChatInput.toLowerCase());
   };
 
-  const filteredConversations = conversations.filter((convos) => {
-    if (searchConversationInput == '') {
-      return convos;
+  const filteredLiveChatrooms = liveChatroom.filter((chatrooms) => {
+    if (searchLiveChatroomInput == '') {
+      return chatrooms;
     } else {
-      return convos.name.toLowerCase().includes((searchConversationInput));
+      return chatrooms.name.toLowerCase().includes((searchLiveChatroomInput));
     };
   });
 
