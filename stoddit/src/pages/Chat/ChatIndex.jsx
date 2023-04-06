@@ -866,6 +866,8 @@ function ChatIndex() {
                   <TickersIndex 
                     liveChatroomKey={chatroomKey}
                     liveTickerReset={liveTickerReset}
+                    tickerSearch={getTickerSearchInput}
+                    tickerClear={onClearTickerSearch}
                   />
                 </>
               }
