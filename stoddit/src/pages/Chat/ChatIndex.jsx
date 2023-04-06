@@ -65,7 +65,7 @@ function ChatIndex() {
   const [liveChatroomMessageReset, setLiveChatroomMessageReset] = useState(false);
   const [searchLiveChatroomInput, setSearchLiveChatroomInput] = useState([]);
   const [liveTickerReset, setLiveTickerReset] = useState(true);
-  const [allLiveTickers, setAllLiveTickers] = useState([]);
+  const [allLiveTickersInput, setAllLiveTickersInput] = useState([]);
   const [participantsInLiveChatroom, setParticipantsInLiveChatroom] = useState([]);
   const [onlineParticipantInLiveChatroom, setOnlineParticipantInLiveChatroom] = useState([]);
   const [userHasJoinedLiveChatroom, setUserHasJoinedLiveChatroom] = useState(false);
@@ -517,22 +517,12 @@ function ChatIndex() {
 
   const getTickerSearchInput = async (e) => {
     const searchTickerInput = e.target.value;
-    setAllTickersInput(searchTickerInput);
+    setAllLiveTickersInput(searchTickerInput);
   };
 
   const onClearTickerSearch = async () => {
-    setAllTickerInput('');
+    setAllLiveTickersInput('');
   };
-
-  const filteredUsers = allUsers.filter((users) => {
-    if (allUsersInput == '') {
-      searched = false;
-      return allUsers;
-    } else {
-      searched = true;
-      return users.username.toLowerCase().includes((allUsersInput));
-    };
-  });
 
    /* --------------------------------- */
 
