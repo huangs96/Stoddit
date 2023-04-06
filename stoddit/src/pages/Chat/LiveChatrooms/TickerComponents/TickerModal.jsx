@@ -137,8 +137,8 @@ function TickerModal({onClose, open, ticker}) {
           <Item><b>{ticker.current_price}</b></Item>
         </Grid>
         <Grid item xs={5}>
-          <Item>Current Price</Item>
-          <Item><b>{ticker.current_price}</b></Item>
+          <Item>Change Percentage</Item>
+          <Item><b>{ticker.changePercentage}%</b></Item>
         </Grid>
         <Grid item xs={5}>
           <Item>Day Range</Item>
