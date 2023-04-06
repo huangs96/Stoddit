@@ -65,13 +65,11 @@ function TickersIndex({liveChatroomKey, liveTickerReset, tickerSearch, tickerCle
     setAllChatroomTickers(liveTickerUpdateObj);
   }, [intervalTickers]);
 
-  const filteredTickers = chatroomTickers.filter((users) => {
-    if (allUsersInput == '') {
-      searched = false;
-      return allUsers;
+  const filteredTickers = chatroomTickers.filter((tickers) => {
+    if (tickerSearch == '') {
+      return tickers;
     } else {
-      searched = true;
-      return users.username.toLowerCase().includes((allUsersInput));
+      return tickers.username.toLowerCase().includes((allUsersInput));
     };
   });
 

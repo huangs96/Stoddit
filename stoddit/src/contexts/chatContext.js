@@ -26,7 +26,6 @@ const addMessageToConversation = async (participantData, text, receiverID, chatr
     senderUsername: username,
     isLive: live
   };
-  console.log('messageContext', body);
   //insert message into database to refresh and get new message
   await sendMessage(body);
 };
