@@ -66,14 +66,17 @@ function TickersIndex({liveChatroomKey, liveTickerReset, tickerSearch}) {
     setAllChatroomTickers(liveTickerUpdateObj);
   }, [intervalTickers]);
 
-  const lowerCasedTickerSearch = tickerSearch.toLowerCase();
-
   const filteredNames = tickerNames.filter((tickers) => {
-    if (lowerCasedTickerSearch.length < 1) {
-      return tickers;
+    if (tickerSearch.length > 1) {
+      const lowerCasedTickerSearch = tickerSearch.toLowerCase();
+      if (lowerCasedTickerSearch.length < 1) {
+        return tickers;
+      } else {
+        return tickers.toLowerCase().includes((lowerCasedTickerSearch));
+      };
     } else {
-      return tickers.toLowerCase().includes((lowerCasedTickerSearch));
-    };
+      return tickerNames;
+    }
   });
 
   const displayTickersTab = filteredNames.map(names => {
