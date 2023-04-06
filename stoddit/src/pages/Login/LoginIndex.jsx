@@ -19,8 +19,6 @@ import { getAuthedUser } from '../../services/user.service';
 
 function LoginPage() {
 
-  const form = useRef();
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [incorrectInput, setIncorrectInput] = useState({
@@ -29,9 +27,21 @@ function LoginPage() {
     status: ''
   });
   const [user, setUser] = useState('');
-  const theme = createTheme();
-
+  const form = useRef();
   const navigate = useNavigate();
+
+  const { palette } = createTheme();
+  const { augmentColor } = palette;
+  const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
+  const theme = createTheme({
+    palette: {
+      anger: createColor('#F40B27'),
+      apple: createColor('#5DBA40'),
+      steelBlue: createColor('#5C76B7'),
+      violet: createColor('#BC00A3'),
+      purpleBlue: createColor('#4353FF'),
+    },
+  });
 
   const onChangeUsername = (e) => {
     const userName = e.target.value;
@@ -178,6 +188,7 @@ function LoginPage() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              color='purpleBlue'
             >
               Sign In
             </Button>
