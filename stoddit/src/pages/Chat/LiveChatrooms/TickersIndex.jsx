@@ -74,7 +74,7 @@ function TickersIndex({liveChatroomKey, liveTickerReset, tickerSearch, tickerCle
     };
   });
 
-  console.log('filteredTickers', filteredTickers);
+  console.log('filteredTickers', tickerSearch);
 
   const displayTickersTab = tickerNames.map(names => {
     const tickerData = chatroomTickers[names];

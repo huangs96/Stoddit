@@ -848,13 +848,13 @@ function ChatIndex() {
                       className="chatMenuInput" 
                       label="Search Tickers"
                       variant="standard"
-                      onChange={getFriendSearchInput}
+                      onChange={getTickerSearchInput}
                       value={allUsersInput}
                       InputProps={{
                         endAdornment: <InputAdornment>
                           <ClearIcon
                             sx={{ "&:hover": { color: "red" } }}
-                            onClick={onClearUserSearch}
+                            onClick={onClearTickerSearch}
                           >             
                           </ClearIcon>
                         </InputAdornment>,
@@ -866,8 +866,7 @@ function ChatIndex() {
                   <TickersIndex 
                     liveChatroomKey={chatroomKey}
                     liveTickerReset={liveTickerReset}
-                    tickerSearch={getTickerSearchInput}
-                    tickerClear={onClearTickerSearch}
+                    tickerSearch={allLiveTickersInput}
                   />
                 </>
               }
