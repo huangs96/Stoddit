@@ -481,28 +481,36 @@ function ChatIndex() {
     if (searchLiveChatroomInput == '') {
       return chatrooms;
     } else {
-      return chatrooms.name.toLowerCase().includes((searchLiveChatroomInput));
+      return chatrooms.description.toLowerCase().includes((searchLiveChatroomInput));
     };
   });
 
-  const displayConversations = filteredConversations.map((convo) => {
+  const displayChatrooms1 = filteredLiveChatrooms.map((chatrooms) => {
     return (
-      <div 
-        onClick={() => {
-          selectConversation(convo.chatroom_id);
-          socket.emit('conversationSocket', convo.chatroom_id);
-        }}
-      >
-        <Conversation 
-          conversation={convo}
-          userParticipantID={userParticipantID}
-          username={username}
-          conversationDeleted={conversationDeleted}
-          selectedConversation={selectedConversation}
-        />
-      </div>
+      <div
+      className="liveConversationContainer"
+      onClick={() => {
+        setChatroomKey(chatrooms.id);
+        // socket.emit('joinLiveChatroom', {
+        //   'chatroomData' : chatrooms,
+        //   'userData' : username,
+        //   'participantData': participantsInLiveChatroom
+        // });
+      }}
+    >
+      <LiveChatrooms 
+        liveChatrooms={chatrooms}
+        liveChatroomKey={chatroomKey}
+        liveUsers={onlineParticipantInLiveChatroom}
+        joinChatroom={joinLiveChatroomFunction}
+        leaveChatroom={leaveLiveChatroomFunction}
+        userID={userID}
+      />
+    </div>
     );
   });
+
+  console.log('displayChatrooms1', filteredLiveChatrooms);
 
   const handleSubmitForLiveChat = (e) => {
     e.preventDefault();
@@ -650,8 +658,8 @@ function ChatIndex() {
                     className="chatMenuInput" 
                     label="Search Live Chatrooms"
                     variant="standard"
-                    onChange={getConversationSearchInput}
-                    value={searchConversationInput}
+                    onChange={getLiveChatroomSearchInput}
+                    value={searchLiveChatroomInput}
                     InputProps={{
                       endAdornment: <InputAdornment>
                         <ClearIcon
