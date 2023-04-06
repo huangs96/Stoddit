@@ -38,12 +38,13 @@ function TickerCharts({ticker, timeData, priceData}) {
   const liveData = {
     labels: timeData,
     datasets: [{
-      label: 'Hi',
+      label: [ticker.name],
       data: priceData,
-      pointBorderColor: 'blue',
-      borderColor: 'purple',
-      backgroundColor: 'blue',
-      fill: 'start'
+      pointBorderColor: 'pink',
+      pointBackgroundColor: 'pink',
+      borderColor: 'pink',
+      backgroundColor: '#84ACCE',
+      fill: 'start',
     }]
   };
 
@@ -54,8 +55,6 @@ function TickerCharts({ticker, timeData, priceData}) {
       data: [ticker.current_price - randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price - randomNumber10th, ticker.current_price - randomNumber10th ,ticker.current_price],
       pointBorderColor: 'pink',
       pointBackgroundColor: 'pink',
-      // pointHoverBackgorundColor: 'pink',
-      // pointHoverBorderColor: 'pink',
       borderColor: 'pink',
       backgroundColor: '#84ACCE',
       fill: 'start',
