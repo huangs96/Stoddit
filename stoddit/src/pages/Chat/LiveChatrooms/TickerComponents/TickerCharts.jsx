@@ -11,7 +11,6 @@ import {
   Filler
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import ChartStreaming from 'chartjs-plugin-streaming';
 import config from './chartConfig';
 import { style } from '@mui/system';
 
@@ -24,7 +23,6 @@ ChartJS.register(
   LineElement,
   Tooltip,
   Filler,
-  ChartStreaming
 );
 
 const roundedNumber = (price) => {
@@ -41,7 +39,7 @@ function TickerCharts({ticker, timeData, priceData}) {
   const liveData = {
     labels: timeData,
     datasets: [{
-      label: [ticker.name],
+      label: ticker.name,
       data: priceData,
       pointBorderColor: 'pink',
       pointBackgroundColor: 'pink',
@@ -54,7 +52,7 @@ function TickerCharts({ticker, timeData, priceData}) {
   const staticData = {
     labels: ['8:30am', '9:00am', '9:30am', '10:00am', '10:30am', '11:00am'],
     datasets: [{
-      label: [ticker.name],
+      label: ticker.name,
       data: [ticker.current_price - randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price - randomNumber10th, ticker.current_price - randomNumber10th ,ticker.current_price],
       pointBorderColor: 'pink',
       pointBackgroundColor: 'pink',
@@ -72,27 +70,11 @@ function TickerCharts({ticker, timeData, priceData}) {
       }
     },
     scales: {
-      x: {
-        type: 'realtime',
-        realtime: {
-          delay: 2000,
-          onRefresh: chart => {
-            chart.data.datasets.forEach(dataset => {
-              dataset.data.push({
-                x: Date.now(),
-                y: Math.random()
-              });
-            });
-          }
-        }
-      }
-    }
-    // scales: {
-    //   y: {
-    //     min: roundedNumber(ticker.low_price),
-    //     max: roundedNumber(ticker.high_price)
-    //   },
-    // },
+      y: {
+        min: roundedNumber(ticker.low_price),
+        max: roundedNumber(ticker.high_price)
+      },
+    },
   };
 
   return (
