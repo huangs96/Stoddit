@@ -11,6 +11,8 @@ import {
   Filler
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import ChartStreaming from 'chartjs-plugin-streaming';
+import 'chartjs-adapter-luxon';
 import config from './chartConfig';
 import { style } from '@mui/system';
 
@@ -22,7 +24,8 @@ ChartJS.register(
   PointElement,
   LineElement,
   Tooltip,
-  Filler
+  Filler,
+  ChartStreaming
 );
 
 const roundedNumber = (price) => {
@@ -73,13 +76,7 @@ function TickerCharts({ticker, timeData, priceData}) {
       x: {
         type:'realtime',
         realtime: {
-          onRefresh: chart => {
-            chart.data.datasets.forEach(dataset => {
-              dataset.data.push({
-                x: Date.now(),
-              });
-            });
-          }
+          duration: 2000
         }
       },
       y: {
