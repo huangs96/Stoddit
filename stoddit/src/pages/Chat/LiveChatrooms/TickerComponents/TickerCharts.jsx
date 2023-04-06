@@ -34,7 +34,8 @@ const randomNumber10th = Math.floor(Math.random() * 10);
 const randomNumber100th = Math.floor(Math.random() * 100);
 
 function TickerCharts({ticker, timeData, priceData}) {
-  console.log('ticker chart', ticker);
+  // console.log('ticker chart', ticker);
+  // console.log('priceData', priceData);
   const liveData = {
     labels: timeData,
     datasets: [{
@@ -48,18 +49,18 @@ function TickerCharts({ticker, timeData, priceData}) {
     }]
   };
 
-  const staticData = {
-    labels: ['8:30am', '9:00am', '9:30am', '10:00am', '10:30am', '11:00am'],
-    datasets: [{
-      label: [ticker.name],
-      data: [ticker.current_price - randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price - randomNumber10th, ticker.current_price - randomNumber10th ,ticker.current_price],
-      pointBorderColor: 'pink',
-      pointBackgroundColor: 'pink',
-      borderColor: 'pink',
-      backgroundColor: '#84ACCE',
-      // fill: 'start',
-    }]
-  };
+  // const staticData = {
+  //   labels: ['8:30am', '9:00am', '9:30am', '10:00am', '10:30am', '11:00am'],
+  //   datasets: [{
+  //     label: [ticker.name],
+  //     data: [ticker.current_price - randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price - randomNumber10th, ticker.current_price - randomNumber10th ,ticker.current_price],
+  //     pointBorderColor: 'pink',
+  //     pointBackgroundColor: 'pink',
+  //     borderColor: 'pink',
+  //     backgroundColor: '#84ACCE',
+  //     // fill: 'start',
+  //   }]
+  // };
   
   const options = {
     plugins: {
@@ -82,7 +83,8 @@ function TickerCharts({ticker, timeData, priceData}) {
       border: '3px'
     }}>
       <Line
-        data={!timeData.includes(null) ? liveData : staticData}
+        // data={!timeData.includes(null) ? liveData : staticData}
+        data={liveData}
         options={options}
       >
       </Line>
