@@ -565,7 +565,6 @@ function ChatIndex() {
     } else {
       console.log('no message');
     };
-
     
     //empty textbox
     setMessageText('');

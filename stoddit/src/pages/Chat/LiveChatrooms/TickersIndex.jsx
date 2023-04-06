@@ -4,7 +4,7 @@ import { SocketContext } from '../../../contexts/socketProvider';
 import TickerCharts from './TickerComponents/TickerCharts';
 import TickerTabs from './TickerComponents/TickerTabs';
 
-function TickersIndex({liveChatroomKey, liveTickerReset, tickerSearch, tickerClear}) {
+function TickersIndex({liveChatroomKey, liveTickerReset, tickerSearch}) {
   const [chatroomTickers, setAllChatroomTickers] = useState([]);
   const [intervalTickers, setIntervalTickers] = useState([]);
   const [tickerNames, setTickerNames] = useState([]);
@@ -66,17 +66,17 @@ function TickersIndex({liveChatroomKey, liveTickerReset, tickerSearch, tickerCle
     setAllChatroomTickers(liveTickerUpdateObj);
   }, [intervalTickers]);
 
-  const filteredTickers = tickerNames.filter((tickers) => {
-    if (tickerSearch == '') {
+  const lowerCasedTickerSearch = tickerSearch.toLowerCase();
+
+  const filteredNames = tickerNames.filter((tickers) => {
+    if (lowerCasedTickerSearch.length < 1) {
       return tickers;
     } else {
-      return tickers.toLowerCase().includes((tickerSearch));
+      return tickers.toLowerCase().includes((lowerCasedTickerSearch));
     };
   });
 
-  console.log('filteredTickers', filteredTickers);
-
-  const displayTickersTab = tickerNames.map(names => {
+  const displayTickersTab = filteredNames.map(names => {
     const tickerData = chatroomTickers[names];
     if (tickerData) {
       return (
