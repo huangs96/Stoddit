@@ -189,7 +189,7 @@ function LoginPage() {
               </Link>
             </div>
             <Button
-              style={{borderRadius: 12}}
+              style={{borderRadius: 12, marginTop: '10px'}}
               type="submit"
               fullWidth
               variant="contained"
