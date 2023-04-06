@@ -60,9 +60,10 @@ function ChatIndex() {
   const [newConversation, setNewConversation] = useState(false);
   //live chatrooms
   const [liveChatroom, setLiveChatroom] = useState([]);
+  const [liveChatroomMessages, setLiveChatroomMessages] = useState([]);
   const [liveChatroomReset, setLiveChatroomReset] = useState(false);
   const [liveChatroomMessageReset, setLiveChatroomMessageReset] = useState(false);
-  const [liveChatroomMessages, setLiveChatroomMessages] = useState([]);
+  const [searchLiveChatroomInput, setSearchLiveChatroomInput] = useState([]);
   const [liveTickerReset, setLiveTickerReset] = useState(true);
   const [participantsInLiveChatroom, setParticipantsInLiveChatroom] = useState([]);
   const [onlineParticipantInLiveChatroom, setOnlineParticipantInLiveChatroom] = useState([]);
@@ -470,6 +471,38 @@ function ChatIndex() {
     );
   });
   /* ------ Search Inputs for Live Chatrooms and Tickers ------ */
+
+  const getLiveChatroomSearchInput = async (e) => {
+    const searchLiveChatInput = e.target.value;
+    setSearchLiveChatroomInput(searchLiveChatInput.toLowerCase());
+  };
+
+  const filteredConversations = conversations.filter((convos) => {
+    if (searchConversationInput == '') {
+      return convos;
+    } else {
+      return convos.name.toLowerCase().includes((searchConversationInput));
+    };
+  });
+
+  const displayConversations = filteredConversations.map((convo) => {
+    return (
+      <div 
+        onClick={() => {
+          selectConversation(convo.chatroom_id);
+          socket.emit('conversationSocket', convo.chatroom_id);
+        }}
+      >
+        <Conversation 
+          conversation={convo}
+          userParticipantID={userParticipantID}
+          username={username}
+          conversationDeleted={conversationDeleted}
+          selectedConversation={selectedConversation}
+        />
+      </div>
+    );
+  });
 
   const handleSubmitForLiveChat = (e) => {
     e.preventDefault();
