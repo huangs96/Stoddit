@@ -14,6 +14,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Alert from '@mui/material/Alert';
+import Divider from '@mui/material/Divider';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { getAuthedUser } from '../../services/user.service';
 
@@ -138,10 +139,16 @@ function LoginPage() {
           <Typography component="h1" variant="h5">
             Sign into Stoddit
           </Typography>
+          <Divider variant="middle" style={
+              {
+              width: '650px',
+              }
+            }
+          />
           <Box component="form" onSubmit={handleSubmit} ref={form} noValidate sx={{ mt: 1 }}>
             <TextField
               style={{
-                width: '650px'
+                width: '650px',
               }}
               margin="normal"
               required
