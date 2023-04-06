@@ -10,6 +10,8 @@ function TickersIndex({liveChatroomKey, liveTickerReset, tickerSearch, tickerCle
   const [tickerNames, setTickerNames] = useState([]);
   const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false);
+  const socket = useContext(SocketContext);
+  console.log('chatroomTickers', chatroomTickers)
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -19,7 +21,6 @@ function TickersIndex({liveChatroomKey, liveTickerReset, tickerSearch, tickerCle
   const handleClose = () => {
     setOpen(false);
   };
-  const socket = useContext(SocketContext);
   
   useEffect(() => {
     let isLoaded = true;
@@ -65,13 +66,15 @@ function TickersIndex({liveChatroomKey, liveTickerReset, tickerSearch, tickerCle
     setAllChatroomTickers(liveTickerUpdateObj);
   }, [intervalTickers]);
 
-  const filteredTickers = chatroomTickers.filter((tickers) => {
+  const filteredTickers = tickerNames.filter((tickers) => {
     if (tickerSearch == '') {
       return tickers;
     } else {
-      return tickers.username.toLowerCase().includes((allUsersInput));
+      return tickers.toLowerCase().includes((tickerSearch));
     };
   });
+
+  console.log('filteredTickers', filteredTickers);
 
   const displayTickersTab = tickerNames.map(names => {
     const tickerData = chatroomTickers[names];
