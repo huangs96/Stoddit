@@ -126,7 +126,7 @@ function LoginPage() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign into Stoddit
           </Typography>
           <Box component="form" onSubmit={handleSubmit} ref={form} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -159,24 +159,29 @@ function LoginPage() {
               helperText={incorrectInput?.shortPassword}
             />
             {postLoginMessage()}
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              width: '100%',
+            }}>
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </div>
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign into Stoddit
+              Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
               <Grid item>
                 <Link href="/register" variant="body2">
                   {"Don't have an account? Sign Up"}
