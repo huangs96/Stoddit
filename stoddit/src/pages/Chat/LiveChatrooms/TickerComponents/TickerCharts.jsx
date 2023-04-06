@@ -41,26 +41,26 @@ function TickerCharts({ticker, timeData, priceData}) {
     datasets: [{
       label: [ticker.name],
       data: priceData,
-      // pointBorderColor: 'pink',
-      // pointBackgroundColor: 'pink',
-      // borderColor: 'pink',
-      // backgroundColor: '#84ACCE',
-      // fill: 'start',
+      pointBorderColor: 'pink',
+      pointBackgroundColor: 'pink',
+      borderColor: 'pink',
+      backgroundColor: '#84ACCE',
+      fill: 'start',
     }]
   };
 
-  // const staticData = {
-  //   labels: ['8:30am', '9:00am', '9:30am', '10:00am', '10:30am', '11:00am'],
-  //   datasets: [{
-  //     label: [ticker.name],
-  //     data: [ticker.current_price - randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price - randomNumber10th, ticker.current_price - randomNumber10th ,ticker.current_price],
-  //     pointBorderColor: 'pink',
-  //     pointBackgroundColor: 'pink',
-  //     borderColor: 'pink',
-  //     backgroundColor: '#84ACCE',
-  //     // fill: 'start',
-  //   }]
-  // };
+  const staticData = {
+    labels: ['8:30am', '9:00am', '9:30am', '10:00am', '10:30am', '11:00am'],
+    datasets: [{
+      label: [ticker.name],
+      data: [ticker.current_price - randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price - randomNumber10th, ticker.current_price - randomNumber10th ,ticker.current_price],
+      pointBorderColor: 'pink',
+      pointBackgroundColor: 'pink',
+      borderColor: 'pink',
+      backgroundColor: '#84ACCE',
+      fill: 'start',
+    }]
+  };
   
   const options = {
     plugins: {
@@ -70,6 +70,18 @@ function TickerCharts({ticker, timeData, priceData}) {
       }
     },
     scales: {
+      x: {
+        type:'realtime',
+        realtime: {
+          onRefresh: chart => {
+            chart.data.datasets.forEach(dataset => {
+              dataset.data.push({
+                x: Date.now(),
+              });
+            });
+          }
+        }
+      },
       y: {
         min: roundedNumber(ticker.low_price),
         max: roundedNumber(ticker.high_price)
@@ -83,8 +95,8 @@ function TickerCharts({ticker, timeData, priceData}) {
       border: '3px'
     }}>
       <Line
-        // data={!timeData.includes(null) ? liveData : staticData}
-        data={liveData}
+        data={!timeData.includes(null) ? liveData : staticData}
+        // data={liveData}
         options={options}
       >
       </Line>
