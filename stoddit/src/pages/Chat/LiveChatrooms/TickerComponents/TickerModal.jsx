@@ -65,8 +65,8 @@ function TickerModal({onClose, open, ticker}) {
     };
   }, [ticker]);
 
-  console.log('time1', timeDataArray);
-  console.log('price1', priceDataArray);
+  // console.log('time1', timeDataArray);
+  // console.log('price1', priceDataArray);
 
   const arrowDisplay = (
     <img
