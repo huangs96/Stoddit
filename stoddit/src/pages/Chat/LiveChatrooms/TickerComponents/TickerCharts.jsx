@@ -50,19 +50,15 @@ function TickerCharts({ticker, timeData, priceData}) {
   const staticData = {
     labels: ['8:30am', '9:00am', '9:30am', '10:00am', '10:30am', '11:00am'],
     datasets: [{
-      label: [],
+      label: [ticker.name],
       data: [ticker.current_price - randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price + randomNumber10th, ticker.current_price - randomNumber10th, ticker.current_price - randomNumber10th ,ticker.current_price],
       pointBorderColor: 'pink',
       pointBackgroundColor: 'pink',
-      pointHoverBackgorundColor: 'pink',
-      pointHoverBorderColor: 'pink',
+      // pointHoverBackgorundColor: 'pink',
+      // pointHoverBorderColor: 'pink',
       borderColor: 'pink',
       backgroundColor: '#84ACCE',
       fill: 'start',
-      hover: {
-        mode: 'nearest',
-        intersect: true
-      },
     }]
   };
   
