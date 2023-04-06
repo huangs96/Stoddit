@@ -446,30 +446,30 @@ function ChatIndex() {
   }, []);
 
 
-  const displayLiveChatrooms = liveChatroom.map(chatrooms => {
-    return (
-      <div
-        className="liveConversationContainer"
-        onClick={() => {
-          setChatroomKey(chatrooms.id);
-          // socket.emit('joinLiveChatroom', {
-          //   'chatroomData' : chatrooms,
-          //   'userData' : username,
-          //   'participantData': participantsInLiveChatroom
-          // });
-        }}
-      >
-        <LiveChatrooms 
-          liveChatrooms={chatrooms}
-          liveChatroomKey={chatroomKey}
-          liveUsers={onlineParticipantInLiveChatroom}
-          joinChatroom={joinLiveChatroomFunction}
-          leaveChatroom={leaveLiveChatroomFunction}
-          userID={userID}
-        />
-      </div>
-    );
-  });
+  // const displayLiveChatrooms = liveChatroom.map(chatrooms => {
+  //   return (
+  //     <div
+  //       className="liveConversationContainer"
+  //       onClick={() => {
+  //         setChatroomKey(chatrooms.id);
+  //         // socket.emit('joinLiveChatroom', {
+  //         //   'chatroomData' : chatrooms,
+  //         //   'userData' : username,
+  //         //   'participantData': participantsInLiveChatroom
+  //         // });
+  //       }}
+  //     >
+  //       <LiveChatrooms 
+  //         liveChatrooms={chatrooms}
+  //         liveChatroomKey={chatroomKey}
+  //         liveUsers={onlineParticipantInLiveChatroom}
+  //         joinChatroom={joinLiveChatroomFunction}
+  //         leaveChatroom={leaveLiveChatroomFunction}
+  //         userID={userID}
+  //       />
+  //     </div>
+  //   );
+  // });
   /* ------ Search Inputs for Live Chatrooms and Tickers ------ */
 
   const getLiveChatroomSearchInput = async (e) => {
@@ -485,7 +485,7 @@ function ChatIndex() {
     };
   });
 
-  const displayChatrooms1 = filteredLiveChatrooms.map((chatrooms) => {
+  const displayLiveChatrooms = filteredLiveChatrooms.map((chatrooms) => {
     return (
       <div
       className="liveConversationContainer"
@@ -510,7 +510,10 @@ function ChatIndex() {
     );
   });
 
-  console.log('displayChatrooms1', filteredLiveChatrooms);
+  const onClearLiveChatroomSearch = async () => {
+    setSearchLiveChatroomInput('');
+  };
+
 
   const handleSubmitForLiveChat = (e) => {
     e.preventDefault();
@@ -664,7 +667,7 @@ function ChatIndex() {
                       endAdornment: <InputAdornment>
                         <ClearIcon
                           sx={{ "&:hover": { color: "red" } }}
-                          onClick={onClearConversationSearch}
+                          onClick={onClearLiveChatroomSearch}
                         >             
                         </ClearIcon>
                       </InputAdornment>,
