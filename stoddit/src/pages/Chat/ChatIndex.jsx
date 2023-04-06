@@ -492,11 +492,6 @@ function ChatIndex() {
       className="liveConversationContainer"
       onClick={() => {
         setChatroomKey(chatrooms.id);
-        // socket.emit('joinLiveChatroom', {
-        //   'chatroomData' : chatrooms,
-        //   'userData' : username,
-        //   'participantData': participantsInLiveChatroom
-        // });
       }}
     >
       <LiveChatrooms 
