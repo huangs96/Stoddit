@@ -146,6 +146,7 @@ function LoginPage() {
             <TextField
               style={{
                 width: '650px',
+                borderRadius: '12px'
               }}
               margin="normal"
               required
@@ -188,6 +189,7 @@ function LoginPage() {
               </Link>
             </div>
             <Button
+              style={{borderRadius: 12}}
               type="submit"
               fullWidth
               variant="contained"
@@ -196,7 +198,7 @@ function LoginPage() {
             >
               Sign In
             </Button>
-            <Grid container>
+            <Grid container justifyContent="center">
               <Grid item>
                 <Link href="/register" variant="body2">
                   {"Don't have an account? Sign Up"}
