@@ -469,6 +469,7 @@ function ChatIndex() {
       </div>
     );
   });
+  /* ------ Search Inputs for Live Chatrooms and Tickers ------ */
 
   const handleSubmitForLiveChat = (e) => {
     e.preventDefault();
