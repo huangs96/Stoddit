@@ -48,6 +48,8 @@ function Header() {
   };
 
   const viewProfile = () => {
+    setValue(null);
+    setShowContextMenu(false);
     return navigate('/profile');
   };
    
