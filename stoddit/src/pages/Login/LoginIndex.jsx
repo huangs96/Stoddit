@@ -130,9 +130,11 @@ function LoginPage() {
           </Typography>
           <Box component="form" onSubmit={handleSubmit} ref={form} noValidate sx={{ mt: 1 }}>
             <TextField
+              style={{
+                width: '650px'
+              }}
               margin="normal"
               required
-              fullWidth
               id="email"
               label="Username"
               InputLabelProps={{ shrink: true }}
@@ -167,7 +169,7 @@ function LoginPage() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Sign into Stoddit
             </Button>
             <Grid container>
               <Grid item xs>
