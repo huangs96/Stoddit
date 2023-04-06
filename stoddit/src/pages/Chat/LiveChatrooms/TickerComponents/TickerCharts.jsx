@@ -40,11 +40,11 @@ function TickerCharts({ticker, timeData, priceData}) {
     datasets: [{
       label: [ticker.name],
       data: priceData,
-      pointBorderColor: 'pink',
-      pointBackgroundColor: 'pink',
-      borderColor: 'pink',
-      backgroundColor: '#84ACCE',
-      fill: 'start',
+      // pointBorderColor: 'pink',
+      // pointBackgroundColor: 'pink',
+      // borderColor: 'pink',
+      // backgroundColor: '#84ACCE',
+      // fill: 'start',
     }]
   };
 
@@ -57,7 +57,7 @@ function TickerCharts({ticker, timeData, priceData}) {
       pointBackgroundColor: 'pink',
       borderColor: 'pink',
       backgroundColor: '#84ACCE',
-      fill: 'start',
+      // fill: 'start',
     }]
   };
   
