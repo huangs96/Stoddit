@@ -10,8 +10,8 @@ function preventDefault(event) {
 export default function Deposits() {
   return (
     <React.Fragment>
-      <Title>Recent Deposits</Title>
-      <Typography component="p" variant="h4" color="#4353FF">
+      <Title>Deposits</Title>
+      <Typography component="p" variant="h4" style={{paddingTop: '25px'}} color="#4353FF">
         $3,024.00
       </Typography>
       <Typography color="text.secondary" sx={{ flex: 1 }}>
