@@ -94,21 +94,17 @@ function DashboardContent() {
               }}
               >
           <Toolbar />
+          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
           <Box
             display="flex"
             flexDirection="column"
             alignItems="flex-start"
+            paddingBottom="40px"
           >
-          {/* <div style={{
-            display: 'flex',
-            justifyContent: 'flex-start'
-          }}> */}
             <Typography variant='h4'>
               Welcome, {username}
             </Typography>
-          {/* </div> */}
           </Box>
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
               {/* Chart */}
               <Grid item xs={12} md={8} lg={9}>
