@@ -27,8 +27,19 @@ function RegisterPage() {
   const [loading, setLoading] = useState(null);
   const [message, setMessage] = useState("");
   const [registered, setRegistered] = useState(false);
-  const theme = createTheme();
   const navigate = useNavigate();
+  const { palette } = createTheme();
+  const { augmentColor } = palette;
+  const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
+  const theme = createTheme({
+    palette: {
+      anger: createColor('#F40B27'),
+      apple: createColor('#5DBA40'),
+      steelBlue: createColor('#5C76B7'),
+      violet: createColor('#BC00A3'),
+      purpleBlue: createColor('#4353FF'),
+    },
+  });
 
   const onChangeUsername = (e) => {
     const userName = e.target.value;
@@ -83,122 +94,123 @@ function RegisterPage() {
 
   return (
     <>
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 30,
-          }}
-          >
-          {registered &&
-            <div className="registeredBox">
-              <Typography component="h1" variant="h5">
-              You are Registered!
-              </Typography>
-              <Button
-                sx={{ 
-                  mt: 3, 
-                  mb: 2, 
-                }}
-                onClick={navToLogin}
-              >
-                Login Now
-              </Button>
-            </div>
-          }
-          {!registered && 
-            <div className="registeringBox">
-              <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                <LockOutlinedIcon />
-              </Avatar>
-              <Typography component="h1" variant="h5">
-                Sign Up For Stoddit
-              </Typography>
-              <div style={{paddingTop:'12px', paddingBottom:'25px'}}>
-                <Divider variant="middle" style={{width: '500px'}}/>
-              </div>
-              <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                <TextField
-                  margin="normal"
-                  required
-                  error={username.length !== 0 && username.length < 8}
-                  helperText={username.length !== 0 && username.length < 8 ? 'Less than 8 characters!' : ' '}
-                  fullWidth
-                  id="email"
-                  label="Username"
-                  name="email"
-                  autoComplete="email"
-                  autoFocus
-                  onChange={onChangeUsername}
-                  value={username}
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  error={password.length !== 0 && password.length < 8}
-                  helperText={password.length !== 0 && password.length < 8 ? 'Less than 8 characters!' : ' '}
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  onChange={onChangePassword}
-                  value={password}
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  error={!passwordMatch && confirmPassword.length > 0}
-                  helperText={!passwordMatch && confirmPassword.length > 0 ? 'Password does not match' : ' '}
-                  fullWidth
-                  name="confirmPassword"
-                  label="Confirm Password"
-                  type="password"
-                  id="confirmPassword"
-                  autoComplete="current-password"
-                  onChange={onChangeConfirmPassword}
-                />
-                <TextField
-                  label="Phone" 
-                  fullWidth
-                  inputProps={{maxLength: 10}}
-                  value={phone} 
-                  onChange={onChangePhone}
-                >
-                </TextField>
-                {/* <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Remember me"
-                /> */}
+    <div style={{display: 'flex'}}>
+      <ThemeProvider theme={theme}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <Box
+            sx={{
+              marginTop: 30,
+            }}
+            >
+            {registered &&
+              <div className="registeredBox">
+                <Typography component="h1" variant="h5">
+                You are Registered!
+                </Typography>
                 <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                  disabled={!passwordMatch}
+                  sx={{ 
+                    mt: 3, 
+                    mb: 2, 
+                  }}
+                  onClick={navToLogin}
                 >
-                  Register
+                  Login Now
                 </Button>
-                <Grid container>
-                  <Grid item xs>
-                    <Link href="#" variant="body2">
-                      Forgot password?
-                    </Link>
+              </div>
+            }
+            {!registered && 
+              <div className="registeringBox">
+                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                  <LockOutlinedIcon />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                  Sign Up For Stoddit
+                </Typography>
+                <div style={{paddingTop:'12px', paddingBottom:'25px'}}>
+                  <Divider variant="middle" style={{width: '500px'}}/>
+                </div>
+                <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                  <TextField
+                    style={{
+                      width: '500px',
+                      borderRadius: '12px'
+                    }}
+                    margin="normal"
+                    required
+                    error={username.length !== 0 && username.length < 8}
+                    helperText={username.length !== 0 && username.length < 8 ? 'Less than 8 characters!' : ' '}
+                    id="email"
+                    label="Username"
+                    name="email"
+                    autoComplete="email"
+                    autoFocus
+                    onChange={onChangeUsername}
+                    value={username}
+                  />
+                  <TextField
+                    margin="normal"
+                    required
+                    error={password.length !== 0 && password.length < 8}
+                    helperText={password.length !== 0 && password.length < 8 ? 'Less than 8 characters!' : ' '}
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    onChange={onChangePassword}
+                    value={password}
+                  />
+                  <TextField
+                    margin="normal"
+                    required
+                    error={!passwordMatch && confirmPassword.length > 0}
+                    helperText={!passwordMatch && confirmPassword.length > 0 ? 'Password does not match' : ' '}
+                    fullWidth
+                    name="confirmPassword"
+                    label="Confirm Password"
+                    type="password"
+                    id="confirmPassword"
+                    autoComplete="current-password"
+                    onChange={onChangeConfirmPassword}
+                  />
+                  <TextField
+                    label="Phone" 
+                    fullWidth
+                    inputProps={{maxLength: 10}}
+                    value={phone} 
+                    onChange={onChangePhone}
+                  >
+                  </TextField>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                    disabled={!passwordMatch}
+                  >
+                    Register
+                  </Button>
+                  <Grid container>
+                    <Grid item xs>
+                      <Link href="#" variant="body2">
+                        Forgot password?
+                      </Link>
+                    </Grid>
+                    <Grid item>
+                      <Link href="/login" variant="body2">
+                        {"Already have an account?"}
+                      </Link>
+                    </Grid>
                   </Grid>
-                  <Grid item>
-                    <Link href="/login" variant="body2">
-                      {"Already have an account?"}
-                    </Link>
-                  </Grid>
-                </Grid>
-              </Box>
-            </div>
-          }
-        </Box>
-      </Container>
-      </ThemeProvider>
+                </Box>
+              </div>
+            }
+          </Box>
+        </Container>
+        </ThemeProvider>
+      </div>
     </>
   )
 }
