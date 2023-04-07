@@ -76,7 +76,7 @@ function RegisterPage() {
       setLoading(false);
     } else {
       setLoading(true);
-    }
+    };
 
     await registerUser({
       username,
@@ -227,6 +227,6 @@ function RegisterPage() {
         </ThemeProvider>
       </div>
     </>
-  )
-}
+  );
+};
 export default RegisterPage
