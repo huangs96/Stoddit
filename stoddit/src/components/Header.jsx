@@ -73,28 +73,24 @@ function Header() {
                 component={Link}
                 to={'/home'}
                 icon={<HomeIcon />}
-                iconPosition='start'
               />
               <Tab 
                 value='Chat'
                 component={Link}
                 to={'/chat'}
                 icon={<ChatIcon />}
-                iconPosition='start'
               />
               <Tab 
                 value='Portfolio'
                 component={Link}
                 to={'/portfolio'}
                 icon={<RecentActorsIcon />}
-                iconPosition='start'
               />
               <Tab 
                 value='Trade'
                 component={Link}
                 to={'/trade'}
                 icon={<ShowChartIcon />}
-                iconPosition='start'
               />
             </Tabs>
           </Box>
