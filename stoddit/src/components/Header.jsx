@@ -67,30 +67,39 @@ function Header() {
               value={value}
               onChange={(e, value)=> setValue(value)}
               orientation='horizontal'
+              TabIndicatorProps={{
+                style: {
+                display: 'none',
+                }
+              }}
             >
-              <Tab 
+              <Tab
+                style={{borderRadius:'12px'}}
                 value='Home'
                 component={Link}
                 to={'/home'}
-                icon={<HomeIcon />}
+                icon={<HomeIcon sx={{color: value === 'Home' ? "#4353FF" : "FFFFFF"}}/>}
               />
-              <Tab 
+              <Tab
+                style={{borderRadius:'12px'}}
                 value='Chat'
                 component={Link}
                 to={'/chat'}
-                icon={<ChatIcon />}
+                icon={<ChatIcon sx={{color: value === 'Chat' ? "#4353FF" : "FFFFFF"}}/>}
               />
               <Tab 
+                style={{borderRadius:'12px'}}
                 value='Portfolio'
                 component={Link}
                 to={'/portfolio'}
-                icon={<RecentActorsIcon />}
+                icon={<RecentActorsIcon sx={{color: value === 'Portfolio' ? "#4353FF" : "FFFFFF"}}/>}
               />
               <Tab 
+                style={{borderRadius:'12px'}}
                 value='Trade'
                 component={Link}
                 to={'/trade'}
-                icon={<ShowChartIcon />}
+                icon={<ShowChartIcon sx={{color: value === 'Trade' ? "#4353FF" : "FFFFFF"}}/>}
               />
             </Tabs>
           </Box>
