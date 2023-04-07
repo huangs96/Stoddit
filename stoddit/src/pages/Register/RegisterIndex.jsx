@@ -180,7 +180,11 @@ function RegisterPage() {
                   />
                   <TextField
                     label="Phone"
-                    type="number"
+                    type="text"
+                    inputProps={{ 
+                      inputMode: 'numeric', 
+                      pattern: '/^-?\d+(?:\.\d+)?$/g'
+                    }} 
                     InputLabelProps={{ shrink: true }}
                     fullWidth
                     inputProps={{maxLength: 10}}
