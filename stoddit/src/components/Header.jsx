@@ -17,11 +17,7 @@ function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const socket = useContext(SocketContext);
-
   const navigate = useNavigate();
-
-  console.log('socket', socket);
-
   const logout = async () => {
     const deleteDetails = await logoutUser();
     if (deleteDetails.error) {
@@ -105,14 +101,6 @@ function Header() {
                 icon={<ShowChartIcon />}
                 iconPosition='start'
               />
-              {/* <Tab 
-                icon={<PersonPinIcon />} 
-                aria-label='person'
-                value='Profile'
-                component={Link}
-                to={'/profile'}
-                iconPosition='end'
-              /> */}
             </Tabs>
           </Box>
           <IconButton size='large'>
