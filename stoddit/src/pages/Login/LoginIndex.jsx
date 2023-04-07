@@ -30,7 +30,6 @@ function LoginPage() {
   const [user, setUser] = useState('');
   const form = useRef();
   const navigate = useNavigate();
-
   const { palette } = createTheme();
   const { augmentColor } = palette;
   const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
@@ -94,14 +93,11 @@ function LoginPage() {
     if (validateFields()) {
       return;
     };
-    
     try {
-
       let token = await authUser({
         username,
         password
       });
-
       if (token) {
         console.log('here2');
         setIncorrectInput(state => ({...state, status: 'correct'}));
@@ -212,8 +208,8 @@ function LoginPage() {
         </ThemeProvider>
       </div>
     </>
-  )
-}
+  );
+};
 
 
 export default LoginPage
