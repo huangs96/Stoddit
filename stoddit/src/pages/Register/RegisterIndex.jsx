@@ -113,9 +113,12 @@ function RegisterPage() {
                     mt: 3, 
                     mb: 2, 
                   }}
+                  variant="contained"
+                  style={{borderRadius: 12}}
                   onClick={navToLogin}
+                  color='purpleBlue'
                 >
-                  Login Now
+                  Login to Stoddit
                 </Button>
               </div>
             }
