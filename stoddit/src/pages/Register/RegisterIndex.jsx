@@ -14,6 +14,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function RegisterPage() {
@@ -112,8 +113,11 @@ function RegisterPage() {
                 <LockOutlinedIcon />
               </Avatar>
               <Typography component="h1" variant="h5">
-                Sign Up
+                Sign Up For Stoddit
               </Typography>
+              <div style={{paddingTop:'12px', paddingBottom:'25px'}}>
+                <Divider variant="middle" style={{width: '500px'}}/>
+              </div>
               <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                 <TextField
                   margin="normal"
