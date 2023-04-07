@@ -12,12 +12,17 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { logoutUser } from '../services/auth.service';
 
 function Header() {
-  const [value, setValue] = useState('/home');
+  const [value, setValue] = useState('Home');
   const [showContextMenu, setShowContextMenu] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const socket = useContext(SocketContext);
   const navigate = useNavigate();
+  const styles = {
+    customizeToolbar: {
+      height: 100
+    }
+  };
   const logout = async () => {
     const deleteDetails = await logoutUser();
     if (deleteDetails.error) {
@@ -61,7 +66,7 @@ function Header() {
   return (
     <React.Fragment>
       <AppBar position='absolute' style={{ background: '#FFFFFF' }}>
-        <Toolbar>
+        <Toolbar className={styles.customizeToolbar}>
           <Box display='flex' flexGrow={1} justifyContent='center'>
             <Tabs 
               value={value}
