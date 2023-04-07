@@ -60,17 +60,15 @@ function Header() {
 
   return (
     <React.Fragment>
-      <AppBar position='absolute'>
+      <AppBar position='absolute' style={{ background: '#FFFFFF' }}>
         <Toolbar>
           <Box display='flex' flexGrow={1}>
             <Tabs 
-              textColor='inherit' 
               value={value}
-              onChange={(e, value)=> setValue(value)} indicatorColor='secondary'
+              onChange={(e, value)=> setValue(value)}
               orientation='horizontal'
             >
               <Tab 
-                // label='Home'
                 value='Home'
                 component={Link}
                 to={'/home'}
@@ -78,7 +76,6 @@ function Header() {
                 iconPosition='start'
               />
               <Tab 
-                // label='Chat'
                 value='Chat'
                 component={Link}
                 to={'/chat'}
@@ -86,7 +83,6 @@ function Header() {
                 iconPosition='start'
               />
               <Tab 
-                // label='Portfolio' 
                 value='Portfolio'
                 component={Link}
                 to={'/portfolio'}
@@ -94,7 +90,6 @@ function Header() {
                 iconPosition='start'
               />
               <Tab 
-                // label='Trade'
                 value='Trade'
                 component={Link}
                 to={'/trade'}
