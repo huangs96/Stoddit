@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { SocketContext } from '../contexts/socketProvider';
 import ContextMenu from './ContextMenu';
 import viewProfile from '../helpers/menuHelpers'
-import { AppBar, Box, Typography, Toolbar, Tabs, Tab, Button, IconButton } from '@mui/material';
+import { AppBar, Box, Toolbar, Tabs, Tab, IconButton } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import ChatIcon from '@mui/icons-material/Chat';
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
@@ -53,15 +53,15 @@ function Header() {
     setShowContextMenu(false);
     return navigate('/profile');
   };
-   
+
   const fill = {
     'View Profile': viewProfile,
     'Logout': logout
   };
 
-  console.log('value header', value);
-
-  if (window.location.pathname === '/login' || window.location.pathname === '/register') return null;
+  if (window.location.pathname === '/login' || window.location.pathname === '/register') {
+    return null
+  };
 
   return (
     <React.Fragment>
