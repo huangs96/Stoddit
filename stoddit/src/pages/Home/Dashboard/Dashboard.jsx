@@ -57,6 +57,7 @@ function DashboardContent() {
   };
 
   return (
+    <>
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex', marginTop:'64px' }}>
         <CssBaseline />
@@ -96,11 +97,16 @@ function DashboardContent() {
           <Box
             display="flex"
             flexDirection="column"
-            alignItems="center"
+            alignItems="flex-start"
           >
-          <Typography variant='h4'>
-            Welcome {username}
-          </Typography>
+          {/* <div style={{
+            display: 'flex',
+            justifyContent: 'flex-start'
+          }}> */}
+            <Typography variant='h4'>
+              Welcome, {username}
+            </Typography>
+          {/* </div> */}
           </Box>
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
@@ -141,6 +147,7 @@ function DashboardContent() {
         </Box>
       </Box>
     </ThemeProvider>
+    </>
   );
 }
 

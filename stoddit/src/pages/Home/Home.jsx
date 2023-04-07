@@ -7,8 +7,6 @@ import Dashboard from './Dashboard/Dashboard';
 
 
 function HomePage() {
-  const navigate = useNavigate();
-  const [user, setUser] = useState(null);
 
   return (
     <>
