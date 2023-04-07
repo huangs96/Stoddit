@@ -142,6 +142,7 @@ function RegisterPage() {
                     helperText={username.length !== 0 && username.length < 8 ? 'Less than 8 characters!' : ' '}
                     id="email"
                     label="Username"
+                    InputLabelProps={{ shrink: true }}
                     name="email"
                     autoComplete="email"
                     autoFocus
@@ -156,6 +157,7 @@ function RegisterPage() {
                     fullWidth
                     name="password"
                     label="Password"
+                    InputLabelProps={{ shrink: true }}
                     type="password"
                     id="password"
                     autoComplete="current-password"
@@ -170,13 +172,16 @@ function RegisterPage() {
                     fullWidth
                     name="confirmPassword"
                     label="Confirm Password"
+                    InputLabelProps={{ shrink: true }}
                     type="password"
                     id="confirmPassword"
                     autoComplete="current-password"
                     onChange={onChangeConfirmPassword}
                   />
                   <TextField
-                    label="Phone" 
+                    label="Phone"
+                    type="number"
+                    InputLabelProps={{ shrink: true }}
                     fullWidth
                     inputProps={{maxLength: 10}}
                     value={phone} 
@@ -185,10 +190,13 @@ function RegisterPage() {
                   </TextField>
                   <Button
                     type="submit"
+                    style={{borderRadius: 12}}
+                    InputLabelProps={{ shrink: true }}
                     fullWidth
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                     disabled={!passwordMatch}
+                    color='purpleBlue'
                   >
                     Register
                   </Button>
