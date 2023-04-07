@@ -8,7 +8,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import ChatIcon from '@mui/icons-material/Chat';
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
-import PersonPinIcon from '@mui/icons-material/PersonPin';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { logoutUser } from '../services/auth.service';
 
 function Header() {
@@ -62,7 +62,7 @@ function Header() {
     <React.Fragment>
       <AppBar position='absolute' style={{ background: '#FFFFFF' }}>
         <Toolbar>
-          <Box display='flex' flexGrow={1}>
+          <Box display='flex' flexGrow={1} justifyContent='center'>
             <Tabs 
               value={value}
               onChange={(e, value)=> setValue(value)}
@@ -95,7 +95,7 @@ function Header() {
             </Tabs>
           </Box>
           <IconButton size='large'>
-            <PersonPinIcon onClick={handleToggle} sx={{marginLeft: 'auto'}}/>
+            <AccountCircleIcon style={{color:'black'}} onClick={handleToggle} sx={{marginLeft: 'auto'}}/>
           </IconButton>
         </Toolbar>
       </AppBar>
