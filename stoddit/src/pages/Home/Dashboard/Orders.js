@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React, {useState} from 'react';
 import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -6,13 +6,13 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Title from './Title';
-import { DataGrid } from '@mui/x-data-grid';
-import { useDemoData } from '@mui/x-data-grid-generator';
+import TablePagination from '@mui/material/TablePagination';
 
 // Generate Order Data
 function createData(id, date, name, shipTo, paymentMethod, amount) {
   return { id, date, name, shipTo, paymentMethod, amount };
 }
+const [rowsPerPage, setRowsPerPage] = React.useState(DEFAULT_ROWS_PER_PAGE);
 
 const rows = [
   createData(
@@ -54,6 +54,7 @@ function preventDefault(event) {
   event.preventDefault();
 }
 
+
 export default function Orders() {
   return (
     <React.Fragment>
@@ -80,6 +81,15 @@ export default function Orders() {
           ))}
         </TableBody>
       </Table>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
     </React.Fragment>
   );
 };
