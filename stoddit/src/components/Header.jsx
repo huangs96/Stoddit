@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SocketContext } from '../contexts/socketProvider';
 import ContextMenu from './ContextMenu';
@@ -12,7 +12,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { logoutUser } from '../services/auth.service';
 
 function Header() {
-  const [value, setValue] = useState('Home');
+  const [value, setValue] = useState(null);
   const [showContextMenu, setShowContextMenu] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -23,6 +23,14 @@ function Header() {
       height: 100
     }
   };
+  useEffect(() => {
+    if (value !== null) {
+      localStorage.setItem('currentPage', value);
+    };
+    console.log(localStorage.getItem('currentPage'));
+  }, [value]);
+
+
   const logout = async () => {
     const deleteDetails = await logoutUser();
     if (deleteDetails.error) {
@@ -62,6 +70,8 @@ function Header() {
   if (window.location.pathname === '/login' || window.location.pathname === '/register') {
     return null
   };
+
+  console.log('value', value);
 
   return (
     <React.Fragment>
