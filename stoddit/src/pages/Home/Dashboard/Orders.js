@@ -148,7 +148,7 @@ export default function Orders() {
 
   return (
     <React.Fragment>
-      <div style={{paddingBottom: '12px'}}>
+      <div style={{paddingBottom: '12px', paddingTop: '12px'}}>
         <Title>Recent Orders</Title>
       </div>
       <Table size="small">
