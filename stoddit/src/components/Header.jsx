@@ -12,7 +12,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { logoutUser } from '../services/auth.service';
 
 function Header() {
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState(localStorage.getItem('currentPage'));
   const [showContextMenu, setShowContextMenu] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -27,7 +27,7 @@ function Header() {
     if (value !== null) {
       localStorage.setItem('currentPage', value);
     };
-    console.log(localStorage.getItem('currentPage'));
+    console.log('1', localStorage.getItem('currentPage'));
   }, [value]);
 
 
