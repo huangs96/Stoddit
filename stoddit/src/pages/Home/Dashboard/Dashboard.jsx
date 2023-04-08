@@ -94,7 +94,7 @@ function DashboardContent() {
                 flexGrow: 1,
                 height: '100vh',
                 overflow: 'auto',
-                boxShadow: 3
+                backgroundColor: 'none'
               }}
               >
           <Toolbar />
