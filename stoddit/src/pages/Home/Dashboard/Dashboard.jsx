@@ -27,7 +27,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
       backgroundColor:'#F2F0FB',
       position: 'relative',
       zIndex: '1400',
-      borderWidth: 0,
+      borderWidth: 1,
       whiteSpace: 'nowrap',
       width: drawerWidth,
       transition: theme.transitions.create('width', {
@@ -37,7 +37,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
       boxSizing: 'border-box',
       ...(!open && {
         overflowX: 'hidden',
-        borderWidth: 0,
+        borderWidth: 1,
         transition: theme.transitions.create('width', {
           easing: theme.transitions.easing.sharp,
           duration: theme.transitions.duration.leavingScreen,
@@ -64,7 +64,9 @@ function DashboardContent() {
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex'}}>
         <CssBaseline />
-        <Drawer variant="permanent" open={open} sx={{zIndex: '1400',}}>
+        <Drawer variant="permanent" open={open} elevation={3} sx={{zIndex: '1400',}} PaperProps={{
+          elevation: 4
+        }}>
           <Toolbar
             sx={{
               display: 'flex',
