@@ -27,7 +27,9 @@ const data = {
 const options = {
   plugins: {
     legend: false
-  }
+  },
+  responsive: true,
+  maintainAspectRatio: false
 };
 
 export default function BalanceChart() {

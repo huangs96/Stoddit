@@ -42,7 +42,9 @@ export default function Deposits() {
       <Typography variant="h4" style={{paddingTop: '25px', fontWeight: 'bold'}} color="#4353FF">
         $3,024.00
       </Typography>
-      <BalanceChart />
+      <div style={{position: "relative", height: '1000px', width: '1000px'}}>
+        <BalanceChart />
+      </div>
       <Typography color="text.secondary" fontSize="12px" sx={{ flex: 1 }} style={{paddingTop: '10px'}}>
         last updated on {displayDate}
       </Typography>

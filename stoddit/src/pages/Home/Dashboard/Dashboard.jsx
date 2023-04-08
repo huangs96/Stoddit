@@ -136,7 +136,7 @@ function DashboardContent() {
                     flexDirection: 'column',
                     height: 240,
                     boxShadow: 4,
-                    borderRadius: 2
+                    borderRadius: 2,
                   }}
                 >
                   <Deposits />
