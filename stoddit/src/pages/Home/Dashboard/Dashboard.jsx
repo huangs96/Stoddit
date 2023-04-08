@@ -91,6 +91,7 @@ function DashboardContent() {
                 flexGrow: 1,
                 height: '100vh',
                 overflow: 'auto',
+                boxShadow: 3
               }}
               >
           <Toolbar />
@@ -114,6 +115,8 @@ function DashboardContent() {
                     display: 'flex',
                     flexDirection: 'column',
                     height: 240,
+                    boxShadow: 4,
+                    borderRadius: 2
                   }}
                 >
                   <Chart />
@@ -127,6 +130,8 @@ function DashboardContent() {
                     display: 'flex',
                     flexDirection: 'column',
                     height: 240,
+                    boxShadow: 4,
+                    borderRadius: 2
                   }}
                 >
                   <Deposits />
@@ -138,7 +143,9 @@ function DashboardContent() {
                   p: 2, 
                   display: 'flex', 
                   flexDirection: 'column',
-                  paddingBottom: '0px'
+                  paddingBottom: '0px',
+                  boxShadow: 4,
+                  borderRadius: 2
                   }}>
                   <Orders />
                 </Paper>
