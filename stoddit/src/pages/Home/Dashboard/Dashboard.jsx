@@ -138,9 +138,6 @@ function DashboardContent() {
                   p: 2, 
                   display: 'flex', 
                   flexDirection: 'column',
-                  paddingTop: '16px',
-                  paddingLeft: '16px',
-                  paddingRight: '16px',
                   paddingBottom: '0px'
                   }}>
                   <Orders />
