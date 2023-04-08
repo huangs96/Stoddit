@@ -64,7 +64,7 @@ function DashboardContent() {
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex'}}>
         <CssBaseline />
-        <Drawer variant="permanent" open={open} elevation={3} sx={{zIndex: '1400',}} PaperProps={{
+        <Drawer variant="permanent" open={open} elevation={2} sx={{zIndex: '1400',}} PaperProps={{
           elevation: 4
         }}>
           <Toolbar
