@@ -39,13 +39,14 @@ export default function Deposits() {
   return (
     <React.Fragment>
       <Title>Total Balance</Title>
-      <Typography variant="h4" style={{paddingTop: '25px', fontWeight: 'bold'}} color="#4353FF">
+      <Typography variant="h4" style={{paddingTop: '20px', fontWeight: 'bold'}} color="#4353FF">
         $3,024.00
       </Typography>
-      <div style={{position: "relative", paddingTop:'15px'}}>
+      <div style={{position: "relative", paddingTop:'10px'}}>
         <BalanceChart />
       </div>
-      <Typography color="text.secondary" fontSize="12px" sx={{ flex: 1 }} style={{paddingTop: '40px'}}>
+      <Typography>Cash: $2024</Typography>
+      <Typography color="text.secondary" fontSize="12px" sx={{ flex: 1 }} style={{paddingTop: '50px'}}>
         last updated on {displayDate}
       </Typography>
       <div>
