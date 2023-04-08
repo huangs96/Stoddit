@@ -122,7 +122,7 @@ function DashboardContent() {
                     height: 240,
                     boxShadow: 4,
                     borderRadius: 2,
-                    height: '380px'
+                    height: '400px'
                   }}
                 >
                   <Chart />
@@ -138,7 +138,7 @@ function DashboardContent() {
                     height: 240,
                     boxShadow: 4,
                     borderRadius: 2,
-                    height: '380px'
+                    height: '400px'
                   }}
                 >
                   <Deposits />

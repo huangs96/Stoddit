@@ -4,7 +4,6 @@ import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-
 const data = {
   type: 'doughnut',
   labels: ['investments', 'cash'],
@@ -26,7 +25,7 @@ const data = {
 };
 const options = {
   plugins: {
-    legend: false
+    legend: true
   },
   responsive: true,
   maintainAspectRatio: false
@@ -34,6 +33,6 @@ const options = {
 
 export default function BalanceChart() {
   return (
-    <Doughnut data={data} options={options} style={{}}/>
+    <Doughnut data={data} options={options}/>
   );
 };
