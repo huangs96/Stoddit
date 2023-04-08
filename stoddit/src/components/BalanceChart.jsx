@@ -34,6 +34,6 @@ const options = {
 
 export default function BalanceChart() {
   return (
-    <Doughnut data={data} options={options} />
+    <Doughnut data={data} options={options} style={{}}/>
   );
 };

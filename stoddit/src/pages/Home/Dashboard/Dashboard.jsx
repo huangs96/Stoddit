@@ -121,7 +121,8 @@ function DashboardContent() {
                     flexDirection: 'column',
                     height: 240,
                     boxShadow: 4,
-                    borderRadius: 2
+                    borderRadius: 2,
+                    height: '380px'
                   }}
                 >
                   <Chart />
@@ -137,6 +138,7 @@ function DashboardContent() {
                     height: 240,
                     boxShadow: 4,
                     borderRadius: 2,
+                    height: '380px'
                   }}
                 >
                   <Deposits />
@@ -150,7 +152,7 @@ function DashboardContent() {
                   flexDirection: 'column',
                   paddingBottom: '0px',
                   boxShadow: 4,
-                  borderRadius: 2
+                  borderRadius: 2,
                   }}>
                   <Orders />
                 </Paper>
