@@ -59,7 +59,7 @@ const rows = [
     212.79,
   ),
   createData(
-    4,
+    5,
     '15 Mar, 2019',
     'Bruce Springsteen',
     'Long Branch, NJ',
@@ -67,7 +67,7 @@ const rows = [
     212.79,
   ),
   createData(
-    4,
+    6,
     '15 Mar, 2019',
     'Bruce Springsteen',
     'Long Branch, NJ',
@@ -75,7 +75,7 @@ const rows = [
     212.79,
   ),
   createData(
-    4,
+    7,
     '15 Mar, 2019',
     'Bruce Springsteen',
     'Long Branch, NJ',
@@ -83,7 +83,7 @@ const rows = [
     212.79,
   ),
   createData(
-    4,
+    8,
     '15 Mar, 2019',
     'Bruce Springsteen',
     'Long Branch, NJ',
@@ -91,7 +91,7 @@ const rows = [
     212.79,
   ),
   createData(
-    4,
+    9,
     '15 Mar, 2019',
     'Bruce Springsteen',
     'Long Branch, NJ',
@@ -99,7 +99,7 @@ const rows = [
     212.79,
   ),
   createData(
-    4,
+    10,
     '15 Mar, 2019',
     'Bruce Springsteen',
     'Long Branch, NJ',
@@ -107,7 +107,7 @@ const rows = [
     212.79,
   ),
   createData(
-    4,
+    11,
     '15 Mar, 2019',
     'Bruce Springsteen',
     'Long Branch, NJ',
@@ -115,7 +115,7 @@ const rows = [
     212.79,
   ),
   createData(
-    4,
+    12,
     '15 Mar, 2019',
     'Bruce Springsteen',
     'Long Branch, NJ',
@@ -142,6 +142,7 @@ export default function Orders() {
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
+    console.log('hello', event.target.value);
     setPage(0);
   };
 
