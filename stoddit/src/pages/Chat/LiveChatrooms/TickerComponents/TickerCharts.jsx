@@ -5,13 +5,10 @@ import {
   LinearScale, //y-axis
   PointElement,
   LineElement,
-  Title,
   Tooltip,
-  Legend,
   Filler
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import config from './chartConfig';
 import { style } from '@mui/system';
 
 //modal needed
@@ -64,7 +61,7 @@ function TickerCharts({ticker, timeData, priceData}) {
   
   const options = {
     plugins: {
-      legend: true,
+      legend: false,
       tooltip: {
         enabled: true
       }

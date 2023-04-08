@@ -4,32 +4,29 @@ import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const options = {
-  legend: {
-    display: false
-  }
-};
+
 const data = {
+  type: 'doughnut',
   labels: ['investments', 'cash'],
   datasets: [
     {
       label: 'Balance Breakdown',
       data: [1000, 2024],
       backgroundColor: [
-        'rgba(255, 99, 132, 1)',
+        'rgba(67, 83, 255, 1)',
         'rgba(54, 162, 235, 1)',
       ],
       borderColor: [
-        'rgba(255, 99, 132, 1)',
+        'rgba(67, 83, 255)',
         'rgba(54, 162, 235, 1)'
       ],
       borderWidth: 1,
     },
   ],
-  options: {
-    legend: {
-      display: false
-    }
+};
+const options = {
+  plugins: {
+    legend: false
   }
 };
 
