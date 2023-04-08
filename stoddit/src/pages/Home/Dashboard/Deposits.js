@@ -47,7 +47,7 @@ export default function Deposits() {
       </div>
       <div style={{display: "flex", justifyContent:"space-around", paddingTop: "20px"}}>
       <Typography fontSize="small">Investment: $2024</Typography>
-      <Typography fontSize="small">Cash: $2024</Typography>
+      <Typography fontSize="small">Cash: $1000</Typography>
       </div>
       <Typography color="text.secondary" fontSize="12px" sx={{ flex: 1 }} style={{paddingTop: "12px"}}>
         last updated on {displayDate}
