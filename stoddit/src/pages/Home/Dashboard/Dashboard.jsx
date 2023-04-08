@@ -25,8 +25,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   ({ theme, open }) => ({
     '& .MuiDrawer-paper': {
       backgroundColor:'#F2F0FB',
-      position: 'relative',
-      zIndex: '1400',
+      marginTop: '62px',
       borderWidth: 1,
       whiteSpace: 'nowrap',
       width: drawerWidth,
@@ -64,7 +63,7 @@ function DashboardContent() {
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex'}}>
         <CssBaseline />
-        <Drawer variant="permanent" open={open} elevation={2} sx={{zIndex: '1400',}} PaperProps={{
+        <Drawer variant="permanent" open={open} elevation={2} PaperProps={{
           elevation: 4
         }}>
           <Toolbar
