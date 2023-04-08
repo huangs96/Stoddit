@@ -11,7 +11,7 @@ export default function Deposits() {
   return (
     <React.Fragment>
       <Title>Deposits</Title>
-      <Typography component="p" variant="h4" style={{paddingTop: '25px'}} color="#4353FF">
+      <Typography variant="h4" style={{paddingTop: '25px', fontWeight: 'bold'}} color="#4353FF">
         $3,024.00
       </Typography>
       <Typography color="text.secondary" sx={{ flex: 1 }}>
