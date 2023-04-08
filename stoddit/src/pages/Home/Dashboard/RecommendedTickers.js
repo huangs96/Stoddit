@@ -5,18 +5,9 @@ import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TableHead from '@mui/material/TableHead'
-import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
-import Link from '@mui/material/Link';
 import Title from './Title';
 
 // Generate Order Data
@@ -128,7 +119,7 @@ function preventDefault(event) {
   event.preventDefault();
 };
 
-export default function Orders() {
+export default function RecommendedTickers() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -149,14 +140,14 @@ export default function Orders() {
   return (
     <React.Fragment>
       <div style={{paddingBottom: '12px', paddingTop: '12px'}}>
-        <Title>Recent Trades</Title>
+        <Title>Recommended Tickers</Title>
       </div>
       <Table size="small">
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>
             <TableCell>Name</TableCell>
-            <TableCell>Ship To</TableCell>
+            <TableCell>Daily Average</TableCell>
             <TableCell>Payment Method</TableCell>
             <TableCell align="right">Sale Amount</TableCell>
           </TableRow>

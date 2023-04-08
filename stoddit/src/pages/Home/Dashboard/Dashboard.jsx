@@ -17,6 +17,7 @@ import { mainListItems, secondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
+import RecommendedTickers from './RecommendedTickers';
 
 const username = JSON.parse(localStorage.getItem('Username'));
 const drawerWidth = 240;
@@ -152,6 +153,18 @@ function DashboardContent() {
                   borderRadius: 2
                   }}>
                   <Orders />
+                </Paper>
+              </Grid>
+              <Grid item xs={12}>
+                <Paper sx={{ 
+                  p: 2, 
+                  display: 'flex', 
+                  flexDirection: 'column',
+                  paddingBottom: '0px',
+                  boxShadow: 4,
+                  borderRadius: 2
+                  }}>
+                  <RecommendedTickers />
                 </Paper>
               </Grid>
             </Grid>
