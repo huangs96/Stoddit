@@ -65,7 +65,7 @@ function Header() {
 
   return (
     <React.Fragment>
-      <AppBar position='absolute' style={{ background: '#FFFFFF' }}>
+      <AppBar position='fixed' elevation={0} style={{ background: '#FFFFFF'}}>
         <Toolbar className={styles.customizeToolbar}>
           <Box display='flex' flexGrow={1} justifyContent='center'>
             <Tabs 

@@ -19,13 +19,15 @@ import Deposits from './Deposits';
 import Orders from './Orders';
 
 const username = JSON.parse(localStorage.getItem('Username'));
-console.log('username', username);
 const drawerWidth = 240;
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     '& .MuiDrawer-paper': {
+      backgroundColor:'#F2F0FB',
       position: 'relative',
+      zIndex: '1400',
+      borderWidth: 0,
       whiteSpace: 'nowrap',
       width: drawerWidth,
       transition: theme.transitions.create('width', {
@@ -35,6 +37,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
       boxSizing: 'border-box',
       ...(!open && {
         overflowX: 'hidden',
+        borderWidth: 0,
         transition: theme.transitions.create('width', {
           easing: theme.transitions.easing.sharp,
           duration: theme.transitions.duration.leavingScreen,
@@ -59,9 +62,9 @@ function DashboardContent() {
   return (
     <>
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: 'flex', marginTop:'64px' }}>
+      <Box sx={{ display: 'flex', marginTop:'64px'}}>
         <CssBaseline />
-        <Drawer variant="permanent" open={open}>
+        <Drawer variant="permanent" open={open} sx={{zIndex: '1400',}}>
           <Toolbar
             sx={{
               display: 'flex',
@@ -70,11 +73,11 @@ function DashboardContent() {
               px: [1],
             }}
           >
+          {/* <Typography color="gray" variant="p" fontWeight="bold">Quick Menu</Typography> */}
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
             </IconButton>
           </Toolbar>
-          <Divider />
           <List component="nav">
             {mainListItems}
             <Divider sx={{ my: 1 }} />
