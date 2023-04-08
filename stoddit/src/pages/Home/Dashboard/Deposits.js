@@ -2,6 +2,7 @@ import * as React from 'react';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Title from './Title';
+import BalanceChart from '../../../components/BalanceChart';
 const date = new Date();
 const displayDate = date.toLocaleString();
 
@@ -28,6 +29,11 @@ const data = {
   }]
 };
 
+const config = {
+  type: 'doughnut',
+  data: data,
+};
+
 
 export default function Deposits() {
   return (
@@ -36,6 +42,7 @@ export default function Deposits() {
       <Typography variant="h4" style={{paddingTop: '25px', fontWeight: 'bold'}} color="#4353FF">
         $3,024.00
       </Typography>
+      <BalanceChart />
       <Typography color="text.secondary" fontSize="12px" sx={{ flex: 1 }} style={{paddingTop: '10px'}}>
         last updated on {displayDate}
       </Typography>
