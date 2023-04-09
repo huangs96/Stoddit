@@ -123,10 +123,12 @@ function DashboardContent() {
                     height: 240,
                     boxShadow: 4,
                     borderRadius: 2,
-                    height: '400px'
+                    height: '430px'
                   }}
                 >
-                  <Chart />
+                  <div style={{position: "relative", width: '800px' }}>
+                    <Chart />
+                  </div>
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
@@ -139,7 +141,7 @@ function DashboardContent() {
                     height: 240,
                     boxShadow: 4,
                     borderRadius: 2,
-                    height: '400px'
+                    height: '430px'
                   }}
                 >
                   <Deposits />
