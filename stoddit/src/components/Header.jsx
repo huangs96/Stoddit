@@ -27,7 +27,6 @@ function Header() {
     if (value !== null) {
       localStorage.setItem('currentPage', value);
     };
-    console.log('1', localStorage.getItem('currentPage'));
   }, [value]);
 
 
