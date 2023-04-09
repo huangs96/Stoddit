@@ -118,6 +118,7 @@ function DashboardContent() {
                   sx={{
                     p: 2,
                     display: 'flex',
+                    alignContent: 'center',
                     flexDirection: 'column',
                     height: 240,
                     boxShadow: 4,

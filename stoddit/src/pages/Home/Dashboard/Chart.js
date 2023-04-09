@@ -71,18 +71,12 @@ export default function Chart() {
   const theme = useTheme();
 
   return (
-    <div style={{
-      display: 'flex',
-      padding: '1px',
-      border: '3px'
-    }}>
       <Line
         data={liveData}
         // data={liveData}
         options={options}
       >
       </Line>
-    </div>
     // <React.Fragment>
     //   <Title>Today</Title>
     //   <ResponsiveContainer>
