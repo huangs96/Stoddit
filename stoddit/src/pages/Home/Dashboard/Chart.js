@@ -31,11 +31,11 @@ const liveData = {
   datasets: [{
     label: 'Balance',
     data: data,
-    pointBorderColor: 'pink',
-    pointBackgroundColor: 'pink',
-    borderColor: 'pink',
-    backgroundColor: '#84ACCE',
-    fill: 'start',
+    pointBorderColor: '#4353FF',
+    pointBackgroundColor: '#FFFFFF',
+    borderColor: '#4353FF',
+    // backgroundColor: '#84ACCE',
+    // fill: 'start',
   }]
 };
 
