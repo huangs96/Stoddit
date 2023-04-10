@@ -37,6 +37,7 @@ export default function ContextMenu(props) {
               vertical: 'top',
               horizontal: 'left',
             }}
+            style={{marginTop: '15px'}}
           >
             {menuItems}
           </Menu>

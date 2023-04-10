@@ -47,7 +47,7 @@ function Header() {
 
   const handleToggle = async (e) => {
     setAnchorEl(e.currentTarget);
-    setShowContextMenu(true);
+    setShowContextMenu(boolean => !boolean);
   };
 
   const handleClose = () => {
@@ -74,7 +74,7 @@ function Header() {
 
   return (
     <React.Fragment>
-      <AppBar position='relative' elevation={1} style={{ background: '#FFFFFF', zIndex: 1400}}>
+      <AppBar position='sticky' elevation={1} style={{ background: '#FFFFFF', zIndex: 1400}}>
         <Toolbar className={styles.customizeToolbar}>
           <Box display='flex' flexGrow={1} justifyContent='center'>
             <Tabs 
