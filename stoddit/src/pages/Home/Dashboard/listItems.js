@@ -12,6 +12,9 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 
 export const mainListItems = (
   <React.Fragment>
+    <ListSubheader style={{background: 'none', display: 'flex', justifyContent: 'flex-start'}}>
+      Quick Menu
+    </ListSubheader>
     <ListItemButton>
       <ListItemIcon>
         <DashboardIcon />
@@ -47,6 +50,9 @@ export const mainListItems = (
 
 export const secondaryListItems = (
   <React.Fragment>
+    <ListSubheader style={{background: 'none', display: 'flex', justifyContent: 'flex-start'}}>
+      Portfolio Details
+    </ListSubheader>
     <ListItemButton>
       <ListItemIcon>
         <AssignmentIcon />
